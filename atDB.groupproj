@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5BE59B66-24A8-4FD3-8D82-D8B543410AC6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="UI\Source\Core\atDBCore-static.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\atDBPackage.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="UI\Source\atDB.cbproj">
+            <Dependencies>UI\Source\Core\atDBCore-static.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDBPackage">
+        <MSBuild Projects="UI\atDBPackage.cbproj"/>
+    </Target>
+    <Target Name="atDBPackage:Clean">
+        <MSBuild Projects="UI\atDBPackage.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBPackage:Make">
+        <MSBuild Projects="UI\atDBPackage.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atDB" DependsOnTargets="atDBCore-static">
+        <MSBuild Projects="UI\Source\atDB.cbproj"/>
+    </Target>
+    <Target Name="atDB:Clean" DependsOnTargets="atDBCore-static:Clean">
+        <MSBuild Projects="UI\Source\atDB.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDB:Make" DependsOnTargets="atDBCore-static:Make">
+        <MSBuild Projects="UI\Source\atDB.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="atDBCore-static;atDBPackage;atDB"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="atDBCore-static:Clean;atDBPackage:Clean;atDB:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="atDBCore-static:Make;atDBPackage:Make;atDB:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
