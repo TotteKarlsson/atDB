@@ -7,7 +7,6 @@
 USEFORM("Frames\TSQLiteDBFrame.cpp", SQLiteDBFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("atDBDataModule.cpp", DataModule1); /* TDataModule: File Type */
-USEFORM("Forms\TAddingUser.cpp", AddUserForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -23,9 +22,10 @@ USEFORM("Forms\TAddingUser.cpp", AddUserForm);
 using namespace mtk;
 using std::string;
 
-static HWND         gOtherAppWindow             = NULL;
+extern HWND         gOtherAppWindow             = NULL;
 extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\atDB\\0.5.0";
 extern string       gDefaultAppTheme            = "Iceberg Classico";
+extern string       gAppMutexName           	= "ATDBAppMutex";
 extern string       gRestartMutexName           = "ATDBRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
@@ -46,8 +46,6 @@ SQLite       gDB;
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
     //The app mutex is used to check for already running instances
-    HANDLE appMutex;
-
     try
     {
 		// Initialize restart code
@@ -55,24 +53,26 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		// wait while previos instance finish
 		if (mtk::checkForCommandLineFlag("--Restart"))
 		{
-            //TODO: Fix this.. not working properly..
-            //            MessageDlg("Wait...", mtWarning, TMsgDlgButtons() << mbOK, 0);
 			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
 		}
-
-        //Look at this later... does not work yet
-        appMutex = ::CreateMutexA(NULL, FALSE, gRestartMutexName.c_str());
-        if( ERROR_ALREADY_EXISTS == GetLastError() )
+        else
         {
-            // Program already running somewhere
-            ::EnumWindows(FindOtherWindow, NULL);
-
-            if(gOtherAppWindow != NULL)
+            //Look at this later... does not work yet
+            HANDLE appMutex = ::CreateMutexA(NULL, FALSE, gAppMutexName.c_str());
+            int err = GetLastError();
+            if( ERROR_ALREADY_EXISTS == err)
             {
-                //Send a custom message to restore window here..
-            }
+                // Program already running somewhere
+                ::EnumWindows(FindOtherWindow, NULL);
 
-            return(1); // Exit program
+                if(gOtherAppWindow != NULL)
+                {
+                    //Send a custom message to restore window here..
+                    ::SwitchToThisWindow(gOtherAppWindow, false);
+                }
+
+                return(0); // Exit program
+            }
         }
 
         setupLogging();
@@ -109,7 +109,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TDataModule1), &DataModule1);
-		Application->CreateForm(__classid(TAddUserForm), &AddUserForm);
 		Application->Run();
 
         // Finish restarting process if needed

@@ -109,18 +109,6 @@
         <PackageImport Include="rtl.bpi">
             <BuildOrder>1</BuildOrder>
         </PackageImport>
-        <CppCompile Include="Source\Forms\TamFileEditor.cpp">
-            <Form>amFileEditor</Form>
-            <DependentOn>Source\Forms\TamFileEditor.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Source\Forms\TShowFileContentForm.cpp">
-            <Form>ShowFileContentForm</Form>
-            <DependentOn>Source\Forms\TShowFileContentForm.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
-        <FormResources Include="Source\Forms\TamFileEditor.dfm"/>
-        <FormResources Include="Source\Forms\TShowFileContentForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

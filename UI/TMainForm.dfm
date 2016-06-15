@@ -257,7 +257,7 @@ object MainForm: TMainForm
             ListSource = DataModule1.blocksDataSource
             TabOrder = 2
           end
-          object DBLookupComboBox1: TDBLookupComboBox
+          object mBlockCreatedByCB: TDBLookupComboBox
             Left = 403
             Top = 47
             Width = 145
@@ -268,7 +268,7 @@ object MainForm: TMainForm
             ListField = 'user_name'
             ListSource = DataModule1.usersDataSource
             TabOrder = 3
-            OnClick = DBLookupComboBox1Click
+            OnClick = mBlockCreatedByCBClick
           end
         end
         object Button1: TButton
@@ -358,7 +358,7 @@ object MainForm: TMainForm
     Left = 205
     Top = 432
     Bitmap = {
-      494C0101010008002C0120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

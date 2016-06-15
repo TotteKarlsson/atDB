@@ -1,32 +1,27 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TMemoLogger.h"
-#include "TMainForm.h"
-#include "mtkVCLUtils.h"
-#include "Poco/Glob.h"
-#include "mtkMoleculixException.h"
-#include "Poco/DateTime.h"
-#include "Poco/DateTimeFormatter.h"
-#include "mtkStringUtils.h"
-#include "mtkSQLiteQuery.h"
+#include "atDBDataModule.h"
 #include "mtkLogger.h"
-#include "mtkSQLiteTable.h"
+#include "mtkMoleculixException.h"
 #include "mtkSQLiteException.h"
+#include "mtkSQLiteQuery.h"
+#include "mtkSQLiteTable.h"
+#include "mtkStringUtils.h"
+#include "mtkVCLUtils.h"
+#include "Poco/DateTime.h"
+#include "Poco/DateTimeFormat.h"
+#include "Poco/DateTimeFormatter.h"
+#include "Poco/Glob.h"
+#include "Poco/Timezone.h"
+#include "TamFileEditor.h"
+#include "TMainForm.h"
+#include "TMemoLogger.h"
 #include "TShowFileContentForm.h"
 #include "TSplashForm.h"
-#include "TamFileEditor.h"
-#include "Poco/DateTimeFormat.h"
-#include "Poco/Timezone.h"
-#include "atDBDataModule.h"
-#include "TAddingUser.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
 #pragma link "TIntegerLabeledEdit"
-#pragma link "RzCmboBx"
-#pragma link "RzDBCmbo"
-#pragma link "RzDBStat"
-#pragma link "RzStatus"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -70,21 +65,6 @@ void __fastcall TMainForm::logMsg()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
-{
-    if(LogLevelCB->ItemIndex == 0)
-    {
-        mLogLevel = lInfo;
-    }
-    else if(LogLevelCB->ItemIndex == 1)
-    {
-        mLogLevel = lAny;
-    }
-
-    gLogger.setLogLevel(mLogLevel);
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::AppInBox(mlxStructMessage &msg)
 {
     if(msg.lparam == NULL)
@@ -103,8 +83,6 @@ void __fastcall TMainForm::AppInBox(mlxStructMessage &msg)
                 gSplashForm = NULL;
             break;
 
-
-
             default:
             break ;
         }
@@ -113,22 +91,6 @@ void __fastcall TMainForm::AppInBox(mlxStructMessage &msg)
 	{
 		Log(lError) << "Received an unhandled windows message!";
 	}
-}
-
-void __fastcall TMainForm::MainPCChange(TObject *Sender)
-{
-    //Check what tb is open
-}
-
-
-
-void __fastcall TMainForm::DBComboBox2KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
-{
-	//Check if a new username was entered
-    if(Key == vkReturn)
-    {
-//		DBComboBox2->DataSource->DataSet->Post();
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -143,8 +105,8 @@ void __fastcall TMainForm::DBComboBox1Change(TObject *Sender)
 	int user_id = DataModule1->blocksDataSource->DataSet->FieldByName("created_by")->AsInteger;
 	Log(lInfo) << "User who created this block: " << user_id;
 }
-//---------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mAddBlockBtnClick(TObject *Sender)
 {
     stringstream q;
@@ -152,7 +114,6 @@ void __fastcall TMainForm::mAddBlockBtnClick(TObject *Sender)
     Log(lInfo) << "q: "<<q.str();
     mQ->SQL->Add(q.str().c_str());
     int i = mQ->ExecSQL(true);
-
 }
 
 //---------------------------------------------------------------------------
@@ -199,7 +160,6 @@ void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftS
     }
 }
 
-
 void __fastcall TMainForm::BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
@@ -233,11 +193,11 @@ void __fastcall TMainForm::BlocksNavigatorBeforeAction(TObject *Sender, TNavigat
 
 }
 
-
-void __fastcall TMainForm::DBLookupComboBox1Click(TObject *Sender)
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mBlockCreatedByCBClick(TObject *Sender)
 {
 	DataModule1->blocksCDS->Post();
 	DataModule1->blocksCDS->Refresh();
 }
-//---------------------------------------------------------------------------
+
 

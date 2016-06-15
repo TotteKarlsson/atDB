@@ -7,7 +7,7 @@ using Poco::DateTimeFormatter;
 
 using namespace mtk;
 
-static HWND         gOtherAppWindow             = NULL;
+extern HWND gOtherAppWindow;
 
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
@@ -21,6 +21,22 @@ void __fastcall TMainForm::ClearMemoAExecute(TObject *Sender)
 {
     infoMemo->Clear();
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::LogLevelCBChange(TObject *Sender)
+{
+    if(LogLevelCB->ItemIndex == 0)
+    {
+        mLogLevel = lInfo;
+    }
+    else if(LogLevelCB->ItemIndex == 1)
+    {
+        mLogLevel = lAny;
+    }
+
+    gLogger.setLogLevel(mLogLevel);
+}
+
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam)
 {

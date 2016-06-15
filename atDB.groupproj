@@ -3,14 +3,17 @@
         <ProjectGuid>{5BE59B66-24A8-4FD3-8D82-D8B543410AC6}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="UI\Source\Core\atDBCore-static.cbproj">
+        <Projects Include="P:\libs\dslib\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dslib\VCL\Common\VCLCommon.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\atDBPackage.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UI\Source\atDB.cbproj">
-            <Dependencies>UI\Source\Core\atDBCore-static.cbproj</Dependencies>
+        <Projects Include="UI\atDB.cbproj">
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -20,14 +23,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="atDBCore-static">
-        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj"/>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj"/>
     </Target>
-    <Target Name="atDBCore-static:Clean">
-        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDBCore-static:Make">
-        <MSBuild Projects="UI\Source\Core\atDBCore-static.cbproj" Targets="Make"/>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VCLCommon">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj"/>
+    </Target>
+    <Target Name="VCLCommon:Clean">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VCLCommon:Make">
+        <MSBuild Projects="P:\libs\dslib\VCL\Common\VCLCommon.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atDBPackage">
         <MSBuild Projects="UI\atDBPackage.cbproj"/>
@@ -38,23 +50,23 @@
     <Target Name="atDBPackage:Make">
         <MSBuild Projects="UI\atDBPackage.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDB" DependsOnTargets="atDBCore-static">
-        <MSBuild Projects="UI\Source\atDB.cbproj"/>
+    <Target Name="atDB">
+        <MSBuild Projects="UI\atDB.cbproj"/>
     </Target>
-    <Target Name="atDB:Clean" DependsOnTargets="atDBCore-static:Clean">
-        <MSBuild Projects="UI\Source\atDB.cbproj" Targets="Clean"/>
+    <Target Name="atDB:Clean">
+        <MSBuild Projects="UI\atDB.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDB:Make" DependsOnTargets="atDBCore-static:Make">
-        <MSBuild Projects="UI\Source\atDB.cbproj" Targets="Make"/>
+    <Target Name="atDB:Make">
+        <MSBuild Projects="UI\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atDBCore-static;atDBPackage;atDB"/>
+        <CallTarget Targets="mtkCommon;VCLCommon;atDBPackage;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atDBCore-static:Clean;atDBPackage:Clean;atDB:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;VCLCommon:Clean;atDBPackage:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atDBCore-static:Make;atDBPackage:Make;atDB:Make"/>
+        <CallTarget Targets="mtkCommon:Make;VCLCommon:Make;atDBPackage:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

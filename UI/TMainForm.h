@@ -112,7 +112,7 @@ class TMainForm : public TRegistryForm
 	TDBText *mUserIDT;
 	TDBEdit *mUserCreatedE;
 	TDBLookupListBox *mBlockLB;
-	TDBLookupComboBox *DBLookupComboBox1;
+	TDBLookupComboBox *mBlockCreatedByCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -123,8 +123,6 @@ class TMainForm : public TRegistryForm
     void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
-    void __fastcall MainPCChange(TObject *Sender);
-	void __fastcall DBComboBox2KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mUsersCBClick(TObject *Sender);
 	void __fastcall DBComboBox1Change(TObject *Sender);
 	void __fastcall mAddBlockBtnClick(TObject *Sender);
@@ -134,7 +132,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBLookupComboBox1Click(TObject *Sender);
+	void __fastcall mBlockCreatedByCBClick(TObject *Sender);
 
 
 

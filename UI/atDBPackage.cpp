@@ -1,8 +1,5 @@
 #include <System.hpp>
 #pragma hdrstop
-USEFORM("Source\Forms\TamFileEditor.cpp", amFileEditor);
-USEFORM("Source\Forms\TShowFileContentForm.cpp", ShowFileContentForm);
-//---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
 

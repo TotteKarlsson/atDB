@@ -115,7 +115,6 @@ void setupLogging()
 	}
 
 	gLogFileLocation = fldr;
-
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);
 	mtk::gLogger.logToFile(fullLogFileName);

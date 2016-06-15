@@ -99,14 +99,14 @@
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
-        <Icon_MainIcon>..\Resources\iBot.ico</Icon_MainIcon>
+        <Icon_MainIcon>Resources\atDB.ico</Icon_MainIcon>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_Keys>CompanyName=Dune Scientific, LLC;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=Dune Scientific, LLC;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <PostBuildEvent><![CDATA[copy ..\..\db\atDB.db $(OUTPUTDIR)
+        <PostBuildEvent><![CDATA[copy ..\db\atDB.db $(OUTPUTDIR)
 REM mkdir $(OUTPUTDIR)\styles
-REM xcopy ..\Redist\styles $(OUTPUTDIR)\styles /e /y
+REM xcopy p:\Redist\styles $(OUTPUTDIR)\styles /e /y
 $(PostBuildEvent)]]></PostBuildEvent>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -142,12 +142,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Core\amlUtilities.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Forms\TAddingUser.cpp">
-            <Form>AddUserForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Forms\TAddingUser.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </CppCompile>
         <CppCompile Include="Forms\TSplashForm.cpp">
             <BuildOrder>29</BuildOrder>
         </CppCompile>
@@ -179,7 +173,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="Frames\TSQLiteDBFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="atDBDataModule.dfm"/>
-        <FormResources Include="Forms\TAddingUser.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -260,7 +253,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy ..\..\db\atDB.db $(OUTPUTDIR)&amp;&amp;REM mkdir $(OUTPUTDIR)\styles&amp;&amp;REM xcopy ..\Redist\styles $(OUTPUTDIR)\styles /e /y</PostBuildEvent>
+        <PostBuildEvent>copy ..\db\atDB.db $(OUTPUTDIR)&amp;&amp;REM mkdir $(OUTPUTDIR)\styles&amp;&amp;REM xcopy p:\Redist\styles $(OUTPUTDIR)\styles /e /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

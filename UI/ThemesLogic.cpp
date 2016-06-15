@@ -7,7 +7,6 @@
 using namespace mtk;
 extern string gRestartMutexName ;
 extern string gDefaultAppTheme;
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::PopulateStyleMenu()
 {
