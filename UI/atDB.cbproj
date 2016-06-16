@@ -123,13 +123,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="atDB.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="atDBDataModule.cpp">
-            <Form>DataModule1</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>atDBDataModule.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
         <CppCompile Include="auto_link.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
@@ -145,13 +138,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="Forms\TSplashForm.cpp">
             <BuildOrder>29</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Frames\TSQLiteDBFrame.cpp">
-            <Form>SQLiteDBFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>Frames\TSQLiteDBFrame.h</DependentOn>
-            <BuildOrder>25</BuildOrder>
-        </CppCompile>
         <CppCompile Include="InitializingAppLogic.cpp">
             <BuildOrder>20</BuildOrder>
         </CppCompile>
@@ -160,6 +146,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </CppCompile>
         <CppCompile Include="MiscDataBase.cpp">
             <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="TatDM.cpp">
+            <Form>atDM</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>TatDM.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
         </CppCompile>
         <CppCompile Include="ThemesLogic.cpp">
             <BuildOrder>27</BuildOrder>
@@ -170,9 +163,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="Frames\TSQLiteDBFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="atDBDataModule.dfm"/>
+        <FormResources Include="TatDM.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

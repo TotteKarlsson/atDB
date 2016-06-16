@@ -1,11 +1,6 @@
 #include <System.hpp>
 #pragma hdrstop
 #pragma package(smart_init)
-//---------------------------------------------------------------------------
-
-//   Package source.
-//---------------------------------------------------------------------------
-
 
 #pragma argsused
 extern "C" int _libmain(unsigned long reason)
@@ -19,8 +14,6 @@ extern "C" int _libmain(unsigned long reason)
 #pragma comment(lib, "mtkDataBase.lib")
 #pragma comment(lib, "poco_foundation-static.lib")
 #pragma comment(lib, "atDBCore-static.lib")
-
-
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneComponents.bpi")
 #pragma comment(lib, "vcl.bpi")

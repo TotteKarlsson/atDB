@@ -102,18 +102,18 @@ void __fastcall TMainForm::mUsersCBClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::DBComboBox1Change(TObject *Sender)
 {
-	int user_id = DataModule1->blocksDataSource->DataSet->FieldByName("created_by")->AsInteger;
+	int user_id = abDM->blocksDataSource->DataSet->FieldByName("created_by")->AsInteger;
 	Log(lInfo) << "User who created this block: " << user_id;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mAddBlockBtnClick(TObject *Sender)
 {
-    stringstream q;
-    q <<"INSERT INTO DELETE FROM users WHERE id = "<<stdstr(mUsersCB->ListSource->DataSet->FieldByName("id")->AsString);
-    Log(lInfo) << "q: "<<q.str();
-    mQ->SQL->Add(q.str().c_str());
-    int i = mQ->ExecSQL(true);
+//    stringstream q;
+//    q <<"INSERT INTO DELETE FROM users WHERE id = "<<stdstr(mUsersCB->ListSource->DataSet->FieldByName("id")->AsString);
+//    Log(lInfo) << "q: "<<q.str();
+//    mQ->SQL->Add(q.str().c_str());
+//    int i = mQ->ExecSQL(true);
 }
 
 //---------------------------------------------------------------------------
@@ -156,7 +156,7 @@ void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftS
 {
 	if(Key == vkReturn)
     {
-		DataModule1->usersClientDataSet->Post();
+		abDM->usersClientDataSet->Post();
     }
 }
 
@@ -190,14 +190,103 @@ void __fastcall TMainForm::BlocksNavigatorBeforeAction(TObject *Sender, TNavigat
 //			mBlocksUserE->Text = mUserIDT->Field->AsInteger;
         break;
     }
-
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mBlockCreatedByCBClick(TObject *Sender)
 {
-	DataModule1->blocksCDS->Post();
-	DataModule1->blocksCDS->Refresh();
+	abDM->blocksCDS->Post();
+	abDM->blocksCDS->Refresh();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button3Click(TObject *Sender)
+{
+    stringstream q;
+    int nID = abDM->blockNotesDSet->FieldByName("id")->AsInteger;
+
+    stringstream memo;
+    for(int i = 0; i <  mBlockNoteMemo->Lines->Count; i++)
+    {
+        memo<<stdstr(mBlockNoteMemo->Lines->Strings[i]);
+        if(i < mBlockNoteMemo->Lines->Count -1 )
+        {
+            memo<<endl;
+        }
+    }
+    string s(memo.str());
+    q << "UPDATE note SET note=\""<< s <<"\" WHERE id=\""<<nID<<"\"";
+    Log(lInfo) << q.str();
+
+    abDM->updateNoteQ->SQL->Clear();
+    abDM->updateNoteQ->SQL->Add(q.str().c_str());
+    abDM->updateNoteQ->ExecSQL(true);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mInsertNewNoteBtnClick(TObject *Sender)
+{
+    int uID = abDM->usersClientDataSet->FieldByName("id")->AsInteger;
+    int blockID = abDM->blocksCDSid->Value;
+
+    stringstream q;
+    q <<"INSERT INTO note (created_by) VALUES ("<<uID<<")";
+    Log(lInfo) << q.str();
+
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = abDM->SQLConnection1;
+
+    tq->SQL->Add(q.str().c_str());
+    tq->ExecSQL(true);
+    tq->SQL->Clear();
+
+    tq->SQL->Add("SELECT LAST_INSERT_ROWID() as lRID");
+    tq->Open();
+    int noteID = tq->FieldByName("lRID")->AsInteger;
+
+    //Associate
+    q.str("");
+    q << "INSERT INTO block_note (block_id, note_id) VALUES("<<blockID<<","<<noteID<<")";
+    Log(lInfo) << q.str();
+    tq->SQL->Clear();
+    tq->SQL->Add(q.str().c_str());
+    tq->ExecSQL(true);
+
+    delete tq;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mDeleteNoteBtnClick(TObject *Sender)
+{
+	//To delete a note, first delete data in the relational table,
+	//    and after that the note itself
+    int uID 	= abDM->usersClientDataSet->FieldByName("id")->AsInteger;
+    int blockID = abDM->blocksCDSid->Value;
+    int noteID  = mNotesLookupLB->KeyValue;
+
+    stringstream q;
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = abDM->SQLConnection1;
+
+    //Associate
+    q.str("");
+    q << "DELETE FROM block_note WHERE note_id="<<noteID;
+    Log(lInfo) << q.str();
+
+    tq->SQL->Add(q.str().c_str());
+    tq->ExecSQL(true);
+    tq->SQL->Clear();
+    q.str("");
+
+    q <<"DELETE FROM note WHERE id = "<<noteID;
+    Log(lInfo) << q.str();
+
+
+    tq->SQL->Add(q.str().c_str());
+    tq->ExecSQL(true);
+
+    delete tq;
+//    mNotesLookupLB->DataSource->DataSet->Prior();
 }
 
 

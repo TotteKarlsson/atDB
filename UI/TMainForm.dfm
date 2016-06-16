@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'atDB'
   ClientHeight = 721
-  ClientWidth = 928
+  ClientWidth = 993
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -23,8 +23,8 @@ object MainForm: TMainForm
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
-    Top = 487
-    Width = 928
+    Top = 573
+    Width = 993
     Height = 3
     Cursor = crVSplit
     Align = alBottom
@@ -33,24 +33,27 @@ object MainForm: TMainForm
   end
   object BottomPanel: TPanel
     Left = 0
-    Top = 490
-    Width = 928
-    Height = 212
+    Top = 576
+    Width = 993
+    Height = 126
     Align = alBottom
     TabOrder = 0
+    ExplicitWidth = 928
     object Panel4: TPanel
       Left = 1
       Top = 1
-      Width = 926
-      Height = 210
+      Width = 991
+      Height = 124
       Align = alClient
       Caption = 'Panel4'
       TabOrder = 0
+      ExplicitWidth = 926
+      ExplicitHeight = 210
       object infoMemo: TMemo
         Left = 1
         Top = 22
-        Width = 924
-        Height = 187
+        Width = 989
+        Height = 101
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -61,11 +64,13 @@ object MainForm: TMainForm
         PopupMenu = PopupMenu1
         ScrollBars = ssBoth
         TabOrder = 0
+        ExplicitWidth = 924
+        ExplicitHeight = 187
       end
       object ToolBar2: TToolBar
         Left = 1
         Top = 1
-        Width = 924
+        Width = 989
         Height = 21
         AutoSize = True
         ButtonHeight = 21
@@ -73,6 +78,7 @@ object MainForm: TMainForm
         Caption = 'ToolBar2'
         ShowCaptions = True
         TabOrder = 1
+        ExplicitWidth = 924
         object ToolButton4: TToolButton
           Left = 0
           Top = 0
@@ -106,26 +112,33 @@ object MainForm: TMainForm
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 928
-    Height = 487
+    Width = 993
+    Height = 573
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 928
+    ExplicitHeight = 487
     object PageControl1: TPageControl
       Left = 1
       Top = 1
-      Width = 926
-      Height = 485
+      Width = 991
+      Height = 571
       ActivePage = TabSheet2
       Align = alClient
       TabOrder = 0
+      ExplicitWidth = 926
+      ExplicitHeight = 485
       object TabSheet2: TTabSheet
         Caption = 'Overview'
         ImageIndex = 1
+        ExplicitLeft = 33
+        ExplicitTop = 49
+        ExplicitWidth = 918
         object GroupBox1: TGroupBox
           Left = 19
           Top = 19
           Width = 606
-          Height = 103
+          Height = 86
           Caption = 'Users'
           TabOrder = 0
           object mUserIDT: TDBText
@@ -134,7 +147,7 @@ object MainForm: TMainForm
             Width = 65
             Height = 17
             DataField = 'id'
-            DataSource = DataModule1.usersDataSource
+            DataSource = abDM.usersDataSource
           end
           object mUsersCB: TDBLookupComboBox
             Left = 17
@@ -144,7 +157,7 @@ object MainForm: TMainForm
             DataField = 'id'
             KeyField = 'id'
             ListField = 'user_name'
-            ListSource = DataModule1.usersDataSource
+            ListSource = abDM.usersDataSource
             TabOrder = 0
             OnClick = mUsersCBClick
           end
@@ -153,7 +166,7 @@ object MainForm: TMainForm
             Top = 15
             Width = 231
             Height = 25
-            DataSource = DataModule1.usersDataSource
+            DataSource = abDM.usersDataSource
             VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
             ParentShowHint = False
             ShowHint = True
@@ -167,7 +180,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             DataField = 'user_name'
-            DataSource = DataModule1.usersDataSource
+            DataSource = abDM.usersDataSource
             TabOrder = 2
             OnKeyDown = mUserNameEKeyDown
           end
@@ -177,7 +190,7 @@ object MainForm: TMainForm
             Width = 121
             Height = 21
             DataField = 'created'
-            DataSource = DataModule1.usersDataSource
+            DataSource = abDM.usersDataSource
             Enabled = False
             TabOrder = 3
           end
@@ -185,53 +198,75 @@ object MainForm: TMainForm
         object GroupBox2: TGroupBox
           Left = 19
           Top = 128
-          Width = 606
-          Height = 209
-          Caption = 'Blocks'
+          Width = 822
+          Height = 385
+          Caption = 'Blocks && Ribbons'
           TabOrder = 1
           object DBText1: TDBText
-            Left = 403
-            Top = 24
+            Left = 301
+            Top = 43
             Width = 116
             Height = 17
             DataField = 'created'
-            DataSource = DataModule1.blocksDataSource
+            DataSource = abDM.blocksDataSource
           end
           object Label1: TLabel
-            Left = 336
+            Left = 301
             Top = 24
             Width = 61
             Height = 13
             Caption = 'Created on: '
           end
           object Label2: TLabel
-            Left = 336
-            Top = 51
+            Left = 428
+            Top = 20
             Width = 61
             Height = 13
             Caption = 'Created by: '
           end
           object Label3: TLabel
-            Left = 336
-            Top = 79
+            Left = 592
+            Top = 20
             Width = 35
             Height = 13
             Caption = 'Status:'
           end
           object Label4: TLabel
-            Left = 336
-            Top = 106
+            Left = 672
+            Top = 20
             Width = 29
             Height = 13
             Caption = 'Label:'
           end
+          object Label5: TLabel
+            Left = 91
+            Top = 188
+            Width = 28
+            Height = 13
+            Caption = 'Notes'
+          end
+          object Label6: TLabel
+            Left = 190
+            Top = 188
+            Width = 23
+            Height = 13
+            Caption = 'Note'
+          end
+          object mNoteID: TDBText
+            Left = 219
+            Top = 184
+            Width = 17
+            Height = 17
+            DataField = 'note_id'
+            DataSource = abDM.blockNotesDSource
+          end
           object DBEdit1: TDBEdit
-            Left = 403
-            Top = 104
+            Left = 672
+            Top = 39
             Width = 121
             Height = 21
             DataField = 'label'
-            DataSource = DataModule1.blocksDataSource
+            DataSource = abDM.blocksDataSource
             TabOrder = 0
           end
           object BlocksNavigator: TDBNavigator
@@ -239,7 +274,7 @@ object MainForm: TMainForm
             Top = 16
             Width = 231
             Height = 25
-            DataSource = DataModule1.blocksDataSource
+            DataSource = abDM.blocksDataSource
             VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
             ParentShowHint = False
             ShowHint = True
@@ -249,35 +284,73 @@ object MainForm: TMainForm
           end
           object mBlockLB: TDBLookupListBox
             Left = 17
-            Top = 67
-            Width = 145
-            Height = 121
+            Top = 47
+            Width = 48
+            Height = 82
             KeyField = 'id'
             ListField = 'id'
-            ListSource = DataModule1.blocksDataSource
+            ListSource = abDM.blocksDataSource
             TabOrder = 2
           end
           object mBlockCreatedByCB: TDBLookupComboBox
-            Left = 403
-            Top = 47
+            Left = 428
+            Top = 39
             Width = 145
             Height = 21
             DataField = 'created_by'
-            DataSource = DataModule1.blocksDataSource
+            DataSource = abDM.blocksDataSource
             KeyField = 'id'
             ListField = 'user_name'
-            ListSource = DataModule1.usersDataSource
+            ListSource = abDM.usersDataSource
             TabOrder = 3
             OnClick = mBlockCreatedByCBClick
           end
-        end
-        object Button1: TButton
-          Left = 593
-          Top = 343
-          Width = 75
-          Height = 25
-          Caption = 'Button1'
-          TabOrder = 2
+          object mNotesLookupLB: TDBLookupListBox
+            Left = 17
+            Top = 207
+            Width = 167
+            Height = 108
+            KeyField = 'note_id'
+            ListField = 'created_on'
+            ListSource = abDM.blockNotesDSource
+            TabOrder = 4
+          end
+          object mBlockNoteMemo: TDBMemo
+            Left = 190
+            Top = 207
+            Width = 168
+            Height = 106
+            DataField = 'note'
+            DataSource = abDM.blockNotesDSource
+            TabOrder = 5
+          end
+          object mInsertNewNoteBtn: TButton
+            Left = 23
+            Top = 176
+            Width = 28
+            Height = 25
+            Caption = '+'
+            TabOrder = 6
+            OnClick = mInsertNewNoteBtnClick
+          end
+          object Button3: TButton
+            Left = 364
+            Top = 290
+            Width = 49
+            Height = 25
+            Caption = 'Update'
+            TabOrder = 7
+            OnClick = Button3Click
+          end
+          object mDeleteNoteBtn: TButton
+            Left = 57
+            Top = 176
+            Width = 28
+            Height = 25
+            Caption = '-'
+            TabOrder = 8
+            OnClick = mDeleteNoteBtnClick
+          end
         end
       end
     end
@@ -285,14 +358,15 @@ object MainForm: TMainForm
   object SB: TStatusBar
     Left = 0
     Top = 702
-    Width = 928
+    Width = 993
     Height = 19
     Panels = <>
+    ExplicitWidth = 928
   end
   object ActionList1: TActionList
     Images = ImageList1
-    Left = 24
-    Top = 424
+    Left = 896
+    Top = 160
     object ClearMemoA: TAction
       Category = 'Memo'
       Caption = 'Clear Messages'
@@ -311,8 +385,8 @@ object MainForm: TMainForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 512
-    Top = 424
+    Left = 912
+    Top = 456
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -320,12 +394,12 @@ object MainForm: TMainForm
   object mIniFileC: mtkIniFileC
     IniFileName = 'atDB.ini'
     RootFolder = '.'
-    Left = 346
-    Top = 424
+    Left = 906
+    Top = 336
   end
   object MainMenu1: TMainMenu
-    Left = 429
-    Top = 424
+    Left = 909
+    Top = 400
     object File1: TMenuItem
       Caption = 'File'
       object Exit1: TMenuItem
@@ -349,16 +423,16 @@ object MainForm: TMainForm
     Enabled = False
     Interval = 50
     OnTimer = ShutDownTimerTimer
-    Left = 122
-    Top = 424
+    Left = 898
+    Top = 224
   end
   object ImageList1: TImageList
     Height = 32
     Width = 32
-    Left = 205
-    Top = 432
+    Left = 901
+    Top = 280
     Bitmap = {
-      494C010101000800340120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000800480120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -893,19 +967,11 @@ object MainForm: TMainForm
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
-  object mQ: TSQLQuery
-    DataSource = DataModule1.usersDataSource
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = DataModule1.SQLConnection1
-    Left = 544
-    Top = 64
-  end
   object BindSourceDB1: TBindSourceDB
-    DataSet = DataModule1.blocksCDS
+    DataSet = abDM.blocksCDS
     ScopeMappings = <>
-    Left = 456
-    Top = 376
+    Left = 920
+    Top = 64
   end
   object BindingsList1: TBindingsList
     Methods = <>

@@ -96,8 +96,6 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox2;
 	TAction *AddUserA;
 	TDBLookupComboBox *mUsersCB;
-	TSQLQuery *mQ;
-	TButton *Button1;
 	TDBText *DBText1;
 	TBindSourceDB *BindSourceDB1;
 	TBindingsList *BindingsList1;
@@ -113,6 +111,14 @@ class TMainForm : public TRegistryForm
 	TDBEdit *mUserCreatedE;
 	TDBLookupListBox *mBlockLB;
 	TDBLookupComboBox *mBlockCreatedByCB;
+	TLabel *Label5;
+	TDBLookupListBox *mNotesLookupLB;
+	TDBMemo *mBlockNoteMemo;
+	TLabel *Label6;
+	TButton *mInsertNewNoteBtn;
+	TButton *Button3;
+	TButton *mDeleteNoteBtn;
+	TDBText *mNoteID;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -133,6 +139,10 @@ class TMainForm : public TRegistryForm
 	void __fastcall BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlockCreatedByCBClick(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall mInsertNewNoteBtnClick(TObject *Sender);
+	void __fastcall mDeleteNoteBtnClick(TObject *Sender);
+
 
 
 

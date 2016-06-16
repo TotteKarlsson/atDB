@@ -3,7 +3,7 @@ Coordinates=160,470,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=0,0,127,33
+Coordinates=639,482,53,51
 Visible=True
 LayerNames=OrdersLayer
 
@@ -238,12 +238,6 @@ Coordinates=194,143,123,105
 
 [DBText1]
 Coordinates=708,482,56,51
-
-[Button1]
-Coordinates=639,482,53,51
-
-[mQ]
-Coordinates=777,482,40,51
 
 [mUsersCB]
 Coordinates=392,482,66,33

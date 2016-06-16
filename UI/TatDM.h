@@ -1,5 +1,5 @@
-#ifndef atDBDataModuleH
-#define atDBDataModuleH
+#ifndef TatDMH
+#define TatDMH
 #include <System.Classes.hpp>
 #include "DbxDevartSQLite.hpp"
 #include <Data.DB.hpp>
@@ -9,7 +9,7 @@
 #include <Datasnap.Provider.hpp>
 #include <SimpleDS.hpp>
 //---------------------------------------------------------------------------
-class TDataModule1 : public TDataModule
+class TatDM : public TDataModule
 {
 __published:	// IDE-managed Components
 	TSQLConnection *SQLConnection1;
@@ -33,6 +33,25 @@ __published:	// IDE-managed Components
 	TSQLTimeStampField *blocksCDSmodified;
 	TIntegerField *blocksCDSstatus;
 	TWideStringField *blocksCDSlabel;
+	TSQLQuery *blockNotesQ;
+	TDataSource *blockNotesDSource;
+	TDataSetProvider *blockNotesProvider;
+	TClientDataSet *blockNotesDSet;
+	TIntegerField *blockNotesDSetid;
+	TWideMemoField *blockNotesDSetnote;
+	TSQLTimeStampField *blockNotesDSetcreated_on;
+	TWideStringField *blockNotesDSetcreated_by;
+	TIntegerField *blockNotesDSetblock_id;
+	TIntegerField *blockNotesDSetnote_id;
+	TSQLQuery *updateNoteQ;
+	TSQLDataSet *noteDS;
+	TDataSetProvider *notesProvider;
+	TClientDataSet *notesCDS;
+	TIntegerField *notesCDSid;
+	TWideMemoField *notesCDSnote;
+	TSQLTimeStampField *notesCDScreated_on;
+	TWideStringField *notesCDScreated_by;
+	TDataSource *notesDSource;
 	void __fastcall usersClientDataSetuser_nameGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall usersClientDataSetBeforeApplyUpdates(TObject *Sender, OleVariant &OwnerData);
@@ -44,12 +63,16 @@ __published:	// IDE-managed Components
 	void __fastcall usersClientDataSetAfterCancel(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterPost(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterDelete(TDataSet *DataSet);
+	void __fastcall usersDSAfterOpen(TDataSet *DataSet);
+	void __fastcall blocksCDSAfterScroll(TDataSet *DataSet);
+	void __fastcall blockNotesDSetAfterPost(TDataSet *DataSet);
+
 
 private:	// User declarations
 public:		// User declarations
-	__fastcall TDataModule1(TComponent* Owner);
+	__fastcall TatDM(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TDataModule1 *DataModule1;
+extern PACKAGE TatDM *atDM;
 //---------------------------------------------------------------------------
 #endif

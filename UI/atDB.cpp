@@ -4,9 +4,8 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("Frames\TSQLiteDBFrame.cpp", SQLiteDBFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("atDBDataModule.cpp", DataModule1); /* TDataModule: File Type */
+USEFORM("TatDM.cpp", atDM); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -108,7 +107,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-		Application->CreateForm(__classid(TDataModule1), &DataModule1);
+		Application->CreateForm(__classid(TatDM), &atDM);
 		Application->Run();
 
         // Finish restarting process if needed

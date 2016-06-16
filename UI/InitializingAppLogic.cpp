@@ -93,6 +93,9 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
         mIsStyleMenuPopulated = true;
 	}
 
+	//Update DB controls
+
+
 	//transfer INI values
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;

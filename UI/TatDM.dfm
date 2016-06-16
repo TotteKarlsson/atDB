@@ -1,4 +1,4 @@
-object DataModule1: TDataModule1
+object atDM: TatDM
   OldCreateOrder = False
   Height = 405
   Width = 647
@@ -47,6 +47,7 @@ object DataModule1: TDataModule1
     ProviderName = 'blocksProvider'
     AfterPost = blocksCDSAfterPost
     AfterDelete = blocksCDSAfterDelete
+    AfterScroll = blocksCDSAfterScroll
     Left = 240
     Top = 152
     object blocksCDSid: TIntegerField
@@ -87,7 +88,9 @@ object DataModule1: TDataModule1
     Top = 152
   end
   object usersDS: TSQLDataSet
-    CommandText = 'select * from users'
+    AfterOpen = usersDSAfterOpen
+    Active = True
+    CommandText = 'select * from user'
     DataSource = usersDataSource
     MaxBlobSize = -1
     Params = <>
@@ -146,5 +149,111 @@ object DataModule1: TDataModule1
     DataSet = usersClientDataSet
     Left = 336
     Top = 88
+  end
+  object blockNotesQ: TSQLQuery
+    Active = True
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'blockID'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'SELECT * FROM note n '
+      'INNER JOIN block_note bn '
+      'ON (bn.note_id = n.id) '
+      'WHERE block_id = :blockID '
+      'ORDER BY created_on ASC')
+    SQLConnection = SQLConnection1
+    Left = 240
+    Top = 240
+  end
+  object blockNotesDSource: TDataSource
+    DataSet = blockNotesDSet
+    Left = 552
+    Top = 240
+  end
+  object blockNotesProvider: TDataSetProvider
+    DataSet = blockNotesQ
+    Left = 344
+    Top = 240
+  end
+  object blockNotesDSet: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'blockNotesProvider'
+    AfterPost = blockNotesDSetAfterPost
+    Left = 456
+    Top = 240
+    object blockNotesDSetid: TIntegerField
+      FieldName = 'id'
+    end
+    object blockNotesDSetnote: TWideMemoField
+      FieldName = 'note'
+      BlobType = ftWideMemo
+    end
+    object blockNotesDSetcreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object blockNotesDSetcreated_by: TWideStringField
+      FieldName = 'created_by'
+      Size = 512
+    end
+    object blockNotesDSetblock_id: TIntegerField
+      FieldName = 'block_id'
+    end
+    object blockNotesDSetnote_id: TIntegerField
+      FieldName = 'note_id'
+    end
+  end
+  object updateNoteQ: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 472
+    Top = 312
+  end
+  object noteDS: TSQLDataSet
+    Active = True
+    CommandText = 'select * from note'
+    DataSource = blocksDataSource
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 40
+    Top = 320
+  end
+  object notesProvider: TDataSetProvider
+    DataSet = noteDS
+    Left = 136
+    Top = 320
+  end
+  object notesCDS: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'notesProvider'
+    Left = 240
+    Top = 320
+    object notesCDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object notesCDSnote: TWideMemoField
+      FieldName = 'note'
+      BlobType = ftWideMemo
+    end
+    object notesCDScreated_on: TSQLTimeStampField
+      FieldName = 'created_on'
+    end
+    object notesCDScreated_by: TWideStringField
+      FieldName = 'created_by'
+      Size = 512
+    end
+  end
+  object notesDSource: TDataSource
+    Left = 336
+    Top = 320
   end
 end
