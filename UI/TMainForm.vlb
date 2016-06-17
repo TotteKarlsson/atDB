@@ -3,7 +3,7 @@ Coordinates=160,470,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=639,482,53,51
+Coordinates=426,123,82,51
 Visible=True
 LayerNames=OrdersLayer
 
@@ -236,45 +236,15 @@ Coordinates=105,143,70,51
 [DataModule1.usersDS]
 Coordinates=194,143,123,105
 
-[DBText1]
-Coordinates=708,482,56,51
-
-[mUsersCB]
-Coordinates=392,482,66,33
-
 [AddUserForm.SQLQuery1]
 Coordinates=1061,1,142,51
 
 [BindSourceDB1]
 Coordinates=970,270,92,177
 
-[Label1]
-Coordinates=146,1,46,51
+[atDM.blocksCDS]
+Visible=False
 
-[Label2]
-Coordinates=97,52,46,51
-
-[Label3]
-Coordinates=48,52,46,51
-
-[Label4]
-Coordinates=426,1,46,51
-
-[DBEdit1]
-Coordinates=426,71,54,33
-
-[DBNavigator2]
+[mUsersNavigator]
 Coordinates=337,144,82,51
-
-[mUserNameE]
-Coordinates=426,193,81,33
-
-[mUserCreatedE]
-Coordinates=426,245,91,33
-
-[mUserIDT]
-Coordinates=367,286,62,51
-
-[BlocksNavigator]
-Coordinates=426,123,82,51
 

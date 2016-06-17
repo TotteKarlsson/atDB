@@ -45,13 +45,13 @@ object atDM: TatDM
     Aggregates = <>
     Params = <>
     ProviderName = 'blocksProvider'
+    BeforePost = blocksCDSBeforePost
     AfterPost = blocksCDSAfterPost
     AfterDelete = blocksCDSAfterDelete
     AfterScroll = blocksCDSAfterScroll
     Left = 240
     Top = 152
     object blocksCDSid: TIntegerField
-      Alignment = taLeftJustify
       FieldName = 'id'
     end
     object blocksCDScreated: TSQLTimeStampField
@@ -80,18 +80,35 @@ object atDM: TatDM
   object blocksDS: TSQLDataSet
     Active = True
     CommandText = 'select * from block'
-    DataSource = blocksDataSource
     MaxBlobSize = -1
     Params = <>
+    SortFieldNames = 'id'
     SQLConnection = SQLConnection1
     Left = 40
     Top = 152
+    object blocksDSid: TIntegerField
+      FieldName = 'id'
+    end
+    object blocksDScreated: TSQLTimeStampField
+      FieldName = 'created'
+    end
+    object blocksDScreated_by: TIntegerField
+      FieldName = 'created_by'
+    end
+    object blocksDSmodified: TSQLTimeStampField
+      FieldName = 'modified'
+    end
+    object blocksDSstatus: TIntegerField
+      FieldName = 'status'
+    end
+    object blocksDSlabel: TWideStringField
+      FieldName = 'label'
+      Size = 400
+    end
   end
   object usersDS: TSQLDataSet
-    AfterOpen = usersDSAfterOpen
     Active = True
     CommandText = 'select * from user'
-    DataSource = usersDataSource
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
@@ -102,13 +119,12 @@ object atDM: TatDM
     end
     object usersDSuser_name: TWideMemoField
       FieldName = 'user_name'
+      OnValidate = usersDSuser_nameValidate
       BlobType = ftWideMemo
       Size = -1
     end
-    object usersDScreated: TWideMemoField
+    object usersDScreated: TSQLTimeStampField
       FieldName = 'created'
-      BlobType = ftWideMemo
-      Size = -1
     end
   end
   object usersProvider: TDataSetProvider
@@ -123,6 +139,7 @@ object atDM: TatDM
     Params = <>
     ProviderName = 'usersProvider'
     BeforeInsert = usersClientDataSetBeforeInsert
+    BeforePost = usersClientDataSetBeforePost
     AfterPost = usersClientDataSetAfterPost
     AfterCancel = usersClientDataSetAfterCancel
     AfterDelete = usersClientDataSetAfterDelete
@@ -136,13 +153,10 @@ object atDM: TatDM
     object usersClientDataSetuser_name: TWideMemoField
       FieldName = 'user_name'
       OnGetText = usersClientDataSetuser_nameGetText
-      OnValidate = usersClientDataSetuser_nameValidate
       BlobType = ftWideMemo
     end
-    object usersClientDataSetcreated: TWideMemoField
+    object usersClientDataSetcreated: TSQLTimeStampField
       FieldName = 'created'
-      OnGetText = usersClientDataSetuser_nameGetText
-      BlobType = ftWideMemo
     end
   end
   object usersDataSource: TDataSource
@@ -151,7 +165,6 @@ object atDM: TatDM
     Top = 88
   end
   object blockNotesQ: TSQLQuery
-    Active = True
     MaxBlobSize = -1
     Params = <
       item
@@ -216,7 +229,6 @@ object atDM: TatDM
     Top = 312
   end
   object noteDS: TSQLDataSet
-    Active = True
     CommandText = 'select * from note'
     DataSource = blocksDataSource
     MaxBlobSize = -1

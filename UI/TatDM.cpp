@@ -31,17 +31,25 @@ void __fastcall TatDM::usersClientDataSetuser_nameGetText(TField *Sender,
     }
 }
 
+void __fastcall TatDM::usersClientDataSetBeforePost(TDataSet *DataSet)
+{
+	if(usersClientDataSetuser_name->AsString.IsEmpty())
+    {
+		throw("Bad");
+	}
+}
+
 //---------------------------------------------------------------------------
 void __fastcall TatDM::usersClientDataSetBeforeApplyUpdates(TObject *Sender,
           OleVariant &OwnerData)
 {
-//	if(Sender == usersDSuser_name)
-//    {
+//	if()
+    {
 //        if(usersDSuser_name->AsString == "user name")
 //        {
 //            throw Exception("Bad user Name");
 //        }
-//    }
+    }
 //
 //    if(usersDSuser_name->AsString.IsEmpty())
 //    {
@@ -61,7 +69,9 @@ void __fastcall TatDM::usersClientDataSetBeforeInsert(TDataSet *DataSet)
 //---------------------------------------------------------------------------
 void __fastcall TatDM::usersClientDataSetAfterPost(TDataSet *DataSet)
 {
+	usersDS->FieldByName("user_name")->OnValidate(usersDS->FieldByName("user_name"));
 	usersClientDataSet->ApplyUpdates(0);
+
 }
 
 //---------------------------------------------------------------------------
@@ -103,22 +113,16 @@ void __fastcall TatDM::blocksCDSAfterDelete(TDataSet *DataSet)
 
 
 //---------------------------------------------------------------------------
-void __fastcall TatDM::usersDSAfterOpen(TDataSet *DataSet)
-{
-    usersDS->First();
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TatDM::blocksCDSAfterScroll(TDataSet *DataSet)
 {
-	int bID = blocksCDS->FieldByName("id")->AsInteger;
-	blockNotesQ->Params->ParamByName("blockID")->AsInteger = bID;
-    blockNotesQ->Open();
-
-    //Get notes
-	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
-	Log(lInfo) << "Note is: "<<note;
-	blockNotesQ->Close();
+//	int bID = blocksCDS->FieldByName("id")->AsInteger;
+//	blockNotesQ->Params->ParamByName("blockID")->AsInteger = bID;
+//    blockNotesQ->Open();
+//
+//    //Get notes
+//	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
+//	Log(lInfo) << "Note is: "<<note;
+//	blockNotesQ->Close();
 }
 
 //---------------------------------------------------------------------------
@@ -129,3 +133,16 @@ void __fastcall TatDM::blockNotesDSetAfterPost(TDataSet *DataSet)
 }
 
 
+void __fastcall TatDM::usersDSuser_nameValidate(TField *Sender)
+{
+//	if(Sender == )
+//    {
+//
+//    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TatDM::blocksCDSBeforePost(TDataSet *DataSet)
+{
+	Log(lInfo) << "Before Posting Block Data";
+}

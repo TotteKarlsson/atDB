@@ -21,18 +21,6 @@ __published:	// IDE-managed Components
 	TDataSetProvider *usersProvider;
 	TClientDataSet *usersClientDataSet;
 	TDataSource *usersDataSource;
-	TIntegerField *usersDSid;
-	TWideMemoField *usersDSuser_name;
-	TWideMemoField *usersDScreated;
-	TIntegerField *usersClientDataSetid;
-	TWideMemoField *usersClientDataSetuser_name;
-	TWideMemoField *usersClientDataSetcreated;
-	TIntegerField *blocksCDSid;
-	TSQLTimeStampField *blocksCDScreated;
-	TIntegerField *blocksCDScreated_by;
-	TSQLTimeStampField *blocksCDSmodified;
-	TIntegerField *blocksCDSstatus;
-	TWideStringField *blocksCDSlabel;
 	TSQLQuery *blockNotesQ;
 	TDataSource *blockNotesDSource;
 	TDataSetProvider *blockNotesProvider;
@@ -52,6 +40,24 @@ __published:	// IDE-managed Components
 	TSQLTimeStampField *notesCDScreated_on;
 	TWideStringField *notesCDScreated_by;
 	TDataSource *notesDSource;
+	TIntegerField *usersDSid;
+	TWideMemoField *usersDSuser_name;
+	TSQLTimeStampField *usersDScreated;
+	TIntegerField *usersClientDataSetid;
+	TWideMemoField *usersClientDataSetuser_name;
+	TSQLTimeStampField *usersClientDataSetcreated;
+	TIntegerField *blocksCDSid;
+	TSQLTimeStampField *blocksCDScreated;
+	TIntegerField *blocksCDScreated_by;
+	TSQLTimeStampField *blocksCDSmodified;
+	TIntegerField *blocksCDSstatus;
+	TWideStringField *blocksCDSlabel;
+	TIntegerField *blocksDSid;
+	TSQLTimeStampField *blocksDScreated;
+	TIntegerField *blocksDScreated_by;
+	TSQLTimeStampField *blocksDSmodified;
+	TIntegerField *blocksDSstatus;
+	TWideStringField *blocksDSlabel;
 	void __fastcall usersClientDataSetuser_nameGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall usersClientDataSetBeforeApplyUpdates(TObject *Sender, OleVariant &OwnerData);
@@ -63,9 +69,13 @@ __published:	// IDE-managed Components
 	void __fastcall usersClientDataSetAfterCancel(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterPost(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterDelete(TDataSet *DataSet);
-	void __fastcall usersDSAfterOpen(TDataSet *DataSet);
 	void __fastcall blocksCDSAfterScroll(TDataSet *DataSet);
 	void __fastcall blockNotesDSetAfterPost(TDataSet *DataSet);
+	void __fastcall usersDSuser_nameValidate(TField *Sender);
+	void __fastcall usersClientDataSetBeforePost(TDataSet *DataSet);
+	void __fastcall blocksCDSBeforePost(TDataSet *DataSet);
+
+
 
 
 private:	// User declarations

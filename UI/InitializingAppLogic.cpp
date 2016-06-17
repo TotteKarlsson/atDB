@@ -10,7 +10,7 @@
 #include "mtkIniSection.h"
 #include "amlUtilities.h"
 #include "Poco/Timezone.h"
-#include "atDBDataModule.h"
+
 extern bool             gAppIsStartingUp;
 extern bool             gIsDevelopmentRelease;
 extern string           gCommonAppDataLocation;

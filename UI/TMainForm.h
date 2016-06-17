@@ -44,14 +44,16 @@
 #include <Data.Bind.Grid.hpp>
 #include <Vcl.Bind.DBEngExt.hpp>
 #include <Vcl.Bind.Navigator.hpp>
-#include "RzCmboBx.hpp"
-#include "RzDBCmbo.hpp"
-#include "RzDBStat.hpp"
-#include "RzStatus.hpp"
 #include <Data.DB.hpp>
 #include <Data.FMTBcd.hpp>
 #include <Data.SqlExpr.hpp>
 #include <Vcl.Mask.hpp>
+#include "TatDM.h"
+#include "pBarcode1D.hpp"
+#include "pUPC.hpp"
+#include "pUPCA.hpp"
+#include "pCode39.hpp"
+#include "pDBBarcode1D.hpp"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -95,30 +97,22 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox1;
 	TGroupBox *GroupBox2;
 	TAction *AddUserA;
-	TDBLookupComboBox *mUsersCB;
-	TDBText *DBText1;
 	TBindSourceDB *BindSourceDB1;
 	TBindingsList *BindingsList1;
-	TLabel *Label1;
-	TLabel *Label2;
-	TLabel *Label3;
-	TLabel *Label4;
-	TDBEdit *DBEdit1;
-	TDBNavigator *BlocksNavigator;
-	TDBNavigator *DBNavigator2;
+	TDBNavigator *mUsersNavigator;
+	TBarcode1D_Code39 *Barcode1D_Code391;
+	TDBBarcode1D *DBBarcode1D1;
+	TImage *mBarCodeImage;
+	TActionList *ActionList2;
 	TDBEdit *mUserNameE;
-	TDBText *mUserIDT;
-	TDBEdit *mUserCreatedE;
-	TDBLookupListBox *mBlockLB;
-	TDBLookupComboBox *mBlockCreatedByCB;
-	TLabel *Label5;
-	TDBLookupListBox *mNotesLookupLB;
-	TDBMemo *mBlockNoteMemo;
-	TLabel *Label6;
-	TButton *mInsertNewNoteBtn;
-	TButton *Button3;
-	TButton *mDeleteNoteBtn;
-	TDBText *mNoteID;
+	TDBText *DBText1;
+	TDBText *mUserIDText;
+	TButton *Button1;
+	TDBLookupComboBox *mUsersCB;
+	TGroupBox *GroupBox3;
+	TDBNavigator *mBlocksNavigator;
+	TDBEdit *mBlockCreatorID;
+	TDBLookupListBox *DBLookupListBox1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -130,22 +124,14 @@ class TMainForm : public TRegistryForm
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
 	void __fastcall mUsersCBClick(TObject *Sender);
-	void __fastcall DBComboBox1Change(TObject *Sender);
-	void __fastcall mAddBlockBtnClick(TObject *Sender);
-
-	void __fastcall DBNavigator2Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBNavigator2BeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mUsersNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mBlockCreatedByCBClick(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall mInsertNewNoteBtnClick(TObject *Sender);
 	void __fastcall mDeleteNoteBtnClick(TObject *Sender);
-
-
-
-
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 
     private:	// User declarations
         bool                                            gCanClose;
@@ -161,12 +147,10 @@ class TMainForm : public TRegistryForm
 		void                                            updateWindowTitle();
 		string                                          mTempFileFolder;
 
-
 														//Threads can drop messages into the
 														//Message container. The main thread pops them
 														//using the messageProcessor
 		MessageContainer                                mMessages;
-
 
                                                         //Parameters...
         IniFileProperties	      	                    mGeneralProperties;
@@ -180,12 +164,9 @@ class TMainForm : public TRegistryForm
 
         bool                                            setupAndReadIniParameters();
         void                                            setupIniFile();
-
         string                                          mDBConnectionName;
         bool                                            ConnectToDataBase(const string& ConnectionName);
-
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
-
 
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
