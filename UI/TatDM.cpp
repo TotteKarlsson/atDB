@@ -3,6 +3,8 @@
 #include "mtkVCLUtils.h"
 #include <sstream>
 #include "mtkLogger.h"
+#include <iomanip>
+
 
 using namespace mtk;
 using namespace std;
@@ -12,6 +14,9 @@ using namespace std;
 #pragma link "DbxDevartSQLite"
 #pragma resource "*.dfm"
 TatDM *atDM;
+
+extern bool gAppIsStartingUp;
+
 //---------------------------------------------------------------------------
 __fastcall TatDM::TatDM(TComponent* Owner)
 	: TDataModule(Owner)
@@ -90,10 +95,9 @@ void __fastcall TatDM::usersClientDataSetAfterScroll(TDataSet *DataSet)
 {
 	;
 }
+
 //---------------------------------------------------------------------------
-
 void __fastcall TatDM::usersClientDataSetAfterCancel(TDataSet *DataSet)
-
 {
 ;
 }
@@ -123,6 +127,22 @@ void __fastcall TatDM::blocksCDSAfterScroll(TDataSet *DataSet)
 //	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
 //	Log(lInfo) << "Note is: "<<note;
 //	blockNotesQ->Close();
+
+	if(gAppIsStartingUp == false)
+	{
+		//Update customers orders
+		mRibbonCDSet->Active = false;
+		TField* field = blocksCDS->FieldByName("id");
+
+		if(field)
+		{
+			String val = field->AsString;
+			ribbonsQ->SQL->Text = "SELECT * from ribbon where block_id ='" + val + "'";
+
+//			Log(lDebug) << stdstr((customerOrdersQ->SQL->Text));
+		}
+		mRibbonCDSet->Active = true;
+	}
 }
 
 //---------------------------------------------------------------------------
@@ -131,7 +151,6 @@ void __fastcall TatDM::blockNotesDSetAfterPost(TDataSet *DataSet)
 //	blockNotesDSet->ApplyUpdates(0);
 
 }
-
 
 void __fastcall TatDM::usersDSuser_nameValidate(TField *Sender)
 {
@@ -146,3 +165,60 @@ void __fastcall TatDM::blocksCDSBeforePost(TDataSet *DataSet)
 {
 	Log(lInfo) << "Before Posting Block Data";
 }
+
+void __fastcall TatDM::mRibbonCDSetAfterPost(TDataSet *DataSet)
+{
+	mRibbonCDSet->ApplyUpdates(0);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TatDM::mRibbonCDSetBeforePost(TDataSet *DataSet)
+{
+	Log(lInfo) << "Before Posting Ribbon Data";
+}
+//---------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------
+void __fastcall TatDM::mRibbonCDSetAfterDelete(TDataSet *DataSet)
+{
+	mRibbonCDSet->ApplyUpdates(0);
+}
+
+
+
+string zeroPadLeft(int nr, int width)
+{
+	stringstream s;
+    s << std::setw(width) << std::setfill( '0' ) << std::right << nr;
+    return s.str();
+}
+
+string zeroPadRight(int nr, int width)
+{
+	stringstream s;
+    s << std::setw(width) << std::setfill( '0' ) << std::left << nr;
+    return s.str();
+}
+
+void __fastcall TatDM::mRibbonCDSetCalcFields(TDataSet *DataSet)
+{
+	//Generate barcode as being composed of
+	//    	block_id: first 5 digits
+    //		ribbon_id: next 7 digits
+	TField* field = blocksCDS->FieldByName("id");
+	if(field)
+	{
+		TField* f = mRibbonCDSet->FieldByName("bar_code");
+		if(f)
+		{
+			stringstream s;
+			s << zeroPadRight(blocksCDS->FieldByName("id")->AsInteger,   4);
+			string str = s.str();
+            s << zeroPadLeft(mRibbonCDSet->FieldByName("id")->AsInteger, 5);
+            str = s.str();
+			f->Value = toLong(str);
+		}
+	}
+}
+//---------------------------------------------------------------------------
+

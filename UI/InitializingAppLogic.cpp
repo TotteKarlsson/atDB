@@ -87,6 +87,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormShow(TObject *Sender)
 {
+	gAppIsStartingUp = false;
     if(mIsStyleMenuPopulated == false)
     {
         PopulateStyleMenu();
@@ -94,7 +95,6 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	}
 
 	//Update DB controls
-
 
 	//transfer INI values
 	BottomPanel->Height     = mBottomPanelHeight + 1;

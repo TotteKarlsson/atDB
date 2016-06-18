@@ -110,9 +110,21 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 {
 	switch(Button)
     {
+    	case TNavigateBtn::nbDelete:
+
+        break;
+
     	case TNavigateBtn::nbInsert:
-	        mBlockCreatorID->Text = mUserIDText->Field->AsString;
-		mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
+        	if(!mUsersCB->KeyValue.IsNull())
+            {
+	        	atDM->blocksCDS->FieldByName("created_by")->Value = mUsersCB->KeyValue;
+				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
+            }
+            else
+            {
+            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            	Log(lError) << "Bad...";
+            }
         break;
         case TNavigateBtn::nbPost:
 	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
@@ -231,8 +243,47 @@ void __fastcall TMainForm::mDeleteNoteBtnClick(TObject *Sender)
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
     atDM->usersDS->Refresh();
+    mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 }
-//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:
+        break;
+
+    	case TNavigateBtn::nbInsert:
+	        atDM->mRibbonCDSet->FieldByName("block_id")->Value = atDM->blocksCDS->FieldByName("id")->Value;
+			mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbPost);
+        break;
+        case TNavigateBtn::nbPost:
+	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbLast);
+        break;
+        case TNavigateBtn::nbRefresh:
+        	Log(lInfo) << "Refreshed Ribbons Dataset";
+ 		break;
+    }
+}
 
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:
+             if(MessageDlg("Deleting this block will also delete all associated ribbons!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+             {
+				Abort();
+             }
+        break;
+    }
+}
+
+void __fastcall TMainForm::PrintBarCodeClick(TObject *Sender)
+{
+	MessageDlg("Not Implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
+}
 

@@ -1,6 +1,6 @@
 object atDM: TatDM
   OldCreateOrder = False
-  Height = 405
+  Height = 744
   Width = 647
   object SQLConnection1: TSQLConnection
     ConnectionName = 'ATDBDebug'
@@ -52,6 +52,7 @@ object atDM: TatDM
     Left = 240
     Top = 152
     object blocksCDSid: TIntegerField
+      Alignment = taLeftJustify
       FieldName = 'id'
     end
     object blocksCDScreated: TSQLTimeStampField
@@ -78,8 +79,10 @@ object atDM: TatDM
     Top = 152
   end
   object blocksDS: TSQLDataSet
+    ObjectView = True
     Active = True
     CommandText = 'select * from block'
+    DataSource = mRibbonDSource
     MaxBlobSize = -1
     Params = <>
     SortFieldNames = 'id'
@@ -179,18 +182,18 @@ object atDM: TatDM
       'WHERE block_id = :blockID '
       'ORDER BY created_on ASC')
     SQLConnection = SQLConnection1
-    Left = 240
-    Top = 240
+    Left = 232
+    Top = 560
   end
   object blockNotesDSource: TDataSource
     DataSet = blockNotesDSet
-    Left = 552
-    Top = 240
+    Left = 544
+    Top = 560
   end
   object blockNotesProvider: TDataSetProvider
     DataSet = blockNotesQ
-    Left = 344
-    Top = 240
+    Left = 336
+    Top = 560
   end
   object blockNotesDSet: TClientDataSet
     Active = True
@@ -198,8 +201,8 @@ object atDM: TatDM
     Params = <>
     ProviderName = 'blockNotesProvider'
     AfterPost = blockNotesDSetAfterPost
-    Left = 456
-    Top = 240
+    Left = 448
+    Top = 560
     object blockNotesDSetid: TIntegerField
       FieldName = 'id'
     end
@@ -225,8 +228,8 @@ object atDM: TatDM
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
-    Left = 472
-    Top = 312
+    Left = 464
+    Top = 632
   end
   object noteDS: TSQLDataSet
     CommandText = 'select * from note'
@@ -234,21 +237,21 @@ object atDM: TatDM
     MaxBlobSize = -1
     Params = <>
     SQLConnection = SQLConnection1
-    Left = 40
-    Top = 320
+    Left = 32
+    Top = 640
   end
   object notesProvider: TDataSetProvider
     DataSet = noteDS
-    Left = 136
-    Top = 320
+    Left = 128
+    Top = 640
   end
   object notesCDS: TClientDataSet
     Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'notesProvider'
-    Left = 240
-    Top = 320
+    Left = 232
+    Top = 640
     object notesCDSid: TIntegerField
       FieldName = 'id'
     end
@@ -265,7 +268,81 @@ object atDM: TatDM
     end
   end
   object notesDSource: TDataSource
+    Left = 328
+    Top = 640
+  end
+  object mRibbonProvider: TDataSetProvider
+    DataSet = ribbonsQ
+    Left = 128
+    Top = 224
+  end
+  object mRibbonCDSet: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'mRibbonProvider'
+    BeforePost = mRibbonCDSetBeforePost
+    AfterPost = mRibbonCDSetAfterPost
+    AfterDelete = mRibbonCDSetAfterDelete
+    OnCalcFields = mRibbonCDSetCalcFields
+    Left = 240
+    Top = 224
+    object mRibbonCDSetid: TIntegerField
+      Alignment = taLeftJustify
+      DisplayWidth = 11
+      FieldName = 'id'
+    end
+    object mRibbonCDSetblock_id: TIntegerField
+      Alignment = taLeftJustify
+      DisplayWidth = 12
+      FieldName = 'block_id'
+    end
+    object mRibbonCDSetstatus: TIntegerField
+      DisplayWidth = 12
+      FieldName = 'status'
+    end
+    object mRibbonCDSetcreated: TSQLTimeStampField
+      DisplayWidth = 14
+      FieldName = 'created'
+    end
+    object mRibbonCDSetmodified: TSQLTimeStampField
+      DisplayWidth = 15
+      FieldName = 'modified'
+    end
+    object mRibbonCDSetcutting_order: TIntegerField
+      DisplayWidth = 13
+      FieldName = 'cutting_order'
+    end
+    object mRibbonCDSetnotes: TWideMemoField
+      DisplayWidth = 12
+      FieldName = 'notes'
+      BlobType = ftWideMemo
+    end
+    object mRibbonCDSetbar_code: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'bar_code'
+      Calculated = True
+    end
+  end
+  object mRibbonDSource: TDataSource
+    DataSet = mRibbonCDSet
     Left = 336
-    Top = 320
+    Top = 224
+  end
+  object ribbonsQ: TSQLQuery
+    Active = True
+    DataSource = mRibbonDSource
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'select * from ribbon where block_id = :ID')
+    SQLConnection = SQLConnection1
+    Left = 32
+    Top = 224
   end
 end

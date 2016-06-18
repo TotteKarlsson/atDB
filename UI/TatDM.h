@@ -58,6 +58,18 @@ __published:	// IDE-managed Components
 	TSQLTimeStampField *blocksDSmodified;
 	TIntegerField *blocksDSstatus;
 	TWideStringField *blocksDSlabel;
+	TDataSetProvider *mRibbonProvider;
+	TClientDataSet *mRibbonCDSet;
+	TDataSource *mRibbonDSource;
+	TIntegerField *mRibbonCDSetid;
+	TIntegerField *mRibbonCDSetblock_id;
+	TIntegerField *mRibbonCDSetstatus;
+	TSQLTimeStampField *mRibbonCDSetcreated;
+	TSQLTimeStampField *mRibbonCDSetmodified;
+	TIntegerField *mRibbonCDSetcutting_order;
+	TWideMemoField *mRibbonCDSetnotes;
+	TSQLQuery *ribbonsQ;
+	TIntegerField *mRibbonCDSetbar_code;
 	void __fastcall usersClientDataSetuser_nameGetText(TField *Sender, UnicodeString &Text,
           bool DisplayText);
 	void __fastcall usersClientDataSetBeforeApplyUpdates(TObject *Sender, OleVariant &OwnerData);
@@ -74,6 +86,11 @@ __published:	// IDE-managed Components
 	void __fastcall usersDSuser_nameValidate(TField *Sender);
 	void __fastcall usersClientDataSetBeforePost(TDataSet *DataSet);
 	void __fastcall blocksCDSBeforePost(TDataSet *DataSet);
+	void __fastcall mRibbonCDSetAfterPost(TDataSet *DataSet);
+	void __fastcall mRibbonCDSetBeforePost(TDataSet *DataSet);
+	void __fastcall mRibbonCDSetAfterDelete(TDataSet *DataSet);
+	void __fastcall mRibbonCDSetCalcFields(TDataSet *DataSet);
+
 
 
 

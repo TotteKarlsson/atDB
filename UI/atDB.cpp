@@ -25,6 +25,7 @@ extern HWND         gOtherAppWindow             = NULL;
 extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\atDB\\0.5.0";
 extern string       gDefaultAppTheme            = "Iceberg Classico";
 extern string       gAppMutexName           	= "ATDBAppMutex";
+extern bool 		gAppIsStartingUp 			= true;
 extern string       gRestartMutexName           = "ATDBRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
@@ -33,7 +34,7 @@ extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "atDB.log";
 extern bool         gIsDevelopmentRelease       = false;
-extern bool         gAppIsStartingUp            = true;
+
 extern bool         gHideSplash                 = true;
 extern TSplashForm* gSplashForm                 = NULL;
 extern SQLite       gDB                         ;
