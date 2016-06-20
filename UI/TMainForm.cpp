@@ -130,6 +130,7 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbLast);
+	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
         	Log(lInfo) << "Refreshed Blocks Dataset";
@@ -261,6 +262,7 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
 	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbLast);
+	        mRibbonsNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
         	Log(lInfo) << "Refreshed Ribbons Dataset";

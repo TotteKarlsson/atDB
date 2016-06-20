@@ -112,8 +112,6 @@ class TMainForm : public TRegistryForm
 	TDBLookupListBox *DBLookupListBox1;
 	TDBGrid *DBGrid1;
 	TTabSheet *TabSheet1;
-	TDBGrid *DBGrid2;
-	TDBGrid *DBGrid3;
 	TDBNavigator *mRibbonsNavigator;
 	TGroupBox *GroupBox5;
 	TGroupBox *GroupBox6;

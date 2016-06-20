@@ -115,7 +115,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 991
       Height = 603
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       object TabSheet2: TTabSheet
@@ -226,9 +226,9 @@ object MainForm: TMainForm
           end
           object GroupBox6: TGroupBox
             Left = 144
-            Top = 37
+            Top = 31
             Width = 641
-            Height = 260
+            Height = 266
             Caption = 'Ribbons'
             TabOrder = 2
             object mBarCodeImage: TImage
@@ -287,34 +287,8 @@ object MainForm: TMainForm
         end
       end
       object TabSheet1: TTabSheet
-        Caption = 'TabSheet1'
+        Caption = 'Species, Primaries && Fluorophores'
         ImageIndex = 1
-        object DBGrid2: TDBGrid
-          Left = 16
-          Top = 40
-          Width = 497
-          Height = 120
-          DataSource = atDM.blocksDataSource
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-        end
-        object DBGrid3: TDBGrid
-          Left = 16
-          Top = 200
-          Width = 497
-          Height = 120
-          DataSource = atDM.mRibbonDSource
-          TabOrder = 1
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-        end
       end
     end
   end
@@ -413,7 +387,6 @@ object MainForm: TMainForm
     TextFont.Name = 'Tahoma'
     TextFont.Style = []
     ShowGuards = True
-    Barcode = '990000099'
     Ratio = 2.000000000000000000
     Left = 560
     Top = 304
