@@ -1,5 +1,5 @@
-#ifndef TSplashFormH
-#define TSplashFormH
+#ifndef TATDBSplashFormH
+#define TATDBSplashFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -12,7 +12,6 @@
 #include "mtkTimer.h"
 #include "mtkMessageContainer.h"
 #include "dslTSplashMessageProcessor.h"
-#include "SKGenerator.hpp"
 using Poco::Timespan;
 using mtk::MessageContainer;
 //---------------------------------------------------------------------------
@@ -22,7 +21,6 @@ class PACKAGE TSplashForm : public TForm
     TTimer *closeTimer;
     TLabel *logLabel;
     TLabel *Label1;
-    TRegistrationFile *RegistrationFile1;
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall closeTimerTimer(TObject *Sender);
@@ -50,11 +48,8 @@ class PACKAGE TSplashForm : public TForm
         void                            __fastcall          onWritingLogMessage();
         bool                                                isOnShowTime();
         void                                                setShowTime(int ms);
-//        TRegistrationFile*                                  mRegistrationComponent;
 	__published:
 
 };
 //---------------------------------------------------------------------------
-//extern PACKAGE TSplashForm *SplashForm;
-
 #endif

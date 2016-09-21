@@ -1,12 +1,11 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "TSplashForm.h"
+//#include "TSplashForm.h"
 #include "TMemoLogger.h"
 #include "mtkVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
 #include "mtkLogger.h"
-#include "TSplashForm.h"
 #include "mtkIniSection.h"
 #include "amlUtilities.h"
 #include "Poco/Timezone.h"
@@ -20,7 +19,7 @@ extern string           gFullDateTimeFormat;
 extern string           gDateFormat;
 extern string           gTimeFormat;
 
-extern TSplashForm*     gSplashForm;
+//extern TSplashForm*     gSplashForm;
 extern string           gTimeFormat;
 
 using namespace mtk;
@@ -31,24 +30,23 @@ using Poco::DateTimeFormatter;
 void __fastcall TMainForm::FormCreate(TObject *Sender)
 {
     TMemoLogger::mMemoIsEnabled = false;
-    if(gSplashForm)
-    {
-		gSplashForm->mMainAppIsRunning = true;
-
-		this->Visible = true;
-		while(gSplashForm->isOnShowTime() == true)
-		{
-			//In order to show whats going on on the splash screen
-			Application->ProcessMessages();
-			if(gSplashForm->Visible == false)
-			{
-				break;
-			}
-		}
-
-		gSplashForm->Close();
-    }
-	gLogger.setLogLevel(mLogLevel);
+//    if(gSplashForm)
+//    {
+//		gSplashForm->mMainAppIsRunning = true;
+//
+//		this->Visible = true;
+//		while(gSplashForm->isOnShowTime() == true)
+//		{
+//			//In order to show whats going on on the splash screen
+//			Application->ProcessMessages();
+//			if(gSplashForm->Visible == false)
+//			{
+//				break;
+//			}
+//		}
+//
+//		gSplashForm->Close();
+//    }	gLogger.setLogLevel(mLogLevel);
 
 	if(mLogLevel == lInfo)
 	{

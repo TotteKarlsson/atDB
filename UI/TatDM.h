@@ -90,6 +90,7 @@ __published:	// IDE-managed Components
 	void __fastcall mRibbonCDSetBeforePost(TDataSet *DataSet);
 	void __fastcall mRibbonCDSetAfterDelete(TDataSet *DataSet);
 	void __fastcall mRibbonCDSetCalcFields(TDataSet *DataSet);
+	void __fastcall SQLConnection1AfterConnect(TObject *Sender);
 
 
 

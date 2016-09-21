@@ -2,10 +2,10 @@
 #include "TMainForm.h"
 #include "mtkLogger.h"
 #include "TMemoLogger.h"
-#include "TSplashForm.h"
+//#include "TSplashForm.h"
 
 using namespace mtk;
-extern TSplashForm*  gSplashForm;
+//extern TSplashForm*  gSplashForm;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::~TMainForm()
 {
@@ -22,6 +22,11 @@ void __fastcall TMainForm::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
+    if(atDM->SQLConnection1->Connected)
+    {
+    	atDM->SQLConnection1->Connected = false;
+    }
+
     Close();
 }
 
@@ -31,10 +36,10 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	if(mLogFileReader.isRunning())
-	{
+	if(mLogFileReader.isRunning() || atDM->SQLConnection1->Connected)
+    {
 		CanClose = false;
-	}
+    }
     else
     {
     	CanClose = true;

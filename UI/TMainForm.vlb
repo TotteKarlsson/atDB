@@ -1,11 +1,12 @@
 ﻿[infoMemo]
-Coordinates=160,470,62,51
+Coordinates=695,391,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=396,303,56,33
+Coordinates=331,391,70,51
 Visible=True
 LayerNames=OrdersLayer
+ExplicitSubNodes=Text
 
 [AmazonDataModule.orders]
 Coordinates=719,265,147,321
@@ -15,35 +16,35 @@ Coordinates=173,10,127,303
 Visible=False
 
 [BottomPanel]
-Coordinates=10,312,77,51
+Coordinates=474,215,77,51
 LayerNames=OrdersLayer
 
 [SB]
-Coordinates=454,312,41,51
+Coordinates=644,391,41,51
 LayerNames=OrdersLayer
 
 [LogLevelCB]
-Coordinates=10,215,84,87
+Coordinates=156,215,84,87
 LayerNames=OrdersLayer
 
 [ToolBar2]
-Coordinates=217,373,58,33
+Coordinates=420,452,58,33
 LayerNames=OrdersLayer
 
 [Splitter1]
-Coordinates=152,373,55,33
+Coordinates=129,452,55,33
 LayerNames=OrdersLayer
 
 [TopPanel]
-Coordinates=505,312,60,51
+Coordinates=147,391,60,51
 LayerNames=OrdersLayer
 
 [Panel4]
-Coordinates=575,312,47,51
+Coordinates=90,391,47,51
 LayerNames=OrdersLayer
 
 [ToolButton4]
-Coordinates=363,373,74,33
+Coordinates=721,452,74,33
 LayerNames=OrdersLayer
 
 [AmazonDataModule.OrderItemsCDS]
@@ -81,7 +82,7 @@ Coordinates=1160,70,92,231
 Visible=False
 
 [ToolButton1]
-Coordinates=447,373,74,33
+Coordinates=194,452,74,33
 LayerNames=OrdersLayer
 
 [AmazonDataModule.SalesByStateQ]
@@ -201,10 +202,10 @@ LayerNames=OrdersLayer
 LayerNames=OrdersLayer
 
 [PageControl1]
-Coordinates=597,373,81,33
+Coordinates=554,452,81,33
 
 [TabSheet2]
-Coordinates=632,312,66,33
+Coordinates=10,495,66,33
 
 [DataModule1.blocksCDS]
 Coordinates=970,270,92,177
@@ -221,14 +222,11 @@ Coordinates=426,10,92,159
 Visible=True
 Coordinates=283,10,133,177
 
-[GroupBox1]
-Coordinates=16,143,70,51
-
 [DataModule1.usersClientDataSet]
 Coordinates=213,1,175,105
 
 [GroupBox2]
-Coordinates=105,143,70,51
+Coordinates=10,391,70,51
 
 [DataModule1.usersDS]
 Coordinates=194,143,123,105
@@ -237,90 +235,103 @@ Coordinates=194,143,123,105
 Coordinates=1061,1,142,51
 
 [BindSourceDB1]
-Coordinates=970,270,92,177
+Coordinates=250,215,92,51
 
 [atDM.blocksCDS]
 Visible=False
 Coordinates=970,270,92,177
 
-[mUsersNavigator]
-Coordinates=337,144,99,51
-
-[mUsersCB]
-Coordinates=584,477,66,33
-
 [mBarCodeImage]
-Coordinates=61,482,96,51
+Coordinates=383,330,96,51
 
 [atDM.blockNotesDSet]
-Coordinates=410,1,121,159
+Coordinates=235,10,121,159
 
 [mUserIDText]
-Coordinates=225,482,77,51
+Coordinates=557,391,77,51
 
 [mBlocksNavigator]
-Coordinates=304,482,104,51
-
-[DBText1]
-Coordinates=113,340,56,51
+Coordinates=217,391,104,51
 
 [atDM.blocksDS]
-Coordinates=0,0,89,159
+Coordinates=366,10,89,159
 
 [atDM.blockNotesQ]
-Coordinates=108,1,105,159
-
-[GroupBox3]
-Coordinates=584,195,70,51
+Coordinates=489,330,105,51
 
 [atDM.usersDS]
-Coordinates=89,178,84,105
+Coordinates=910,640,92,123
+Visible=False
 
 [atDM.updateNoteQ]
-Coordinates=251,179,107,51
+Coordinates=604,330,107,51
 
 [atDM.usersClientDataSet]
-Coordinates=410,179,136,105
-
-[mUserNameE]
-Coordinates=768,261,81,33
+Coordinates=10,215,136,105
 
 [atDM.noteDS]
-Coordinates=172,321,78,123
+Coordinates=465,10,78,123
 
 [atDM.notesCDS]
-Coordinates=251,249,91,123
+Coordinates=553,10,91,123
 
 [DBLookupListBox1]
-Coordinates=899,1,109,33
+Coordinates=10,452,109,33
 
 [atDM.mRibbonCDSet]
-Coordinates=734,417,117,195
+Coordinates=10,10,117,195
 
 [DBGrid1]
-Coordinates=251,1,56,33
+Coordinates=488,452,56,33
 
 [TabSheet1]
-Coordinates=251,53,66,33
+Coordinates=278,452,66,33
 
 [atDM.]
 Coordinates=660,613,101,177
 
 [atDM.ribbonsQ]
-Coordinates=258,197,88,177
+Coordinates=137,10,88,177
 
 [mRibbonsNavigator]
-Coordinates=396,425,112,51
-
-[GroupBox5]
-Coordinates=584,71,70,51
+Coordinates=352,215,112,51
 
 [GroupBox6]
-Coordinates=584,141,70,51
-
-[PrintBarCode]
-Coordinates=584,1,80,51
+Coordinates=561,215,70,51
 
 [DBText2]
-Coordinates=0,431,56,51
+Coordinates=317,330,56,51
+
+[BindSourceDB2]
+Coordinates=910,640,92,123
+
+[PrintBarCodeBtn]
+Coordinates=119,330,97,51
+
+[DBGrid2]
+Coordinates=354,452,56,33
+
+[Label1]
+Coordinates=519,152,46,51
+
+[mUsersCB]
+Coordinates=394,285,66,33
+
+[UsersGB]
+Coordinates=641,215,58,51
+
+[TabSheet3]
+Coordinates=278,285,66,33
+
+[DBGrid3]
+Coordinates=439,400,56,33
+
+[DBNavigator1]
+Coordinates=682,152,82,51
+
+[DBNavigator2]
+Coordinates=682,504,82,51
+
+[Panel1]
+Coordinates=533,504,47,51
 

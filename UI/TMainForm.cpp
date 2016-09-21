@@ -16,7 +16,6 @@
 #include "TMainForm.h"
 #include "TMemoLogger.h"
 #include "TShowFileContentForm.h"
-#include "TSplashForm.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -38,7 +37,7 @@ extern string gApplicationRegistryRoot;
 extern string gDefaultAppTheme;
 extern string gFullDateTimeFormat;
 extern bool gIsDevelopmentRelease;
-extern TSplashForm*  gSplashForm;
+//extern TSplashForm*  gSplashForm;
 
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
@@ -90,29 +89,22 @@ void __fastcall TMainForm::mUsersNavigatorBeforeAction(TObject *Sender, TNavigat
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
-	switch(Button)
-    {
-    	case TNavigateBtn::nbInsert:
-            mUserNameE->Text = "New User";
-        break;
-
-        case TNavigateBtn::nbApplyUpdates:
-        break;
-        case TNavigateBtn::nbRefresh:
- 		break;
-        default:
-		    mUsersCB->KeyValue = atDM->usersClientDataSet->FieldByName("id")->AsInteger;
-        break;
-    }
+//	switch(Button)
+//    {
+//    	case TNavigateBtn::nbInsert:            mUserNameE->Text = "New User";        break;
+//        case TNavigateBtn::nbApplyUpdates:      									  break;
+//        case TNavigateBtn::nbRefresh: 												  break;
+//        default:
+//		    mUsersCB->KeyValue = atDM->usersClientDataSet->FieldByName("id")->AsInteger;
+//        break;
+//    }
 }
 
 void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
-    	case TNavigateBtn::nbDelete:
-
-        break;
+    	case TNavigateBtn::nbDelete:        break;
 
     	case TNavigateBtn::nbInsert:
         	if(!mUsersCB->KeyValue.IsNull())
@@ -144,10 +136,10 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-//	if(Key == vkReturn)
-//    {
-//		atDM->usersClientDataSet->Post();
-//    }
+	if(Key == vkReturn)
+    {
+		atDM->usersClientDataSet->Post();
+    }
 }
 
 //---------------------------------------------------------------------------

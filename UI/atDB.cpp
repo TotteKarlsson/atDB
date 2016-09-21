@@ -13,7 +13,7 @@ USEFORM("TatDM.cpp", atDM); /* TDataModule: File Type */
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
 #include "amlUtilities.h"
-#include "TSplashForm.h"
+//#include "TATDBSplashForm.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
 #pragma package(smart_init)
@@ -36,7 +36,7 @@ extern string       gLogFileName                = "atDB.log";
 extern bool         gIsDevelopmentRelease       = false;
 
 extern bool         gHideSplash                 = true;
-extern TSplashForm* gSplashForm                 = NULL;
+//extern TSplashForm* gSplashForm                 = NULL;
 extern SQLite       gDB                         ;
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
@@ -89,22 +89,23 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->MainFormOnTaskBar = true;
 
         //Load Styles from files
-        loadStyles();
-        setupApplicationTheme();
+//        loadStyles();
+//        setupApplicationTheme();
 
-        gSplashForm = new TSplashForm(Application);
-        if(!gHideSplash)
-        {
-            Application->ShowMainForm = false;
-            gSplashForm->Show();
-            gSplashForm->Update();
-        }
-        else
-        {
-            gSplashForm->Close();
-        }
+//        gSplashForm = new TSplashForm(Application);
+//        if(!gHideSplash)
+//        {
+//            Application->ShowMainForm = false;
+//            gSplashForm->Show();
+//            gSplashForm->Update();
+//        }
+//        else
+//        {
+//            gSplashForm->Close();
+//        }
 
-        TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
+        TStyleManager::TrySetStyle("Iceberg Classico");
+		TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);

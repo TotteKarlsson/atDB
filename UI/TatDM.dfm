@@ -18,7 +18,7 @@ object atDM: TatDM
       'ProductName=DevartSQLite'
       'LibraryName=dbexpsqlite40.dll'
       'VendorLib=sqlite3.dll'
-      'Database=p:\atDB\db\atDB.db'
+      'Database=p:\iBot\db\atDB.db'
       'LocaleCode=0000'
       'IsolationLevel=ReadCommitted'
       'ASCIIDataBase=False'
@@ -31,6 +31,7 @@ object atDM: TatDM
       'UseUnicode=True'
       'EnableLoadExtension=False'
       'BlobSize=-1')
+    AfterConnect = SQLConnection1AfterConnect
     Connected = True
     Left = 40
     Top = 24
@@ -196,7 +197,6 @@ object atDM: TatDM
     Top = 560
   end
   object blockNotesDSet: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'blockNotesProvider'
@@ -232,6 +232,7 @@ object atDM: TatDM
     Top = 632
   end
   object noteDS: TSQLDataSet
+    Active = True
     CommandText = 'select * from note'
     DataSource = blocksDataSource
     MaxBlobSize = -1

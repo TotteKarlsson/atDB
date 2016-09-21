@@ -1,6 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TSplashForm.h"
+#include "TATDBSplashForm.h"
 #include "mtkVCLUtils.h"
 #include "amlApplicationMessages.h"
 #include "mtkLogger.h"
@@ -8,9 +8,7 @@
 #include "mtkApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "SKGenerator"
 #pragma resource "*.dfm"
-//TSplashForm *SplashForm;
 
 using namespace mtk;
 
@@ -55,7 +53,7 @@ void TSplashForm::setShowTime(int ms)
 
 void TSplashForm::addLogMessage(const string& msg)
 {
-    mLogMessages.post(msg);
+    mLogMessages.postMessage(msg);
 }
 
 void __fastcall TSplashForm::CreateParams(TCreateParams& Params)
@@ -80,7 +78,7 @@ void __fastcall TSplashForm::FormCloseQuery(TObject *Sender, bool &CanClose)
         closeTimer->Enabled = true;
     }
 
-    if(mMainAppIsRunning && mLogMessages.getNrOfMessages() == 0)
+    if(mMainAppIsRunning && mLogMessages.count() == 0)
     {
         mMessageProcessor.stop();
     }

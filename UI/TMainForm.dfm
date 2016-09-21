@@ -115,180 +115,231 @@ object MainForm: TMainForm
       Top = 1
       Width = 991
       Height = 603
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
       object TabSheet2: TTabSheet
         Caption = 'Overview'
         ImageIndex = 1
-        object GroupBox1: TGroupBox
+        object UsersGB: TGroupBox
           Left = 19
           Top = 19
           Width = 278
-          Height = 86
-          Caption = 'Users'
+          Height = 70
+          Caption = 'Select User'
           TabOrder = 0
-          object DBText1: TDBText
-            Left = 160
-            Top = 48
-            Width = 121
-            Height = 17
-            DataField = 'created'
-            DataSource = atDM.usersDataSource
-          end
           object mUserIDText: TDBText
-            Left = 254
-            Top = 23
+            Left = 238
+            Top = 29
             Width = 65
             Height = 17
             DataField = 'id'
             DataSource = atDM.usersDataSource
           end
-          object mUsersNavigator: TDBNavigator
-            Left = 17
-            Top = 15
-            Width = 231
-            Height = 25
-            DataSource = atDM.usersDataSource
-            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-            ParentShowHint = False
-            ConfirmDelete = False
-            ShowHint = True
-            TabOrder = 0
-            BeforeAction = mUsersNavigatorBeforeAction
-            OnClick = mUsersNavigatorClick
+          object Label1: TLabel
+            Left = 192
+            Top = 29
+            Width = 40
+            Height = 13
+            Caption = 'User ID:'
           end
-          object mUserNameE: TDBEdit
-            Left = 17
-            Top = 46
-            Width = 121
+          object mUsersCB: TDBLookupComboBox
+            Left = 10
+            Top = 25
+            Width = 145
             Height = 21
-            DataField = 'user_name'
+            KeyField = 'id'
+            ListField = 'user_name'
+            ListSource = atDM.usersDataSource
+            TabOrder = 0
+            OnClick = mUsersCBClick
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 19
+          Top = 95
+          Width = 563
+          Height = 154
+          Caption = 'Blocks'
+          TabOrder = 1
+          object mBlocksNavigator: TDBNavigator
+            Left = 17
+            Top = 16
+            Width = 64
+            Height = 25
+            DataSource = atDM.blocksDataSource
+            VisibleButtons = [nbInsert, nbDelete]
+            ConfirmDelete = False
+            TabOrder = 0
+            BeforeAction = mBlocksNavigatorBeforeAction
+            OnClick = mBlocksNavigatorClick
+          end
+          object DBLookupListBox1: TDBLookupListBox
+            Left = 17
+            Top = 56
+            Width = 64
+            Height = 69
+            DataField = 'id'
             DataSource = atDM.usersDataSource
+            KeyField = 'id'
+            ListField = 'id'
+            ListSource = atDM.blocksDataSource
             TabOrder = 1
           end
         end
-        object GroupBox3: TGroupBox
+        object GroupBox6: TGroupBox
           Left = 19
-          Top = 111
-          Width = 798
-          Height = 434
-          Caption = 'Blocks && Ribbons'
-          TabOrder = 1
-          object GroupBox2: TGroupBox
-            Left = 17
-            Top = 95
-            Width = 121
-            Height = 202
-            Caption = 'Blocks'
+          Top = 255
+          Width = 641
+          Height = 294
+          Caption = 'Ribbons'
+          TabOrder = 2
+          object mBarCodeImage: TImage
+            Left = 535
+            Top = 22
+            Width = 98
+            Height = 259
+            ParentShowHint = False
+            Proportional = True
+            ShowHint = True
+            Stretch = True
+          end
+          object DBText2: TDBText
+            Left = 280
+            Top = 224
+            Width = 65
+            Height = 17
+            DataField = 'bar_code'
+          end
+          object DBGrid1: TDBGrid
+            Left = 15
+            Top = 22
+            Width = 514
+            Height = 184
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
-            object mBlocksNavigator: TDBNavigator
-              Left = 17
-              Top = 16
-              Width = 64
-              Height = 25
-              DataSource = atDM.blocksDataSource
-              VisibleButtons = [nbInsert, nbDelete]
-              ConfirmDelete = False
-              TabOrder = 0
-              BeforeAction = mBlocksNavigatorBeforeAction
-              OnClick = mBlocksNavigatorClick
-            end
-            object DBLookupListBox1: TDBLookupListBox
-              Left = 17
-              Top = 56
-              Width = 64
-              Height = 134
-              KeyField = 'id'
-              ListField = 'id'
-              ListSource = atDM.blocksDataSource
-              TabOrder = 1
-            end
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'id'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'block_id'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'created'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cutting_order'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'bar_code'
+                Visible = True
+              end>
           end
-          object GroupBox5: TGroupBox
-            Left = 17
-            Top = 31
-            Width = 121
-            Height = 58
-            Caption = 'User'
+          object mRibbonsNavigator: TDBNavigator
+            Left = 15
+            Top = 212
+            Width = 210
+            Height = 25
+            VisibleButtons = [nbInsert, nbDelete]
+            ConfirmDelete = False
             TabOrder = 1
-            object mUsersCB: TDBLookupComboBox
-              Left = 17
-              Top = 23
-              Width = 87
-              Height = 21
-              KeyField = 'id'
-              ListField = 'user_name'
-              ListSource = atDM.usersDataSource
-              TabOrder = 0
-              OnClick = mUsersCBClick
-            end
+            OnClick = RibbonsNavigatorClick
           end
-          object GroupBox6: TGroupBox
-            Left = 144
-            Top = 31
-            Width = 641
-            Height = 266
-            Caption = 'Ribbons'
+          object PrintBarCodeBtn: TButton
+            Left = 416
+            Top = 212
+            Width = 113
+            Height = 25
+            Caption = 'PrintBarCodeBtn'
             TabOrder = 2
-            object mBarCodeImage: TImage
-              Left = 535
-              Top = 22
-              Width = 98
-              Height = 221
-              ParentShowHint = False
-              Proportional = True
-              ShowHint = True
-              Stretch = True
-            end
-            object DBText2: TDBText
-              Left = 280
-              Top = 224
-              Width = 65
-              Height = 17
-              DataField = 'bar_code'
-              DataSource = atDM.mRibbonDSource
-            end
-            object DBGrid1: TDBGrid
-              Left = 15
-              Top = 22
-              Width = 514
-              Height = 184
-              DataSource = atDM.mRibbonDSource
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-              TabOrder = 0
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-            end
-            object mRibbonsNavigator: TDBNavigator
-              Left = 15
-              Top = 212
-              Width = 210
-              Height = 25
-              DataSource = atDM.mRibbonDSource
-              VisibleButtons = [nbInsert, nbDelete]
-              ConfirmDelete = False
-              TabOrder = 1
-              OnClick = RibbonsNavigatorClick
-            end
-            object PrintBarCode: TButton
-              Left = 448
-              Top = 212
-              Width = 81
-              Height = 25
-              Caption = 'PrintBarCode'
-              TabOrder = 2
-              OnClick = PrintBarCodeClick
-            end
+            OnClick = PrintBarCodeClick
           end
         end
       end
       object TabSheet1: TTabSheet
-        Caption = 'Species, Primaries && Fluorophores'
+        Caption = 'Blocks'
         ImageIndex = 1
+        object DBGrid2: TDBGrid
+          Left = 0
+          Top = 41
+          Width = 983
+          Height = 534
+          Align = alClient
+          Anchors = [akLeft, akRight, akBottom]
+          DataSource = atDM.blocksDataSource
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+        object Panel1: TPanel
+          Left = 0
+          Top = 0
+          Width = 983
+          Height = 41
+          Align = alTop
+          TabOrder = 1
+          ExplicitLeft = 408
+          ExplicitTop = 16
+          ExplicitWidth = 185
+          object DBNavigator2: TDBNavigator
+            Left = 0
+            Top = 8
+            Width = 240
+            Height = 25
+            DataSource = atDM.blocksDataSource
+            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'Users'
+        ImageIndex = 2
+        object DBGrid3: TDBGrid
+          Left = 29
+          Top = 96
+          Width = 708
+          Height = 120
+          DataSource = atDM.usersDataSource
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+        object DBNavigator1: TDBNavigator
+          Left = 29
+          Top = 65
+          Width = 240
+          Height = 25
+          DataSource = atDM.usersDataSource
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+          TabOrder = 1
+        end
       end
     end
   end
@@ -362,10 +413,9 @@ object MainForm: TMainForm
     Top = 224
   end
   object BindSourceDB1: TBindSourceDB
-    DataSet = atDM.blocksCDS
     ScopeMappings = <>
-    Left = 920
-    Top = 64
+    Left = 488
+    Top = 48
   end
   object BindingsList1: TBindingsList
     Methods = <>
@@ -393,7 +443,6 @@ object MainForm: TMainForm
   end
   object DBBarcode1D1: TDBBarcode1D
     DataField = 'bar_code'
-    DataSource = atDM.mRibbonDSource
     ReadOnly = True
     Barcode1D = Barcode1D_Code391
     Left = 656
@@ -402,5 +451,11 @@ object MainForm: TMainForm
   object ActionList2: TActionList
     Left = 648
     Top = 48
+  end
+  object BindSourceDB2: TBindSourceDB
+    DataSet = atDM.usersDS
+    ScopeMappings = <>
+    Left = 488
+    Top = 392
   end
 end

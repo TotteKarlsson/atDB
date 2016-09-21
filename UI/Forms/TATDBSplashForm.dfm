@@ -60,8 +60,4 @@ object SplashForm: TSplashForm
     Left = 464
     Top = 128
   end
-  object RegistrationFile1: TRegistrationFile
-    Left = 256
-    Top = 72
-  end
 end

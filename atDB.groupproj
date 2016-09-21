@@ -3,7 +3,7 @@
         <ProjectGuid>{5BE59B66-24A8-4FD3-8D82-D8B543410AC6}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="UI\atDBPackage.cbproj">
+        <Projects Include="UI\Core\atDBCore-static.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="UI\atDB.cbproj">
@@ -17,14 +17,14 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="atDBPackage">
-        <MSBuild Projects="UI\atDBPackage.cbproj"/>
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
     </Target>
-    <Target Name="atDBPackage:Clean">
-        <MSBuild Projects="UI\atDBPackage.cbproj" Targets="Clean"/>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDBPackage:Make">
-        <MSBuild Projects="UI\atDBPackage.cbproj" Targets="Make"/>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atDB">
         <MSBuild Projects="UI\atDB.cbproj"/>
@@ -36,13 +36,13 @@
         <MSBuild Projects="UI\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atDBPackage;atDB"/>
+        <CallTarget Targets="atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atDBPackage:Clean;atDB:Clean"/>
+        <CallTarget Targets="atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atDBPackage:Make;atDB:Make"/>
+        <CallTarget Targets="atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

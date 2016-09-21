@@ -2,14 +2,14 @@
 #include "TMainForm.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
-#include "TSplashForm.h"
+//#include "TSplashForm.h"
 #pragma package(smart_init)
 using Poco::DateTimeFormatter;
 
 using namespace mtk;
 
 extern HWND gOtherAppWindow;
-extern TSplashForm*  gSplashForm;
+//extern TSplashForm*  gSplashForm;
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
@@ -70,7 +70,7 @@ void __fastcall TMainForm::AppInBox(mlxStructMessage &msg)
         {
             case amSplashWasClosed:
                 Log(lDebug2) << "Splash form sent message that it was closed";
-                gSplashForm = NULL;
+//                gSplashForm = NULL;
             break;
 
             default:

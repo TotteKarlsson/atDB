@@ -4,16 +4,15 @@
 #include <sstream>
 #include "mtkLogger.h"
 #include <iomanip>
-
-
-using namespace mtk;
-using namespace std;
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma classgroup "System.Classes.TPersistent"
 #pragma link "DbxDevartSQLite"
 #pragma resource "*.dfm"
 TatDM *atDM;
+
+using namespace mtk;
+using namespace std;
 
 extern bool gAppIsStartingUp;
 
@@ -108,27 +107,30 @@ void __fastcall TatDM::blocksCDSAfterPost(TDataSet *DataSet)
 	blocksCDS->ApplyUpdates(0);
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TatDM::blocksCDSAfterDelete(TDataSet *DataSet)
 {
 	blocksCDS->ApplyUpdates(0);
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TatDM::blocksCDSAfterScroll(TDataSet *DataSet)
 {
-//	int bID = blocksCDS->FieldByName("id")->AsInteger;
-//	blockNotesQ->Params->ParamByName("blockID")->AsInteger = bID;
-//    blockNotesQ->Open();
-//
-//    //Get notes
-//	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
-//	Log(lInfo) << "Note is: "<<note;
-//	blockNotesQ->Close();
+	if(!SQLConnection1->Connected)
+    {
+    	return;
+    }
 
-	if(gAppIsStartingUp == false)
+	int bID = blocksCDS->FieldByName("id")->AsInteger;
+	blockNotesQ->Params->ParamByName("blockID")->AsInteger = bID;
+    blockNotesQ->Open();
+
+    //Get notes
+	string note = stdstr(blockNotesQ->FieldByName("note")->AsString);
+	Log(lInfo) << "Note is: "<<note;
+	blockNotesQ->Close();
+
+	if(gAppIsStartingUp == false && SQLConnection1->Connected)
 	{
 		//Update customers orders
 		mRibbonCDSet->Active = false;
@@ -219,6 +221,12 @@ void __fastcall TatDM::mRibbonCDSetCalcFields(TDataSet *DataSet)
 			f->Value = toLong(str);
 		}
 	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TatDM::SQLConnection1AfterConnect(TObject *Sender)
+{
+	Log(lInfo) << "After Connect";
 }
 //---------------------------------------------------------------------------
 
