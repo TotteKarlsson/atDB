@@ -178,15 +178,12 @@ void __fastcall TatDM::mRibbonCDSetBeforePost(TDataSet *DataSet)
 {
 	Log(lInfo) << "Before Posting Ribbon Data";
 }
-//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
 void __fastcall TatDM::mRibbonCDSetAfterDelete(TDataSet *DataSet)
 {
 	mRibbonCDSet->ApplyUpdates(0);
 }
-
-
 
 string zeroPadLeft(int nr, int width)
 {

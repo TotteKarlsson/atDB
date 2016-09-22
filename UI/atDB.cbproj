@@ -159,8 +159,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="TatDM.dfm"/>
+        <FormResources Include="TMainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

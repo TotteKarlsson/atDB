@@ -71,7 +71,7 @@ void __fastcall TMainForm::logMsg()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUsersCBClick(TObject *Sender)
 {
-	Log(lInfo) <<"Selected: " << stdstr(mUsersCB->ListSource->DataSet->FieldByName("user_name")->AsString);
+//	Log(lInfo) <<"Selected: " << stdstr(mUsersCB->ListSource->DataSet->FieldByName("user_name")->AsString);
 }
 
 //---------------------------------------------------------------------------
@@ -107,28 +107,28 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
     	case TNavigateBtn::nbDelete:        break;
 
     	case TNavigateBtn::nbInsert:
-        	if(!mUsersCB->KeyValue.IsNull())
-            {
-	        	atDM->blocksCDS->FieldByName("created_by")->Value = mUsersCB->KeyValue;
-				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
-            }
-            else
-            {
-            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
-            	Log(lError) << "Bad...";
-            }
+//        	if(!mUsersCB->KeyValue.IsNull())
+//            {
+//	        	atDM->blocksCDS->FieldByName("created_by")->Value = mUsersCB->KeyValue;
+//				mBlocksNavigator->BtnClick( Data::Bind::Controls::nbPost);
+//            }
+//            else
+//            {
+//            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
+//            	Log(lError) << "Bad...";
+//            }
         break;
         case TNavigateBtn::nbPost:
-	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
-	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
-	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbLast);
-	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+//	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+//	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
+//	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbLast);
+//	        mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
         break;
         case TNavigateBtn::nbRefresh:
         	Log(lInfo) << "Refreshed Blocks Dataset";
  		break;
         default:
-		    mUsersCB->KeyValue = atDM->usersClientDataSet->FieldByName("id")->AsInteger;
+//		    mUsersCB->KeyValue = atDM->usersClientDataSet->FieldByName("id")->AsInteger;
         break;
     }
 }
@@ -143,29 +143,29 @@ void __fastcall TMainForm::mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftS
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button3Click(TObject *Sender)
-{
-//    stringstream q;
-//    int nID = atDM->blockNotesDSet->FieldByName("id")->AsInteger;
+//void __fastcall TMainForm::Button3Click(TObject *Sender)
+//{
+////    stringstream q;
+////    int nID = atDM->blockNotesDSet->FieldByName("id")->AsInteger;
+////
+////    stringstream memo;
+////    for(int i = 0; i <  mBlockNoteMemo->Lines->Count; i++)
+////    {
+////        memo<<stdstr(mBlockNoteMemo->Lines->Strings[i]);
+////        if(i < mBlockNoteMemo->Lines->Count -1 )
+////        {
+////            memo<<endl;
+////        }
+////    }
+////    string s(memo.str());
+////    q << "UPDATE note SET note=\""<< s <<"\" WHERE id=\""<<nID<<"\"";
+////    Log(lInfo) << q.str();
+////
+////    atDM->updateNoteQ->SQL->Clear();
+////    atDM->updateNoteQ->SQL->Add(q.str().c_str());
+////    atDM->updateNoteQ->ExecSQL(true);
+//}
 //
-//    stringstream memo;
-//    for(int i = 0; i <  mBlockNoteMemo->Lines->Count; i++)
-//    {
-//        memo<<stdstr(mBlockNoteMemo->Lines->Strings[i]);
-//        if(i < mBlockNoteMemo->Lines->Count -1 )
-//        {
-//            memo<<endl;
-//        }
-//    }
-//    string s(memo.str());
-//    q << "UPDATE note SET note=\""<< s <<"\" WHERE id=\""<<nID<<"\"";
-//    Log(lInfo) << q.str();
-//
-//    atDM->updateNoteQ->SQL->Clear();
-//    atDM->updateNoteQ->SQL->Add(q.str().c_str());
-//    atDM->updateNoteQ->ExecSQL(true);
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mInsertNewNoteBtnClick(TObject *Sender)
 {
@@ -233,12 +233,6 @@ void __fastcall TMainForm::mDeleteNoteBtnClick(TObject *Sender)
 }
 
 
-void __fastcall TMainForm::Button1Click(TObject *Sender)
-{
-    atDM->usersDS->Refresh();
-    mBlocksNavigator->BtnClick( Data::Bind::Controls::nbRefresh);
-}
-
 void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
@@ -280,4 +274,49 @@ void __fastcall TMainForm::PrintBarCodeClick(TObject *Sender)
 {
 	MessageDlg("Not Implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::RegisterNewBlock(TObject *Sender)
+{
+	if(ComboBox1->ItemIndex == -1)
+    {
+        return;
+    }
+
+    int* userID = (int*) ComboBox1->Items->Objects[ComboBox1->ItemIndex];
+	atDM->blocksCDS->Append();
+    atDM->blocksCDS->FieldValues["created_by"] = userID;
+	atDM->blocksCDS->Post();
+    atDM->blocksCDS->Refresh();
+    mBlocksNavigator->BtnClick(Data::Bind::Controls::nbRefresh);
+
+}
+
+void __fastcall TMainForm::ComboBox1Change(TObject *Sender)
+{
+	if(ComboBox1->ItemIndex != -1)
+    {
+		mNewBlockBtn->Enabled = true;
+    }
+    else
+    {
+		mNewBlockBtn->Enabled = false;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::ComboBox1Enter(TObject *Sender)
+{
+    mUsersQ->Close();
+    mUsersQ->Open();
+    while(mUsersQ->Eof != true)
+    {
+	    int* id = new int;
+		*id = mUsersQ->Fields->Fields[0]->AsInteger;
+        ComboBox1->Items->AddObject(mUsersQ->Fields->Fields[1]->AsString, (TObject*) id);
+        mUsersQ->Next();
+    }
+
+}
+
 

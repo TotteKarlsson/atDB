@@ -93,18 +93,13 @@ class TMainForm : public TRegistryForm
     TTimer *ShutDownTimer;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
-	TGroupBox *UsersGB;
 	TGroupBox *GroupBox2;
-	TAction *AddUserA;
 	TBindSourceDB *BindSourceDB1;
 	TBindingsList *BindingsList1;
 	TBarcode1D_Code39 *Barcode1D_Code391;
 	TDBBarcode1D *DBBarcode1D1;
 	TImage *mBarCodeImage;
 	TActionList *ActionList2;
-	TDBText *mUserIDText;
-	TDBNavigator *mBlocksNavigator;
-	TDBLookupListBox *DBLookupListBox1;
 	TDBGrid *DBGrid1;
 	TTabSheet *TabSheet1;
 	TDBNavigator *mRibbonsNavigator;
@@ -113,13 +108,18 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText2;
 	TBindSourceDB *BindSourceDB2;
 	TDBGrid *DBGrid2;
-	TLabel *Label1;
-	TDBLookupComboBox *mUsersCB;
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
 	TDBNavigator *DBNavigator1;
 	TDBNavigator *DBNavigator2;
 	TPanel *Panel1;
+	TPanel *Panel2;
+	TDBGrid *DBGrid4;
+	TPanel *Panel3;
+	TDBNavigator *mBlocksNavigator;
+	TButton *mNewBlockBtn;
+	TComboBox *ComboBox1;
+	TSQLQuery *mUsersQ;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -134,14 +134,16 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUsersNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mUserNameEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall mInsertNewNoteBtnClick(TObject *Sender);
 	void __fastcall mDeleteNoteBtnClick(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall PrintBarCodeClick(TObject *Sender);
+	void __fastcall RegisterNewBlock(TObject *Sender);
+
+	void __fastcall ComboBox1Change(TObject *Sender);
+	void __fastcall ComboBox1Enter(TObject *Sender);
 
 
     private:	// User declarations

@@ -3,7 +3,7 @@ Coordinates=695,391,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=331,391,70,51
+Coordinates=394,285,89,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -247,12 +247,6 @@ Coordinates=383,330,96,51
 [atDM.blockNotesDSet]
 Coordinates=235,10,121,159
 
-[mUserIDText]
-Coordinates=557,391,77,51
-
-[mBlocksNavigator]
-Coordinates=217,391,104,51
-
 [atDM.blocksDS]
 Coordinates=366,10,89,159
 
@@ -274,9 +268,6 @@ Coordinates=465,10,78,123
 
 [atDM.notesCDS]
 Coordinates=553,10,91,123
-
-[DBLookupListBox1]
-Coordinates=10,452,109,33
 
 [atDM.mRibbonCDSet]
 Coordinates=10,10,117,195
@@ -311,15 +302,6 @@ Coordinates=119,330,97,51
 [DBGrid2]
 Coordinates=354,452,56,33
 
-[Label1]
-Coordinates=519,152,46,51
-
-[mUsersCB]
-Coordinates=394,285,66,33
-
-[UsersGB]
-Coordinates=641,215,58,51
-
 [TabSheet3]
 Coordinates=278,285,66,33
 
@@ -334,4 +316,25 @@ Coordinates=682,504,82,51
 
 [Panel1]
 Coordinates=533,504,47,51
+
+[Panel2]
+Coordinates=502,400,47,51
+
+[DBGrid4]
+Coordinates=258,358,56,33
+
+[Panel3]
+Coordinates=80,480,47,51
+
+[ComboBox1]
+Coordinates=682,1,84,87
+
+[mUsersQ]
+Coordinates=589,152,60,51
+
+[mNewBlockBtn]
+Coordinates=469,569,89,51
+
+[mBlocksNavigator]
+Coordinates=502,152,104,51
 
