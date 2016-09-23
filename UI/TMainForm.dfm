@@ -178,7 +178,6 @@ object MainForm: TMainForm
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 1
-            ExplicitLeft = 0
             object mBlocksNavigator: TDBNavigator
               Left = 13
               Top = 8
