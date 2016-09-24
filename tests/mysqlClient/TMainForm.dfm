@@ -106,7 +106,7 @@ object MainForm: TMainForm
     object MaskEdit1: TMaskEdit
       Left = 168
       Top = 32
-      Width = 92
+      Width = 121
       Height = 21
       EditMask = '!099.099.099.099;1; '
       MaxLength = 15
@@ -117,9 +117,10 @@ object MainForm: TMainForm
     object Button1: TButton
       Left = 168
       Top = 59
-      Width = 92
+      Width = 121
       Height = 25
       Action = ConnectToDBA
+      Caption = 'Toggle Connection'
       TabOrder = 3
     end
   end
