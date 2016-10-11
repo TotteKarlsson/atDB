@@ -1,5 +1,5 @@
-#ifndef amlDataStructuresH
-#define amlDataStructuresH
+#ifndef atDBDataStructuresH
+#define atDBDataStructuresH
 #include "Poco/DateTime.h"
 #include <System.hpp>
 

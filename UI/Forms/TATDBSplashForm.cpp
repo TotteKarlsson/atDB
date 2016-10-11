@@ -4,7 +4,7 @@
 #include "mtkVCLUtils.h"
 #include "amlApplicationMessages.h"
 #include "mtkLogger.h"
-#include "amlUtilities.h"
+#include "atDBUtilities.h"
 #include "mtkApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

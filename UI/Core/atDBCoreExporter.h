@@ -1,5 +1,5 @@
-#ifndef amlCoreExporterH
-#define amlCoreExporterH
+#ifndef atDBCoreExporterH
+#define atDBCoreExporterH
 
 #if defined (_WIN32)
     #if defined(AML_STATIC)

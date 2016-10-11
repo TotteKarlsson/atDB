@@ -546,6 +546,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBGrid3: TDBGrid
           Left = 13
           Top = 63
@@ -602,6 +606,10 @@ object MainForm: TMainForm
       object TabSheet4: TTabSheet
         Caption = 'Notes'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DBNavigator3: TDBNavigator
           Left = 13
           Top = 25
@@ -630,6 +638,10 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'DB Server'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 3
           Top = 16
@@ -702,6 +714,8 @@ object MainForm: TMainForm
         ImageIndex = 4
         ExplicitLeft = 7
         ExplicitTop = 23
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object mBarCodeImage: TImage
           Left = 411
           Top = 375

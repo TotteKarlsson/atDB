@@ -1,5 +1,5 @@
-#ifndef amlApplicationMessagesH
-#define amlApplicationMessagesH
+#ifndef atDBApplicationMessagesH
+#define atDBApplicationMessagesH
 
 #define UWM_CHECK_LICENSE                               (WM_APP + 1)
 #define UWM_SPLASH_IS_CLOSING                           (WM_APP + 2)

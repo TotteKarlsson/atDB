@@ -8,8 +8,6 @@
 #pragma comment(lib, "VCLCommon.bpi")
 #pragma comment(lib, "DuneComponents.bpi")
 #pragma comment(lib, "DuneForms.bpi")
-//#pragma comment(lib, "DSLVCL.bpi")
-
 
 #pragma comment(lib, "atDBPackage.bpi")
 

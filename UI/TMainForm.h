@@ -9,7 +9,7 @@
 #include <Vcl.Grids.hpp>
 //---------------------------------------------------------------------------
 #include "Core/amlApplicationMessages.h"
-#include "Core/amlDataStructures.h"
+#include "Core/atDBDataStructures.h"
 #include "mtkIniFileC.h"
 #include "mtkIniFileProperties.h"
 #include "mtkLogFileReader.h"

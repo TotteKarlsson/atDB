@@ -12,7 +12,7 @@ USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TD
 #include "mtkIniKey.h"
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
-#include "Core/amlUtilities.h"
+#include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
 #pragma package(smart_init)

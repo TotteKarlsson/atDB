@@ -1,7 +1,7 @@
 #ifndef atDBUtilitiesH
 #define atDBUtilitiesH
-#include "amlCoreExporter.h"
-#include "amlDataStructures.h"
+#include "atDBCoreExporter.h"
+#include "atDBDataStructures.h"
 #include "mtkSQLite.h"
 #include "mtkStringList.h"
 
