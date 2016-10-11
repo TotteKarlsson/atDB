@@ -182,6 +182,9 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
     mUsersDBCB->KeyValue = mDBUserID.getValue();
     mATDBServerBtnConnect->Caption = "Disconnect";
     mUsersDBCB->OnCloseUp(NULL);
+
+    blockStatusCDS->Active = true;
+	freezeTypesCDS->Active = true;
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
@@ -190,6 +193,8 @@ void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 	atdbDM->afterDisConnect();
 
     mATDBServerBtnConnect->Caption = "Connect";
+    blockStatusCDS->Active = false;
+	freezeTypesCDS->Active = false;
 }
 
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
@@ -288,3 +293,5 @@ void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Butto
     	case TNavigateBtn::nbDelete:        break;
     }
 }
+
+

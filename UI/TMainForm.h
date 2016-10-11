@@ -58,6 +58,8 @@
 #include "RzEdit.hpp"
 #include "RzDBSpin.hpp"
 #include "RzSpnEdt.hpp"
+#include <Datasnap.DBClient.hpp>
+#include <Datasnap.Provider.hpp>
 
 using mtk::Property;
 using mtk::SQLite;
@@ -110,7 +112,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mBlocksGrid;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
-	TSQLQuery *mUsersQ;
 	TTabSheet *TabSheet4;
 	TDBNavigator *DBNavigator3;
 	TDBGrid *DBGrid5;
@@ -150,6 +151,34 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *DBNavigator5;
 	TLabel *Label5;
 	TDBNavigator *DBNavigator6;
+	TDBGrid *DBGrid2;
+	TSQLDataSet *blockStatusDS;
+	TDataSetProvider *DataSetProvider1;
+	TClientDataSet *blockStatusCDS;
+	TDataSource *blockStatusDSource;
+	TDBNavigator *DBNavigator7;
+	TIntegerField *blockStatusCDSid;
+	TStringField *blockStatusCDSstatus;
+	TIntegerField *blockStatusDSid;
+	TStringField *blockStatusDSstatus;
+	TDBLookupComboBox *DBLookupComboBox3;
+	TLabel *Label6;
+	TLabel *Label7;
+	TDBLookupComboBox *DBLookupComboBox5;
+	TGroupBox *GroupBox2;
+	TGroupBox *GroupBox4;
+	TDBGrid *DBGrid4;
+	TDataSetProvider *DataSetProvider2;
+	TClientDataSet *freezeTypesCDS;
+	TDataSource *freezeTypesDSource;
+	TIntegerField *freezeTypesCDSid;
+	TStringField *freezeTypesCDStype;
+	TDBNavigator *DBNavigator8;
+	TSQLDataSet *freezeTypesDS;
+	TIntegerField *freezeTypesDSid;
+	TStringField *freezeTypesDStype;
+	TDBText *DBText1;
+	TLabel *Label8;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

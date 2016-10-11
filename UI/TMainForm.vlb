@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=529,391,129,51
+Coordinates=755,391,60,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -254,9 +254,6 @@ Coordinates=368,330,82,51
 
 [Panel3]
 Coordinates=896,330,47,51
-
-[mUsersQ]
-Coordinates=755,391,60,51
 
 [mBlocksNavigator]
 Coordinates=10,330,104,51

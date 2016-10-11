@@ -1,3 +1,8 @@
+Release 0.5.0 (Oct 11)
+=======================
+* Initial UI interfacing with remote MySQL database
+* Support for initial data entry of user, block and ribbon data
+
 Release 0.5.0 (June 6)
 =======================
 * Initial commit
