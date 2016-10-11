@@ -2,7 +2,7 @@
 #pragma hdrstop
 #include "TATDBSplashForm.h"
 #include "mtkVCLUtils.h"
-#include "amlApplicationMessages.h"
+#include "atDBApplicationMessages.h"
 #include "mtkLogger.h"
 #include "atDBUtilities.h"
 #include "mtkApplicationLicenseController.h"

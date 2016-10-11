@@ -8,7 +8,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
 //---------------------------------------------------------------------------
-#include "Core/amlApplicationMessages.h"
+#include "Core/atDBApplicationMessages.h"
 #include "Core/atDBDataStructures.h"
 #include "mtkIniFileC.h"
 #include "mtkIniFileProperties.h"
