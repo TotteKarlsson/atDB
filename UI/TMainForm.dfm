@@ -115,7 +115,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1140
       Height = 602
-      ActivePage = TabSheet2
+      ActivePage = TabSheet5
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -123,6 +123,10 @@ object MainForm: TMainForm
       object TabSheet2: TTabSheet
         Caption = 'Overview'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ScrollBox1: TScrollBox
           Left = 0
           Top = 0
@@ -712,13 +716,9 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'Miscellaneous'
         ImageIndex = 4
-        ExplicitLeft = 7
-        ExplicitTop = 23
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mBarCodeImage: TImage
-          Left = 411
-          Top = 375
+          Left = 563
+          Top = 431
           Width = 375
           Height = 98
           ParentShowHint = False
@@ -785,6 +785,15 @@ object MainForm: TMainForm
             VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
             TabOrder = 1
           end
+        end
+        object Button1: TButton
+          Left = 392
+          Top = 24
+          Width = 75
+          Height = 25
+          Caption = 'Button1'
+          TabOrder = 2
+          OnClick = Button1Click
         end
       end
     end

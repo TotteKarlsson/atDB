@@ -20,7 +20,7 @@
 #include "mtkUtils.h"
 #include "abVCLUtils.h"
 #include "database/abDBUtils.h"
-
+#include "TTableUpdateForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -292,6 +292,14 @@ void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Butto
 
     	case TNavigateBtn::nbDelete:        break;
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button1Click(TObject *Sender)
+{
+   	TTableUpdateForm* t = new TTableUpdateForm(atdbDM->SQLConnection1, this);
+    t->ShowModal();
+    delete t;
 }
 
 
