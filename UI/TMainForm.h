@@ -179,6 +179,7 @@ class TMainForm : public TRegistryForm
 	TStringField *freezeTypesDStype;
 	TDBText *DBText1;
 	TLabel *Label8;
+	TButton *Button1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -204,6 +205,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
+	void __fastcall Button1Click(TObject *Sender);
 
     private:	// User declarations
         bool                                            gCanClose;

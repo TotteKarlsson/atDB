@@ -6,6 +6,7 @@
 #include <Vcl.Themes.hpp>
 USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
+USEFORM("source\vcl\TTableUpdateForm.cpp", TableUpdateForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
