@@ -1,5 +1,8 @@
-#ifndef TTableUpdateFormH
-#define TTableUpdateFormH
+//---------------------------------------------------------------------------
+
+#ifndef TTableFrameH
+#define TTableFrameH
+//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -13,30 +16,30 @@
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
-
+#include <string>
 //---------------------------------------------------------------------------
-class TTableUpdateForm : public TForm
+using std::string;
+class TTableFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
-	TComboBox *tableCB;
 	TDBGrid *DBGrid1;
-	TSQLDataSet *SQLDataSet1;
-	TClientDataSet *ClientDataSet1;
-	TDataSetProvider *DataSetProvider1;
 	TDBNavigator *DBNavigator1;
 	TDataSource *DataSource1;
-	void __fastcall FormShow(TObject *Sender);
-	void __fastcall tableCBChange(TObject *Sender);
-	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	TClientDataSet *ClientDataSet1;
+	TDataSetProvider *DataSetProvider1;
+	TSQLDataSet *SQLDataSet1;
+
 
 private:	// User declarations
-	TSQLConnection* mDBConnection;
+	TSQLConnection* 		 mDBConnection;
+public:		// User declarations
+				__fastcall TTableFrame(TComponent* Owner);
+    bool					loadTable(const string& t);
+    void					assignDBconnection(TSQLConnection* c);
 
-    public:		// User declarations
-	__fastcall TTableUpdateForm(TSQLConnection* c, TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TTableUpdateForm *TableUpdateForm;
+extern PACKAGE TTableFrame *TableFrame;
 //---------------------------------------------------------------------------
 #endif

@@ -31,6 +31,7 @@
 #pragma link "pCode39"
 #pragma link "pDBBarcode1D"
 #pragma link "TArrayBotBtn"
+#pragma link "TTableFrame"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -183,8 +184,7 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
     mATDBServerBtnConnect->Caption = "Disconnect";
     mUsersDBCB->OnCloseUp(NULL);
 
-    blockStatusCDS->Active = true;
-	freezeTypesCDS->Active = true;
+    TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
@@ -193,8 +193,6 @@ void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 	atdbDM->afterDisConnect();
 
     mATDBServerBtnConnect->Caption = "Connect";
-    blockStatusCDS->Active = false;
-	freezeTypesCDS->Active = false;
 }
 
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
@@ -294,12 +292,10 @@ void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Butto
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::Button1Click(TObject *Sender)
+
+void __fastcall TMainForm::mTablesCBChange(TObject *Sender)
 {
-   	TTableUpdateForm* t = new TTableUpdateForm(atdbDM->SQLConnection1, this);
-    t->ShowModal();
-    delete t;
+	TTableFrame1->loadTable(stdstr(mTablesCB->Text));
 }
 
 

@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=755,391,60,51
+Coordinates=518,452,66,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -234,15 +234,6 @@ Coordinates=1061,1,142,51
 [atDM.]
 Coordinates=660,613,101,177
 
-[mRibbonsNavigator]
-Coordinates=650,197,112,51
-
-[GroupBox6]
-Coordinates=288,330,70,51
-
-[PrintBarCodeBtn]
-Coordinates=825,391,97,51
-
 [TabSheet3]
 Coordinates=594,452,66,33
 
@@ -260,12 +251,6 @@ Coordinates=10,330,104,51
 
 [mBlocksGrid]
 Coordinates=160,513,78,33
-
-[mRibbonsGrid]
-Coordinates=76,556,85,33
-
-[DBLookupComboBox4]
-Coordinates=817,513,127,33
 
 [TabSheet1]
 Coordinates=442,452,66,33
@@ -285,32 +270,14 @@ Coordinates=589,513,127,33
 [DBMemo2]
 Coordinates=86,513,64,33
 
-[Label3]
-Coordinates=264,391,46,51
-
-[TabSheet4]
-Coordinates=518,452,66,33
-
 [DBMemo1]
 Coordinates=376,513,64,33
-
-[Label4]
-Coordinates=741,330,46,51
 
 [mUsersDBCB]
 Coordinates=726,513,81,33
 
-[DBMemo3]
-Coordinates=450,513,64,33
-
-[DBGrid5]
-Coordinates=903,452,56,33
-
 [DBNavigator2]
 Coordinates=80,452,82,51
-
-[DBNavigator4]
-Coordinates=457,197,82,51
 
 [mBlockNotesGrid]
 Coordinates=171,556,101,33
@@ -321,29 +288,11 @@ Coordinates=868,197,46,51
 [BlockNotesGB]
 Coordinates=772,197,86,51
 
-[DBEdit3]
-Coordinates=839,452,54,33
-
-[DBNavigator3]
-Coordinates=350,452,82,51
-
 [ScrollBox1]
 Coordinates=670,452,68,33
 
-[DBEdit2]
-Coordinates=248,513,54,33
-
 [DBEdit1]
 Coordinates=312,513,54,33
-
-[DBGrid1]
-Coordinates=366,556,56,33
-
-[GroupBox1]
-Coordinates=90,391,70,51
-
-[mBarCodeImage]
-Coordinates=172,452,96,51
 
 [TabSheet5]
 Coordinates=432,556,66,33

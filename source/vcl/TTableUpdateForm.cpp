@@ -24,6 +24,7 @@ void __fastcall TTableUpdateForm::FormShow(TObject *Sender)
 	if(!mDBConnection || mDBConnection->Connected == false)
     {
     	MessageDlg("You need to conenct to remote ATDB database!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        return;
     }
 
 	try
@@ -39,7 +40,6 @@ void __fastcall TTableUpdateForm::FormShow(TObject *Sender)
 void __fastcall TTableUpdateForm::tableCBChange(TObject *Sender)
 {
 	String tableName = tableCB->Text;
-
 	SQLDataSet1->Active = false;
     ClientDataSet1->Active = false;
     SQLDataSet1->CommandText = "SELECT * FROM " + tableName + " ORDER by ID";

@@ -7,6 +7,7 @@
 USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TTableUpdateForm.cpp", TableUpdateForm);
+USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"

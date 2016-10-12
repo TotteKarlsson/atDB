@@ -3,8 +3,8 @@ object TableUpdateForm: TTableUpdateForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'TableUpdateForm'
-  ClientHeight = 356
-  ClientWidth = 650
+  ClientHeight = 609
+  ClientWidth = 704
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,8 +21,8 @@ object TableUpdateForm: TTableUpdateForm
   object GroupBox1: TGroupBox
     Left = 0
     Top = 0
-    Width = 650
-    Height = 356
+    Width = 704
+    Height = 609
     Align = alClient
     Caption = 'Table Updater'
     TabOrder = 0
@@ -43,8 +43,8 @@ object TableUpdateForm: TTableUpdateForm
     end
     object DBGrid1: TDBGrid
       Left = 2
-      Top = 137
-      Width = 646
+      Top = 390
+      Width = 700
       Height = 217
       Align = alBottom
       TabOrder = 1
@@ -56,8 +56,8 @@ object TableUpdateForm: TTableUpdateForm
     end
     object DBNavigator1: TDBNavigator
       Left = 2
-      Top = 95
-      Width = 646
+      Top = 348
+      Width = 700
       Height = 42
       DataSource = DataSource1
       VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]

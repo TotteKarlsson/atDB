@@ -60,6 +60,7 @@
 #include "RzSpnEdt.hpp"
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
+#include "TTableFrame.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -100,21 +101,13 @@ class TMainForm : public TRegistryForm
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
 	TGroupBox *mBlocksGB;
-	TBindingsList *BindingsList1;
 	TActionList *ActionList2;
-	TDBGrid *mRibbonsGrid;
-	TDBNavigator *mRibbonsNavigator;
-	TGroupBox *GroupBox6;
-	TButton *PrintBarCodeBtn;
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
 	TDBNavigator *DBNavigator1;
 	TDBGrid *mBlocksGrid;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
-	TTabSheet *TabSheet4;
-	TDBNavigator *DBNavigator3;
-	TDBGrid *DBGrid5;
 	TDBEdit *DBEdit1;
 	TTabSheet *TabSheet1;
 	TSTDStringLabeledEdit *mServerIPE;
@@ -125,24 +118,14 @@ class TMainForm : public TRegistryForm
 	TDBMemo *DBMemo2;
 	TLabel *Label1;
 	TScrollBox *ScrollBox1;
-	TDBGrid *DBGrid1;
-	TDBMemo *DBMemo3;
-	TDBNavigator *DBNavigator4;
 	TLabel *Label2;
-	TDBEdit *DBEdit2;
-	TLabel *Label3;
-	TLabel *Label4;
-	TDBEdit *DBEdit3;
 	TDBLookupComboBox *DBLookupComboBox1;
 	TDBLookupComboBox *DBLookupComboBox2;
 	TDBLookupComboBox *mUsersDBCB;
-	TDBLookupComboBox *DBLookupComboBox4;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TBarcode1D_Code39 *Barcode1D_Code391;
 	TDBBarcode1D *DBBarcode1D1;
-	TImage *mBarCodeImage;
-	TGroupBox *GroupBox1;
 	TPanel *MenuPanel;
 	TSTDStringLabeledEdit *mDBUserE;
 	TSTDStringLabeledEdit *mPasswordE;
@@ -150,36 +133,38 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mDatabaseE;
 	TDBNavigator *DBNavigator5;
 	TLabel *Label5;
-	TDBNavigator *DBNavigator6;
-	TDBGrid *DBGrid2;
-	TSQLDataSet *blockStatusDS;
-	TDataSetProvider *DataSetProvider1;
-	TClientDataSet *blockStatusCDS;
-	TDataSource *blockStatusDSource;
-	TDBNavigator *DBNavigator7;
-	TIntegerField *blockStatusCDSid;
-	TStringField *blockStatusCDSstatus;
-	TIntegerField *blockStatusDSid;
-	TStringField *blockStatusDSstatus;
 	TDBLookupComboBox *DBLookupComboBox3;
 	TLabel *Label6;
 	TLabel *Label7;
 	TDBLookupComboBox *DBLookupComboBox5;
-	TGroupBox *GroupBox2;
-	TGroupBox *GroupBox4;
-	TDBGrid *DBGrid4;
-	TDataSetProvider *DataSetProvider2;
-	TClientDataSet *freezeTypesCDS;
-	TDataSource *freezeTypesDSource;
-	TIntegerField *freezeTypesCDSid;
-	TStringField *freezeTypesCDStype;
-	TDBNavigator *DBNavigator8;
-	TSQLDataSet *freezeTypesDS;
-	TIntegerField *freezeTypesDSid;
-	TStringField *freezeTypesDStype;
 	TDBText *DBText1;
 	TLabel *Label8;
-	TButton *Button1;
+	TDataSource *DataSource1;
+	TClientDataSet *ClientDataSet1;
+	TDataSetProvider *DataSetProvider1;
+	TSQLDataSet *SQLDataSet1;
+	TTabSheet *TabSheet6;
+	TImage *mBarCodeImage;
+	TTableFrame *TTableFrame1;
+	TComboBox *mTablesCB;
+	TTabSheet *TabSheet7;
+	TGroupBox *GroupBox2;
+	TLabel *Label3;
+	TLabel *Label4;
+	TDBGrid *mRibbonsGrid;
+	TDBNavigator *mRibbonsNavigator;
+	TButton *PrintBarCodeBtn;
+	TDBEdit *DBEdit2;
+	TDBEdit *DBEdit3;
+	TGroupBox *GroupBox1;
+	TDBGrid *DBGrid1;
+	TDBLookupComboBox *DBLookupComboBox4;
+	TDBMemo *DBMemo3;
+	TDBNavigator *DBNavigator4;
+	TDBNavigator *DBNavigator6;
+	TTabSheet *TabSheet4;
+	TPageControl *PageControl2;
+	TTabSheet *TabSheet8;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -196,8 +181,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall PrintBarCodeClick(TObject *Sender);
-
-
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
@@ -205,7 +188,8 @@ class TMainForm : public TRegistryForm
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall mTablesCBChange(TObject *Sender);
+
 
     private:	// User declarations
         bool                                            gCanClose;
