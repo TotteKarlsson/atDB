@@ -299,3 +299,46 @@ void __fastcall TMainForm::mTablesCBChange(TObject *Sender)
 }
 
 
+
+
+
+void __fastcall TMainForm::DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect,
+          TField *Field, TGridDrawState State)
+{
+  	if (Field->DataType == ftMemo)
+  	{
+     	String S = Field->AsString;
+      	DBGrid2->Canvas->Pen->Color = clWindow;
+      	DBGrid2->Canvas->Brush->Color = clWindow;
+      	DBGrid2->Canvas->Rectangle(Rect);
+      	DBGrid2->Canvas->TextOut(Rect.Left, Rect.Top, S);
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMainForm::DBGrid3DrawDataCell(TObject *Sender, const TRect &Rect,
+          TField *Field, TGridDrawState State)
+{
+	Log(lInfo) << "Drawing...";
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMainForm::DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect,
+          int DataCol, TColumn *Column, TGridDrawState State)
+{
+
+    if (Column->Field->DataType == ftMemo)
+    {
+		DBGrid2->Canvas->FillRect (Rect);
+		DBGrid2->Canvas->TextOut( Rect.Left + 3, Rect.Top + 3,
+              Column->Field->AsString);
+    }
+    else
+    {
+
+    }
+}
+//---------------------------------------------------------------------------
+

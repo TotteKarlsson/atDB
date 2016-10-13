@@ -31,7 +31,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="atDB.cbproj">
-            <Dependencies>P:\ArrayBot\source\abCore.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -122,13 +122,13 @@
     <Target Name="atDBCore-static:Make">
         <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDB" DependsOnTargets="abCore">
+    <Target Name="atDB">
         <MSBuild Projects="atDB.cbproj"/>
     </Target>
-    <Target Name="atDB:Clean" DependsOnTargets="abCore:Clean">
+    <Target Name="atDB:Clean">
         <MSBuild Projects="atDB.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDB:Make" DependsOnTargets="abCore:Make">
+    <Target Name="atDB:Make">
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

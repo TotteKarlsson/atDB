@@ -120,8 +120,10 @@ object MainForm: TMainForm
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      ExplicitLeft = 75
+      ExplicitTop = -71
       object TabSheet4: TTabSheet
-        Caption = 'Tissut to Block'
+        Caption = 'Tissue to Block'
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -132,202 +134,428 @@ object MainForm: TMainForm
           TabOrder = 0
           object TabSheet8: TTabSheet
             Caption = 'Speciment'
-          end
-        end
-      end
-      object TabSheet2: TTabSheet
-        Caption = 'Blocks'
-        ImageIndex = 1
-        object ScrollBox1: TScrollBox
-          Left = 0
-          Top = 0
-          Width = 1132
-          Height = 574
-          Align = alClient
-          TabOrder = 0
-          object mBlocksGB: TGroupBox
-            Left = 16
-            Top = 12
-            Width = 934
-            Height = 397
-            Caption = 'Blocks'
-            TabOrder = 0
-            object Label1: TLabel
-              Left = 20
-              Top = 262
-              Width = 53
-              Height = 13
-              Caption = 'Block label:'
-            end
-            object Label5: TLabel
-              Left = 19
-              Top = 345
-              Width = 57
-              Height = 13
-              Caption = 'Entered by:'
-            end
-            object Label6: TLabel
-              Left = 21
-              Top = 291
-              Width = 35
-              Height = 13
-              Caption = 'Status:'
-            end
-            object Label7: TLabel
-              Left = 21
-              Top = 318
-              Width = 64
-              Height = 13
-              Caption = 'Freeze Type:'
-            end
-            object DBText1: TDBText
-              Left = 104
-              Top = 233
-              Width = 65
-              Height = 17
-              DataField = 'id'
-              DataSource = atdbDM.blocksDataSource
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Tahoma'
-              Font.Style = [fsBold]
-              ParentFont = False
-            end
-            object Label8: TLabel
-              Left = 21
-              Top = 233
-              Width = 42
-              Height = 13
-              Caption = 'Block ID:'
-            end
-            object mBlocksGrid: TDBGrid
-              Left = 15
-              Top = 62
-              Width = 314
-              Height = 123
-              DataSource = atdbDM.blocksDataSource
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-              ReadOnly = True
+            object GroupBox4: TGroupBox
+              Left = 0
+              Top = 0
+              Width = 1124
+              Height = 546
+              Align = alClient
+              Caption = 'Speciment'
               TabOrder = 0
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-              OnDblClick = mBlocksGridDblClick
-              Columns = <
-                item
-                  Expanded = False
-                  FieldName = 'label'
-                  Title.Caption = 'Label'
-                  Width = 85
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'status'
-                  Title.Caption = 'Status'
-                  Width = 59
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'freeze_type'
-                  Title.Caption = 'Freeze Type'
-                  Visible = True
-                end>
-            end
-            object Panel3: TPanel
-              Left = 2
-              Top = 15
-              Width = 930
-              Height = 41
-              Align = alTop
-              BevelOuter = bvNone
-              TabOrder = 1
-              object mBlocksNavigator: TDBNavigator
-                Left = 13
-                Top = 8
-                Width = 205
+              object DBGrid2: TDBGrid
+                Left = 2
+                Top = 15
+                Width = 1120
+                Height = 504
+                Align = alClient
+                DataSource = atdbDM.specimentDSrc
+                TabOrder = 0
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -11
+                TitleFont.Name = 'Tahoma'
+                TitleFont.Style = []
+                OnDrawDataCell = DBGrid2DrawDataCell
+                OnDrawColumnCell = DBGrid2DrawColumnCell
+                Columns = <
+                  item
+                    Expanded = False
+                    FieldName = 'speciment_id'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'Lspecie'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'additional_identifier'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'Lpreproctreat'
+                    Title.Caption = 'Pre-Process Treatment'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'age'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'lims_number'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'death_date'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'fixative'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'fixation_method'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'brain_region_dissection'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'postfix_protocol'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'date_received'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'date_embedded'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'cryoprotection_protocol'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'freezing_protocol'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'substitution_protocol'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'infiltration_protocol'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'embedding_protocol'
+                    Width = 100
+                    Visible = True
+                  end>
+              end
+              object DBNavigator3: TDBNavigator
+                Left = 2
+                Top = 519
+                Width = 1120
                 Height = 25
-                DataSource = atdbDM.blocksDataSource
-                VisibleButtons = [nbInsert, nbDelete, nbPost, nbRefresh, nbApplyUpdates]
-                ConfirmDelete = False
-                TabOrder = 0
-                BeforeAction = mBlocksNavigatorBeforeAction
-                OnClick = mBlocksNavigatorClick
-              end
-            end
-            object DBMemo2: TDBMemo
-              Left = 104
-              Top = 256
-              Width = 135
-              Height = 25
-              DataField = 'label'
-              DataSource = atdbDM.blocksDataSource
-              TabOrder = 2
-              WantReturns = False
-              WordWrap = False
-            end
-            object DBLookupComboBox1: TDBLookupComboBox
-              Left = 104
-              Top = 341
-              Width = 135
-              Height = 21
-              DataField = 'created_by'
-              DataSource = atdbDM.blocksDataSource
-              KeyField = 'id'
-              ListField = 'user_name'
-              ListSource = atdbDM.usersDataSource
-              TabOrder = 3
-            end
-            object BlockNotesGB: TGroupBox
-              Left = 415
-              Top = 23
-              Width = 498
-              Height = 282
-              Caption = 'Notes'
-              TabOrder = 4
-              object DBLookupComboBox2: TDBLookupComboBox
-                Left = 223
-                Top = 23
-                Width = 258
-                Height = 21
-                DataField = 'created_by'
-                DataSource = atdbDM.blockNotesDSource
-                Enabled = False
-                KeyField = 'id'
-                ListField = 'user_name'
-                ListSource = atdbDM.usersDataSource
-                TabOrder = 0
-              end
-              object DBMemo1: TDBMemo
-                Left = 223
-                Top = 50
-                Width = 263
-                Height = 177
-                DataField = 'note'
-                DataSource = atdbDM.blockNotesDSource
+                DataSource = atdbDM.specimentDSrc
+                VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbApplyUpdates, nbCancelUpdates]
+                Align = alBottom
                 TabOrder = 1
               end
-              object DBNavigator2: TDBNavigator
-                Left = 223
-                Top = 233
-                Width = 262
-                Height = 25
-                DataSource = atdbDM.blockNotesDSource
-                VisibleButtons = [nbPost, nbCancel]
-                TabOrder = 2
+            end
+          end
+          object TabSheet2: TTabSheet
+            Caption = 'Blocks'
+            ImageIndex = 1
+            object ScrollBox1: TScrollBox
+              Left = 0
+              Top = 0
+              Width = 1124
+              Height = 546
+              Align = alClient
+              TabOrder = 0
+              object mBlocksGB: TGroupBox
+                Left = 16
+                Top = 12
+                Width = 934
+                Height = 397
+                Caption = 'Blocks'
+                TabOrder = 0
+                object Label1: TLabel
+                  Left = 20
+                  Top = 262
+                  Width = 53
+                  Height = 13
+                  Caption = 'Block label:'
+                end
+                object Label5: TLabel
+                  Left = 19
+                  Top = 345
+                  Width = 57
+                  Height = 13
+                  Caption = 'Entered by:'
+                end
+                object Label6: TLabel
+                  Left = 21
+                  Top = 291
+                  Width = 35
+                  Height = 13
+                  Caption = 'Status:'
+                end
+                object Label7: TLabel
+                  Left = 21
+                  Top = 318
+                  Width = 64
+                  Height = 13
+                  Caption = 'Freeze Type:'
+                end
+                object DBText1: TDBText
+                  Left = 104
+                  Top = 233
+                  Width = 65
+                  Height = 17
+                  DataField = 'id'
+                  DataSource = atdbDM.blocksDataSource
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Tahoma'
+                  Font.Style = [fsBold]
+                  ParentFont = False
+                end
+                object Label8: TLabel
+                  Left = 21
+                  Top = 233
+                  Width = 42
+                  Height = 13
+                  Caption = 'Block ID:'
+                end
+                object mBlocksGrid: TDBGrid
+                  Left = 15
+                  Top = 62
+                  Width = 314
+                  Height = 123
+                  DataSource = atdbDM.blocksDataSource
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                  ReadOnly = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  OnDblClick = mBlocksGridDblClick
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'label'
+                      Title.Caption = 'Label'
+                      Width = 85
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'status'
+                      Title.Caption = 'Status'
+                      Width = 59
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'freeze_type'
+                      Title.Caption = 'Freeze Type'
+                      Visible = True
+                    end>
+                end
+                object Panel3: TPanel
+                  Left = 2
+                  Top = 15
+                  Width = 930
+                  Height = 41
+                  Align = alTop
+                  BevelOuter = bvNone
+                  TabOrder = 1
+                  object mBlocksNavigator: TDBNavigator
+                    Left = 13
+                    Top = 8
+                    Width = 205
+                    Height = 25
+                    DataSource = atdbDM.blocksDataSource
+                    VisibleButtons = [nbInsert, nbDelete, nbPost, nbRefresh, nbApplyUpdates]
+                    ConfirmDelete = False
+                    TabOrder = 0
+                    BeforeAction = mBlocksNavigatorBeforeAction
+                    OnClick = mBlocksNavigatorClick
+                  end
+                end
+                object DBMemo2: TDBMemo
+                  Left = 104
+                  Top = 256
+                  Width = 135
+                  Height = 25
+                  DataField = 'label'
+                  DataSource = atdbDM.blocksDataSource
+                  TabOrder = 2
+                  WantReturns = False
+                  WordWrap = False
+                end
+                object DBLookupComboBox1: TDBLookupComboBox
+                  Left = 104
+                  Top = 341
+                  Width = 135
+                  Height = 21
+                  DataField = 'created_by'
+                  DataSource = atdbDM.blocksDataSource
+                  KeyField = 'id'
+                  ListField = 'user_name'
+                  ListSource = atdbDM.usersDataSource
+                  TabOrder = 3
+                end
+                object BlockNotesGB: TGroupBox
+                  Left = 415
+                  Top = 23
+                  Width = 498
+                  Height = 282
+                  Caption = 'Notes'
+                  TabOrder = 4
+                  object DBLookupComboBox2: TDBLookupComboBox
+                    Left = 223
+                    Top = 23
+                    Width = 258
+                    Height = 21
+                    DataField = 'created_by'
+                    DataSource = atdbDM.blockNotesDSource
+                    Enabled = False
+                    KeyField = 'id'
+                    ListField = 'user_name'
+                    ListSource = atdbDM.usersDataSource
+                    TabOrder = 0
+                  end
+                  object DBMemo1: TDBMemo
+                    Left = 223
+                    Top = 50
+                    Width = 263
+                    Height = 177
+                    DataField = 'note'
+                    DataSource = atdbDM.blockNotesDSource
+                    TabOrder = 1
+                  end
+                  object DBNavigator2: TDBNavigator
+                    Left = 223
+                    Top = 233
+                    Width = 262
+                    Height = 25
+                    DataSource = atdbDM.blockNotesDSource
+                    VisibleButtons = [nbPost, nbCancel]
+                    TabOrder = 2
+                  end
+                  object mBlockNotesGrid: TDBGrid
+                    Left = 8
+                    Top = 50
+                    Width = 161
+                    Height = 177
+                    DataSource = atdbDM.blockNotesDSource
+                    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                    TabOrder = 3
+                    TitleFont.Charset = DEFAULT_CHARSET
+                    TitleFont.Color = clWindowText
+                    TitleFont.Height = -11
+                    TitleFont.Name = 'Tahoma'
+                    TitleFont.Style = []
+                    Columns = <
+                      item
+                        Expanded = False
+                        FieldName = 'created_on'
+                        Title.Caption = 'Date'
+                        Width = 161
+                        Visible = True
+                      end>
+                  end
+                  object DBNavigator5: TDBNavigator
+                    Left = 9
+                    Top = 19
+                    Width = 160
+                    Height = 25
+                    DataSource = atdbDM.blockNotesDSource
+                    VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
+                    ConfirmDelete = False
+                    TabOrder = 4
+                    OnClick = DBNavigator5Click
+                  end
+                end
+                object DBLookupComboBox3: TDBLookupComboBox
+                  Left = 104
+                  Top = 287
+                  Width = 135
+                  Height = 21
+                  DataField = 'status'
+                  DataSource = atdbDM.blocksDataSource
+                  KeyField = 'id'
+                  ListField = 'status'
+                  TabOrder = 5
+                end
+                object DBLookupComboBox5: TDBLookupComboBox
+                  Left = 104
+                  Top = 314
+                  Width = 135
+                  Height = 21
+                  DataField = 'freeze_type'
+                  DataSource = atdbDM.blocksDataSource
+                  KeyField = 'id'
+                  ListField = 'type'
+                  TabOrder = 6
+                end
               end
-              object mBlockNotesGrid: TDBGrid
-                Left = 8
-                Top = 50
-                Width = 161
-                Height = 177
-                DataSource = atdbDM.blockNotesDSource
+            end
+          end
+          object TabSheet7: TTabSheet
+            Caption = 'Ribbons'
+            ImageIndex = 6
+            object GroupBox2: TGroupBox
+              Left = 13
+              Top = 72
+              Width = 935
+              Height = 326
+              Caption = 'Ribbons'
+              TabOrder = 0
+              object Label3: TLabel
+                Left = 14
+                Top = 252
+                Width = 67
+                Height = 13
+                Caption = 'Nr of Sections'
+              end
+              object Label4: TLabel
+                Left = 158
+                Top = 250
+                Width = 66
+                Height = 13
+                Caption = 'Cutting Order'
+              end
+              object mRibbonsGrid: TDBGrid
+                Left = 14
+                Top = 54
+                Width = 396
+                Height = 187
+                DataSource = atdbDM.mRibbonDSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-                TabOrder = 3
+                ReadOnly = True
+                TabOrder = 0
                 TitleFont.Charset = DEFAULT_CHARSET
                 TitleFont.Color = clWindowText
                 TitleFont.Height = -11
@@ -336,226 +564,144 @@ object MainForm: TMainForm
                 Columns = <
                   item
                     Expanded = False
-                    FieldName = 'created_on'
+                    FieldName = 'created'
                     Title.Caption = 'Date'
-                    Width = 161
+                    Width = 80
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'status'
+                    Title.Caption = 'Status'
+                    Width = 80
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'cutting_order'
+                    Title.Caption = 'Cutting Order'
+                    Width = 80
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'nr_of_sections'
+                    Title.Caption = 'Sections'
+                    Width = 80
                     Visible = True
                   end>
               end
-              object DBNavigator5: TDBNavigator
-                Left = 9
-                Top = 19
-                Width = 160
+              object mRibbonsNavigator: TDBNavigator
+                Left = 14
+                Top = 23
+                Width = 200
                 Height = 25
-                DataSource = atdbDM.blockNotesDSource
+                DataSource = atdbDM.mRibbonDSource
                 VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
                 ConfirmDelete = False
+                TabOrder = 1
+                BeforeAction = mRibbonsNavigatorBeforeAction
+                OnClick = RibbonsNavigatorClick
+              end
+              object PrintBarCodeBtn: TButton
+                Left = 782
+                Top = 231
+                Width = 113
+                Height = 25
+                Caption = 'PrintBarCodeBtn'
+                TabOrder = 2
+                OnClick = PrintBarCodeClick
+              end
+              object DBEdit2: TDBEdit
+                Left = 14
+                Top = 271
+                Width = 121
+                Height = 21
+                DataField = 'nr_of_sections'
+                DataSource = atdbDM.mRibbonDSource
+                TabOrder = 3
+              end
+              object DBEdit3: TDBEdit
+                Left = 158
+                Top = 269
+                Width = 121
+                Height = 21
+                DataField = 'cutting_order'
+                DataSource = atdbDM.mRibbonDSource
                 TabOrder = 4
-                OnClick = DBNavigator5Click
               end
-            end
-            object DBLookupComboBox3: TDBLookupComboBox
-              Left = 104
-              Top = 287
-              Width = 135
-              Height = 21
-              DataField = 'status'
-              DataSource = atdbDM.blocksDataSource
-              KeyField = 'id'
-              ListField = 'status'
-              TabOrder = 5
-            end
-            object DBLookupComboBox5: TDBLookupComboBox
-              Left = 104
-              Top = 314
-              Width = 135
-              Height = 21
-              DataField = 'freeze_type'
-              DataSource = atdbDM.blocksDataSource
-              KeyField = 'id'
-              ListField = 'type'
-              TabOrder = 6
-            end
-          end
-        end
-      end
-      object TabSheet7: TTabSheet
-        Caption = 'Ribbons'
-        ImageIndex = 6
-        object GroupBox2: TGroupBox
-          Left = 13
-          Top = 72
-          Width = 935
-          Height = 326
-          Caption = 'Ribbons'
-          TabOrder = 0
-          object Label3: TLabel
-            Left = 14
-            Top = 252
-            Width = 67
-            Height = 13
-            Caption = 'Nr of Sections'
-          end
-          object Label4: TLabel
-            Left = 158
-            Top = 250
-            Width = 66
-            Height = 13
-            Caption = 'Cutting Order'
-          end
-          object mRibbonsGrid: TDBGrid
-            Left = 14
-            Top = 54
-            Width = 396
-            Height = 187
-            DataSource = atdbDM.mRibbonDSource
-            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-            ReadOnly = True
-            TabOrder = 0
-            TitleFont.Charset = DEFAULT_CHARSET
-            TitleFont.Color = clWindowText
-            TitleFont.Height = -11
-            TitleFont.Name = 'Tahoma'
-            TitleFont.Style = []
-            Columns = <
-              item
-                Expanded = False
-                FieldName = 'created'
-                Title.Caption = 'Date'
-                Width = 80
-                Visible = True
+              object GroupBox1: TGroupBox
+                Left = 416
+                Top = 23
+                Width = 497
+                Height = 289
+                Caption = 'Notes'
+                TabOrder = 5
+                object DBGrid1: TDBGrid
+                  Left = 10
+                  Top = 58
+                  Width = 156
+                  Height = 187
+                  DataSource = atdbDM.ribbonNotesDSource
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'created_on'
+                      Title.Caption = 'Date'
+                      Width = 142
+                      Visible = True
+                    end>
+                end
+                object DBLookupComboBox4: TDBLookupComboBox
+                  Left = 220
+                  Top = 29
+                  Width = 253
+                  Height = 21
+                  DataField = 'created_by'
+                  DataSource = atdbDM.ribbonNotesDSource
+                  Enabled = False
+                  KeyField = 'id'
+                  ListField = 'user_name'
+                  ListSource = atdbDM.usersDataSource
+                  TabOrder = 1
+                end
+                object DBMemo3: TDBMemo
+                  Left = 218
+                  Top = 56
+                  Width = 255
+                  Height = 160
+                  DataField = 'note'
+                  DataSource = atdbDM.ribbonNotesDSource
+                  TabOrder = 2
+                end
+                object DBNavigator4: TDBNavigator
+                  Left = 219
+                  Top = 222
+                  Width = 254
+                  Height = 25
+                  DataSource = atdbDM.ribbonNotesDSource
+                  VisibleButtons = [nbPost, nbCancel]
+                  TabOrder = 3
+                end
+                object DBNavigator6: TDBNavigator
+                  Left = 10
+                  Top = 27
+                  Width = 156
+                  Height = 25
+                  DataSource = atdbDM.ribbonNotesDSource
+                  VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
+                  ConfirmDelete = False
+                  TabOrder = 4
+                  OnClick = DBNavigator6Click
+                end
               end
-              item
-                Expanded = False
-                FieldName = 'status'
-                Title.Caption = 'Status'
-                Width = 80
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'cutting_order'
-                Title.Caption = 'Cutting Order'
-                Width = 80
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'nr_of_sections'
-                Title.Caption = 'Sections'
-                Width = 80
-                Visible = True
-              end>
-          end
-          object mRibbonsNavigator: TDBNavigator
-            Left = 14
-            Top = 23
-            Width = 200
-            Height = 25
-            DataSource = atdbDM.mRibbonDSource
-            VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
-            ConfirmDelete = False
-            TabOrder = 1
-            BeforeAction = mRibbonsNavigatorBeforeAction
-            OnClick = RibbonsNavigatorClick
-          end
-          object PrintBarCodeBtn: TButton
-            Left = 782
-            Top = 231
-            Width = 113
-            Height = 25
-            Caption = 'PrintBarCodeBtn'
-            TabOrder = 2
-            OnClick = PrintBarCodeClick
-          end
-          object DBEdit2: TDBEdit
-            Left = 14
-            Top = 271
-            Width = 121
-            Height = 21
-            DataField = 'nr_of_sections'
-            DataSource = atdbDM.mRibbonDSource
-            TabOrder = 3
-          end
-          object DBEdit3: TDBEdit
-            Left = 158
-            Top = 269
-            Width = 121
-            Height = 21
-            DataField = 'cutting_order'
-            DataSource = atdbDM.mRibbonDSource
-            TabOrder = 4
-          end
-          object GroupBox1: TGroupBox
-            Left = 416
-            Top = 23
-            Width = 497
-            Height = 289
-            Caption = 'Notes'
-            TabOrder = 5
-            object DBGrid1: TDBGrid
-              Left = 10
-              Top = 58
-              Width = 156
-              Height = 187
-              DataSource = atdbDM.ribbonNotesDSource
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-              TabOrder = 0
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-              Columns = <
-                item
-                  Expanded = False
-                  FieldName = 'created_on'
-                  Title.Caption = 'Date'
-                  Width = 142
-                  Visible = True
-                end>
-            end
-            object DBLookupComboBox4: TDBLookupComboBox
-              Left = 220
-              Top = 29
-              Width = 253
-              Height = 21
-              DataField = 'created_by'
-              DataSource = atdbDM.ribbonNotesDSource
-              Enabled = False
-              KeyField = 'id'
-              ListField = 'user_name'
-              ListSource = atdbDM.usersDataSource
-              TabOrder = 1
-            end
-            object DBMemo3: TDBMemo
-              Left = 218
-              Top = 56
-              Width = 255
-              Height = 160
-              DataField = 'note'
-              DataSource = atdbDM.ribbonNotesDSource
-              TabOrder = 2
-            end
-            object DBNavigator4: TDBNavigator
-              Left = 219
-              Top = 222
-              Width = 254
-              Height = 25
-              DataSource = atdbDM.ribbonNotesDSource
-              VisibleButtons = [nbPost, nbCancel]
-              TabOrder = 3
-            end
-            object DBNavigator6: TDBNavigator
-              Left = 10
-              Top = 27
-              Width = 156
-              Height = 25
-              DataSource = atdbDM.ribbonNotesDSource
-              VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
-              ConfirmDelete = False
-              TabOrder = 4
-              OnClick = DBNavigator6Click
             end
           end
         end
@@ -576,6 +722,7 @@ object MainForm: TMainForm
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          OnDrawDataCell = DBGrid3DrawDataCell
           Columns = <
             item
               Expanded = False
@@ -645,8 +792,7 @@ object MainForm: TMainForm
               Top = 418
               Width = 1128
               Hints.Strings = ()
-              ExplicitLeft = 5
-              ExplicitTop = 445
+              ExplicitTop = 418
               ExplicitWidth = 1128
             end
           end
@@ -871,24 +1017,5 @@ object MainForm: TMainForm
     Barcode1D = Barcode1D_Code391
     Left = 560
     Top = 128
-  end
-  object DataSource1: TDataSource
-    Left = 896
-    Top = 568
-  end
-  object ClientDataSet1: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 760
-    Top = 504
-  end
-  object DataSetProvider1: TDataSetProvider
-    Left = 664
-    Top = 528
-  end
-  object SQLDataSet1: TSQLDataSet
-    Params = <>
-    Left = 856
-    Top = 488
   end
 end

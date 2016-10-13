@@ -139,10 +139,6 @@ class TMainForm : public TRegistryForm
 	TDBLookupComboBox *DBLookupComboBox5;
 	TDBText *DBText1;
 	TLabel *Label8;
-	TDataSource *DataSource1;
-	TClientDataSet *ClientDataSet1;
-	TDataSetProvider *DataSetProvider1;
-	TSQLDataSet *SQLDataSet1;
 	TTabSheet *TabSheet6;
 	TImage *mBarCodeImage;
 	TTableFrame *TTableFrame1;
@@ -165,6 +161,9 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet4;
 	TPageControl *PageControl2;
 	TTabSheet *TabSheet8;
+	TDBGrid *DBGrid2;
+	TDBNavigator *DBNavigator3;
+	TGroupBox *GroupBox4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -189,6 +188,12 @@ class TMainForm : public TRegistryForm
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mTablesCBChange(TObject *Sender);
+	void __fastcall DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
+          TGridDrawState State);
+	void __fastcall DBGrid3DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
+          TGridDrawState State);
+	void __fastcall DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
+          TColumn *Column, TGridDrawState State);
 
 
     private:	// User declarations

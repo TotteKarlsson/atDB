@@ -183,9 +183,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
         <FormResources Include="UI\TMainForm.dfm"/>
+        <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <FormResources Include="P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="source\vcl\TTableUpdateForm.dfm"/>
-        <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
