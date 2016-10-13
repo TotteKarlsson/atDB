@@ -120,8 +120,6 @@ object MainForm: TMainForm
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      ExplicitLeft = 75
-      ExplicitTop = -71
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
         object PageControl2: TPageControl
@@ -129,7 +127,7 @@ object MainForm: TMainForm
           Top = 0
           Width = 1132
           Height = 574
-          ActivePage = TabSheet8
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           object TabSheet8: TTabSheet
@@ -202,8 +200,8 @@ object MainForm: TMainForm
                   end
                   item
                     Expanded = False
-                    FieldName = 'fixative'
-                    Width = 100
+                    FieldName = 'LFixative'
+                    Width = 64
                     Visible = True
                   end
                   item
@@ -273,7 +271,7 @@ object MainForm: TMainForm
                 Width = 1120
                 Height = 25
                 DataSource = atdbDM.specimentDSrc
-                VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbApplyUpdates, nbCancelUpdates]
+                VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 1
               end
@@ -528,7 +526,7 @@ object MainForm: TMainForm
             ImageIndex = 6
             object GroupBox2: TGroupBox
               Left = 13
-              Top = 72
+              Top = 16
               Width = 935
               Height = 326
               Caption = 'Ribbons'
@@ -792,6 +790,7 @@ object MainForm: TMainForm
               Top = 418
               Width = 1128
               Hints.Strings = ()
+              OnClick = TTableFrame1DBNavigator1Click
               ExplicitTop = 418
               ExplicitWidth = 1128
             end
@@ -973,9 +972,6 @@ object MainForm: TMainForm
     end
     object ools1: TMenuItem
       Caption = 'Options'
-      object ThemesMenu: TMenuItem
-        Caption = 'Themes'
-      end
     end
     object Help1: TMenuItem
       Caption = 'Help'

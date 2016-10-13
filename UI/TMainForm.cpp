@@ -185,6 +185,8 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
     mUsersDBCB->OnCloseUp(NULL);
 
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
+
+	setupGridPickList(DBGrid2, "fixative", "");
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
@@ -298,10 +300,6 @@ void __fastcall TMainForm::mTablesCBChange(TObject *Sender)
 	TTableFrame1->loadTable(stdstr(mTablesCB->Text));
 }
 
-
-
-
-
 void __fastcall TMainForm::DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
@@ -337,6 +335,48 @@ void __fastcall TMainForm::DBGrid2DrawColumnCell(TObject *Sender, const TRect &R
     }
     else
     {
+
+    }
+}
+
+//---------------------------------------------------------------------------
+void TMainForm::setupGridPickList(TDBGrid* dbg, const string& fieldName, const string& sql)
+{
+//	TStringList* pl = new TStringList();
+//    TSQLQuery*   query = new TSQLQuery(NULL);
+//    query->SQLConnection = atdbDM->SQLConnection1;
+//    query->SQL->Text = "SELECT fixative from fixative";
+//    query->Open();
+//
+//    while(!query->Eof)
+//    {
+//    	TField* f = query->Fields->FieldByNumber(1);
+//		pl->Add(f->AsString);
+//        query->Next();
+//    }
+//
+//	for(int i = 0; dbg->Columns->Count - 1; i++)
+//    {
+//    	if((*dbg->Columns)[i]->FieldName == vclstr(fieldName))
+//        {
+//        	 *(*dbg->Columns)[i]->PickList = *pl;
+//             break;
+//        }
+//    }
+
+}
+
+
+void __fastcall TMainForm::TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button)
+
+{
+	switch(Button)
+    {
+		case TNavigateBtn::nbPost:
+        	atdbDM->specimentCDS->Refresh();
+            DBGrid2->Enabled = false;
+			DBGrid2->Enabled = true;
+        break;
 
     }
 }

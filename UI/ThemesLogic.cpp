@@ -22,14 +22,14 @@ void __fastcall TMainForm::PopulateStyleMenu()
     {
         String name = TStyleManager::StyleNames[i];
 
-        TMenuItem *Item = new TMenuItem(ThemesMenu);
-        Item->Caption = name;
-        Item->OnClick = ThemesMenuClick;
-        ThemesMenu->Add(Item);
-        if(Item->Caption == activeStyle)
-        {
-            Item->Checked = true;
-        }
+//        TMenuItem *Item = new TMenuItem(ThemesMenu);
+//        Item->Caption = name;
+//        Item->OnClick = ThemesMenuClick;
+//        ThemesMenu->Add(Item);
+//        if(Item->Caption == activeStyle)
+//        {
+//            Item->Checked = true;
+//        }
     }
 }
 

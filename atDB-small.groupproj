@@ -3,6 +3,15 @@
         <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\ArrayBot\resources\abResources.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\ArrayBot\source\abCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\ArrayBot\source\vcl\abVCLCore.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="atDB.cbproj">
             <Dependencies/>
         </Projects>
@@ -14,6 +23,33 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="abResources">
+        <MSBuild Projects="P:\ArrayBot\resources\abResources.cbproj"/>
+    </Target>
+    <Target Name="abResources:Clean">
+        <MSBuild Projects="P:\ArrayBot\resources\abResources.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abResources:Make">
+        <MSBuild Projects="P:\ArrayBot\resources\abResources.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abCore">
+        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj"/>
+    </Target>
+    <Target Name="abCore:Clean">
+        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abCore:Make">
+        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="abVCLCore">
+        <MSBuild Projects="P:\ArrayBot\source\vcl\abVCLCore.cbproj"/>
+    </Target>
+    <Target Name="abVCLCore:Clean">
+        <MSBuild Projects="P:\ArrayBot\source\vcl\abVCLCore.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="abVCLCore:Make">
+        <MSBuild Projects="P:\ArrayBot\source\vcl\abVCLCore.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="atDB">
         <MSBuild Projects="atDB.cbproj"/>
     </Target>
@@ -24,13 +60,13 @@
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atDB"/>
+        <CallTarget Targets="abResources;abCore;abVCLCore;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atDB:Clean"/>
+        <CallTarget Targets="abResources:Clean;abCore:Clean;abVCLCore:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atDB:Make"/>
+        <CallTarget Targets="abResources:Make;abCore:Make;abVCLCore:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

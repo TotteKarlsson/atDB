@@ -89,7 +89,6 @@ class TMainForm : public TRegistryForm
     TMenuItem *ools1;
     TFileExit *FileExit1;
     TMenuItem *Exit1;
-    TMenuItem *ThemesMenu;
     TToolBar *ToolBar2;
     TPanel *Panel4;
     TToolButton *ToolButton4;
@@ -194,12 +193,15 @@ class TMainForm : public TRegistryForm
           TGridDrawState State);
 	void __fastcall DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
+	void __fastcall TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button);
+
+
 
 
     private:	// User declarations
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
-
+		void											setupGridPickList(TDBGrid* dbg, const string& fieldName, const string& sql);
 		Poco::Mutex										mServerDBMutex;
 		ATDBServerSession								mServerDBSession;
 

@@ -115,7 +115,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 
     if(!mServerDBSession.isConnected())
     {
-        mServerDBSession.connect();
+        mServerDBSession.connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
     }
 
     if(mServerDBSession.isConnected())
@@ -127,7 +127,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     }
     else
     {
-        Log(lError) << "Failed to connect to database server...";
+        Log(lError) << "Failed to connect to remote database server using low level app connection...";
     }
 }
 
@@ -158,11 +158,12 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mBottomPanelHeight.setup( 	            "HEIGHT_OF_BOTTOM_PANEL",    	    205));
 	mGeneralProperties.add((BaseProperty*)  &mMainTabIndex.setup( 	                "MAIN_TAB_INDEX",           	    0));
 	mGeneralProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
-	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    0));
+	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    	0));
 
-	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                    "none"));
-	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",                "none"));
-	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			         "none"));
+	mGeneralProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));
+	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
+	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
+	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
 
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
@@ -172,7 +173,7 @@ bool TMainForm::setupAndReadIniParameters()
     mDBUserE->update();
     mPasswordE->update();
     mDatabaseE->update();
-
+	mServerIPE->update();
 	if(mSplashProperties.doesSectionExist())
 	{
 		mSplashProperties.read();
