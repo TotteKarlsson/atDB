@@ -114,8 +114,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *DBMemo1;
 	TDBNavigator *DBNavigator2;
-	TDBMemo *DBMemo2;
-	TLabel *Label1;
 	TScrollBox *ScrollBox1;
 	TLabel *Label2;
 	TDBLookupComboBox *DBLookupComboBox1;
@@ -132,10 +130,6 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mDatabaseE;
 	TDBNavigator *DBNavigator5;
 	TLabel *Label5;
-	TDBLookupComboBox *DBLookupComboBox3;
-	TLabel *Label6;
-	TLabel *Label7;
-	TDBLookupComboBox *DBLookupComboBox5;
 	TDBText *DBText1;
 	TLabel *Label8;
 	TTabSheet *TabSheet6;

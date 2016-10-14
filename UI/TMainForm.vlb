@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=518,452,66,33
+Coordinates=547,330,46,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -258,14 +258,8 @@ Coordinates=576,556,127,33
 [mATDBServerBtnConnect]
 Coordinates=377,391,142,51
 
-[Label1]
-Coordinates=547,330,46,51
-
 [DBLookupComboBox1]
 Coordinates=589,513,127,33
-
-[DBMemo2]
-Coordinates=86,513,64,33
 
 [DBMemo1]
 Coordinates=376,513,64,33

@@ -1,8 +1,8 @@
 object TableFrame: TTableFrame
   Left = 0
   Top = 0
-  Width = 704
-  Height = 286
+  Width = 754
+  Height = 301
   TabOrder = 0
   object GroupBox1: TGroupBox
     Left = 0

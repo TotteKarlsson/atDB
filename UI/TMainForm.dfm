@@ -127,7 +127,7 @@ object MainForm: TMainForm
           Top = 0
           Width = 1132
           Height = 574
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           object TabSheet8: TTabSheet
@@ -159,18 +159,56 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'speciment_id'
+                    Title.Caption = 'ID'
                     Width = 100
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'Lspecie'
+                    Title.Caption = 'Specie'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'lims_number'
+                    Title.Caption = 'Lims #'
                     Width = 100
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'additional_identifier'
+                    Title.Caption = 'Additional Identifier'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'age'
+                    Title.Caption = 'Age'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'death_date'
+                    Title.Caption = 'Date of Death'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'date_received'
+                    Title.Caption = 'Date Received'
+                    Width = 100
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'date_embedded'
+                    Title.Caption = 'Date Embedded'
                     Width = 100
                     Visible = True
                   end
@@ -182,85 +220,50 @@ object MainForm: TMainForm
                   end
                   item
                     Expanded = False
-                    FieldName = 'age'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'lims_number'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'death_date'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
                     FieldName = 'LFixative'
-                    Width = 64
+                    Title.Caption = 'Fixative Protocol'
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'fixation_method'
-                    Width = 100
+                    FieldName = 'LfixationMethod'
+                    Title.Caption = 'Fixation Protocol'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'Lpostfix'
+                    Title.Caption = 'Postfix Protocol'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'Lcryoprotection'
+                    Title.Caption = 'CryoProtection'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'LfreezeProtocol'
+                    Title.Caption = 'Freeze Protocol'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'LsubstitutionProtocol'
+                    Title.Caption = 'Substitution Protocol'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'Lembedding'
+                    Title.Caption = 'Embedding'
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'brain_region_dissection'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'postfix_protocol'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'date_received'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'date_embedded'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'cryoprotection_protocol'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'freezing_protocol'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'substitution_protocol'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'infiltration_protocol'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'embedding_protocol'
+                    Title.Caption = 'From Brain region'
                     Width = 100
                     Visible = True
                   end>
@@ -294,37 +297,16 @@ object MainForm: TMainForm
                 Height = 397
                 Caption = 'Blocks'
                 TabOrder = 0
-                object Label1: TLabel
-                  Left = 20
-                  Top = 262
-                  Width = 53
-                  Height = 13
-                  Caption = 'Block label:'
-                end
                 object Label5: TLabel
                   Left = 19
-                  Top = 345
+                  Top = 236
                   Width = 57
                   Height = 13
                   Caption = 'Entered by:'
                 end
-                object Label6: TLabel
-                  Left = 21
-                  Top = 291
-                  Width = 35
-                  Height = 13
-                  Caption = 'Status:'
-                end
-                object Label7: TLabel
-                  Left = 21
-                  Top = 318
-                  Width = 64
-                  Height = 13
-                  Caption = 'Freeze Type:'
-                end
                 object DBText1: TDBText
                   Left = 104
-                  Top = 233
+                  Top = 209
                   Width = 65
                   Height = 17
                   DataField = 'id'
@@ -338,7 +320,7 @@ object MainForm: TMainForm
                 end
                 object Label8: TLabel
                   Left = 21
-                  Top = 233
+                  Top = 209
                   Width = 42
                   Height = 13
                   Caption = 'Block ID:'
@@ -346,10 +328,9 @@ object MainForm: TMainForm
                 object mBlocksGrid: TDBGrid
                   Left = 15
                   Top = 62
-                  Width = 314
+                  Width = 338
                   Height = 123
                   DataSource = atdbDM.blocksDataSource
-                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                   ReadOnly = True
                   TabOrder = 0
                   TitleFont.Charset = DEFAULT_CHARSET
@@ -357,7 +338,6 @@ object MainForm: TMainForm
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
-                  OnDblClick = mBlocksGridDblClick
                   Columns = <
                     item
                       Expanded = False
@@ -368,14 +348,14 @@ object MainForm: TMainForm
                     end
                     item
                       Expanded = False
-                      FieldName = 'status'
+                      FieldName = 'lBlockStatus'
                       Title.Caption = 'Status'
-                      Width = 59
+                      Width = 97
                       Visible = True
                     end
                     item
                       Expanded = False
-                      FieldName = 'freeze_type'
+                      FieldName = 'LFreezeType'
                       Title.Caption = 'Freeze Type'
                       Visible = True
                     end>
@@ -401,20 +381,9 @@ object MainForm: TMainForm
                     OnClick = mBlocksNavigatorClick
                   end
                 end
-                object DBMemo2: TDBMemo
-                  Left = 104
-                  Top = 256
-                  Width = 135
-                  Height = 25
-                  DataField = 'label'
-                  DataSource = atdbDM.blocksDataSource
-                  TabOrder = 2
-                  WantReturns = False
-                  WordWrap = False
-                end
                 object DBLookupComboBox1: TDBLookupComboBox
                   Left = 104
-                  Top = 341
+                  Top = 232
                   Width = 135
                   Height = 21
                   DataField = 'created_by'
@@ -422,7 +391,7 @@ object MainForm: TMainForm
                   KeyField = 'id'
                   ListField = 'user_name'
                   ListSource = atdbDM.usersDataSource
-                  TabOrder = 3
+                  TabOrder = 2
                 end
                 object BlockNotesGB: TGroupBox
                   Left = 415
@@ -430,7 +399,7 @@ object MainForm: TMainForm
                   Width = 498
                   Height = 282
                   Caption = 'Notes'
-                  TabOrder = 4
+                  TabOrder = 3
                   object DBLookupComboBox2: TDBLookupComboBox
                     Left = 223
                     Top = 23
@@ -495,28 +464,6 @@ object MainForm: TMainForm
                     TabOrder = 4
                     OnClick = DBNavigator5Click
                   end
-                end
-                object DBLookupComboBox3: TDBLookupComboBox
-                  Left = 104
-                  Top = 287
-                  Width = 135
-                  Height = 21
-                  DataField = 'status'
-                  DataSource = atdbDM.blocksDataSource
-                  KeyField = 'id'
-                  ListField = 'status'
-                  TabOrder = 5
-                end
-                object DBLookupComboBox5: TDBLookupComboBox
-                  Left = 104
-                  Top = 314
-                  Width = 135
-                  Height = 21
-                  DataField = 'freeze_type'
-                  DataSource = atdbDM.blocksDataSource
-                  KeyField = 'id'
-                  ListField = 'type'
-                  TabOrder = 6
                 end
               end
             end
@@ -710,8 +657,8 @@ object MainForm: TMainForm
         object DBGrid3: TDBGrid
           Left = 13
           Top = 63
-          Width = 340
-          Height = 186
+          Width = 240
+          Height = 154
           DataSource = atdbDM.usersDataSource
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
@@ -724,20 +671,9 @@ object MainForm: TMainForm
           Columns = <
             item
               Expanded = False
-              FieldName = 'id'
-              Width = 80
-              Visible = True
-            end
-            item
-              Expanded = False
               FieldName = 'user_name'
-              Width = 80
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'created'
-              Width = 121
+              Title.Caption = 'User'
+              Width = 148
               Visible = True
             end>
         end
@@ -753,7 +689,7 @@ object MainForm: TMainForm
         end
         object DBEdit1: TDBEdit
           Left = 13
-          Top = 268
+          Top = 223
           Width = 121
           Height = 21
           DataField = 'user_name'
@@ -766,28 +702,28 @@ object MainForm: TMainForm
         ImageIndex = 4
         inline TTableFrame1: TTableFrame
           Left = 0
-          Top = 0
+          Top = 24
           Width = 1132
-          Height = 574
+          Height = 550
           Align = alClient
           TabOrder = 0
           ExplicitWidth = 1132
           ExplicitHeight = 574
           inherited GroupBox1: TGroupBox
-            Top = 112
             Width = 1132
-            Height = 462
-            Align = alBottom
+            Height = 550
+            Align = alClient
             ExplicitTop = 112
             ExplicitWidth = 1132
             ExplicitHeight = 462
             inherited DBGrid1: TDBGrid
-              Top = 46
+              Top = 15
               Width = 1128
-              Height = 372
+              Height = 491
+              Align = alClient
             end
             inherited DBNavigator1: TDBNavigator
-              Top = 418
+              Top = 506
               Width = 1128
               Hints.Strings = ()
               OnClick = TTableFrame1DBNavigator1Click
@@ -797,10 +733,11 @@ object MainForm: TMainForm
           end
         end
         object mTablesCB: TComboBox
-          Left = 16
-          Top = 16
-          Width = 145
+          Left = 0
+          Top = 0
+          Width = 1132
           Height = 24
+          Align = alTop
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -810,6 +747,9 @@ object MainForm: TMainForm
           TabOrder = 1
           Text = 'mTablesCB'
           OnChange = mTablesCBChange
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 145
         end
       end
       object TabSheet1: TTabSheet

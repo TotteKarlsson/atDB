@@ -149,12 +149,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>source\vcl\TTableFrame.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="source\vcl\TTableUpdateForm.cpp">
-            <Form>TableUpdateForm</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>source\vcl\TTableUpdateForm.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
         <CppCompile Include="UI\auto_link.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>
@@ -185,7 +179,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="UI\TMainForm.dfm"/>
         <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <FormResources Include="P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.dfm"/>
-        <FormResources Include="source\vcl\TTableUpdateForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
