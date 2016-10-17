@@ -123,7 +123,8 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
         Log(lInfo) << "Connected to remote database.";
 		//Populate table dropdown
 	    StringList tables = mServerDBSession.getTableNames();
-	    populateDropDown(tables, mTablesCB);
+
+	    populateListBox(tables, mTablesLB);
     }
     else
     {

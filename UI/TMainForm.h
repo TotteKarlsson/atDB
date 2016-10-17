@@ -104,7 +104,6 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet3;
 	TDBGrid *DBGrid3;
 	TDBNavigator *DBNavigator1;
-	TDBGrid *mBlocksGrid;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
 	TDBEdit *DBEdit1;
@@ -121,8 +120,6 @@ class TMainForm : public TRegistryForm
 	TDBLookupComboBox *mUsersDBCB;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
-	TBarcode1D_Code39 *Barcode1D_Code391;
-	TDBBarcode1D *DBBarcode1D1;
 	TPanel *MenuPanel;
 	TSTDStringLabeledEdit *mDBUserE;
 	TSTDStringLabeledEdit *mPasswordE;
@@ -133,9 +130,7 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText1;
 	TLabel *Label8;
 	TTabSheet *TabSheet6;
-	TImage *mBarCodeImage;
 	TTableFrame *TTableFrame1;
-	TComboBox *mTablesCB;
 	TTabSheet *TabSheet7;
 	TGroupBox *GroupBox2;
 	TLabel *Label3;
@@ -157,6 +152,13 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid2;
 	TDBNavigator *DBNavigator3;
 	TGroupBox *GroupBox4;
+	TListBox *mTablesLB;
+	TImage *Image1;
+	TDBBarcode1D *DBBarcode1D1;
+	TBarcode1D_Code39 *Barcode1D_Code391;
+	TDBGrid *DBGrid4;
+	TButton *Button1;
+	TDBLookupComboBox *DBLookupComboBox3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -172,7 +174,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall PrintBarCodeClick(TObject *Sender);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
@@ -180,7 +181,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mTablesCBChange(TObject *Sender);
 	void __fastcall DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
 	void __fastcall DBGrid3DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
@@ -188,6 +188,11 @@ class TMainForm : public TRegistryForm
 	void __fastcall DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
 	void __fastcall TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mTablesLBClick(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+
+
+
 
 
 

@@ -170,12 +170,6 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
  		break;
     }
 }
-
-void __fastcall TMainForm::PrintBarCodeClick(TObject *Sender)
-{
-	MessageDlg("Not Implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
-}
-
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
 	atdbDM->afterConnect();
@@ -215,7 +209,7 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 {
 	//Edit Block Record
     MessageDlg("Edit Block Record", mtWarning, TMsgDlgButtons() << mbOK, 0);
-	int bID = mBlocksGrid->DataSource->DataSet->FieldByName("id")->AsInteger;
+//	int bID = mBlocksGrid->DataSource->DataSet->FieldByName("id")->AsInteger;
 }
 
 void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
@@ -294,12 +288,6 @@ void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Butto
     }
 }
 
-
-void __fastcall TMainForm::mTablesCBChange(TObject *Sender)
-{
-	TTableFrame1->loadTable(stdstr(mTablesCB->Text));
-}
-
 void __fastcall TMainForm::DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
@@ -368,17 +356,61 @@ void TMainForm::setupGridPickList(TDBGrid* dbg, const string& fieldName, const s
 
 
 void __fastcall TMainForm::TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button)
-
 {
 	switch(Button)
     {
 		case TNavigateBtn::nbPost:
-        	atdbDM->specimentCDS->Refresh();
+        	atdbDM->specimenCDS->Refresh();
             DBGrid2->Enabled = false;
 			DBGrid2->Enabled = true;
         break;
 
     }
 }
+
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
+{
+	if(mTablesLB->ItemIndex != -1)
+    {
+		String tbl = mTablesLB->Items->Strings[mTablesLB->ItemIndex];
+		TTableFrame1->loadTable(stdstr(tbl));
+    }
+    else
+    {}
+}
+
+
+
+
+
+
+
+void __fastcall TMainForm::Button1Click(TObject *Sender)
+{
+	TPrinter *pr = Printer();
+
+
+	TFont *Font1 = new TFont();
+
+	Font1->Name = "Comic Sans MS";
+	Font1->Size = 9;
+
+    pr->BeginDoc();
+	TBarcodeTextDefine TextDefine;
+    TextDefine.DisplayText = dtBarcode;
+	TextDefine.TextPosition = tpBottomOut;
+	TextDefine.TextAlignment = taJustify;
+	TextDefine.TextFont = Font1;
+	TextDefine.ExtraFontSize = 9;
+
+//    TextDefine->
+
+	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
+    pr->EndDoc();
+}
+//---------------------------------------------------------------------------
+
+//Pbarcode1d::TBarcode1D::Print(double,double,System::UnicodeString, bool,System::Uitypes::TColor,System::Uitypes::TColor,const Pcore1d::TBarcodeTextDefine &,double,double,double,double,int)
+//Pbarcode1d::TBarcode1D::Print(double,double,System::AnsiStringT<0>,bool,System::Uitypes::TColor,System::Uitypes::TColor,const Pcore1d::TBarcodeTextDefine &,double,double,double,double,int) at C:\Program Files (x86)\Barcode1D\bds_xe3\pBarcode1D.hpp:211'
 

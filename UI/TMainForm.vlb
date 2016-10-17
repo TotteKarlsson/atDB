@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=547,330,46,51
+Coordinates=160,513,78,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -245,9 +245,6 @@ Coordinates=896,330,47,51
 
 [mBlocksNavigator]
 Coordinates=10,330,104,51
-
-[mBlocksGrid]
-Coordinates=160,513,78,33
 
 [TabSheet1]
 Coordinates=442,452,66,33
