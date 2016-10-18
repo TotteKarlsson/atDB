@@ -85,7 +85,9 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
         	atdbDM->usersCDS->FieldValues["user_name"] = "New User";
         break;
         case TNavigateBtn::nbApplyUpdates:      									  break;
-        case TNavigateBtn::nbRefresh: 												  break;
+        case TNavigateBtn::nbRefresh:
+        	populateUsersCB();
+        break;
     }
 }
 
@@ -131,9 +133,10 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
     	case TNavigateBtn::nbDelete:        break;
 
     	case TNavigateBtn::nbInsert:
-        	if(!mUsersDBCB->KeyValue.IsNull())
+        	if(mUsersCB->ItemIndex != -1)
             {
-	        	atdbDM->blocksCDS->FieldValues["created_by"] = mUsersDBCB->KeyValue;
+	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
+	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
                 atdbDM->blocksCDS->Post();
 			    atdbDM->blocksCDS->First();
             }
@@ -173,22 +176,49 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
 	atdbDM->afterConnect();
-	mUsersDBCB->Enabled = true;
-    mUsersDBCB->KeyValue = mDBUserID.getValue();
-    mATDBServerBtnConnect->Caption = "Disconnect";
-    mUsersDBCB->OnCloseUp(NULL);
 
+    mATDBServerBtnConnect->Caption = "Disconnect";
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
 
-	setupGridPickList(DBGrid2, "fixative", "");
+	populateUsersCB();
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 {
-	mUsersDBCB->Enabled = false;
+	mUsersCB->Enabled = false;
 	atdbDM->afterDisConnect();
-
     mATDBServerBtnConnect->Caption = "Connect";
+}
+
+void TMainForm::populateUsersCB()
+{
+    //Populate users CB
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQL->Add("SELECT id,user_name from user ORDER by user_name");
+    q->Open();
+
+	mUsersCB->Clear();
+	while(!q->Eof)
+    {
+	    String s = (*q)["user_name"];
+        int *id = new int((*q)["id"]);
+	    mUsersCB->Items->AddObject(s, (TObject*) id);
+	   	q->Next();
+    }
+
+    //select current user
+    for(int i = 0; i < mUsersCB->Items->Count; i++)
+    {
+    	int uid = *(int*) mUsersCB->Items->Objects[i];
+        if(uid == mDBUserID.getValue())
+        {
+			mUsersCB->ItemIndex = i;
+            break;
+        }
+    }
+
+	mUsersCB->Enabled = true;
 }
 
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
@@ -218,16 +248,16 @@ void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mUsersDBCBCloseUp(TObject *Sender)
+void __fastcall TMainForm::mUsersCBCloseUp(TObject *Sender)
 {
-	if(mUsersDBCB->KeyValue.IsNull())
+	if(mUsersCB->ItemIndex == -1)
     {
     	enableDisableGroupBox(mBlocksGB, false);
     }
     else
     {
     	enableDisableGroupBox(mBlocksGB, true);
-		mDBUserID = mUsersDBCB->KeyValue;
+		mDBUserID = *(int*) (mUsersCB->Items->Objects[mUsersCB->ItemIndex]);
     }
 }
 
@@ -303,7 +333,7 @@ void __fastcall TMainForm::DBGrid2DrawDataCell(TObject *Sender, const TRect &Rec
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMainForm::DBGrid3DrawDataCell(TObject *Sender, const TRect &Rect,
+void __fastcall TMainForm::mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
 	Log(lInfo) << "Drawing...";
@@ -326,34 +356,6 @@ void __fastcall TMainForm::DBGrid2DrawColumnCell(TObject *Sender, const TRect &R
 
     }
 }
-
-//---------------------------------------------------------------------------
-void TMainForm::setupGridPickList(TDBGrid* dbg, const string& fieldName, const string& sql)
-{
-//	TStringList* pl = new TStringList();
-//    TSQLQuery*   query = new TSQLQuery(NULL);
-//    query->SQLConnection = atdbDM->SQLConnection1;
-//    query->SQL->Text = "SELECT fixative from fixative";
-//    query->Open();
-//
-//    while(!query->Eof)
-//    {
-//    	TField* f = query->Fields->FieldByNumber(1);
-//		pl->Add(f->AsString);
-//        query->Next();
-//    }
-//
-//	for(int i = 0; dbg->Columns->Count - 1; i++)
-//    {
-//    	if((*dbg->Columns)[i]->FieldName == vclstr(fieldName))
-//        {
-//        	 *(*dbg->Columns)[i]->PickList = *pl;
-//             break;
-//        }
-//    }
-
-}
-
 
 void __fastcall TMainForm::TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button)
 {
@@ -380,12 +382,6 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
     {}
 }
 
-
-
-
-
-
-
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
 	TPrinter *pr = Printer();
@@ -409,8 +405,4 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
     pr->EndDoc();
 }
-//---------------------------------------------------------------------------
-
-//Pbarcode1d::TBarcode1D::Print(double,double,System::UnicodeString, bool,System::Uitypes::TColor,System::Uitypes::TColor,const Pcore1d::TBarcodeTextDefine &,double,double,double,double,int)
-//Pbarcode1d::TBarcode1D::Print(double,double,System::AnsiStringT<0>,bool,System::Uitypes::TColor,System::Uitypes::TColor,const Pcore1d::TBarcodeTextDefine &,double,double,double,double,int) at C:\Program Files (x86)\Barcode1D\bds_xe3\pBarcode1D.hpp:211'
 

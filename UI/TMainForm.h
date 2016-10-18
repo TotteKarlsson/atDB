@@ -102,11 +102,10 @@ class TMainForm : public TRegistryForm
 	TGroupBox *mBlocksGB;
 	TActionList *ActionList2;
 	TTabSheet *TabSheet3;
-	TDBGrid *DBGrid3;
+	TDBGrid *mUsersDBGrid;
 	TDBNavigator *DBNavigator1;
 	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
-	TDBEdit *DBEdit1;
 	TTabSheet *TabSheet1;
 	TSTDStringLabeledEdit *mServerIPE;
 	TArrayBotButton *mATDBServerBtnConnect;
@@ -117,7 +116,6 @@ class TMainForm : public TRegistryForm
 	TLabel *Label2;
 	TDBLookupComboBox *DBLookupComboBox1;
 	TDBLookupComboBox *DBLookupComboBox2;
-	TDBLookupComboBox *mUsersDBCB;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
@@ -158,7 +156,7 @@ class TMainForm : public TRegistryForm
 	TBarcode1D_Code39 *Barcode1D_Code391;
 	TDBGrid *DBGrid4;
 	TButton *Button1;
-	TDBLookupComboBox *DBLookupComboBox3;
+	TComboBox *mUsersCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -177,13 +175,13 @@ class TMainForm : public TRegistryForm
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
-	void __fastcall mUsersDBCBCloseUp(TObject *Sender);
+	void __fastcall mUsersCBCloseUp(TObject *Sender);
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
-	void __fastcall DBGrid3DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
+	void __fastcall mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
 	void __fastcall DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
@@ -200,10 +198,8 @@ class TMainForm : public TRegistryForm
     private:	// User declarations
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
-		void											setupGridPickList(TDBGrid* dbg, const string& fieldName, const string& sql);
 		Poco::Mutex										mServerDBMutex;
 		ATDBServerSession								mServerDBSession;
-
 
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
@@ -220,6 +216,7 @@ class TMainForm : public TRegistryForm
 														//using the messageProcessor
 		MessageContainer                                mMessages;
 
+		void											populateUsersCB();
                                                         //Parameters...
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;

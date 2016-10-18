@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=160,513,78,33
+Coordinates=312,513,54,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -234,9 +234,6 @@ Coordinates=660,613,101,177
 [TabSheet3]
 Coordinates=594,452,66,33
 
-[DBGrid3]
-Coordinates=10,556,56,33
-
 [DBNavigator1]
 Coordinates=368,330,82,51
 
@@ -261,9 +258,6 @@ Coordinates=589,513,127,33
 [DBMemo1]
 Coordinates=376,513,64,33
 
-[mUsersDBCB]
-Coordinates=726,513,81,33
-
 [DBNavigator2]
 Coordinates=80,452,82,51
 
@@ -278,9 +272,6 @@ Coordinates=772,197,86,51
 
 [ScrollBox1]
 Coordinates=670,452,68,33
-
-[DBEdit1]
-Coordinates=312,513,54,33
 
 [TabSheet5]
 Coordinates=432,556,66,33
@@ -341,4 +332,7 @@ Coordinates=10,391,70,51
 
 [mServerIPE]
 Coordinates=603,330,128,51
+
+[mUsersDBGrid]
+Coordinates=10,556,56,33
 

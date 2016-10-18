@@ -126,7 +126,7 @@ object MainForm: TMainForm
           Top = 0
           Width = 1132
           Height = 574
-          ActivePage = TabSheet8
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           object TabSheet8: TTabSheet
@@ -306,40 +306,19 @@ object MainForm: TMainForm
                 Left = 23
                 Top = 3
                 Width = 934
-                Height = 397
+                Height = 510
                 Caption = 'Blocks'
                 TabOrder = 0
                 object Label5: TLabel
-                  Left = 19
-                  Top = 236
+                  Left = 539
+                  Top = 408
                   Width = 57
                   Height = 13
                   Caption = 'Entered by:'
                 end
-                object DBText1: TDBText
-                  Left = 104
-                  Top = 209
-                  Width = 65
-                  Height = 17
-                  DataField = 'id'
-                  DataSource = atdbDM.blocksDataSource
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = clWindowText
-                  Font.Height = -11
-                  Font.Name = 'Tahoma'
-                  Font.Style = [fsBold]
-                  ParentFont = False
-                end
-                object Label8: TLabel
-                  Left = 21
-                  Top = 209
-                  Width = 42
-                  Height = 13
-                  Caption = 'Block ID:'
-                end
                 object Image1: TImage
-                  Left = 21
-                  Top = 272
+                  Left = 533
+                  Top = 448
                   Width = 180
                   Height = 33
                   Proportional = True
@@ -353,38 +332,59 @@ object MainForm: TMainForm
                   Align = alTop
                   BevelOuter = bvNone
                   TabOrder = 0
+                  object Label8: TLabel
+                    Left = 363
+                    Top = 18
+                    Width = 42
+                    Height = 13
+                    Caption = 'Block ID:'
+                  end
+                  object DBText1: TDBText
+                    Left = 422
+                    Top = 16
+                    Width = 65
+                    Height = 17
+                    DataField = 'id'
+                    DataSource = atdbDM.blocksDataSource
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = clWindowText
+                    Font.Height = -11
+                    Font.Name = 'Tahoma'
+                    Font.Style = [fsBold]
+                    ParentFont = False
+                  end
                   object mBlocksNavigator: TDBNavigator
                     Left = 13
                     Top = 8
-                    Width = 200
+                    Width = 198
                     Height = 25
                     DataSource = atdbDM.blocksDataSource
-                    VisibleButtons = [nbInsert, nbDelete, nbPost, nbRefresh, nbApplyUpdates]
+                    VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
                     ConfirmDelete = False
                     TabOrder = 0
                     BeforeAction = mBlocksNavigatorBeforeAction
                     OnClick = mBlocksNavigatorClick
                   end
-                end
-                object DBLookupComboBox1: TDBLookupComboBox
-                  Left = 104
-                  Top = 232
-                  Width = 135
-                  Height = 21
-                  DataField = 'created_by'
-                  DataSource = atdbDM.blocksDataSource
-                  KeyField = 'id'
-                  ListField = 'user_name'
-                  ListSource = atdbDM.usersDataSource
-                  TabOrder = 1
+                  object DBLookupComboBox1: TDBLookupComboBox
+                    Left = 219
+                    Top = 12
+                    Width = 135
+                    Height = 21
+                    DataField = 'created_by'
+                    DataSource = atdbDM.blocksDataSource
+                    KeyField = 'id'
+                    ListField = 'user_name'
+                    ListSource = atdbDM.usersDataSource
+                    TabOrder = 1
+                  end
                 end
                 object BlockNotesGB: TGroupBox
-                  Left = 415
-                  Top = 23
+                  Left = 15
+                  Top = 209
                   Width = 498
                   Height = 282
                   Caption = 'Notes'
-                  TabOrder = 2
+                  TabOrder = 1
                   object DBLookupComboBox2: TDBLookupComboBox
                     Left = 223
                     Top = 23
@@ -453,10 +453,10 @@ object MainForm: TMainForm
                 object DBGrid4: TDBGrid
                   Left = 15
                   Top = 54
-                  Width = 351
-                  Height = 120
+                  Width = 794
+                  Height = 149
                   DataSource = atdbDM.blocksDataSource
-                  TabOrder = 3
+                  TabOrder = 2
                   TitleFont.Charset = DEFAULT_CHARSET
                   TitleFont.Color = clWindowText
                   TitleFont.Height = -11
@@ -472,6 +472,13 @@ object MainForm: TMainForm
                     end
                     item
                       Expanded = False
+                      FieldName = 'Lprocess_id'
+                      Title.Caption = 'Block Process ID'
+                      Width = 90
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
                       FieldName = 'lBlockStatus'
                       Title.Caption = 'Status'
                       Width = 100
@@ -481,30 +488,18 @@ object MainForm: TMainForm
                       Expanded = False
                       FieldName = 'LFreezeType'
                       Title.Caption = 'FreezeType'
-                      Width = 100
+                      Width = 438
                       Visible = True
                     end>
                 end
                 object Button1: TButton
-                  Left = 207
-                  Top = 272
+                  Left = 719
+                  Top = 448
                   Width = 75
                   Height = 25
                   Caption = 'Print'
-                  TabOrder = 4
+                  TabOrder = 3
                   OnClick = Button1Click
-                end
-                object DBLookupComboBox3: TDBLookupComboBox
-                  Left = 221
-                  Top = 27
-                  Width = 145
-                  Height = 21
-                  DataField = 'process_id'
-                  DataSource = atdbDM.blocksDataSource
-                  KeyField = 'process_id'
-                  ListField = 'process_id'
-                  ListSource = atdbDM.specimenDSrc
-                  TabOrder = 5
                 end
               end
             end
@@ -694,47 +689,37 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Users'
         ImageIndex = 2
-        object DBGrid3: TDBGrid
+        object mUsersDBGrid: TDBGrid
           Left = 13
           Top = 63
           Width = 240
           Height = 154
           DataSource = atdbDM.usersDataSource
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
-          OnDrawDataCell = DBGrid3DrawDataCell
+          OnDrawDataCell = mUsersDBGridDrawDataCell
           Columns = <
             item
               Expanded = False
               FieldName = 'user_name'
               Title.Caption = 'User'
-              Width = 148
+              Width = 206
               Visible = True
             end>
         end
         object DBNavigator1: TDBNavigator
           Left = 13
           Top = 20
-          Width = 240
+          Width = 225
           Height = 25
           DataSource = atdbDM.usersDataSource
-          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+          VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
           TabOrder = 1
           OnClick = mUsersNavigatorClick
-        end
-        object DBEdit1: TDBEdit
-          Left = 13
-          Top = 223
-          Width = 121
-          Height = 21
-          DataField = 'user_name'
-          DataSource = atdbDM.usersDataSource
-          TabOrder = 2
         end
       end
       object TabSheet5: TTabSheet
@@ -880,16 +865,14 @@ object MainForm: TMainForm
       Height = 13
       Caption = 'User:'
     end
-    object mUsersDBCB: TDBLookupComboBox
+    object mUsersCB: TComboBox
       Left = 42
       Top = 9
       Width = 145
       Height = 21
-      KeyField = 'id'
-      ListField = 'user_name'
-      ListSource = atdbDM.usersDataSource
+      Style = csDropDownList
       TabOrder = 0
-      OnCloseUp = mUsersDBCBCloseUp
+      OnCloseUp = mUsersCBCloseUp
     end
   end
   object ActionList1: TActionList
