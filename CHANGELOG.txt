@@ -1,3 +1,14 @@
+Release 0.5.2 (Oct 19)
+=======================
+* Added new Specimen Form
+* Added ability to filter blocks trough selection of one or multiple process ids
+* Updated schema
+* Got excel data imported into database
+* Fixed db connection bug
+* Added preprocess treatment lookup table
+* Added frame with all tables
+* Added Table updater form
+
 Release 0.5.1 (Oct 11)
 =======================
 * Added tables for block status and freeze type
