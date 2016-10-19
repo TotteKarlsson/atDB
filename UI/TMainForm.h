@@ -114,7 +114,6 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *DBNavigator2;
 	TScrollBox *ScrollBox1;
 	TLabel *Label2;
-	TDBLookupComboBox *DBLookupComboBox1;
 	TDBLookupComboBox *DBLookupComboBox2;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
@@ -124,7 +123,6 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox3;
 	TSTDStringLabeledEdit *mDatabaseE;
 	TDBNavigator *DBNavigator5;
-	TLabel *Label5;
 	TDBText *DBText1;
 	TLabel *Label8;
 	TTabSheet *TabSheet6;
@@ -157,6 +155,10 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid4;
 	TButton *Button1;
 	TComboBox *mUsersCB;
+	TDBText *DBText2;
+	TMemo *Memo1;
+	TDBGrid *DBGrid3;
+	TLabel *Label1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -188,10 +190,9 @@ class TMainForm : public TRegistryForm
 	void __fastcall TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-
-
-
-
+	void __fastcall DBNavigator3Click(TObject *Sender, TNavigateBtn Button);
+	void __fastcall DBGrid3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall DBGrid3CellClick(TColumn *Column);
 
 
 
@@ -200,7 +201,7 @@ class TMainForm : public TRegistryForm
         TApplicationProperties                          mAppProperties;
 		Poco::Mutex										mServerDBMutex;
 		ATDBServerSession								mServerDBSession;
-
+		String __fastcall								createBlockLabel();
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
 
@@ -240,7 +241,7 @@ class TMainForm : public TRegistryForm
 		void    										populateUsers();
 		void       __fastcall							afterServerConnect(System::TObject* Sender);
 		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
-
+		void 		__fastcall 							selectBlocks();
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();

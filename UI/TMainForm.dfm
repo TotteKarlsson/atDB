@@ -146,6 +146,7 @@ object MainForm: TMainForm
                 Height = 504
                 Align = alClient
                 DataSource = atdbDM.specimenDSrc
+                Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
                 TabOrder = 0
                 TitleFont.Charset = DEFAULT_CHARSET
                 TitleFont.Color = clWindowText
@@ -158,6 +159,7 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'process_id'
+                    ReadOnly = True
                     Title.Caption = 'Process ID'
                     Visible = True
                   end
@@ -221,55 +223,56 @@ object MainForm: TMainForm
                     Expanded = False
                     FieldName = 'Lpreproctreat'
                     Title.Caption = 'Pre-Process Treatment'
+                    Width = 124
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LFixative'
                     Title.Caption = 'Fixative Protocol'
-                    Width = 64
+                    Width = 124
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LfixationMethod'
                     Title.Caption = 'Fixation Protocol'
-                    Width = 64
+                    Width = 150
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'Lpostfix'
                     Title.Caption = 'Postfix Protocol'
-                    Width = 64
+                    Width = 124
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'Lcryoprotection'
                     Title.Caption = 'CryoProtection'
-                    Width = 64
+                    Width = 124
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LfreezeProtocol'
                     Title.Caption = 'Freeze Protocol'
-                    Width = 64
+                    Width = 150
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LsubstitutionProtocol'
                     Title.Caption = 'Substitution Protocol'
-                    Width = 64
+                    Width = 124
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'Lembedding'
                     Title.Caption = 'Embedding'
-                    Width = 64
+                    Width = 124
                     Visible = True
                   end
                   item
@@ -289,6 +292,7 @@ object MainForm: TMainForm
                 VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 1
+                OnClick = DBNavigator3Click
               end
             end
           end
@@ -309,20 +313,21 @@ object MainForm: TMainForm
                 Height = 510
                 Caption = 'Blocks'
                 TabOrder = 0
-                object Label5: TLabel
-                  Left = 539
-                  Top = 408
-                  Width = 57
-                  Height = 13
-                  Caption = 'Entered by:'
-                end
                 object Image1: TImage
                   Left = 533
-                  Top = 448
+                  Top = 229
                   Width = 180
                   Height = 33
                   Proportional = True
                   Stretch = True
+                end
+                object DBText2: TDBText
+                  Left = 533
+                  Top = 288
+                  Width = 180
+                  Height = 89
+                  DataField = 'Cblock_label'
+                  DataSource = atdbDM.blocksDataSource
                 end
                 object Panel3: TPanel
                   Left = 2
@@ -333,14 +338,14 @@ object MainForm: TMainForm
                   BevelOuter = bvNone
                   TabOrder = 0
                   object Label8: TLabel
-                    Left = 363
+                    Left = 435
                     Top = 18
                     Width = 42
                     Height = 13
                     Caption = 'Block ID:'
                   end
                   object DBText1: TDBText
-                    Left = 422
+                    Left = 483
                     Top = 16
                     Width = 65
                     Height = 17
@@ -353,8 +358,15 @@ object MainForm: TMainForm
                     Font.Style = [fsBold]
                     ParentFont = False
                   end
-                  object mBlocksNavigator: TDBNavigator
+                  object Label1: TLabel
                     Left = 13
+                    Top = 20
+                    Width = 96
+                    Height = 13
+                    Caption = 'Select Process ID(s)'
+                  end
+                  object mBlocksNavigator: TDBNavigator
+                    Left = 198
                     Top = 8
                     Width = 198
                     Height = 25
@@ -364,18 +376,6 @@ object MainForm: TMainForm
                     TabOrder = 0
                     BeforeAction = mBlocksNavigatorBeforeAction
                     OnClick = mBlocksNavigatorClick
-                  end
-                  object DBLookupComboBox1: TDBLookupComboBox
-                    Left = 219
-                    Top = 12
-                    Width = 135
-                    Height = 21
-                    DataField = 'created_by'
-                    DataSource = atdbDM.blocksDataSource
-                    KeyField = 'id'
-                    ListField = 'user_name'
-                    ListSource = atdbDM.usersDataSource
-                    TabOrder = 1
                   end
                 end
                 object BlockNotesGB: TGroupBox
@@ -451,9 +451,9 @@ object MainForm: TMainForm
                   end
                 end
                 object DBGrid4: TDBGrid
-                  Left = 15
+                  Left = 200
                   Top = 54
-                  Width = 794
+                  Width = 609
                   Height = 149
                   DataSource = atdbDM.blocksDataSource
                   TabOrder = 2
@@ -465,41 +465,97 @@ object MainForm: TMainForm
                   Columns = <
                     item
                       Expanded = False
-                      FieldName = 'label'
-                      Title.Caption = 'Label'
-                      Width = 100
-                      Visible = True
-                    end
-                    item
-                      Expanded = False
                       FieldName = 'Lprocess_id'
-                      Title.Caption = 'Block Process ID'
-                      Width = 90
+                      ReadOnly = True
+                      Width = 59
                       Visible = True
                     end
                     item
                       Expanded = False
-                      FieldName = 'lBlockStatus'
-                      Title.Caption = 'Status'
+                      FieldName = 'created'
+                      Title.Caption = 'Embedded On'
                       Width = 100
                       Visible = True
                     end
                     item
                       Expanded = False
-                      FieldName = 'LFreezeType'
-                      Title.Caption = 'FreezeType'
-                      Width = 438
+                      FieldName = 'label'
+                      Width = 120
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'LBlockStatus'
+                      Width = 100
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'serial'
+                      Width = 77
                       Visible = True
                     end>
                 end
                 object Button1: TButton
                   Left = 719
-                  Top = 448
+                  Top = 229
                   Width = 75
                   Height = 25
                   Caption = 'Print'
                   TabOrder = 3
                   OnClick = Button1Click
+                end
+                object Memo1: TMemo
+                  Left = 533
+                  Top = 383
+                  Width = 185
+                  Height = 89
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -5
+                  Font.Name = 'Times New Roman'
+                  Font.Style = []
+                  Lines.Strings = (
+                    'Memo1'
+                    'Test'
+                    'M2333543'
+                    'adfadf ad')
+                  ParentFont = False
+                  TabOrder = 4
+                end
+                object DBGrid3: TDBGrid
+                  Left = 15
+                  Top = 54
+                  Width = 179
+                  Height = 149
+                  DataSource = atdbDM.specimenDSrc
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+                  ReadOnly = True
+                  TabOrder = 5
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  OnCellClick = DBGrid3CellClick
+                  OnKeyUp = DBGrid3KeyUp
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'process_id'
+                      Width = 74
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'specimen_id'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'additional_identifier'
+                      Visible = True
+                    end>
                 end
               end
             end
@@ -929,7 +985,7 @@ object MainForm: TMainForm
     Interval = 50
     OnTimer = ShutDownTimerTimer
     Left = 898
-    Top = 224
+    Top = 248
   end
   object ActionList2: TActionList
     Left = 896

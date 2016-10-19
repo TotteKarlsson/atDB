@@ -21,6 +21,7 @@
 #include "abVCLUtils.h"
 #include "database/abDBUtils.h"
 #include "TTableUpdateForm.h"
+#include "TNewSpecimenForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -137,6 +138,14 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
             {
 	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
 	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
+	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
+	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
+
+                // Create block label
+                String str = createBlockLabel();
+
+	        	atdbDM->blocksCDS->FieldValues["label"] = str;
+	        	atdbDM->blocksCDS->FieldValues["status"] = 0;
                 atdbDM->blocksCDS->Post();
 			    atdbDM->blocksCDS->First();
             }
@@ -149,6 +158,28 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
         case TNavigateBtn::nbPost:        		break;
         case TNavigateBtn::nbRefresh:        	Log(lInfo) << "Refreshed Blocks Dataset"; 		break;
     }
+}
+
+String __fastcall TMainForm::createBlockLabel()
+{
+    String lbl;
+    String specie = atdbDM->specimenCDS->FieldByName("Lspecie")->AsString;
+	if(specie == "Human")
+    {
+    	lbl = "H";
+    }
+    else if(specie == "Mouse")
+    {
+    	lbl = "M";
+    }
+    else if(specie == "Human Surgical")
+    {
+    	lbl = "HS";
+    }
+
+	lbl = lbl + atdbDM->specimenCDS->FieldByName("specimen_id")->AsString + "-" + (atdbDM->blocksCDS->RecordCount + 1);
+
+	return lbl;
 }
 
 //---------------------------------------------------------------------------
@@ -384,25 +415,127 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
-	TPrinter *pr = Printer();
+//	TPrinter *pr = Printer();
+//	TFont *Font1 = new TFont();
+//	Font1->Name = "Times New Roman";
+//	Font1->Size = 4;
+//    pr->BeginDoc();
+//	TBarcodeTextDefine TextDefine;
+//    TextDefine.DisplayText = dtBarcode;
+//	TextDefine.TextPosition = tpBottomOut;
+//	TextDefine.TextAlignment = taJustify;
+//	TextDefine.TextFont = Font1;
+//	TextDefine.ExtraFontSize = 9;
+//
+////    TextDefine->
+//	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
+//    pr->EndDoc();
 
 
-	TFont *Font1 = new TFont();
+	TPrinter *Prntr = Printer();
+	TRect r = Rect(200, 200, Prntr->PageWidth - 200, Prntr->PageHeight - 200);
+	Prntr->BeginDoc();
+	for (int i = 0; i < Memo1->Lines->Count; i++)
+    {
+		Prntr->Canvas->TextOut(200,
+			200 + (i * Prntr->Canvas->TextHeight(Memo1->Lines->Strings[i])),
+			Memo1->Lines->Strings[i]);
+    }
 
-	Font1->Name = "Comic Sans MS";
-	Font1->Size = 9;
+	Prntr->Canvas->Brush->Color = clBlack;
+	Prntr->Canvas->FrameRect(r);
+	Prntr->EndDoc();
 
-    pr->BeginDoc();
-	TBarcodeTextDefine TextDefine;
-    TextDefine.DisplayText = dtBarcode;
-	TextDefine.TextPosition = tpBottomOut;
-	TextDefine.TextAlignment = taJustify;
-	TextDefine.TextFont = Font1;
-	TextDefine.ExtraFontSize = 9;
 
-//    TextDefine->
 
-	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
-    pr->EndDoc();
 }
+
+void __fastcall TMainForm::DBNavigator3Click(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbInsert:
+        	if(mUsersCB->ItemIndex != -1)
+            {
+                atdbDM->specimenCDS->FieldValues["specimen_id"] = "NEW SPECIMEN";
+            	//Open New specimen dialog
+				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
+                int res = nsf->ShowModal();
+                if(res == mrCancel)
+                {
+                	//revert
+                    atdbDM->specimenCDS->Cancel();
+
+                }
+                else
+                {
+	//	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
+
+	                atdbDM->specimenCDS->Post();
+			    	atdbDM->specimenCDS->First();
+                }
+            }
+            else
+            {
+            	MessageDlg("Select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            }
+        break;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DBGrid3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	selectBlocks();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DBGrid3CellClick(TColumn *Column)
+{
+	selectBlocks();
+}
+
+void __fastcall TMainForm::selectBlocks()
+{
+	//Retrieve selected id and apply filter on blocks table
+    atdbDM->blocksCDS->Close();
+  	if(DBGrid3->SelectedRows->Count > 0)
+    {
+    	vector<int> p_ids;
+    	stringstream s;
+      	for(int i = 0; i < DBGrid3->SelectedRows->Count; i++)
+    	{
+    		TBookmarkList* bookMarkList = DBGrid3->SelectedRows;
+
+            if(bookMarkList->Count == DBGrid3->SelectedRows->Count)
+            {
+        		atdbDM->specimenCDS->GotoBookmark((*bookMarkList)[i]);
+                int pID = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
+				p_ids.push_back(pID);
+		        s << pID <<",";
+            }
+        }
+
+        s.str("");
+        s << "SELECT * FROM block WHERE process_id IN (";
+
+        for(int i = 0; i < p_ids.size(); i++)
+        {
+			s << p_ids[i];
+            if(i < p_ids.size() - 1)
+            {
+            	s << ", ";
+            }
+        }
+        s << ")";
+		atdbDM->blocksCDS->CommandText = s.str().c_str();
+        Log(lDebug) << "Selected: "<<s.str();
+    }
+    else
+    {
+        atdbDM->blocksCDS->CommandText = "SELECT * FROM block WHERE process_id = :process_id ORDER BY id DESC";
+    }
+    atdbDM->blocksCDS->Open();
+}
+
 
