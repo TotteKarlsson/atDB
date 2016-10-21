@@ -4,11 +4,29 @@
 #include "TMemoLogger.h"
 //#include "TSplashForm.h"
 #include "TATDBDataModule.h"
+#include "mtkVCLUtils.h"
 using namespace mtk;
 //extern TSplashForm*  gSplashForm;
+extern string gCommonAppDataLocation;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::~TMainForm()
 {
+	//Save grid column settings to files into AppData/Grids folder...
+    if(!folderExists(joinPath(gCommonAppDataLocation, "Grids")))
+    {
+    	createFolder(joinPath(gCommonAppDataLocation, "Grids"));
+    }
+
+	Log(lInfo) << "Saving column states";
+
+	for(int i = 0; i < mDBGrids.size(); i++)
+    {
+    	if(mDBGrids[i] != NULL)
+        {
+            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
+		    mDBGrids[i]->Columns->SaveToFile(fName.c_str());
+        }
+    }
 }
 
 //---------------------------------------------------------------------------

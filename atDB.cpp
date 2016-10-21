@@ -5,9 +5,10 @@
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 USEFORM("UI\TMainForm.cpp", MainForm);
+USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
+USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -110,7 +111,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
-		Application->CreateForm(__classid(TNewSpecimenForm), &NewSpecimenForm);
 		Application->Run();
 
         // Finish restarting process if needed

@@ -3,7 +3,7 @@ Coordinates=278,452,62,51
 LayerNames=OrdersLayer
 
 []
-Coordinates=589,513,127,33
+Coordinates=442,452,66,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -231,29 +231,8 @@ Coordinates=1061,1,142,51
 [atDM.]
 Coordinates=660,613,101,177
 
-[TabSheet3]
-Coordinates=594,452,66,33
-
-[DBNavigator1]
-Coordinates=368,330,82,51
-
-[Panel3]
-Coordinates=896,330,47,51
-
 [mBlocksNavigator]
 Coordinates=10,330,104,51
-
-[TabSheet1]
-Coordinates=442,452,66,33
-
-[DBLookupComboBox2]
-Coordinates=576,556,127,33
-
-[mATDBServerBtnConnect]
-Coordinates=377,391,142,51
-
-[DBMemo1]
-Coordinates=376,513,64,33
 
 [DBNavigator2]
 Coordinates=80,452,82,51
@@ -312,24 +291,9 @@ Coordinates=251,10,101,159
 [MenuPanel]
 Coordinates=557,267,68,51
 
-[mDBUserE]
-Coordinates=898,267,68,51
-
-[mPasswordE]
-Coordinates=898,565,79,51
-
-[GroupBox3]
-Coordinates=769,267,70,51
-
-[mDatabaseE]
-Coordinates=0,0,76,51
-
 [mBlocksGB]
 Coordinates=10,391,70,51
 
-[mServerIPE]
-Coordinates=603,330,128,51
-
-[mUsersDBGrid]
-Coordinates=10,556,56,33
+[mBlockNoteMemo]
+Coordinates=376,513,64,33
 

@@ -1,6 +1,5 @@
 #ifndef TATDBSplashFormH
 #define TATDBSplashFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -12,9 +11,11 @@
 #include "mtkTimer.h"
 #include "mtkMessageContainer.h"
 #include "dslTSplashMessageProcessor.h"
+//---------------------------------------------------------------------------
+
 using Poco::Timespan;
 using mtk::MessageContainer;
-//---------------------------------------------------------------------------
+
 class PACKAGE TSplashForm : public TForm
 {
 	__published:	// IDE-managed Components
@@ -51,5 +52,4 @@ class PACKAGE TSplashForm : public TForm
 	__published:
 
 };
-//---------------------------------------------------------------------------
 #endif

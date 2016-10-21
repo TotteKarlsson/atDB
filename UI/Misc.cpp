@@ -2,7 +2,7 @@
 #include "TMainForm.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
-//#include "TSplashForm.h"
+#include "TAboutATDBForm.h"
 #pragma package(smart_init)
 using Poco::DateTimeFormatter;
 
@@ -18,9 +18,33 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     }
 }
 
+void __fastcall TMainForm::OpenAboutFormAExecute(TObject *Sender)
+{
+	TAboutATDBForm* f = new TAboutATDBForm(this);
+    f->ShowModal();
+    delete f;
+}
+
 void __fastcall TMainForm::ClearMemoAExecute(TObject *Sender)
 {
     infoMemo->Clear();
+}
+
+int TMainForm::getCurrentUserID()
+{
+	int i = mUsersCB->ItemIndex;
+    if(i > -1)
+    {
+    	return * ((int*) mUsersCB->Items->Objects[i]);
+    }
+
+	return  -1;
+}
+
+void TMainForm::setupWindowTitle()
+{
+	string title = createWindowTitle("ATDB", Application);
+	this->Caption = vclstr(title);
 }
 
 //---------------------------------------------------------------------------

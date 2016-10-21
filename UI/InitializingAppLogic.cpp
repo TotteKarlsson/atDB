@@ -49,6 +49,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 //		gSplashForm->Close();
 //    }	gLogger.setLogLevel(mLogLevel);
 
+	setupWindowTitle();
 	if(mLogLevel == lInfo)
 	{
 		LogLevelCB->ItemIndex = 0;
@@ -130,6 +131,21 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     {
         Log(lError) << "Failed to connect to remote database server using low level app connection...";
     }
+
+	//Save grid column settings to files into AppData/Grids folder...
+	Log(lInfo) << "Saving column states";
+
+	for(int i = 0; i < mDBGrids.size(); i++)
+    {
+    	if(mDBGrids[i] != NULL)
+        {
+            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
+            if(fileExists(fName.c_str()))
+            {
+		    	mDBGrids[i]->Columns->LoadFromFile(fName.c_str());
+            }
+        }
+    }
 }
 
 void TMainForm::setupIniFile()
@@ -184,8 +200,4 @@ bool TMainForm::setupAndReadIniParameters()
 }
 
 //---------------------------------------------------------------------------
-void TMainForm::setupWindowTitle()
-{
-	string title = createWindowTitle("atDB", Application);
-	this->Caption = vclstr(title);
-}
+

@@ -68,6 +68,16 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     TMemoLogger::mMemoIsEnabled = false;
     setupIniFile();
     setupAndReadIniParameters();
+
+    //Add grids to db grids container for reading/saving column states
+    mDBGrids.push_back(mProcessForBlocksGrid);
+    mDBGrids.push_back(mBlocksGrid);
+    mDBGrids.push_back(mBlockNotesGrid);
+	mDBGrids.push_back(mBlocksForRibbonsGrid);
+    mDBGrids.push_back(mRibbonsGrid);
+    mDBGrids.push_back(mRibbonNotesGrid);
+    mDBGrids.push_back(mUsersDBGrid);
+	mDBGrids.push_back(mSpecimenGrid);
 }
 
 //This one is called from the reader thread
@@ -293,7 +303,7 @@ void __fastcall TMainForm::mUsersCBCloseUp(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::DBNavigator5Click(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
@@ -321,13 +331,13 @@ void __fastcall TMainForm::DBNavigator5Click(TObject *Sender, TNavigateBtn Butto
     }
 }
 
-void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
     	case TNavigateBtn::nbInsert:
-			{
-            int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
+        {
+            int uID = getCurrentUserID();
             String rID = atdbDM->mRibbonCDSid->Value;
             string note("Ribbon Note..");
 
@@ -342,44 +352,42 @@ void __fastcall TMainForm::DBNavigator6Click(TObject *Sender, TNavigateBtn Butto
 
             atdbDM->ribbonNotesCDS->Refresh();
             atdbDM->ribbonNotesCDS->Last();
-            }
+        }
         break;
 
     	case TNavigateBtn::nbDelete:        break;
     }
 }
 
-void __fastcall TMainForm::DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect,
+void __fastcall TMainForm::mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
   	if (Field->DataType == ftMemo)
   	{
      	String S = Field->AsString;
-      	DBGrid2->Canvas->Pen->Color = clWindow;
-      	DBGrid2->Canvas->Brush->Color = clWindow;
-      	DBGrid2->Canvas->Rectangle(Rect);
-      	DBGrid2->Canvas->TextOut(Rect.Left, Rect.Top, S);
+      	mSpecimenGrid->Canvas->Pen->Color = clWindow;
+      	mSpecimenGrid->Canvas->Brush->Color = clWindow;
+      	mSpecimenGrid->Canvas->Rectangle(Rect);
+      	mSpecimenGrid->Canvas->TextOut(Rect.Left, Rect.Top, S);
 	}
 }
+
 //---------------------------------------------------------------------------
-
-
 void __fastcall TMainForm::mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
 	Log(lInfo) << "Drawing...";
 }
+
 //---------------------------------------------------------------------------
-
-
-void __fastcall TMainForm::DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect,
+void __fastcall TMainForm::mSpecimenGridDrawColumnCell(TObject *Sender, const TRect &Rect,
           int DataCol, TColumn *Column, TGridDrawState State)
 {
 
     if (Column->Field->DataType == ftMemo)
     {
-		DBGrid2->Canvas->FillRect (Rect);
-		DBGrid2->Canvas->TextOut( Rect.Left + 3, Rect.Top + 3,
+		mSpecimenGrid->Canvas->FillRect (Rect);
+		mSpecimenGrid->Canvas->TextOut( Rect.Left + 3, Rect.Top + 3,
               Column->Field->AsString);
     }
     else
@@ -393,11 +401,7 @@ void __fastcall TMainForm::TTableFrame1DBNavigator1Click(TObject *Sender, TNavig
 	switch(Button)
     {
 		case TNavigateBtn::nbPost:
-        	atdbDM->specimenCDS->Refresh();
-            DBGrid2->Enabled = false;
-			DBGrid2->Enabled = true;
         break;
-
     }
 }
 
@@ -415,21 +419,27 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
-//	TPrinter *pr = Printer();
-//	TFont *Font1 = new TFont();
-//	Font1->Name = "Times New Roman";
-//	Font1->Size = 4;
-//    pr->BeginDoc();
-//	TBarcodeTextDefine TextDefine;
-//    TextDefine.DisplayText = dtBarcode;
-//	TextDefine.TextPosition = tpBottomOut;
-//	TextDefine.TextAlignment = taJustify;
-//	TextDefine.TextFont = Font1;
-//	TextDefine.ExtraFontSize = 9;
-//
-////    TextDefine->
-//	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
-//    pr->EndDoc();
+
+	int mr = MessageDlg("This will print using the default printer on your system.", mtInformation, TMsgDlgButtons() << mbOK<<mbCancel, 0);
+    if(mr == mrCancel)
+    {
+		return;
+    }
+        //	TPrinter *pr = Printer();
+        //	TFont *Font1 = new TFont();
+        //	Font1->Name = "Times New Roman";
+        //	Font1->Size = 4;
+        //    pr->BeginDoc();
+        //	TBarcodeTextDefine TextDefine;
+        //    TextDefine.DisplayText = dtBarcode;
+        //	TextDefine.TextPosition = tpBottomOut;
+        //	TextDefine.TextAlignment = taJustify;
+        //	TextDefine.TextFont = Font1;
+        //	TextDefine.ExtraFontSize = 9;
+        //
+        ////    TextDefine->
+        //	Barcode1D_Code391->Print(10, 10, Barcode1D_Code391->Barcode, true, clBlack, clWhite, TextDefine, 2, 0.3, 20, 10.1, 0);
+        //    pr->EndDoc();
 
 
 	TPrinter *Prntr = Printer();
@@ -445,12 +455,9 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 	Prntr->Canvas->Brush->Color = clBlack;
 	Prntr->Canvas->FrameRect(r);
 	Prntr->EndDoc();
-
-
-
 }
 
-void __fastcall TMainForm::DBNavigator3Click(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
@@ -470,7 +477,6 @@ void __fastcall TMainForm::DBNavigator3Click(TObject *Sender, TNavigateBtn Butto
                 else
                 {
 	//	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
-
 	                atdbDM->specimenCDS->Post();
 			    	atdbDM->specimenCDS->First();
                 }
@@ -480,17 +486,20 @@ void __fastcall TMainForm::DBNavigator3Click(TObject *Sender, TNavigateBtn Butto
             	MessageDlg("Select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
             }
         break;
+
+       	case TNavigateBtn::nbRefresh:
+        break;
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::DBGrid3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TMainForm::mProcessForBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	selectBlocks();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::DBGrid3CellClick(TColumn *Column)
+void __fastcall TMainForm::mProcessForBlocksGridCellClick(TColumn *Column)
 {
 	selectBlocks();
 }
@@ -499,15 +508,15 @@ void __fastcall TMainForm::selectBlocks()
 {
 	//Retrieve selected id and apply filter on blocks table
     atdbDM->blocksCDS->Close();
-  	if(DBGrid3->SelectedRows->Count > 0)
+  	if(mProcessForBlocksGrid->SelectedRows->Count > 0)
     {
     	vector<int> p_ids;
     	stringstream s;
-      	for(int i = 0; i < DBGrid3->SelectedRows->Count; i++)
+      	for(int i = 0; i < mProcessForBlocksGrid->SelectedRows->Count; i++)
     	{
-    		TBookmarkList* bookMarkList = DBGrid3->SelectedRows;
+    		TBookmarkList* bookMarkList = mProcessForBlocksGrid->SelectedRows;
 
-            if(bookMarkList->Count == DBGrid3->SelectedRows->Count)
+            if(bookMarkList->Count == mProcessForBlocksGrid->SelectedRows->Count)
             {
         		atdbDM->specimenCDS->GotoBookmark((*bookMarkList)[i]);
                 int pID = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
@@ -534,8 +543,97 @@ void __fastcall TMainForm::selectBlocks()
     else
     {
         atdbDM->blocksCDS->CommandText = "SELECT * FROM block WHERE process_id = :process_id ORDER BY id DESC";
+    }                                                                               atdbDM->blocksCDS->Open();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::PageControl2Change(TObject *Sender)
+{
+	//If we are opening the Ribbons page, sett blocks query to select all blocks
+   	if(PageControl2->TabIndex == 2)
+    {
+        atdbDM->blocksCDS->Close();
+        atdbDM->blocksCDS->CommandText = "SELECT * FROM block ORDER BY id DESC";
+        atdbDM->blocksCDS->Open();
     }
-    atdbDM->blocksCDS->Open();
+
+}
+
+void __fastcall TMainForm::mDocumentsGridDblClick(TObject *Sender)
+{
+	//Extract the document and open with default viewer
+	String id  		= mDocumentsGrid->DataSource->DataSet->FieldByName("id")->AsString;
+	String docName  = mDocumentsGrid->DataSource->DataSet->FieldByName("document_name")->AsString;
+	String type 	= mDocumentsGrid->DataSource->DataSet->FieldByName("type")->AsString;
+    Log(lInfo) << "Opening a :"<<stdstr(type)<<" file";
+
+    TByteDynArray bytes = mDocumentsGrid->DataSource->DataSet->FieldByName("document")->AsBytes;
+
+    String fNames(docName + "." + type);
+    string fName(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA),"Temp", stdstr(fNames)));
+
+	fstream out(fName.c_str(), ios::out|ios::binary);
+    if(out)
+    {
+        for(int i = 0; i < bytes.Length; i++)
+        {
+            out << bytes[i];
+        }
+    }
+
+    out.close();
+    ShellExecuteA(NULL, NULL, fName.c_str(), 0, 0, SW_SHOWNORMAL);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mAddDocBtnClick(TObject *Sender)
+{
+	//Browse for file
+	string filename = browseForFile();
+
+    if(filename.size())
+    {
+    	Log(lInfo) << "Adding document: "<<filename<<" to documents table";
+
+        string fName(getFileNameNoPath(filename));
+        string fExt(getFileExtension(filename));
+
+        if(!fName.size())
+        {
+        	MessageDlg("Something is wrong with this documents filename and or extension!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+        	return;
+        }
+
+        ifstream ifs(filename.c_str(), ios::binary|ios::ate);
+    	ifstream::pos_type pos = ifs.tellg();
+
+	    std::vector<char> result(pos);
+    	ifs.seekg(0, ios::beg);
+	    ifs.read(&result[0], pos);
+
+		TSQLQuery* q = new TSQLQuery(NULL);
+        q->SQLConnection = atdbDM->SQLConnection1;
+    	stringstream s;
+
+        q->SQL->Add("INSERT INTO documents ");
+        q->SQL->Add("(document_name, document, type) VALUES  ");
+		q->SQL->Add("( :dname, :doc, :type )");
+        q->ParamByName("dname")->Value = getFileNameNoExtension(fName).c_str();
+
+        TByteDynArray bytes;
+        bytes.Length = result.size();
+        for(int i = 0; i < result.size(); i++)
+        {
+        	bytes[i] = result[i];
+        }
+
+        q->ParamByName("doc")->AsBlob = bytes;
+		q->ParamByName("type")->Value = fExt.c_str();
+        q->ExecSQL();
+        delete q;
+       	atdbDM->documentsCDS->ApplyUpdates(0);
+    }
+	atdbDM->documentsCDS->Refresh();
 }
 
 

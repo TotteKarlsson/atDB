@@ -38,7 +38,7 @@ object SplashForm: TSplashForm
     StyleElements = [seClient, seBorder]
   end
   object Label1: TLabel
-    Left = 488
+    Left = 476
     Top = 320
     Width = 254
     Height = 18

@@ -101,64 +101,63 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet2;
 	TGroupBox *mBlocksGB;
 	TActionList *ActionList2;
-	TTabSheet *TabSheet3;
-	TDBGrid *mUsersDBGrid;
-	TDBNavigator *DBNavigator1;
-	TPanel *Panel3;
 	TDBNavigator *mBlocksNavigator;
-	TTabSheet *TabSheet1;
-	TSTDStringLabeledEdit *mServerIPE;
-	TArrayBotButton *mATDBServerBtnConnect;
 	TDBGrid *mBlockNotesGrid;
-	TDBMemo *DBMemo1;
+	TDBMemo *mBlockNoteMemo;
 	TDBNavigator *DBNavigator2;
 	TScrollBox *ScrollBox1;
 	TLabel *Label2;
-	TDBLookupComboBox *DBLookupComboBox2;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
-	TSTDStringLabeledEdit *mDBUserE;
-	TSTDStringLabeledEdit *mPasswordE;
-	TGroupBox *GroupBox3;
-	TSTDStringLabeledEdit *mDatabaseE;
-	TDBNavigator *DBNavigator5;
+	TDBNavigator *mBlockNoteNavigator;
 	TDBText *DBText1;
 	TLabel *Label8;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
 	TTabSheet *TabSheet7;
 	TGroupBox *GroupBox2;
-	TLabel *Label3;
-	TLabel *Label4;
 	TDBGrid *mRibbonsGrid;
 	TDBNavigator *mRibbonsNavigator;
 	TButton *PrintBarCodeBtn;
-	TDBEdit *DBEdit2;
-	TDBEdit *DBEdit3;
 	TGroupBox *GroupBox1;
-	TDBGrid *DBGrid1;
-	TDBLookupComboBox *DBLookupComboBox4;
-	TDBMemo *DBMemo3;
-	TDBNavigator *DBNavigator4;
-	TDBNavigator *DBNavigator6;
+	TDBGrid *mRibbonNotesGrid;
+	TDBMemo *mRibbonNoteMemo;
+	TDBNavigator *mRibbonNoteNavigator;
+	TDBNavigator *mRibbonNotesNavigator;
 	TTabSheet *TabSheet4;
 	TPageControl *PageControl2;
 	TTabSheet *TabSheet8;
-	TDBGrid *DBGrid2;
-	TDBNavigator *DBNavigator3;
+	TDBGrid *mSpecimenGrid;
+	TDBNavigator *mSpecimenNavigator;
 	TGroupBox *GroupBox4;
 	TListBox *mTablesLB;
 	TImage *Image1;
 	TDBBarcode1D *DBBarcode1D1;
 	TBarcode1D_Code39 *Barcode1D_Code391;
-	TDBGrid *DBGrid4;
+	TDBGrid *mBlocksGrid;
 	TButton *Button1;
 	TComboBox *mUsersCB;
 	TDBText *DBText2;
 	TMemo *Memo1;
-	TDBGrid *DBGrid3;
+	TDBGrid *mProcessForBlocksGrid;
 	TLabel *Label1;
+	TDBGrid *mBlocksForRibbonsGrid;
+	TLabel *Label5;
+	TLabel *Label3;
+	TLabel *Label4;
+	TDBGrid *mUsersDBGrid;
+	TDBNavigator *mUsersNavigator;
+	TGroupBox *GroupBox3;
+	TSTDStringLabeledEdit *mServerIPE;
+	TSTDStringLabeledEdit *mDBUserE;
+	TSTDStringLabeledEdit *mPasswordE;
+	TArrayBotButton *mATDBServerBtnConnect;
+	TSTDStringLabeledEdit *mDatabaseE;
+	TTabSheet *TabSheet1;
+	TDBNavigator *mDocsNavigator;
+	TDBGrid *mDocumentsGrid;
+	TButton *mAddDocBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -179,34 +178,37 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUsersCBCloseUp(TObject *Sender);
 	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBNavigator5Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBNavigator6Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBGrid2DrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
+	void __fastcall mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
 	void __fastcall mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
-	void __fastcall DBGrid2DrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
+	void __fastcall mSpecimenGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
 	void __fastcall TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall DBNavigator3Click(TObject *Sender, TNavigateBtn Button);
-	void __fastcall DBGrid3KeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall DBGrid3CellClick(TColumn *Column);
-
-
+	void __fastcall mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mProcessForBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mProcessForBlocksGridCellClick(TColumn *Column);
+	void __fastcall OpenAboutFormAExecute(TObject *Sender);
+	void __fastcall PageControl2Change(TObject *Sender);
+	void __fastcall mDocumentsGridDblClick(TObject *Sender);
+	void __fastcall mAddDocBtnClick(TObject *Sender);
 
     private:	// User declarations
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
 		Poco::Mutex										mServerDBMutex;
+
 		ATDBServerSession								mServerDBSession;
 		String __fastcall								createBlockLabel();
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
-
+		int 											getCurrentUserID();
 		LogFileReader                                   mLogFileReader;
-
+        vector<TDBGrid*>								mDBGrids;
 		bool                                            mIsStyleMenuPopulated;
 		void                                            setupWindowTitle();
 		void                                            updateWindowTitle();

@@ -14,7 +14,7 @@ specimen = ("INSERT INTO specimen "
 specData = []
 
 #Read specimen data from csv file
-with open('p://atDB/docs/tsv1.csv', 'rb') as csvfile:
+with open('p://atDB/docs/tsv.csv', 'rb') as csvfile:
     rows = csv.reader(csvfile, delimiter=',', quotechar='|')
 
     for row in rows:
