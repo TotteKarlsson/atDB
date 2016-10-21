@@ -33,9 +33,6 @@
         <Projects Include="atDB.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\ArrayBot\ui\ArrayBot.cbproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -134,23 +131,14 @@
     <Target Name="atDB:Make">
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ArrayBot">
-        <MSBuild Projects="P:\ArrayBot\ui\ArrayBot.cbproj"/>
-    </Target>
-    <Target Name="ArrayBot:Clean">
-        <MSBuild Projects="P:\ArrayBot\ui\ArrayBot.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ArrayBot:Make">
-        <MSBuild Projects="P:\ArrayBot\ui\ArrayBot.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;atDBCore-static;atDB;ArrayBot"/>
+        <CallTarget Targets="mtkCommon;mtkIPC;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;atDBCore-static:Clean;atDB:Clean;ArrayBot:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;mtkIPC:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;atDBCore-static:Make;atDB:Make;ArrayBot:Make"/>
+        <CallTarget Targets="mtkCommon:Make;mtkIPC:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

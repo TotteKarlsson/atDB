@@ -1,3 +1,11 @@
+Release 0.5.3 (Oct 21)
+=======================
+* Added about box
+* Changed Icon
+* Added ability to post documents to a documents table
+* Added saving/reading of grid column formats
+* Added python script to populate db from csv file
+
 Release 0.5.2 (Oct 19)
 =======================
 * Added new Specimen Form

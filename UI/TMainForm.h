@@ -86,7 +86,6 @@ class TMainForm : public TRegistryForm
     TMainMenu *MainMenu1;
     TMenuItem *File1;
     TMenuItem *Help1;
-    TMenuItem *ools1;
     TFileExit *FileExit1;
     TMenuItem *Exit1;
     TToolBar *ToolBar2;

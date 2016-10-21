@@ -114,7 +114,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1140
       Height = 621
-      ActivePage = TabSheet1
+      ActivePage = TabSheet4
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -1005,9 +1005,6 @@ object MainForm: TMainForm
       object Exit1: TMenuItem
         Action = FileExit1
       end
-    end
-    object ools1: TMenuItem
-      Caption = 'Options'
     end
     object Help1: TMenuItem
       Caption = 'Help'
