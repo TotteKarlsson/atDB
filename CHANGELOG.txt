@@ -1,3 +1,23 @@
+Release 0.5.3 (Oct 27)
+=======================
+* Last excel import from tissue to block
+* Added printing labels ability when selecting multiple blocks
+* Added sorting ascending and descending of database grids
+* Added 2D Barcodes for coverslips
+* Improved calculated fields for block label creation
+* Finished wrapping label printer dll
+* Added labelprinter class wrapping printer dll
+* Updated ArrayCam MySQL connection properties
+* Added some calculated fields to ATDB (DB modules may be moved to separate "AT repository"
+* Upgraded db connection
+* Added getTableNames function
+* Moved atdb to separate github repo at git@github.com:TotteKarlsson/atDB.git
+* Fixed 'required' fields
+* Removing the queries from the ATDB datamodule
+* Added database credentials to ini file
+* Added queries for deleting ribbons and notes when deleting a block
+* Simplifying the atDB datamodule
+
 Release 0.5.3 (Oct 21)
 =======================
 * Added about box

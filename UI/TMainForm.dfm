@@ -42,7 +42,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 973
       Height = 595
-      ActivePage = TabSheet4
+      ActivePage = TabSheet6
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -229,10 +229,6 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object ScrollBox1: TScrollBox
               Left = 0
               Top = 0
@@ -591,7 +587,6 @@ object MainForm: TMainForm
                 VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
                 ConfirmDelete = False
                 TabOrder = 1
-                BeforeAction = mRibbonsNavigatorBeforeAction
                 OnClick = RibbonsNavigatorClick
               end
               object PrintBarCodeBtn: TButton
@@ -756,10 +751,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Misc'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mUsersDBGrid: TDBGrid
           Left = 13
           Top = 63
@@ -862,10 +853,6 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'Documents'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mDocsNavigator: TDBNavigator
           Left = 16
           Top = 24
@@ -916,10 +903,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 4
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

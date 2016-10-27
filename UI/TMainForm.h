@@ -185,7 +185,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUsersCBCloseUp(TObject *Sender);
-	void __fastcall mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,

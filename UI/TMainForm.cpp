@@ -124,24 +124,6 @@ void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNaviga
         break;
     }
 }
-
-void __fastcall TMainForm::mRibbonsNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
-{
-//	switch(Button)
-//    {
-//    	case TNavigateBtn::nbDelete:
-////             if(MessageDlg("Deleting this ribbon will delete all associated notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
-////             {
-////				Abort();
-////             }
-//
-////			String ribbonID = atdbDM->mRibbonCDS->FieldByName("id")->Value;
-////            mServerDBSession.deleteNotesForRibbon(stdstr(ribbonID));
-////            atdbDM->ribbonNotesCDS->Refresh();
-//        break;
-//    }
-}
-
 void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
@@ -271,6 +253,19 @@ void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
 	if(atdbDM->SQLConnection1->Connected)
     {
+    	//Remove runtime indices
+    	TClientDataSet* cds = atdbDM->specimenCDS;
+	    cds->IndexDefs->Update();
+        for(int i = 0; i <cds->IndexDefs->Count; i++)
+        {
+            String idxName = cds->IndexDefs->operator [](i)->Name;
+            Log(lDebug) <<"Removing index: "<< stdstr(idxName);
+            if(idxName != "DEFAULT_ORDER" && idxName != "CHANGEINDEX")
+            {
+                cds->DeleteIndex(idxName);
+            }
+        }
+
 	    atdbDM->SQLConnection1->Connected = false;
 	    atdbDM->SQLConnection1->Close();
     }
@@ -681,7 +676,6 @@ void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton 
 		SpecimenPopup->Popup(X,Y);
     }
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,

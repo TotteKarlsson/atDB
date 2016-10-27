@@ -35,7 +35,7 @@
 </objects>
 </database>
 </databases>
-<script compress="no" fileordir="file" timestampdir="" timestamp="yes">P:\atDB\backupdb\atDB_backup</script>
+<script compress="no" fileordir="file" timestampdir="" timestamp="yes">X:\applications\backups\atdb\atdb.sql</script>
 </export>
 <options>
 <createdb>yes</createdb>
@@ -55,7 +55,7 @@
 <locktablewrite>no</locktablewrite>
 <fkchecks>yes</fkchecks>
 <autocommit>no</autocommit>
-<includeversion>yes</includeversion>
+<includeversion>no</includeversion>
 <usecharset>utf8</usecharset>
 <bulksize>0</bulksize>
 <appendtofile>no</appendtofile>
