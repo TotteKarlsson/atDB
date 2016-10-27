@@ -33,6 +33,11 @@
 #pragma link "pDBBarcode1D"
 #pragma link "TArrayBotBtn"
 #pragma link "TTableFrame"
+#pragma link "pBarcode2D"
+#pragma link "pCore2D"
+#pragma link "pDataMatrix"
+#pragma link "pDBBarcode2D"
+#pragma link "pQRCode"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -443,17 +448,19 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 
 
 	TPrinter *Prntr = Printer();
-	TRect r = Rect(200, 200, Prntr->PageWidth - 200, Prntr->PageHeight - 200);
+//	TRect r = Rect(200, 200, Prntr->PageWidth - 200, Prntr->PageHeight - 200);
 	Prntr->BeginDoc();
-	for (int i = 0; i < Memo1->Lines->Count; i++)
+    Prntr->Canvas->Font->Name = "Times New Roman";
+    Prntr->Canvas->Font->Size = 4;
+
+	for(int i = 0; i < mLblMakerMemo->Lines->Count; i++)
     {
-		Prntr->Canvas->TextOut(200,
-			200 + (i * Prntr->Canvas->TextHeight(Memo1->Lines->Strings[i])),
-			Memo1->Lines->Strings[i]);
+    	int lineHeight = (i * Prntr->Canvas->TextHeight(mLblMakerMemo->Lines->Strings[i]));
+		Prntr->Canvas->TextOut(200, 200 + lineHeight, mLblMakerMemo->Lines->Strings[i]);
     }
 
-	Prntr->Canvas->Brush->Color = clBlack;
-	Prntr->Canvas->FrameRect(r);
+	//Prntr->Canvas->Brush->Color = clBlack;
+//	Prntr->Canvas->FrameRect(r);
 	Prntr->EndDoc();
 }
 
@@ -472,7 +479,6 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
                 {
                 	//revert
                     atdbDM->specimenCDS->Cancel();
-
                 }
                 else
                 {
@@ -556,7 +562,6 @@ void __fastcall TMainForm::PageControl2Change(TObject *Sender)
         atdbDM->blocksCDS->CommandText = "SELECT * FROM block ORDER BY id DESC";
         atdbDM->blocksCDS->Open();
     }
-
 }
 
 void __fastcall TMainForm::mDocumentsGridDblClick(TObject *Sender)
@@ -636,4 +641,282 @@ void __fastcall TMainForm::mAddDocBtnClick(TObject *Sender)
 	atdbDM->documentsCDS->Refresh();
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSpecimenGridDblClick(TObject *Sender)
+{
+	//Show current record on a form
+    TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
+    atdbDM->specimenCDS->Edit();
+	atdbDM->substitutionProtocol->Edit();
+    int res = nsf->ShowModal();
+    if(res == mrCancel)
+    {
+        //revert
+        atdbDM->specimenCDS->Cancel();
+    }
+    else
+    {
+        atdbDM->specimenCDS->Post();
+        atdbDM->specimenCDS->First();
+    }
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::SpecimenPopupPopup(TObject *Sender)
+{
+	//Check what to show in the popup menu
+    //
+
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	if(Button == TMouseButton::mbRight)
+    {
+    	TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
+		TField* field =  mSpecimenGrid->Columns->operator [](c.X)->Field;
+
+		SpecimenPopup->Popup(X,Y);
+    }
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	if(Button == TMouseButton::mbRight)
+    {
+    	TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
+		TField* field =  mSpecimenGrid->Columns->operator [](c.X - 1)->Field;
+
+        if(field->FieldKind == fkLookup)
+        {
+	        TPoint screen(mSpecimenGrid->ClientToScreen(Point(X,Y)));
+
+            Log(lInfo) << "Field: " << stdstr(field->Value);
+            Log(lInfo) << "Key Fields: " << stdstr(field->KeyFields);
+
+            Log(lInfo) << "Field Lookup: " << stdstr(field->LookupKeyFields);
+            String value = field->DataSet->FieldByName(field->KeyFields)->Value;
+
+           	//Query lookup data set for document_id
+            TLocateOptions lo;
+			bool found = field->LookupDataSet->Locate("id", value, lo);
+
+            if(found)
+            {
+	            int id = -1;
+            	if(!field->LookupDataSet->FieldByName("document_id")->Value.IsNull())
+                {
+            		id = field->LookupDataSet->FieldByName("document_id")->Value;
+                }
+
+	            Log(lInfo) << "Opening document with id: "<<id;
+
+        	    TLocateOptions lo;
+				bool found = atdbDM->documentsCDS->Locate("id", id, lo);
+                if(found)
+                {
+               	//	SpecimenPopup->Popup(screen.X, screen.Y);
+    	            openCurrentDocumentFile();
+                }
+            }
+
+            //Get document id
+            Log(lInfo) << "Field Lookup Value" << stdstr(value);
+        }
+    }
+
+}
+
+void TMainForm::openCurrentDocumentFile()
+{
+	TClientDataSet* cds = atdbDM->documentsCDS;
+
+	String id  		= cds->FieldByName("id")->AsString;
+	String docName  = cds->FieldByName("document_name")->AsString;
+	String type 	= cds->FieldByName("type")->AsString;
+
+    Log(lInfo) << "Opening a :"<<stdstr(type)<<" file";
+
+    TByteDynArray bytes = cds->FieldByName("document")->AsBytes;
+
+    String fNames(docName + "." + type);
+    string fName(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA),"Temp", stdstr(fNames)));
+
+	fstream out(fName.c_str(), ios::out|ios::binary);
+    if(out)
+    {
+        for(int i = 0; i < bytes.Length; i++)
+        {
+            out << bytes[i];
+        }
+    }
+
+    out.close();
+    ShellExecuteA(NULL, NULL, fName.c_str(), 0, 0, SW_SHOWNORMAL);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	//When selecting multiple blocks, prepare Memo for block text output
+	createBlockLabels();
+}
+
+void __fastcall TMainForm::createBlockLabels()
+{
+	mLblMakerMemo->Clear();
+  	stringstream s;
+  	if(mBlocksGrid->SelectedRows->Count > 0)
+    {
+      	for(int i = 0; i < mBlocksGrid->SelectedRows->Count; i++)
+    	{
+    		TBookmarkList* bookMarkList = mBlocksGrid->SelectedRows;
+            if(bookMarkList->Count == mBlocksGrid->SelectedRows->Count)
+            {
+        		atdbDM->blocksCDS->GotoBookmark((*bookMarkList)[i]);
+                String str = atdbDM->blocksCDS->FieldByName("Cblock_label")->AsString;
+		        s << stdstr(str);
+                if(i < mBlocksGrid->SelectedRows->Count -1)
+                {
+					s<<"\n";
+                }
+            }
+        }
+
+        StringList l(s.str(), '\n');
+		mLblMakerMemo->Clear();
+        for(int i = 0; i < l.count(); i++)
+        {
+			mLblMakerMemo->Lines->Add(vclstr(l[i]));
+        }
+    }
+    else
+    {
+        String str = atdbDM->blocksCDS->FieldByName("Cblock_label")->AsString;
+		s << stdstr(str);
+
+        StringList l(s.str(), '\n');
+		mLblMakerMemo->Clear();
+        for(int i = 0; i < l.count(); i++)
+        {
+			mLblMakerMemo->Lines->Add(vclstr(l[i]));
+        }
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mBlocksGridCellClick(TColumn *Column)
+{
+	createBlockLabels();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DataSource1DataChange(TObject *Sender, TField *Field)
+{
+	createBlockLabels();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y)
+{
+	TGridCoord pt = mSpecimenGrid->MouseCoord(X,Y);
+	mSpecimenGrid->Cursor = (pt.Y == 0) ? crHandPoint : crDefault;
+}
+
+bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName);
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mSpecimenGridTitleClick(TColumn *Column)
+{
+	TField* field =  Column->Field;
+	static int PreviousColumnIndex = -1;
+	if(mSpecimenGrid->DataSource->DataSet == atdbDM->specimenCDS && PreviousColumnIndex != -1)
+    {
+    	TColumn* prevCol = mSpecimenGrid->Columns->Items[PreviousColumnIndex];
+        if(prevCol)
+        {
+	 		prevCol->Title->Font->Style = TFontStyles();
+        }
+    }
+
+	Column->Title->Font->Style =  TFontStyles() <<  fsBold;
+	PreviousColumnIndex = Column->Index;
+
+    String fieldName;
+	TField* Field = atdbDM->specimenCDS->Fields->FindField(Column->FieldName);
+    if(Field)
+    {
+    	if(Field->FieldKind == fkLookup)
+        {
+        	fieldName = Field->KeyFields;
+        }
+        else
+        {
+        	fieldName = Column->FieldName;
+        }
+    }
+	SortClientDataSet(atdbDM->specimenCDS, fieldName);
+}
+
+bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
+{
+	//from http://edn.embarcadero.com/article/29056
+	TField* Field = ClientDataSet->Fields->FindField(FieldName);
+	//If invalid field name, exit.
+	if(!Field)
+    {
+		return false;
+    }
+
+    if(	dynamic_cast<TObjectField*>(Field) 		||		dynamic_cast<TBlobField*>(Field) 	||
+        dynamic_cast<TAggregateField*>(Field) 	||      dynamic_cast<TVariantField*>(Field)	||
+        dynamic_cast<TBinaryField*>(Field) 	)
+    {
+    	Log(lWarning) << "Can't sort this type of field...";
+    	return false;
+    }
+
+    //Ensure IndexDefs is up-to-date
+    ClientDataSet->IndexDefs->Update();
+
+    //If an ascending index is already in use,
+    //switch to a descending index
+	String  		NewIndexName;
+	TIndexOptions   IndexOptions;
+    if(ClientDataSet->IndexName == (FieldName + "__IdxA"))
+    {
+        NewIndexName = FieldName + "__IdxD";
+        IndexOptions = TIndexOptions() << ixDescending;
+    }
+    else
+    {
+        NewIndexName = FieldName + "__IdxA";
+        IndexOptions = TIndexOptions();
+    }
+
+    //Look for existing index
+    bool Result(false);
+    for(int i = 0; i <ClientDataSet->IndexDefs->Count; i++)
+    {
+    	if( ClientDataSet->IndexDefs->operator [](i)->Name == NewIndexName)
+      	{
+        	Result = true;
+          	break;
+      	}
+    }
+    //If existing index not found, create one
+    if(!Result)
+    {
+        ClientDataSet->AddIndex(NewIndexName, FieldName, IndexOptions);
+        Result = True;
+    }
+
+    //Set the index
+    ClientDataSet->IndexName = NewIndexName;
+    return Result;
+}

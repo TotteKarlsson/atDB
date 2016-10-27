@@ -59,6 +59,8 @@ __published:	// IDE-managed Components
 	TDataSource *DataSource9;
 	TDBLookupComboBox *DBLookupComboBox8;
 	TLabel *Label17;
+	TDataSource *DataSource10;
+	void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TNewSpecimenForm(TComponent* Owner);

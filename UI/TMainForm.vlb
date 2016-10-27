@@ -1,9 +1,5 @@
-﻿[infoMemo]
-Coordinates=278,452,62,51
-LayerNames=OrdersLayer
-
-[]
-Coordinates=442,452,66,33
+﻿[]
+Coordinates=460,330,77,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -15,20 +11,8 @@ Coordinates=719,265,147,321
 Coordinates=173,10,127,303
 Visible=False
 
-[BottomPanel]
-Coordinates=460,330,77,51
-LayerNames=OrdersLayer
-
 [SB]
 Coordinates=124,330,41,51
-LayerNames=OrdersLayer
-
-[LogLevelCB]
-Coordinates=363,197,84,87
-LayerNames=OrdersLayer
-
-[ToolBar2]
-Coordinates=508,556,58,33
 LayerNames=OrdersLayer
 
 [Splitter1]
@@ -37,14 +21,6 @@ LayerNames=OrdersLayer
 
 [TopPanel]
 Coordinates=10,452,60,51
-LayerNames=OrdersLayer
-
-[Panel4]
-Coordinates=320,391,47,51
-LayerNames=OrdersLayer
-
-[ToolButton4]
-Coordinates=282,556,74,33
 LayerNames=OrdersLayer
 
 [AmazonDataModule.OrderItemsCDS]
@@ -80,10 +56,6 @@ Coordinates=1087,10,188,51
 [AmazonDataModule.customersCDS]
 Coordinates=1160,70,92,231
 Visible=False
-
-[ToolButton1]
-Coordinates=713,556,74,33
-LayerNames=OrdersLayer
 
 [AmazonDataModule.SalesByStateQ]
 Coordinates=1360,130,188,87

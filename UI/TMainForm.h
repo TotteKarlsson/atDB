@@ -61,6 +61,11 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include "TTableFrame.h"
+#include "pBarcode2D.hpp"
+#include "pCore2D.hpp"
+#include "pDataMatrix.hpp"
+#include "pDBBarcode2D.hpp"
+#include "pQRCode.hpp"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -74,8 +79,6 @@ class TMainForm : public TRegistryForm
 {
     __published:	// IDE-managed Components
     TStatusBar *SB;
-    TPanel *BottomPanel;
-        TMemo *infoMemo;
         TActionList *ActionList1;
         TPopupMenu *PopupMenu1;
         TAction *ClearMemoA;
@@ -88,18 +91,12 @@ class TMainForm : public TRegistryForm
     TMenuItem *Help1;
     TFileExit *FileExit1;
     TMenuItem *Exit1;
-    TToolBar *ToolBar2;
-    TPanel *Panel4;
-    TToolButton *ToolButton4;
-    TComboBox *LogLevelCB;
     TAction *OpenAboutFormA;
     TMenuItem *About1;
-    TToolButton *ToolButton1;
     TTimer *ShutDownTimer;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
 	TGroupBox *mBlocksGB;
-	TActionList *ActionList2;
 	TDBNavigator *mBlocksNavigator;
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *mBlockNoteMemo;
@@ -110,8 +107,6 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
 	TDBNavigator *mBlockNoteNavigator;
-	TDBText *DBText1;
-	TLabel *Label8;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
 	TTabSheet *TabSheet7;
@@ -131,20 +126,14 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *mSpecimenNavigator;
 	TGroupBox *GroupBox4;
 	TListBox *mTablesLB;
-	TImage *Image1;
-	TDBBarcode1D *DBBarcode1D1;
-	TBarcode1D_Code39 *Barcode1D_Code391;
 	TDBGrid *mBlocksGrid;
 	TButton *Button1;
 	TComboBox *mUsersCB;
-	TDBText *DBText2;
-	TMemo *Memo1;
+	TMemo *mLblMakerMemo;
 	TDBGrid *mProcessForBlocksGrid;
-	TLabel *Label1;
 	TDBGrid *mBlocksForRibbonsGrid;
 	TLabel *Label5;
 	TLabel *Label3;
-	TLabel *Label4;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *mUsersNavigator;
 	TGroupBox *GroupBox3;
@@ -157,6 +146,26 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *mDocsNavigator;
 	TDBGrid *mDocumentsGrid;
 	TButton *mAddDocBtn;
+	TTabSheet *TabSheet3;
+	TPanel *BottomPanel;
+	TPanel *Panel1;
+	TMemo *infoMemo;
+	TToolBar *ToolBar1;
+	TToolButton *ToolButton2;
+	TToolButton *ToolButton1;
+	TComboBox *LogLevelCB;
+	TPopupMenu *SpecimenPopup;
+	TMenuItem *openDocument;
+	TDBBarcode2D *DBBarcode2D1;
+	TImage *Image2;
+	TBarcode2D_QRCode *Barcode2D_QRCode1;
+	TDBText *DBText3;
+	TGroupBox *GroupBox5;
+	TPanel *Panel2;
+	TPanel *Panel3;
+	TPanel *Panel4;
+	TPanel *Panel5;
+	TPanel *Panel6;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -195,6 +204,19 @@ class TMainForm : public TRegistryForm
 	void __fastcall PageControl2Change(TObject *Sender);
 	void __fastcall mDocumentsGridDblClick(TObject *Sender);
 	void __fastcall mAddDocBtnClick(TObject *Sender);
+	void __fastcall mSpecimenGridDblClick(TObject *Sender);
+	void __fastcall SpecimenPopupPopup(TObject *Sender);
+	void __fastcall mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+	void __fastcall mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+	void __fastcall mBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mBlocksGridCellClick(TColumn *Column);
+	void __fastcall DataSource1DataChange(TObject *Sender, TField *Field);
+	void __fastcall mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
+	void __fastcall mSpecimenGridTitleClick(TColumn *Column);
+
 
     private:	// User declarations
         bool                                            gCanClose;
@@ -243,6 +265,8 @@ class TMainForm : public TRegistryForm
 		void       __fastcall							afterServerConnect(System::TObject* Sender);
 		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
 		void 		__fastcall 							selectBlocks();
+		void 											openCurrentDocumentFile();
+		void 		__fastcall 							createBlockLabels();
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();

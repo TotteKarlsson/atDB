@@ -2,9 +2,9 @@ object NewSpecimenForm: TNewSpecimenForm
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'NewSpecimenForm'
+  Caption = 'Specimen Form'
   ClientHeight = 894
-  ClientWidth = 750
+  ClientWidth = 851
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,12 +25,11 @@ object NewSpecimenForm: TNewSpecimenForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 750
+    Width = 851
     Height = 843
     Align = alClient
     TabOrder = 0
-    ExplicitTop = -1
-    ExplicitHeight = 689
+    ExplicitWidth = 750
     object Label1: TLabel
       Left = 16
       Top = 16
@@ -313,29 +312,35 @@ object NewSpecimenForm: TNewSpecimenForm
   object Panel1: TPanel
     Left = 0
     Top = 843
-    Width = 750
+    Width = 851
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 672
-    ExplicitWidth = 744
+    ExplicitWidth = 750
+    DesignSize = (
+      851
+      51)
     object Button1: TButton
-      Left = 656
+      Left = 771
       Top = 16
-      Width = 75
+      Width = 60
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
+      ExplicitLeft = 800
     end
     object Button2: TButton
-      Left = 575
+      Left = 690
       Top = 16
-      Width = 75
+      Width = 60
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
+      ExplicitLeft = 719
     end
   end
   object DataSource1: TDataSource
@@ -350,8 +355,8 @@ object NewSpecimenForm: TNewSpecimenForm
   end
   object DataSource3: TDataSource
     DataSet = atdbDM.preprocesstreatmentDS
-    Left = 544
-    Top = 464
+    Left = 552
+    Top = 456
   end
   object DataSource4: TDataSource
     DataSet = atdbDM.fixationMethodDS
@@ -370,17 +375,22 @@ object NewSpecimenForm: TNewSpecimenForm
   end
   object DataSource7: TDataSource
     DataSet = atdbDM.freezeprotocolDS
-    Left = 560
-    Top = 656
+    Left = 640
+    Top = 664
   end
   object DataSource8: TDataSource
     DataSet = atdbDM.substitutionProtocol
-    Left = 560
+    Left = 736
     Top = 712
   end
   object DataSource9: TDataSource
     DataSet = atdbDM.substitutionProtocol
     Left = 568
     Top = 768
+  end
+  object DataSource10: TDataSource
+    DataSet = atdbDM.documentsCDS
+    Left = 768
+    Top = 640
   end
 end
