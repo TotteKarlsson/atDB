@@ -37,7 +37,6 @@ object MainForm: TMainForm
     Height = 613
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 597
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -48,9 +47,11 @@ object MainForm: TMainForm
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      ExplicitHeight = 595
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 567
         object PageControl2: TPageControl
           Left = 0
@@ -64,6 +65,9 @@ object MainForm: TMainForm
           ExplicitHeight = 567
           object TabSheet8: TTabSheet
             Caption = 'Specimen'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
             ExplicitHeight = 539
             object GroupBox4: TGroupBox
               Left = 0
@@ -236,6 +240,9 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
             ExplicitHeight = 539
             object ScrollBox1: TScrollBox
               Left = 0
@@ -458,7 +465,6 @@ object MainForm: TMainForm
                         'adfadf ad')
                       ParentFont = False
                       TabOrder = 1
-                      ExplicitHeight = 236
                     end
                   end
                 end
@@ -512,7 +518,6 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitHeight = 539
             object GroupBox2: TGroupBox
               Left = 3
               Top = 3
@@ -715,7 +720,6 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'All Tables'
         ImageIndex = 4
-        ExplicitHeight = 567
         inline TTableFrame1: TTableFrame
           Left = 153
           Top = 0
@@ -725,7 +729,7 @@ object MainForm: TMainForm
           TabOrder = 0
           ExplicitLeft = 153
           ExplicitWidth = 812
-          ExplicitHeight = 567
+          ExplicitHeight = 583
           inherited GroupBox1: TGroupBox
             Width = 812
             Height = 583
@@ -765,12 +769,14 @@ object MainForm: TMainForm
           ItemHeight = 13
           TabOrder = 1
           OnClick = mTablesLBClick
-          ExplicitHeight = 567
         end
       end
       object TabSheet6: TTabSheet
         Caption = 'Misc'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 567
         object mUsersDBGrid: TDBGrid
           Left = 13
@@ -874,6 +880,9 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'Documents'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 567
         object mDocsNavigator: TDBNavigator
           Left = 16
@@ -925,6 +934,9 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 567
         object BottomPanel: TPanel
           Left = 0
@@ -1004,7 +1016,6 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
-        ExplicitHeight = 567
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -1012,7 +1023,6 @@ object MainForm: TMainForm
           Height = 583
           Align = alLeft
           TabOrder = 0
-          ExplicitHeight = 567
           object GroupBox8: TGroupBox
             Left = 1
             Top = 1
@@ -1021,8 +1031,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
-            ExplicitWidth = 455
-            ExplicitHeight = 362
             object CSNavigator: TDBNavigator
               Left = 2
               Top = 351
@@ -1033,9 +1041,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
-              ExplicitLeft = 1
-              ExplicitTop = 541
-              ExplicitWidth = 455
             end
             object DBGrid1: TDBGrid
               Left = 2
@@ -1075,8 +1080,6 @@ object MainForm: TMainForm
             Height = 203
             Align = alBottom
             TabOrder = 1
-            ExplicitTop = 363
-            ExplicitWidth = 455
             object mCSImage: TImage
               Left = 24
               Top = 24
@@ -1117,10 +1120,6 @@ object MainForm: TMainForm
           Height = 583
           Align = alClient
           TabOrder = 1
-          ExplicitLeft = 136
-          ExplicitTop = 200
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object GroupBox6: TGroupBox
             Left = 1
             Top = 1
@@ -1129,7 +1128,6 @@ object MainForm: TMainForm
             Align = alTop
             Caption = 'CoverSlip Dust Assays'
             TabOrder = 0
-            ExplicitWidth = 506
             object cdDustAssayNavigator: TDBNavigator
               Left = 2
               Top = 237
@@ -1140,9 +1138,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
-              ExplicitLeft = 3
-              ExplicitTop = 297
-              ExplicitWidth = 502
             end
             object mCSStatusGrid: TDBGrid
               Left = 2
@@ -1182,10 +1177,6 @@ object MainForm: TMainForm
               Height = 222
               Align = alClient
               TabOrder = 2
-              ExplicitLeft = 416
-              ExplicitTop = 152
-              ExplicitWidth = 185
-              ExplicitHeight = 41
               DesignSize = (
                 335
                 222)
@@ -1220,6 +1211,37 @@ object MainForm: TMainForm
           end
         end
       end
+      object TabSheet10: TTabSheet
+        Caption = 'Images'
+        ImageIndex = 6
+        object Image1: TImage
+          Left = 480
+          Top = 16
+          Width = 441
+          Height = 425
+        end
+        object DBGrid2: TDBGrid
+          Left = 11
+          Top = 16
+          Width = 200
+          Height = 313
+          DataSource = imageDM.imagesDSource
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+        object DBNavigator1: TDBNavigator
+          Left = 11
+          Top = 360
+          Width = 200
+          Height = 25
+          DataSource = imageDM.imagesDSource
+          TabOrder = 1
+        end
+      end
     end
   end
   object SB: TStatusBar
@@ -1228,7 +1250,6 @@ object MainForm: TMainForm
     Width = 975
     Height = 19
     Panels = <>
-    ExplicitTop = 641
   end
   object MenuPanel: TPanel
     Left = 0
@@ -1306,8 +1327,8 @@ object MainForm: TMainForm
   end
   object SpecimenPopup: TPopupMenu
     OnPopup = SpecimenPopupPopup
-    Left = 72
-    Top = 192
+    Left = 704
+    Top = 552
     object openDocument: TMenuItem
       Caption = 'Open Document'
     end

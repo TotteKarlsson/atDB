@@ -23,6 +23,7 @@
 #include "TTableUpdateForm.h"
 #include "TNewSpecimenForm.h"
 #include "TCoverSlipDataModule.h"
+#include "TImagesDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"

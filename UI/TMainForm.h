@@ -186,6 +186,10 @@ class TMainForm : public TRegistryForm
 	TDBMemo *DBMemo2;
 	TLabel *Label4;
 	TDBText *DBText1;
+	TTabSheet *TabSheet10;
+	TDBGrid *DBGrid2;
+	TImage *Image1;
+	TDBNavigator *DBNavigator1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

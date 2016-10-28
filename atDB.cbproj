@@ -149,6 +149,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>source\vcl\TCoverSlipDataModule.h</DependentOn>
             <BuildOrder>13</BuildOrder>
         </CppCompile>
+        <CppCompile Include="source\vcl\TImagesDataModule.cpp">
+            <Form>imageDM</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>source\vcl\TImagesDataModule.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
         <CppCompile Include="source\vcl\TNewSpecimenForm.cpp">
             <Form>NewSpecimenForm</Form>
             <FormType>dfm</FormType>
@@ -201,6 +208,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <FormResources Include="source\vcl\TCoverSlipDataModule.dfm"/>
+        <FormResources Include="source\vcl\TImagesDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

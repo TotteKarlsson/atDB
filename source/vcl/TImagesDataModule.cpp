@@ -1,16 +1,13 @@
-//---------------------------------------------------------------------------
-
-
 #pragma hdrstop
-
 #include "TImagesDataModule.h"
+#include "TATDBDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma classgroup "System.Classes.TPersistent"
 #pragma resource "*.dfm"
-TDataModule1 *DataModule1;
+TimageDM *imageDM;
 //---------------------------------------------------------------------------
-__fastcall TDataModule1::TDataModule1(TComponent* Owner)
+__fastcall TimageDM::TimageDM(TComponent* Owner)
 	: TDataModule(Owner)
 {
 }

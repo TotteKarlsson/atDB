@@ -219,10 +219,6 @@ object csDM: TcsDM
       FieldName = 'background_image'
       Size = 36
     end
-    object csDustAssayDSassay_image: TStringField
-      FieldName = 'assay_image'
-      Size = 36
-    end
     object csDustAssayDScoverslip_status: TIntegerField
       FieldName = 'coverslip_status'
       Required = True
@@ -231,6 +227,10 @@ object csDM: TcsDM
       FieldName = 'note'
       BlobType = ftMemo
       Size = 1
+    end
+    object csDustAssayDScoverslip_image: TStringField
+      FieldName = 'coverslip_image'
+      Size = 36
     end
   end
   object csDustAssayP: TDataSetProvider
@@ -259,10 +259,6 @@ object csDM: TcsDM
       FieldName = 'background_image'
       Size = 36
     end
-    object csDustAssayCDSassay_image: TStringField
-      FieldName = 'assay_image'
-      Size = 36
-    end
     object csDustAssayCDScoverslip_status: TIntegerField
       FieldName = 'coverslip_status'
     end
@@ -270,6 +266,10 @@ object csDM: TcsDM
       FieldName = 'note'
       BlobType = ftMemo
       Size = 1
+    end
+    object csDustAssayCDScoverslip_image: TStringField
+      FieldName = 'coverslip_image'
+      Size = 36
     end
   end
   object csDustAsssayDSource: TDataSource

@@ -53,16 +53,16 @@ __published:	// IDE-managed Components
 	TSQLTimeStampField *csDustAssayCDSdate;
 	TIntegerField *csDustAssayCDScoverslip_id;
 	TStringField *csDustAssayCDSbackground_image;
-	TStringField *csDustAssayCDSassay_image;
 	TIntegerField *csDustAssayDSid;
 	TSQLTimeStampField *csDustAssayDSdate;
 	TIntegerField *csDustAssayDScoverslip_id;
 	TStringField *csDustAssayDSbackground_image;
-	TStringField *csDustAssayDSassay_image;
 	TIntegerField *csDustAssayDScoverslip_status;
 	TIntegerField *csDustAssayCDScoverslip_status;
 	TMemoField *csDustAssayDSnote;
 	TMemoField *csDustAssayCDSnote;
+	TStringField *csDustAssayDScoverslip_image;
+	TStringField *csDustAssayCDScoverslip_image;
 	void __fastcall csDSBeforeOpen(TDataSet *DataSet);
 	void __fastcall CDSAfterPost(TDataSet *DataSet);
 	void __fastcall CDSAfterScroll(TDataSet *DataSet);
