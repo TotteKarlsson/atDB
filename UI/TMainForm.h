@@ -166,6 +166,26 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel4;
 	TPanel *Panel5;
 	TPanel *Panel6;
+	TTabSheet *TabSheet9;
+	TDBGrid *DBGrid1;
+	TDBNavigator *CSNavigator;
+	TPanel *Panel7;
+	TDBGrid *mCSStatusGrid;
+	TDBNavigator *cdDustAssayNavigator;
+	TGroupBox *GroupBox6;
+	TPanel *Panel8;
+	TGroupBox *GroupBox8;
+	TPanel *Panel9;
+	TBarcode2D_DataMatrix *csBarCode;
+	TImage *mCSImage;
+	TDBBarcode2D *mCSBarCode2D;
+	TButton *Button2;
+	TDBMemo *DBMemo1;
+	TLabel *Label1;
+	TPanel *Panel10;
+	TDBMemo *DBMemo2;
+	TLabel *Label4;
+	TDBText *DBText1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -215,6 +235,8 @@ class TMainForm : public TRegistryForm
 	void __fastcall mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
 	void __fastcall mSpecimenGridTitleClick(TColumn *Column);
+	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall Button2Click(TObject *Sender);
 
 
     private:	// User declarations

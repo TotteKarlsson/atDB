@@ -142,6 +142,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="atDB.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
+        <CppCompile Include="source\vcl\TCoverSlipDataModule.cpp">
+            <Form>csDM</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>source\vcl\TCoverSlipDataModule.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
         <CppCompile Include="source\vcl\TNewSpecimenForm.cpp">
             <Form>NewSpecimenForm</Form>
             <FormType>dfm</FormType>
@@ -193,6 +200,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="source\vcl\TNewSpecimenForm.dfm"/>
         <FormResources Include="P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="source\vcl\TTableFrame.dfm"/>
+        <FormResources Include="source\vcl\TCoverSlipDataModule.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

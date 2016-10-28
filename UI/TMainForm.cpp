@@ -22,6 +22,7 @@
 #include "database/abDBUtils.h"
 #include "TTableUpdateForm.h"
 #include "TNewSpecimenForm.h"
+#include "TCoverSlipDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -204,7 +205,7 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
 	atdbDM->afterConnect();
-
+    csDM->afterConnect();
     mATDBServerBtnConnect->Caption = "Disconnect";
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
 
@@ -467,17 +468,16 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
         	if(mUsersCB->ItemIndex != -1)
             {
                 atdbDM->specimenCDS->FieldValues["specimen_id"] = "NEW SPECIMEN";
+
             	//Open New specimen dialog
 				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
                 int res = nsf->ShowModal();
                 if(res == mrCancel)
                 {
-                	//revert
                     atdbDM->specimenCDS->Cancel();
                 }
                 else
                 {
-	//	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
 	                atdbDM->specimenCDS->Post();
 			    	atdbDM->specimenCDS->First();
                 }
@@ -914,3 +914,42 @@ bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
     ClientDataSet->IndexName = NewIndexName;
     return Result;
 }
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button)
+{
+	TDBNavigator* nav = dynamic_cast<TDBNavigator*>(Sender);
+    if(nav == CSNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbInsert:
+                    csDM->csCDS->FieldValues["status"] 	= 1;
+                    csDM->csCDS->FieldValues["type"] 	= 1;
+                    csDM->csCDS->Post();
+                    csDM->csCDS->First();
+            break;
+        }
+    }
+    else if(nav == cdDustAssayNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbInsert:
+                    csDM->csDustAssayCDS->FieldValues["coverslip_id"] 		= csDM->csCDS->FieldByName("id")->AsInteger;
+                    csDM->csDustAssayCDS->FieldValues["coverslip_status"] 	= csDM->csCDS->FieldByName("status")->AsInteger;
+                    csDM->csDustAssayCDS->Post();
+                    csDM->csDustAssayCDS->First();
+            break;
+        }
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::Button2Click(TObject *Sender)
+{
+	MessageDlg("Not yet implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
+}
+
+
