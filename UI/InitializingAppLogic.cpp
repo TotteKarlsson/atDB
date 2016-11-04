@@ -10,6 +10,8 @@
 #include "Core/atDBUtilities.h"
 #include "Poco/Timezone.h"
 #include "TATDBDataModule.h"
+#include "database/abDBUtils.h"
+#include "TCoverSlipDataModule.h"
 
 extern bool             gAppIsStartingUp;
 extern bool             gIsDevelopmentRelease;
@@ -24,6 +26,7 @@ extern string           gTimeFormat;
 extern string           gTimeFormat;
 
 using namespace mtk;
+using namespace ab;
 using Poco::DateTime;
 using Poco::DateTimeFormatter;
 
@@ -94,8 +97,6 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
         mIsStyleMenuPopulated = true;
 	}
 
-	//Update DB controls
-
 	//transfer INI values
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;
@@ -104,19 +105,29 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
    	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
    	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
 
-    bool connected = atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
-	if (connected)
-    {
-    	Log(lInfo) << "Connected to database: "<<"atdb";
-    }
-    else
-    {
-    	Log(lInfo) << "Failed to connect to database: "<<"atdb";
-    }
+    csDM->csDustAssayCDSOnDataChanged = onDustAssayDataChanged;
 
-    if(!mServerDBSession.isConnected())
+    bool connected = false;
+    try
     {
-        mServerDBSession.connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+	    connected = atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+    }
+    catch (const TDBXError &e)
+	{
+    	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
+	}
+
+	//Low level connection
+    try
+    {
+        if(!mServerDBSession.isConnected())
+        {
+            mServerDBSession.connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+        }
+    }
+    catch(...)
+    {
+    	handleMySQLException();
     }
 
     if(mServerDBSession.isConnected())
@@ -124,15 +135,10 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
         Log(lInfo) << "Connected to remote database.";
 		//Populate table dropdown
 	    StringList tables = mServerDBSession.getTableNames();
-
 	    populateListBox(tables, mTablesLB);
     }
-    else
-    {
-        Log(lError) << "Failed to connect to remote database server using low level app connection...";
-    }
 
-	//Save grid column settings to files into AppData/Grids folder...
+	//Read grid column settings from files in AppData/Grids folder
 	Log(lInfo) << "Saving column states";
 
 	for(int i = 0; i < mDBGrids.size(); i++)
@@ -181,6 +187,8 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
 	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
 	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
+	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()
+    																->setup( 	    "DUSTASSAY_IMAGER_FOLDER",    			        "c:\\"));
 
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
@@ -191,6 +199,8 @@ bool TMainForm::setupAndReadIniParameters()
     mPasswordE->update();
     mDatabaseE->update();
 	mServerIPE->update();
+	mDustAssayImageFolderE->update();
+
 	if(mSplashProperties.doesSectionExist())
 	{
 		mSplashProperties.read();
@@ -198,6 +208,4 @@ bool TMainForm::setupAndReadIniParameters()
 
 	return true;
 }
-
-//---------------------------------------------------------------------------
 

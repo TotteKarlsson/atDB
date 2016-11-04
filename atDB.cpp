@@ -4,13 +4,13 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
-USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
-USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
+USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
+USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -20,6 +20,7 @@ USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type 
 #include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
+#include "TATDBDataModule.h"
 #pragma package(smart_init)
 
 using namespace mtk;
@@ -107,12 +108,19 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //            gSplashForm->Close();
 //        }
 
-        TStyleManager::TrySetStyle("Iceberg Classico");
 		TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-		Application->CreateForm(__classid(TatdbDM), &atdbDM);
+        try
+        {
+			Application->CreateForm(__classid(TatdbDM), &atdbDM);
+        }
+        catch (const TDBXError &e)
+        {
+            Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
+        }
+
 		Application->CreateForm(__classid(TcsDM), &csDM);
 		Application->CreateForm(__classid(TimageDM), &imageDM);
 		Application->Run();

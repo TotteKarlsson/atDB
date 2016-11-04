@@ -24,6 +24,7 @@
 #include "TNewSpecimenForm.h"
 #include "TCoverSlipDataModule.h"
 #include "TImagesDataModule.h"
+#include "atdbVCLUtils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -66,7 +67,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
-    mLocalDBFile(""),
 	mServerDBSession("atdb"),
     mDBUserID(0)
 {
@@ -87,26 +87,29 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mDBGrids.push_back(mSpecimenGrid);
 }
 
+void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
+{
+	atdbDM->afterConnect();
+    csDM->afterConnect();
+    mATDBServerBtnConnect->Caption = "Disconnect";
+    TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
+
+	populateUsersCB();
+}
+
+void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
+{
+	mUsersCB->Enabled = false;
+	atdbDM->afterDisConnect();
+    mATDBServerBtnConnect->Caption = "Connect";
+}
+
+
 //This one is called from the reader thread
 void __fastcall TMainForm::logMsg()
 {
     infoMemo->Lines->Add(vclstr(mLogFileReader.getData()));
     mLogFileReader.purge();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button)
-{
-	switch(Button)
-    {
-    	case TNavigateBtn::nbInsert:
-        	atdbDM->usersCDS->FieldValues["user_name"] = "New User";
-        break;
-        case TNavigateBtn::nbApplyUpdates:      									  break;
-        case TNavigateBtn::nbRefresh:
-        	populateUsersCB();
-        break;
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -126,181 +129,19 @@ void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNaviga
         break;
     }
 }
-void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
-{
-	switch(Button)
-    {
-    	case TNavigateBtn::nbDelete:        break;
-
-    	case TNavigateBtn::nbInsert:
-        	if(mUsersCB->ItemIndex != -1)
-            {
-	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
-	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
-	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
-	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
-
-                // Create block label
-                String str = createBlockLabel();
-
-	        	atdbDM->blocksCDS->FieldValues["label"] = str;
-	        	atdbDM->blocksCDS->FieldValues["status"] = 0;
-                atdbDM->blocksCDS->Post();
-			    atdbDM->blocksCDS->First();
-            }
-            else
-            {
-            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
-            	Log(lError) << "Bad...";
-            }
-        break;
-        case TNavigateBtn::nbPost:        		break;
-        case TNavigateBtn::nbRefresh:        	Log(lInfo) << "Refreshed Blocks Dataset"; 		break;
-    }
-}
-
-String __fastcall TMainForm::createBlockLabel()
-{
-    String lbl;
-    String specie = atdbDM->specimenCDS->FieldByName("Lspecie")->AsString;
-	if(specie == "Human")
-    {
-    	lbl = "H";
-    }
-    else if(specie == "Mouse")
-    {
-    	lbl = "M";
-    }
-    else if(specie == "Human Surgical")
-    {
-    	lbl = "HS";
-    }
-
-	lbl = lbl + atdbDM->specimenCDS->FieldByName("specimen_id")->AsString + "-" + (atdbDM->blocksCDS->RecordCount + 1);
-
-	return lbl;
-}
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
-    	case TNavigateBtn::nbDelete:        break;
-
     	case TNavigateBtn::nbInsert:
-        {
-	        atdbDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
-	        atdbDM->mRibbonCDS->FieldByName("block_id")->Value 	= atdbDM->blocksCDS->FieldByName("id")->Value;
-            atdbDM->mRibbonCDS->Post();
-			atdbDM->mRibbonCDS->First();
-        }
+        	atdbDM->usersCDS->FieldValues["user_name"] = "New User";
         break;
-        case TNavigateBtn::nbPost:
-        break;
+        case TNavigateBtn::nbApplyUpdates:      									  break;
         case TNavigateBtn::nbRefresh:
-        	Log(lInfo) << "Refreshed Ribbons Dataset";
- 		break;
-    }
-}
-void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
-{
-	atdbDM->afterConnect();
-    csDM->afterConnect();
-    mATDBServerBtnConnect->Caption = "Disconnect";
-    TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
-
-	populateUsersCB();
-}
-
-void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
-{
-	mUsersCB->Enabled = false;
-	atdbDM->afterDisConnect();
-    mATDBServerBtnConnect->Caption = "Connect";
-}
-
-void TMainForm::populateUsersCB()
-{
-    //Populate users CB
-    TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
-    q->SQL->Add("SELECT id,user_name from user ORDER by user_name");
-    q->Open();
-
-	mUsersCB->Clear();
-	while(!q->Eof)
-    {
-	    String s = (*q)["user_name"];
-        int *id = new int((*q)["id"]);
-	    mUsersCB->Items->AddObject(s, (TObject*) id);
-	   	q->Next();
-    }
-
-    //select current user
-    for(int i = 0; i < mUsersCB->Items->Count; i++)
-    {
-    	int uid = *(int*) mUsersCB->Items->Objects[i];
-        if(uid == mDBUserID.getValue())
-        {
-			mUsersCB->ItemIndex = i;
-            break;
-        }
-    }
-
-	mUsersCB->Enabled = true;
-}
-
-void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
-{
-	if(atdbDM->SQLConnection1->Connected)
-    {
-    	//Remove runtime indices
-    	TClientDataSet* cds = atdbDM->specimenCDS;
-	    cds->IndexDefs->Update();
-        for(int i = 0; i <cds->IndexDefs->Count; i++)
-        {
-            String idxName = cds->IndexDefs->operator [](i)->Name;
-            Log(lDebug) <<"Removing index: "<< stdstr(idxName);
-            if(idxName != "DEFAULT_ORDER" && idxName != "CHANGEINDEX")
-            {
-                cds->DeleteIndex(idxName);
-            }
-        }
-
-	    atdbDM->SQLConnection1->Connected = false;
-	    atdbDM->SQLConnection1->Close();
-    }
-    else
-    {
-	    atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
-    }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
-{
-	//Edit Block Record
-    MessageDlg("Edit Block Record", mtWarning, TMsgDlgButtons() << mbOK, 0);
-//	int bID = mBlocksGrid->DataSource->DataSet->FieldByName("id")->AsInteger;
-}
-
-void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
-{
-	atdbDM->blockNotesCDS->Post();
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mUsersCBCloseUp(TObject *Sender)
-{
-	if(mUsersCB->ItemIndex == -1)
-    {
-    	enableDisableGroupBox(mBlocksGB, false);
-    }
-    else
-    {
-    	enableDisableGroupBox(mBlocksGB, true);
-		mDBUserID = *(int*) (mUsersCB->Items->Objects[mUsersCB->ItemIndex]);
+        	populateUsersCB();
+        break;
     }
 }
 
@@ -361,6 +202,316 @@ void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigate
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::cdDustAssayNavigatorBeforeAction(TObject *Sender,
+          TNavigateBtn Button)
+{
+	TDBNavigator* nav = dynamic_cast<TDBNavigator*>(Sender);
+    if(nav == CSNavigator)
+    {
+        switch(Button)
+        {
+        }
+    }
+    else if(nav == cdDustAssayNavigator)
+    {
+        switch(Button)
+        {
+
+            case TNavigateBtn::nbDelete:
+            {
+            	//Remove assay image files
+                if(!csDM->csDustAssayCDS->FieldByName("background_image")->IsNull )
+                {
+                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("background_image")->AsString);
+                    if(removeAssayFile(f))
+                    {
+                    	Log(lInfo) << "Removed file: "<<f;
+                    }
+                }
+
+                if(!csDM->csDustAssayCDS->FieldByName("coverslip_image")->IsNull)
+                {
+                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("coverslip_image")->AsString);
+                    if(removeAssayFile(f))
+                    {
+                    	Log(lInfo) << "Removed file: "<<f;
+                    }
+                }
+                if(!csDM->csDustAssayCDS->FieldByName("result_image")->IsNull)
+                {
+                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("result_image")->AsString);
+                    if(removeAssayFile(f))
+                    {
+                    	Log(lInfo) << "Removed file: "<<f;
+                    }
+                }
+            }
+            break;
+        }
+    }
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button)
+{
+	TDBNavigator* nav = dynamic_cast<TDBNavigator*>(Sender);
+    if(nav == CSNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbInsert:
+                    csDM->csCDS->FieldValues["status"] 	= 1;
+                    csDM->csCDS->FieldValues["type"] 	= 1;
+                    csDM->csCDS->Post();
+                    csDM->csCDS->First();
+            break;
+        }
+    }
+    else if(nav == cdDustAssayNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbInsert:
+                csDM->csDustAssayCDS->FieldValues["coverslip_id"] 		= csDM->csCDS->FieldByName("id")->AsInteger;
+                csDM->csDustAssayCDS->FieldValues["coverslip_status"] 	= csDM->csCDS->FieldByName("status")->AsInteger;
+                csDM->csDustAssayCDS->Post();
+                csDM->csDustAssayCDS->First();
+            break;
+
+            case TNavigateBtn::nbDelete:
+            {
+
+            }
+            break;
+        }
+    }
+}
+
+bool TMainForm::removeAssayFile(const string& f)
+{
+	//Create full path and check if exists before removing
+    StringList path(f, '-');
+	string imagePath;
+    if(path.count() > 1)
+    {
+    	imagePath = joinPath(mDustAssayImageFolderE->getValue(), path[0] + path[1]);
+    }
+    else
+    {
+    	Log(lError) << "The image path for image: "<<f<<" is not correct";
+       	Log(lError) << "Can't delete image";
+        return false;
+    }
+
+	if(!folderExists(imagePath))
+    {
+		Log(lError) << "The image path: "<<imagePath<<" does not exist";
+        return false;
+    }
+
+    string imFName = joinPath(imagePath, f);
+
+    if(fileExists(imFName))
+    {
+		return removeFile(imFName);
+    }
+    else
+    {
+		Log(lError) << "The image "<<imFName<<" does not exist!";
+		return false;
+    }
+}
+
+void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:        break;
+
+    	case TNavigateBtn::nbInsert:
+        	if(mUsersCB->ItemIndex != -1)
+            {
+	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
+	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
+	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
+	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
+
+                // Create block label
+                String str = createBlockLabel();
+
+	        	atdbDM->blocksCDS->FieldValues["label"] = str;
+	        	atdbDM->blocksCDS->FieldValues["status"] = 0;
+                atdbDM->blocksCDS->Post();
+			    atdbDM->blocksCDS->First();
+            }
+            else
+            {
+            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            	Log(lError) << "Bad...";
+            }
+        break;
+        case TNavigateBtn::nbPost:        		break;
+        case TNavigateBtn::nbRefresh:        	Log(lInfo) << "Refreshed Blocks Dataset"; 		break;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbDelete:        break;
+
+    	case TNavigateBtn::nbInsert:
+        {
+	        atdbDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
+	        atdbDM->mRibbonCDS->FieldByName("block_id")->Value 	= atdbDM->blocksCDS->FieldByName("id")->Value;
+            atdbDM->mRibbonCDS->Post();
+			atdbDM->mRibbonCDS->First();
+        }
+        break;
+        case TNavigateBtn::nbPost:
+        break;
+        case TNavigateBtn::nbRefresh:
+        	Log(lInfo) << "Refreshed Ribbons Dataset";
+ 		break;
+    }
+}
+
+void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbInsert:
+        	if(mUsersCB->ItemIndex != -1)
+            {
+                atdbDM->specimenCDS->FieldValues["specimen_id"] = "NEW SPECIMEN";
+
+            	//Open New specimen dialog
+				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
+                int res = nsf->ShowModal();
+                if(res == mrCancel)
+                {
+                    atdbDM->specimenCDS->Cancel();
+                }
+                else
+                {
+	                atdbDM->specimenCDS->Post();
+			    	atdbDM->specimenCDS->First();
+                }
+            }
+            else
+            {
+            	MessageDlg("Select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            }
+        break;
+
+       	case TNavigateBtn::nbRefresh:
+        break;
+    }
+}
+
+String __fastcall TMainForm::createBlockLabel()
+{
+    String lbl;
+    String specie = atdbDM->specimenCDS->FieldByName("Lspecie")->AsString;
+	if(specie == "Human")
+    {
+    	lbl = "H";
+    }
+    else if(specie == "Mouse")
+    {
+    	lbl = "M";
+    }
+    else if(specie == "Human Surgical")
+    {
+    	lbl = "HS";
+    }
+
+	lbl = lbl + atdbDM->specimenCDS->FieldByName("specimen_id")->AsString + "-" + (atdbDM->blocksCDS->RecordCount + 1);
+
+	return lbl;
+}
+
+void TMainForm::populateUsersCB()
+{
+    //Populate users CB
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQL->Add("SELECT id,user_name from user ORDER by user_name");
+    q->Open();
+
+	mUsersCB->Clear();
+	while(!q->Eof)
+    {
+	    String s = (*q)["user_name"];
+        int *id = new int((*q)["id"]);
+	    mUsersCB->Items->AddObject(s, (TObject*) id);
+	   	q->Next();
+    }
+
+    //select current user
+    for(int i = 0; i < mUsersCB->Items->Count; i++)
+    {
+    	int uid = *(int*) mUsersCB->Items->Objects[i];
+        if(uid == mDBUserID.getValue())
+        {
+			mUsersCB->ItemIndex = i;
+            break;
+        }
+    }
+
+	mUsersCB->Enabled = true;
+}
+
+void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
+{
+	if(atdbDM->SQLConnection1->Connected)
+    {
+    	//Remove runtime indices
+    	TClientDataSet* cds = atdbDM->specimenCDS;
+	    cds->IndexDefs->Update();
+        for(int i = 0; i <cds->IndexDefs->Count; i++)
+        {
+            String idxName = cds->IndexDefs->operator [](i)->Name;
+            Log(lDebug) <<"Removing index: "<< stdstr(idxName);
+            if(idxName != "DEFAULT_ORDER" && idxName != "CHANGEINDEX")
+            {
+                cds->DeleteIndex(idxName);
+            }
+        }
+
+	    atdbDM->SQLConnection1->Connected = false;
+	    atdbDM->SQLConnection1->Close();
+    }
+    else
+    {
+	    atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
+{
+	atdbDM->blockNotesCDS->Post();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mUsersCBCloseUp(TObject *Sender)
+{
+	if(mUsersCB->ItemIndex == -1)
+    {
+    	enableDisableGroupBox(mBlocksGB, false);
+    }
+    else
+    {
+    	enableDisableGroupBox(mBlocksGB, true);
+		mDBUserID = *(int*) (mUsersCB->Items->Objects[mUsersCB->ItemIndex]);
+    }
+}
+
 void __fastcall TMainForm::mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect,
           TField *Field, TGridDrawState State)
 {
@@ -375,39 +526,17 @@ void __fastcall TMainForm::mSpecimenGridDrawDataCell(TObject *Sender, const TRec
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect,
-          TField *Field, TGridDrawState State)
-{
-	Log(lInfo) << "Drawing...";
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridDrawColumnCell(TObject *Sender, const TRect &Rect,
           int DataCol, TColumn *Column, TGridDrawState State)
 {
-
     if (Column->Field->DataType == ftMemo)
     {
 		mSpecimenGrid->Canvas->FillRect (Rect);
 		mSpecimenGrid->Canvas->TextOut( Rect.Left + 3, Rect.Top + 3,
               Column->Field->AsString);
     }
-    else
-    {
-
-    }
 }
 
-void __fastcall TMainForm::TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button)
-{
-	switch(Button)
-    {
-		case TNavigateBtn::nbPost:
-        break;
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 {
 	if(mTablesLB->ItemIndex != -1)
@@ -415,8 +544,6 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 		String tbl = mTablesLB->Items->Strings[mTablesLB->ItemIndex];
 		TTableFrame1->loadTable(stdstr(tbl));
     }
-    else
-    {}
 }
 
 void __fastcall TMainForm::Button1Click(TObject *Sender)
@@ -456,42 +583,9 @@ void __fastcall TMainForm::Button1Click(TObject *Sender)
 		Prntr->Canvas->TextOut(200, 200 + lineHeight, mLblMakerMemo->Lines->Strings[i]);
     }
 
-	//Prntr->Canvas->Brush->Color = clBlack;
+//	Prntr->Canvas->Brush->Color = clBlack;
 //	Prntr->Canvas->FrameRect(r);
 	Prntr->EndDoc();
-}
-
-void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button)
-{
-	switch(Button)
-    {
-    	case TNavigateBtn::nbInsert:
-        	if(mUsersCB->ItemIndex != -1)
-            {
-                atdbDM->specimenCDS->FieldValues["specimen_id"] = "NEW SPECIMEN";
-
-            	//Open New specimen dialog
-				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
-                int res = nsf->ShowModal();
-                if(res == mrCancel)
-                {
-                    atdbDM->specimenCDS->Cancel();
-                }
-                else
-                {
-	                atdbDM->specimenCDS->Post();
-			    	atdbDM->specimenCDS->First();
-                }
-            }
-            else
-            {
-            	MessageDlg("Select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
-            }
-        break;
-
-       	case TNavigateBtn::nbRefresh:
-        break;
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -658,14 +752,6 @@ void __fastcall TMainForm::mSpecimenGridDblClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::SpecimenPopupPopup(TObject *Sender)
-{
-	//Check what to show in the popup menu
-    //
-
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
@@ -682,49 +768,50 @@ void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton 
 void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
-	if(Button == TMouseButton::mbRight)
+	if(Button != TMouseButton::mbRight)
     {
-    	TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
-		TField* field =  mSpecimenGrid->Columns->operator [](c.X - 1)->Field;
-
-        if(field->FieldKind == fkLookup)
-        {
-	        TPoint screen(mSpecimenGrid->ClientToScreen(Point(X,Y)));
-
-            Log(lInfo) << "Field: " << stdstr(field->Value);
-            Log(lInfo) << "Key Fields: " << stdstr(field->KeyFields);
-
-            Log(lInfo) << "Field Lookup: " << stdstr(field->LookupKeyFields);
-            String value = field->DataSet->FieldByName(field->KeyFields)->Value;
-
-           	//Query lookup data set for document_id
-            TLocateOptions lo;
-			bool found = field->LookupDataSet->Locate("id", value, lo);
-
-            if(found)
-            {
-	            int id = -1;
-            	if(!field->LookupDataSet->FieldByName("document_id")->Value.IsNull())
-                {
-            		id = field->LookupDataSet->FieldByName("document_id")->Value;
-                }
-
-	            Log(lInfo) << "Opening document with id: "<<id;
-
-        	    TLocateOptions lo;
-				bool found = atdbDM->documentsCDS->Locate("id", id, lo);
-                if(found)
-                {
-               	//	SpecimenPopup->Popup(screen.X, screen.Y);
-    	            openCurrentDocumentFile();
-                }
-            }
-
-            //Get document id
-            Log(lInfo) << "Field Lookup Value" << stdstr(value);
-        }
+    	return;
     }
 
+    TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
+    TField* field =  mSpecimenGrid->Columns->operator [](c.X - 1)->Field;
+
+    if(field->FieldKind == fkLookup)
+    {
+        TPoint screen(mSpecimenGrid->ClientToScreen(Point(X,Y)));
+
+        Log(lInfo) << "Field: " << stdstr(field->Value);
+        Log(lInfo) << "Key Fields: " << stdstr(field->KeyFields);
+
+        Log(lInfo) << "Field Lookup: " << stdstr(field->LookupKeyFields);
+        String value = field->DataSet->FieldByName(field->KeyFields)->Value;
+
+        //Query lookup data set for document_id
+        TLocateOptions lo;
+        bool found = field->LookupDataSet->Locate("id", value, lo);
+
+        if(found)
+        {
+            int id = -1;
+            if(!field->LookupDataSet->FieldByName("document_id")->Value.IsNull())
+            {
+                id = field->LookupDataSet->FieldByName("document_id")->Value;
+            }
+
+            Log(lInfo) << "Opening document with id: "<<id;
+
+            TLocateOptions lo;
+            bool found = atdbDM->documentsCDS->Locate("id", id, lo);
+            if(found)
+            {
+            //	SpecimenPopup->Popup(screen.X, screen.Y);
+                openCurrentDocumentFile();
+            }
+        }
+
+        //Get document id
+        Log(lInfo) << "Field Lookup Value" << stdstr(value);
+    }
 }
 
 void TMainForm::openCurrentDocumentFile()
@@ -810,11 +897,11 @@ void __fastcall TMainForm::mBlocksGridCellClick(TColumn *Column)
 	createBlockLabels();
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::DataSource1DataChange(TObject *Sender, TField *Field)
-{
-	createBlockLabels();
-}
+////---------------------------------------------------------------------------
+//void __fastcall TMainForm::DataSource1DataChange(TObject *Sender, TField *Field)
+//{
+//	createBlockLabels();
+//}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
@@ -824,7 +911,7 @@ void __fastcall TMainForm::mSpecimenGridMouseMove(TObject *Sender, TShiftState S
 	mSpecimenGrid->Cursor = (pt.Y == 0) ? crHandPoint : crDefault;
 }
 
-bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName);
+
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridTitleClick(TColumn *Column)
 {
@@ -858,99 +945,68 @@ void __fastcall TMainForm::mSpecimenGridTitleClick(TColumn *Column)
 	SortClientDataSet(atdbDM->specimenCDS, fieldName);
 }
 
-bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
-{
-	//from http://edn.embarcadero.com/article/29056
-	TField* Field = ClientDataSet->Fields->FindField(FieldName);
-	//If invalid field name, exit.
-	if(!Field)
-    {
-		return false;
-    }
-
-    if(	dynamic_cast<TObjectField*>(Field) 		||		dynamic_cast<TBlobField*>(Field) 	||
-        dynamic_cast<TAggregateField*>(Field) 	||      dynamic_cast<TVariantField*>(Field)	||
-        dynamic_cast<TBinaryField*>(Field) 	)
-    {
-    	Log(lWarning) << "Can't sort this type of field...";
-    	return false;
-    }
-
-    //Ensure IndexDefs is up-to-date
-    ClientDataSet->IndexDefs->Update();
-
-    //If an ascending index is already in use,
-    //switch to a descending index
-	String  		NewIndexName;
-	TIndexOptions   IndexOptions;
-    if(ClientDataSet->IndexName == (FieldName + "__IdxA"))
-    {
-        NewIndexName = FieldName + "__IdxD";
-        IndexOptions = TIndexOptions() << ixDescending;
-    }
-    else
-    {
-        NewIndexName = FieldName + "__IdxA";
-        IndexOptions = TIndexOptions();
-    }
-
-    //Look for existing index
-    bool Result(false);
-    for(int i = 0; i <ClientDataSet->IndexDefs->Count; i++)
-    {
-    	if( ClientDataSet->IndexDefs->operator [](i)->Name == NewIndexName)
-      	{
-        	Result = true;
-          	break;
-      	}
-    }
-    //If existing index not found, create one
-    if(!Result)
-    {
-        ClientDataSet->AddIndex(NewIndexName, FieldName, IndexOptions);
-        Result = True;
-    }
-
-    //Set the index
-    ClientDataSet->IndexName = NewIndexName;
-    return Result;
-}
-
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button)
-{
-	TDBNavigator* nav = dynamic_cast<TDBNavigator*>(Sender);
-    if(nav == CSNavigator)
-    {
-        switch(Button)
-        {
-            case TNavigateBtn::nbInsert:
-                    csDM->csCDS->FieldValues["status"] 	= 1;
-                    csDM->csCDS->FieldValues["type"] 	= 1;
-                    csDM->csCDS->Post();
-                    csDM->csCDS->First();
-            break;
-        }
-    }
-    else if(nav == cdDustAssayNavigator)
-    {
-        switch(Button)
-        {
-            case TNavigateBtn::nbInsert:
-                    csDM->csDustAssayCDS->FieldValues["coverslip_id"] 		= csDM->csCDS->FieldByName("id")->AsInteger;
-                    csDM->csDustAssayCDS->FieldValues["coverslip_status"] 	= csDM->csCDS->FieldByName("status")->AsInteger;
-                    csDM->csDustAssayCDS->Post();
-                    csDM->csDustAssayCDS->First();
-            break;
-        }
-    }
-}
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Button2Click(TObject *Sender)
 {
 	MessageDlg("Not yet implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
+}
+
+void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
+{
+	Log(lInfo) << "Loading new Dust Assay Dataset";
+    loadImage(stdstr(mIm1FName->Caption), mBackgroundImage);
+    loadImage(stdstr(mIm2FName->Caption), mCoverslipImage);
+    loadImage(stdstr(mIm3FName->Caption), mResultImage);
+
+}
+
+bool TMainForm::loadImage(const string& fName, TImage* img)
+{
+	//Extract image folder from DB fName
+    //Folder is baseFolder + yearmonth
+    StringList path(fName, '-');
+	string imagePath;
+    if(path.count() > 1)
+    {
+    	imagePath = joinPath(mDustAssayImageFolderE->getValue(), path[0] + path[1]);
+    }
+    else
+    {
+    	Log(lError) << "The image path for image: "<<fName<<" is not correct";
+       	Log(lError) << "Can't open image";
+        return false;
+    }
+
+	if(!folderExists(imagePath))
+    {
+		Log(lError) << "The image path: "<<imagePath<<" does not exist";
+        return false;
+    }
+
+    string imFName = joinPath(imagePath, fName);
+
+    if(fileExists(imFName))
+    {
+    	img->Picture->LoadFromFile(vclstr(imFName));
+    }
+    else
+    {
+		Log(lError) << "The image "<<imFName<<" does not exist!";
+		img->Picture = NULL;
+    }
+    return img->Picture->Graphic;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mBrowseForDustAssayImageFolderClick(TObject *Sender)
+{
+	string folder = browseForFolder();
+
+    if(folder.size())
+    {
+    	mDustAssayImageFolderE->setValue(folder);
+    }
 }
 
 

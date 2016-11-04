@@ -33,7 +33,6 @@ object csDM: TcsDM
     Top = 56
   end
   object csCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'csP'
@@ -111,7 +110,6 @@ object csDM: TcsDM
     Top = 136
   end
   object csStatusCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'csStatusP'
@@ -165,7 +163,6 @@ object csDM: TcsDM
     Top = 208
   end
   object csTypeCDS: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'csTypeP'
@@ -232,6 +229,10 @@ object csDM: TcsDM
       FieldName = 'coverslip_image'
       Size = 36
     end
+    object csDustAssayDSresult_image: TStringField
+      FieldName = 'result_image'
+      Size = 36
+    end
   end
   object csDustAssayP: TDataSetProvider
     DataSet = csDustAssayDS
@@ -243,6 +244,7 @@ object csDM: TcsDM
     Params = <>
     ProviderName = 'csDustAssayP'
     AfterPost = CDSAfterPost
+    AfterDelete = CDSAfterDelete
     Left = 312
     Top = 312
     object csDustAssayCDSid: TIntegerField
@@ -271,9 +273,14 @@ object csDM: TcsDM
       FieldName = 'coverslip_image'
       Size = 36
     end
+    object csDustAssayCDSresult_image: TStringField
+      FieldName = 'result_image'
+      Size = 36
+    end
   end
   object csDustAsssayDSource: TDataSource
     DataSet = csDustAssayCDS
+    OnDataChange = csDustAsssayDSourceDataChange
     Left = 432
     Top = 312
   end

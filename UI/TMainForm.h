@@ -47,17 +47,8 @@
 #include <Data.FMTBcd.hpp>
 #include <Data.SqlExpr.hpp>
 #include <Vcl.Mask.hpp>
-#include "pBarcode1D.hpp"
-#include "pUPC.hpp"
-#include "pUPCA.hpp"
-#include "pCode39.hpp"
-#include "pDBBarcode1D.hpp"
 #include "TArrayBotBtn.h"
 #include "database/abATDBServerSession.h"
-#include "RzDBEdit.hpp"
-#include "RzEdit.hpp"
-#include "RzDBSpin.hpp"
-#include "RzSpnEdt.hpp"
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include "TTableFrame.h"
@@ -66,6 +57,7 @@
 #include "pDataMatrix.hpp"
 #include "pDBBarcode2D.hpp"
 #include "pQRCode.hpp"
+//#include "RzBorder.hpp"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -170,7 +162,7 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid1;
 	TDBNavigator *CSNavigator;
 	TPanel *Panel7;
-	TDBGrid *mCSStatusGrid;
+	TDBGrid *mCSDustAssaysGrid;
 	TDBNavigator *cdDustAssayNavigator;
 	TGroupBox *GroupBox6;
 	TPanel *Panel8;
@@ -190,6 +182,21 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid2;
 	TImage *Image1;
 	TDBNavigator *DBNavigator1;
+	TImage *mBackgroundImage;
+	TImage *mCoverslipImage;
+	TImage *mResultImage;
+	TDBText *mIm1FName;
+	TDBText *mIm2FName;
+	TDBText *mIm3FName;
+	TPanel *Panel11;
+	TPanel *Panel12;
+	TPanel *Panel13;
+	TPanel *Panel14;
+	TSplitter *Splitter2;
+	TSplitter *Splitter3;
+	TGroupBox *GroupBox7;
+	TSTDStringLabeledEdit *mDustAssayImageFolderE;
+	TButton *mBrowseForDustAssayImageFolder;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -206,18 +213,14 @@ class TMainForm : public TRegistryForm
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
-	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall mUsersCBCloseUp(TObject *Sender);
 	void __fastcall mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
-	void __fastcall mUsersDBGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
-          TGridDrawState State);
 	void __fastcall mSpecimenGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
-	void __fastcall TTableFrame1DBNavigator1Click(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button);
@@ -228,22 +231,24 @@ class TMainForm : public TRegistryForm
 	void __fastcall mDocumentsGridDblClick(TObject *Sender);
 	void __fastcall mAddDocBtnClick(TObject *Sender);
 	void __fastcall mSpecimenGridDblClick(TObject *Sender);
-	void __fastcall SpecimenPopupPopup(TObject *Sender);
 	void __fastcall mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
 	void __fastcall mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
 	void __fastcall mBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mBlocksGridCellClick(TColumn *Column);
-	void __fastcall DataSource1DataChange(TObject *Sender, TField *Field);
+//	void __fastcall DataSource1DataChange(TObject *Sender, TField *Field);
 	void __fastcall mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
 	void __fastcall mSpecimenGridTitleClick(TColumn *Column);
 	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
+	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 
 
-    private:	// User declarations
+
+    private:
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
 		Poco::Mutex										mServerDBMutex;
@@ -266,14 +271,13 @@ class TMainForm : public TRegistryForm
 		MessageContainer                                mMessages;
 
 		void											populateUsersCB();
-                                                        //Parameters...
+
+                                                        //INI Parameters...
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<int>	                            mMainTabIndex;
 
-
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
-        mtk::Property<string>							mLocalDBFile;
         TRegistryProperties   	  	                    mSplashProperties;
         mtk::Property<bool>                             mShowSplashOnStartup;
 
@@ -292,6 +296,11 @@ class TMainForm : public TRegistryForm
 		void 		__fastcall 							selectBlocks();
 		void 											openCurrentDocumentFile();
 		void 		__fastcall 							createBlockLabels();
+		bool 											loadImage(const string& fName, TImage* img);
+        //Custom event
+		void 		__fastcall 							onDustAssayDataChanged(TObject *Sender);
+		bool											removeAssayFile(const string& f);
+
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();
