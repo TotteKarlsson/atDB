@@ -62,7 +62,6 @@ void __fastcall TcsDM::CDSAfterDelete(TDataSet *DataSet)
     cds->Refresh();
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TcsDM::CDSAfterScroll(TDataSet *DataSet)
 {

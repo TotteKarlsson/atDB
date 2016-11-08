@@ -962,7 +962,7 @@ object MainForm: TMainForm
               ExplicitLeft = 289
               ExplicitTop = 6
             end
-            object Panel13: TPanel
+            object mBackgroundImagePanel: TPanel
               Left = 1
               Top = 1
               Width = 224
@@ -1026,7 +1026,7 @@ object MainForm: TMainForm
               end
             end
           end
-          object Panel12: TPanel
+          object mResultImagePanel: TPanel
             Left = 1
             Top = 488
             Width = 592
@@ -1076,7 +1076,6 @@ object MainForm: TMainForm
           Top = 16
           Width = 200
           Height = 313
-          DataSource = imageDM.imagesDSource
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1089,7 +1088,6 @@ object MainForm: TMainForm
           Top = 360
           Width = 200
           Height = 25
-          DataSource = imageDM.imagesDSource
           TabOrder = 1
         end
       end

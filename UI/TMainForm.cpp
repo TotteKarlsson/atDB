@@ -60,6 +60,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 
     mBottomPanelHeight(205),
     mMainTabIndex(0),
+	mDustAssayResultImageHeight(100),
+    mDustAssayBackGroundImageWidth(100),
     mSplashProperties(gApplicationRegistryRoot, "Splash"),
     mShowSplashOnStartup(true),
     mLogLevel(lAny),
@@ -67,8 +69,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
-	mServerDBSession("atdb"),
+	mServerDBSession(""),
     mDBUserID(0)
+
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");

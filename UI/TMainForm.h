@@ -189,8 +189,8 @@ class TMainForm : public TRegistryForm
 	TDBText *mIm2FName;
 	TDBText *mIm3FName;
 	TPanel *Panel11;
-	TPanel *Panel12;
-	TPanel *Panel13;
+	TPanel *mResultImagePanel;
+	TPanel *mBackgroundImagePanel;
 	TPanel *Panel14;
 	TSplitter *Splitter2;
 	TSplitter *Splitter3;
@@ -276,6 +276,8 @@ class TMainForm : public TRegistryForm
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<int>	                            mMainTabIndex;
+		mtk::Property<int>	                            mDustAssayResultImageHeight;
+		mtk::Property<int>	                            mDustAssayBackGroundImageWidth;
 
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
         TRegistryProperties   	  	                    mSplashProperties;

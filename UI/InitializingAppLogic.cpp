@@ -187,14 +187,18 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
 	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
 	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
-	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()
-    																->setup( 	    "DUSTASSAY_IMAGER_FOLDER",    			        "c:\\"));
+	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup( 	    "DUSTASSAY_IMAGER_FOLDER",    			        "c:\\"));
+	mGeneralProperties.add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
+	mGeneralProperties.add((BaseProperty*)  &mDustAssayBackGroundImageWidth.setup( 	"BACKGROUND_IMAGE_WIDTH",  	        100));
 
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
 
+	//Setup UI elements
 	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
 
+    mResultImagePanel->Height 		= mDustAssayResultImageHeight.getValue();
+    mBackgroundImagePanel->Width 	= mDustAssayBackGroundImageWidth.getValue();
     mDBUserE->update();
     mPasswordE->update();
     mDatabaseE->update();

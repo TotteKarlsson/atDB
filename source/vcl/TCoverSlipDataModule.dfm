@@ -190,12 +190,12 @@ object csDM: TcsDM
   end
   object csDustAssayDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM coverslipdustassays where coverslip_id = :id'
+    CommandText = 'SELECT * FROM coverslipdustassay where coverslip_id = :id'
     DataSource = csDSource
     MaxBlobSize = 1
     Params = <
       item
-        DataType = ftInteger
+        DataType = ftUnknown
         Name = 'id'
         ParamType = ptInput
       end>

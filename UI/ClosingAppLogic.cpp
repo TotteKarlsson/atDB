@@ -67,7 +67,6 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 	{
 		ShutDownTimer->Enabled = true;
 	}
-
 }
 
 //---------------------------------------------------------------------------
@@ -78,7 +77,10 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 	Log(lInfo) << "In main forms destructor";
 
 	//Save project history
-	mBottomPanelHeight          = BottomPanel->Height;
+	mBottomPanelHeight          	= BottomPanel->Height;
+    mDustAssayResultImageHeight 	= mResultImagePanel->Height;
+    mDustAssayBackGroundImageWidth 	= mBackgroundImagePanel->Width;
+
 	mGeneralProperties.write();
 
 	//Write to file
@@ -86,6 +88,5 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 	//Registry settings
 	mSplashProperties.write();
-
 }
 
