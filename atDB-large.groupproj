@@ -24,9 +24,6 @@
         <Projects Include="P:\libs\dslib\VCL\Forms\DuneForms.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\ArrayBot\source\abCore.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="UI\Core\atDBCore-static.cbproj">
             <Dependencies/>
         </Projects>
@@ -104,15 +101,6 @@
     <Target Name="DuneForms:Make">
         <MSBuild Projects="P:\libs\dslib\VCL\Forms\DuneForms.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="abCore">
-        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj"/>
-    </Target>
-    <Target Name="abCore:Clean">
-        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="abCore:Make">
-        <MSBuild Projects="P:\ArrayBot\source\abCore.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="atDBCore-static">
         <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
     </Target>
@@ -132,13 +120,13 @@
         <MSBuild Projects="atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="mtkIPC;mtkCommon;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;abCore;atDBCore-static;atDB"/>
+        <CallTarget Targets="mtkIPC;mtkCommon;mtkMath;mtkDataBase;VCLCommon;DuneComponents;DuneForms;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="mtkIPC:Clean;mtkCommon:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;abCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
+        <CallTarget Targets="mtkIPC:Clean;mtkCommon:Clean;mtkMath:Clean;mtkDataBase:Clean;VCLCommon:Clean;DuneComponents:Clean;DuneForms:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="mtkIPC:Make;mtkCommon:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;abCore:Make;atDBCore-static:Make;atDB:Make"/>
+        <CallTarget Targets="mtkIPC:Make;mtkCommon:Make;mtkMath:Make;mtkDataBase:Make;VCLCommon:Make;DuneComponents:Make;DuneForms:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

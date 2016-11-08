@@ -7,9 +7,8 @@
 USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
-USEFORM("P:\ArrayBot\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
-USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
@@ -20,7 +19,7 @@ USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 #include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLite.h"
-#include "TATDBDataModule.h"
+#include "datamodules/TATDBDataModule.h"
 #pragma package(smart_init)
 
 using namespace mtk;
