@@ -55,7 +55,7 @@
 <locktablewrite>no</locktablewrite>
 <fkchecks>yes</fkchecks>
 <autocommit>no</autocommit>
-<includeversion>yes</includeversion>
+<includeversion>no</includeversion>
 <usecharset>utf8</usecharset>
 <bulksize>0</bulksize>
 <appendtofile>no</appendtofile>
