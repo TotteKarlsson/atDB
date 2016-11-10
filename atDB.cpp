@@ -44,7 +44,6 @@ extern bool         gHideSplash                 = true;
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
 
-
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

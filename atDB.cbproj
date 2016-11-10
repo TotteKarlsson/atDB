@@ -51,7 +51,7 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <IncludePath>p:\libs\atapi\source\vcl\datamodules\;source\vcl\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(AT_ROOT)\source\vcl\datamodules\;UI\;UI\Forms\;..\;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;abVCLCore.lib;ArrayBotPackage.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -68,7 +68,7 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DbxDevartSQLiteDriver170;DuneComponents;VCLCommon;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;abVCLCore;ArrayBotPackage;$(PackageImports)</PackageImports>
+        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DbxDevartSQLiteDriver170;DuneComponents;VCLCommon;RaizeComponentsTrialVclDb;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;RaizeComponentsTrialVcl;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -105,7 +105,7 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.5.5.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib</LinkPackageStatics>
+        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib</LinkPackageStatics>
         <Debugger_DebugSourcePath>P:\libs\dslib\VCL\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
@@ -126,7 +126,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <IncludePath>UI\Core;UI\Forms;UI\Frames;$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dsnap.bpi;DbxDevartSQLiteDriver170.bpi;vcldb.bpi;dbxcds.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;CSKGenerator.bpi;adortl.bpi;DuneComponents.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;TeeDB.bpi;TeeUI.bpi;Tee.bpi;RaizeComponentsTrialVcl.bpi;RaizeComponentsTrialVclDb.bpi;abVCLCore.bpi;ArrayBotPackage.bpi;DBXMySQLDriver.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dsnap.bpi;DbxDevartSQLiteDriver170.bpi;vcldb.bpi;dbxcds.bpi;VCLCommon.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi;CSKGenerator.bpi;adortl.bpi;DuneComponents.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;TeeDB.bpi;TeeUI.bpi;Tee.bpi;RaizeComponentsTrialVcl.bpi;RaizeComponentsTrialVclDb.bpi;DBXMySQLDriver.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -206,9 +206,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="UI\Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="UI\TMainForm.dfm"/>
         <FormResources Include="source\vcl\TCoverSlipDataModule.dfm"/>
-        <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <FormResources Include="source\vcl\TImagesDataModule.dfm"/>
         <FormResources Include="source\vcl\TNewSpecimenForm.dfm"/>
+        <FormResources Include="source\vcl\TTableFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -269,7 +269,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="ManagePaths">True</ProjectProperties>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
-                <Excluded_Packages/>
             </CPlusPlusBuilder.Personality>
             <Deployment/>
             <Platforms>
