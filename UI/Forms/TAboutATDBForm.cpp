@@ -8,16 +8,15 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
 TAboutATDBForm *AboutATDBForm;
 using namespace std;
 using namespace mtk;
 
-
 //---------------------------------------------------------------------------
 __fastcall TAboutATDBForm::TAboutATDBForm(TComponent* Owner)
 	: TForm(Owner)
-{
-}
+{}
 
 //---------------------------------------------------------------------------
 void __fastcall TAboutATDBForm::FormShow(TObject *Sender)

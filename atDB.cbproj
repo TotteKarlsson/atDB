@@ -113,6 +113,7 @@
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_Debug>true</VerInfo_Debug>
         <PostBuildEvent><![CDATA[xcopy CHANGELOG.txt                                 $(APP_RELEASES)\atdb /y
+xcopy CHANGELOG.txt                                 $(DEBUG_BUILD)\bin /y
 xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
@@ -182,6 +183,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="UI\Forms\TATDBSplashForm.cpp">
             <BuildOrder>29</BuildOrder>
         </CppCompile>
+        <CppCompile Include="UI\Forms\TRegisterFreshCSBatchForm.cpp">
+            <Form>RegisterFreshCSBatchForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>UI\Forms\TRegisterFreshCSBatchForm.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
         <CppCompile Include="UI\InitializingAppLogic.cpp">
             <BuildOrder>20</BuildOrder>
         </CppCompile>
@@ -203,8 +210,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp">
             <BuildOrder>15</BuildOrder>
         </CppCompile>
-        <FormResources Include="UI\Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="UI\Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="UI\TMainForm.dfm"/>
+        <FormResources Include="UI\Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="source\vcl\TCoverSlipDataModule.dfm"/>
         <FormResources Include="source\vcl\TImagesDataModule.dfm"/>
         <FormResources Include="source\vcl\TNewSpecimenForm.dfm"/>
@@ -269,6 +277,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="ManagePaths">True</ProjectProperties>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="P:\build\xe3_ide\BPL\ArrayBotPackage.bpl">ArrayBotPackage</Excluded_Packages>
+                </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment/>
             <Platforms>
@@ -285,7 +296,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy CHANGELOG.txt                                 $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy *.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
+        <PostBuildEvent>xcopy CHANGELOG.txt                                 $(APP_RELEASES)\atdb /y&amp;&amp;xcopy CHANGELOG.txt                                 $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy *.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

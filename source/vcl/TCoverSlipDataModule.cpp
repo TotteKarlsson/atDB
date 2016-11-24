@@ -19,10 +19,11 @@ __fastcall TcsDM::TcsDM(TComponent* Owner)
 void __fastcall TcsDM::afterConnect()
 {
 	Log(lInfo) << "Initializing coverslip datamodule";
-    csCDS->Active = true;
-    csStatusCDS->Active = true;
-    csTypeCDS->Active = true;
-    csDustAssayCDS->Active = true;
+    csCDS->Active 				= true;
+    csStatusCDS->Active 		= true;
+    csTypeCDS->Active 			= true;
+    csDustAssayCDS->Active 		= true;
+//    csFreshbatchesCDS->Active 	= true;
 }
 
 void __fastcall TcsDM::afterDisConnect()

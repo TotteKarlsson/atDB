@@ -1,11 +1,15 @@
 #include <vcl.h>
 #pragma hdrstop
+#include "atdbVCLUtils.h"
+#include "atVCLUtils.h"
+#include "database/atDBUtils.h"
 #include "mtkLogger.h"
 #include "mtkMoleculixException.h"
 #include "mtkSQLiteException.h"
 #include "mtkSQLiteQuery.h"
 #include "mtkSQLiteTable.h"
 #include "mtkStringUtils.h"
+#include "mtkUtils.h"
 #include "mtkVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormat.h"
@@ -13,18 +17,15 @@
 #include "Poco/Glob.h"
 #include "Poco/Timezone.h"
 #include "TamFileEditor.h"
-#include "TMainForm.h"
-#include "TMemoLogger.h"
-#include "TShowFileContentForm.h"
 #include "TATDBDataModule.h"
-#include "mtkUtils.h"
-#include "atVCLUtils.h"
-#include "database/atDBUtils.h"
-#include "TTableUpdateForm.h"
-#include "TNewSpecimenForm.h"
 #include "TCoverSlipDataModule.h"
 #include "TImagesDataModule.h"
-#include "atdbVCLUtils.h"
+#include "TMainForm.h"
+#include "TMemoLogger.h"
+#include "TNewSpecimenForm.h"
+#include "TShowFileContentForm.h"
+#include "TTableUpdateForm.h"
+#include "TRegisterFreshCSBatchForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -1010,6 +1011,15 @@ void __fastcall TMainForm::mBrowseForDustAssayImageFolderClick(TObject *Sender)
     {
     	mDustAssayImageFolderE->setValue(folder);
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
+{
+	//Open Register batch form
+    TRegisterFreshCSBatchForm* f = new TRegisterFreshCSBatchForm(this);
+    f->ShowModal();
+    delete f;
 }
 
 

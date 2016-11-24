@@ -42,7 +42,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 971
       Height = 741
-      ActivePage = TabSheet4
+      ActivePage = TabSheet9
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -229,10 +229,6 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object ScrollBox1: TScrollBox
               Left = 0
               Top = 0
@@ -696,10 +692,6 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'Documents'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mDocsNavigator: TDBNavigator
           Left = 16
           Top = 24
@@ -752,22 +744,24 @@ object MainForm: TMainForm
         ImageIndex = 5
         object Panel7: TPanel
           Left = 0
-          Top = 0
+          Top = 41
           Width = 369
-          Height = 713
+          Height = 672
           Align = alLeft
           TabOrder = 0
           object GroupBox8: TGroupBox
             Left = 1
-            Top = 1
+            Top = 232
             Width = 367
-            Height = 508
+            Height = 236
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
+            ExplicitTop = 1
+            ExplicitHeight = 467
             object CSNavigator: TDBNavigator
               Left = 2
-              Top = 481
+              Top = 209
               Width = 363
               Height = 25
               DataSource = csDM.csDSource
@@ -775,12 +769,13 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
+              ExplicitTop = 440
             end
             object DBGrid1: TDBGrid
               Left = 2
               Top = 15
               Width = 363
-              Height = 466
+              Height = 194
               Align = alClient
               DataSource = csDM.csDSource
               TabOrder = 1
@@ -810,7 +805,7 @@ object MainForm: TMainForm
           end
           object Panel9: TPanel
             Left = 1
-            Top = 509
+            Top = 468
             Width = 367
             Height = 203
             Align = alBottom
@@ -847,17 +842,52 @@ object MainForm: TMainForm
               TabOrder = 1
             end
           end
+          object GroupBox9: TGroupBox
+            Left = 1
+            Top = 1
+            Width = 367
+            Height = 231
+            Align = alTop
+            Caption = 'Fresh Batches'
+            TabOrder = 2
+            object DBGrid3: TDBGrid
+              Left = 2
+              Top = 15
+              Width = 363
+              Height = 189
+              Align = alClient
+              DataSource = csDM.csFreshBatchesDSource
+              TabOrder = 0
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+            end
+            object DBNavigator3: TDBNavigator
+              Left = 2
+              Top = 204
+              Width = 363
+              Height = 25
+              DataSource = csDM.csFreshBatchesDSource
+              VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              Align = alBottom
+              TabOrder = 1
+              OnClick = CoverSlipNavigatorsClick
+              ExplicitTop = 440
+            end
+          end
         end
         object Panel8: TPanel
           Left = 369
-          Top = 0
+          Top = 41
           Width = 594
-          Height = 713
+          Height = 672
           Align = alClient
           TabOrder = 1
           object Splitter2: TSplitter
             Left = 1
-            Top = 485
+            Top = 444
             Width = 592
             Height = 3
             Cursor = crVSplit
@@ -960,37 +990,39 @@ object MainForm: TMainForm
             Left = 1
             Top = 265
             Width = 592
-            Height = 220
+            Height = 179
             Align = alClient
             TabOrder = 1
             object Splitter3: TSplitter
               Left = 225
               Top = 1
-              Height = 218
+              Height = 177
               ExplicitLeft = 289
               ExplicitTop = 6
+              ExplicitHeight = 218
             end
             object mBackgroundImagePanel: TPanel
               Left = 1
               Top = 1
               Width = 224
-              Height = 218
+              Height = 177
               Align = alLeft
               TabOrder = 0
               object mBackgroundImage: TImage
                 Left = 1
                 Top = 1
                 Width = 222
-                Height = 199
+                Height = 158
                 Align = alClient
                 IncrementalDisplay = True
                 Proportional = True
                 Stretch = True
                 ExplicitWidth = 221
+                ExplicitHeight = 199
               end
               object mIm1FName: TDBText
                 Left = 1
-                Top = 200
+                Top = 159
                 Width = 222
                 Height = 17
                 Align = alBottom
@@ -1005,24 +1037,25 @@ object MainForm: TMainForm
               Left = 228
               Top = 1
               Width = 363
-              Height = 218
+              Height = 177
               Align = alClient
               TabOrder = 1
               object mCoverslipImage: TImage
                 Left = 1
                 Top = 1
                 Width = 361
-                Height = 199
+                Height = 158
                 Align = alClient
                 IncrementalDisplay = True
                 Proportional = True
                 Stretch = True
                 ExplicitLeft = 120
                 ExplicitWidth = 242
+                ExplicitHeight = 199
               end
               object mIm2FName: TDBText
                 Left = 1
-                Top = 200
+                Top = 159
                 Width = 361
                 Height = 17
                 Align = alBottom
@@ -1036,7 +1069,7 @@ object MainForm: TMainForm
           end
           object mResultImagePanel: TPanel
             Left = 1
-            Top = 488
+            Top = 447
             Width = 592
             Height = 224
             Align = alBottom
@@ -1069,14 +1102,27 @@ object MainForm: TMainForm
             end
           end
         end
+        object Panel12: TPanel
+          Left = 0
+          Top = 0
+          Width = 963
+          Height = 41
+          Align = alTop
+          TabOrder = 2
+          object mRegisterFreshBatchBtn: TButton
+            Left = 5
+            Top = 8
+            Width = 132
+            Height = 25
+            Caption = 'Register Fresh Batch'
+            TabOrder = 0
+            OnClick = mRegisterFreshBatchBtnClick
+          end
+        end
       end
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1159,10 +1205,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mUsersDBGrid: TDBGrid
           Left = 13
           Top = 63
@@ -1291,10 +1333,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0

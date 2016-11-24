@@ -1,7 +1,7 @@
 object csDM: TcsDM
   OldCreateOrder = False
   Height = 614
-  Width = 879
+  Width = 602
   object csDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
     CommandText = 'SELECT * FROM `coverslip`'
@@ -283,5 +283,36 @@ object csDM: TcsDM
     OnDataChange = csDustAsssayDSourceDataChange
     Left = 432
     Top = 312
+  end
+  object csFreshBatchesDSource: TDataSource
+    DataSet = csFreshbatchesCDS
+    OnDataChange = csDustAsssayDSourceDataChange
+    Left = 424
+    Top = 408
+  end
+  object csFreshbatchesCDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'csFreshBatchP'
+    AfterPost = CDSAfterPost
+    AfterDelete = CDSAfterDelete
+    Left = 304
+    Top = 408
+  end
+  object csFreshBatchP: TDataSetProvider
+    DataSet = csFreshBatchesDS
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 184
+    Top = 408
+  end
+  object csFreshBatchesDS: TSQLDataSet
+    BeforeOpen = csDSBeforeOpen
+    CommandText = 'SELECT * FROM freshCSBatch'
+    DataSource = csDSource
+    MaxBlobSize = 1
+    Params = <>
+    SQLConnection = atdbDM.SQLConnection1
+    Left = 56
+    Top = 408
   end
 end

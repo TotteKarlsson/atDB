@@ -38,8 +38,6 @@ object AboutATDBForm: TAboutATDBForm
         'Memo1')
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitWidth = 723
-      ExplicitHeight = 374
     end
   end
   object Panel1: TPanel

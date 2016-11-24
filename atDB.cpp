@@ -7,9 +7,10 @@
 USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
-USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("UI\Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -110,15 +111,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-        try
-        {
-			Application->CreateForm(__classid(TatdbDM), &atdbDM);
-        }
-        catch (const TDBXError &e)
-        {
-            Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
-        }
-
+		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
 		Application->CreateForm(__classid(TimageDM), &imageDM);
 		Application->Run();

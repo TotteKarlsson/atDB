@@ -197,6 +197,11 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox7;
 	TSTDStringLabeledEdit *mDustAssayImageFolderE;
 	TButton *mBrowseForDustAssayImageFolder;
+	TPanel *Panel12;
+	TButton *mRegisterFreshBatchBtn;
+	TGroupBox *GroupBox9;
+	TDBGrid *DBGrid3;
+	TDBNavigator *DBNavigator3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -245,6 +250,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
 	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
 
 
 
