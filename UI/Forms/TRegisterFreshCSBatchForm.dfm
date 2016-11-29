@@ -10,8 +10,11 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -39,17 +42,17 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   object Label3: TLabel
     Left = 16
     Top = 160
-    Width = 76
+    Width = 82
     Height = 13
-    Caption = 'Todays batches'
+    Caption = 'Previous batches'
   end
-  object DateTimePicker1: TDateTimePicker
+  object mDT: TDateTimePicker
     Left = 344
     Top = 40
     Width = 186
     Height = 21
-    Date = 42697.587392870370000000
-    Time = 42697.587392870370000000
+    Date = 0.587392870373150800
+    Time = 0.587392870373150800
     TabOrder = 0
   end
   object mCSCount: TIntegerLabeledEdit
@@ -64,21 +67,24 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     Text = '100'
     Value = 100
   end
-  object DBLookupComboBox1: TDBLookupComboBox
+  object mCSTypeLookup: TDBLookupComboBox
     Left = 168
     Top = 40
     Width = 145
     Height = 21
+    KeyField = 'id'
+    ListField = 'type'
+    ListSource = csDM.csTypeDSource
     TabOrder = 2
   end
-  object Button1: TButton
+  object mRegisterBtn: TButton
     Left = 16
     Top = 96
     Width = 105
     Height = 41
     Caption = 'Register'
     TabOrder = 3
-    OnClick = Button1Click
+    OnClick = mRegisterBtnClick
   end
   object DBGrid1: TDBGrid
     Left = 16
@@ -111,9 +117,5 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     Barcode2D = Barcode2D_DataMatrixEcc2001
     Left = 368
     Top = 104
-  end
-  object DataSource1: TDataSource
-    Left = 216
-    Top = 112
   end
 end

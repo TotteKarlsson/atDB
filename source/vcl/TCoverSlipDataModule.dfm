@@ -195,44 +195,13 @@ object csDM: TcsDM
     MaxBlobSize = 1
     Params = <
       item
-        DataType = ftUnknown
+        DataType = ftVarBytes
         Name = 'id'
         ParamType = ptInput
       end>
     SQLConnection = atdbDM.SQLConnection1
     Left = 64
     Top = 312
-    object csDustAssayDSid: TIntegerField
-      FieldName = 'id'
-    end
-    object csDustAssayDSdate: TSQLTimeStampField
-      FieldName = 'date'
-    end
-    object csDustAssayDScoverslip_id: TIntegerField
-      FieldName = 'coverslip_id'
-      Required = True
-    end
-    object csDustAssayDSbackground_image: TStringField
-      FieldName = 'background_image'
-      Size = 36
-    end
-    object csDustAssayDScoverslip_status: TIntegerField
-      FieldName = 'coverslip_status'
-      Required = True
-    end
-    object csDustAssayDSnote: TMemoField
-      FieldName = 'note'
-      BlobType = ftMemo
-      Size = 1
-    end
-    object csDustAssayDScoverslip_image: TStringField
-      FieldName = 'coverslip_image'
-      Size = 36
-    end
-    object csDustAssayDSresult_image: TStringField
-      FieldName = 'result_image'
-      Size = 36
-    end
   end
   object csDustAssayP: TDataSetProvider
     DataSet = csDustAssayDS
@@ -247,36 +216,6 @@ object csDM: TcsDM
     AfterDelete = CDSAfterDelete
     Left = 312
     Top = 312
-    object csDustAssayCDSid: TIntegerField
-      FieldName = 'id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object csDustAssayCDSdate: TSQLTimeStampField
-      FieldName = 'date'
-    end
-    object csDustAssayCDScoverslip_id: TIntegerField
-      FieldName = 'coverslip_id'
-    end
-    object csDustAssayCDSbackground_image: TStringField
-      FieldName = 'background_image'
-      Size = 36
-    end
-    object csDustAssayCDScoverslip_status: TIntegerField
-      FieldName = 'coverslip_status'
-    end
-    object csDustAssayCDSnote: TMemoField
-      FieldName = 'note'
-      BlobType = ftMemo
-      Size = 1
-    end
-    object csDustAssayCDScoverslip_image: TStringField
-      FieldName = 'coverslip_image'
-      Size = 36
-    end
-    object csDustAssayCDSresult_image: TStringField
-      FieldName = 'result_image'
-      Size = 36
-    end
   end
   object csDustAsssayDSource: TDataSource
     DataSet = csDustAssayCDS
@@ -285,18 +224,9 @@ object csDM: TcsDM
     Top = 312
   end
   object csFreshBatchesDSource: TDataSource
-    DataSet = csFreshbatchesCDS
+    DataSet = csFreshBatchesCDS
     OnDataChange = csDustAsssayDSourceDataChange
     Left = 424
-    Top = 408
-  end
-  object csFreshbatchesCDS: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'csFreshBatchP'
-    AfterPost = CDSAfterPost
-    AfterDelete = CDSAfterDelete
-    Left = 304
     Top = 408
   end
   object csFreshBatchP: TDataSetProvider
@@ -313,6 +243,15 @@ object csDM: TcsDM
     Params = <>
     SQLConnection = atdbDM.SQLConnection1
     Left = 56
+    Top = 408
+  end
+  object csFreshBatchesCDS: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'csFreshBatchP'
+    AfterPost = CDSAfterPost
+    AfterDelete = CDSAfterDelete
+    Left = 288
     Top = 408
   end
 end

@@ -757,8 +757,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
-            ExplicitTop = 1
-            ExplicitHeight = 467
             object CSNavigator: TDBNavigator
               Left = 2
               Top = 209
@@ -769,7 +767,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
-              ExplicitTop = 440
             end
             object DBGrid1: TDBGrid
               Left = 2
@@ -798,7 +795,6 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
-                  Width = 64
                   Visible = True
                 end>
             end
@@ -874,7 +870,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 1
               OnClick = CoverSlipNavigatorsClick
-              ExplicitTop = 440
             end
           end
         end

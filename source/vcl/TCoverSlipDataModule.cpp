@@ -23,7 +23,8 @@ void __fastcall TcsDM::afterConnect()
     csStatusCDS->Active 		= true;
     csTypeCDS->Active 			= true;
     csDustAssayCDS->Active 		= true;
-//    csFreshbatchesCDS->Active 	= true;
+    csFreshBatchesCDS->Active 	= true;
+
 }
 
 void __fastcall TcsDM::afterDisConnect()
