@@ -108,7 +108,6 @@ void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
     mATDBServerBtnConnect->Caption = "Connect";
 }
 
-
 //This one is called from the reader thread
 void __fastcall TMainForm::logMsg()
 {
@@ -290,6 +289,10 @@ void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBt
             }
             break;
         }
+    }
+    else if(nav == CSFreshBatchNavigator)
+    {
+		csDM->csCDS->Refresh();
     }
 }
 
@@ -901,12 +904,6 @@ void __fastcall TMainForm::mBlocksGridCellClick(TColumn *Column)
 	createBlockLabels();
 }
 
-////---------------------------------------------------------------------------
-//void __fastcall TMainForm::DataSource1DataChange(TObject *Sender, TField *Field)
-//{
-//	createBlockLabels();
-//}
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y)
@@ -914,7 +911,6 @@ void __fastcall TMainForm::mSpecimenGridMouseMove(TObject *Sender, TShiftState S
 	TGridCoord pt = mSpecimenGrid->MouseCoord(X,Y);
 	mSpecimenGrid->Cursor = (pt.Y == 0) ? crHandPoint : crDefault;
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mSpecimenGridTitleClick(TColumn *Column)
@@ -1020,6 +1016,7 @@ void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
     TRegisterFreshCSBatchForm* f = new TRegisterFreshCSBatchForm(this);
     f->ShowModal();
     delete f;
+	csDM->csCDS->Refresh();
 }
 
 

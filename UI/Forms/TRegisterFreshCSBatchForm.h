@@ -29,11 +29,6 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TButton *mRegisterBtn;
 	TLabel *Label2;
-	TBarcode2D_DataMatrixEcc200 *Barcode2D_DataMatrixEcc2001;
-	TImage *Image1;
-	TDBBarcode2D *DBBarcode2D1;
-	TDBGrid *DBGrid1;
-	TLabel *Label3;
 	void __fastcall mRegisterBtnClick(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);

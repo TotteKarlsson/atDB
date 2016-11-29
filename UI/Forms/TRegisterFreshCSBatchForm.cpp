@@ -121,6 +121,9 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     delete tq;
     delete q;
     Log(lInfo) << "The id: "<<id;
+
+    Sleep(1000);
+    Close();
 }
 
 //Restore the filter

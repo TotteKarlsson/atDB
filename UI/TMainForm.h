@@ -159,7 +159,7 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel5;
 	TPanel *Panel6;
 	TTabSheet *TabSheet9;
-	TDBGrid *DBGrid1;
+	TDBGrid *mCoverSlipsGrid;
 	TDBNavigator *CSNavigator;
 	TPanel *Panel7;
 	TDBGrid *mCSDustAssaysGrid;
@@ -200,8 +200,9 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel12;
 	TButton *mRegisterFreshBatchBtn;
 	TGroupBox *GroupBox9;
-	TDBGrid *DBGrid3;
-	TDBNavigator *DBNavigator3;
+	TDBGrid *mFreshBatchesGrid;
+	TDBNavigator *CSFreshBatchNavigator;
+	TButton *mPrintBatchLblBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

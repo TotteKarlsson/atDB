@@ -285,16 +285,13 @@ Coordinates=1095,1247,100,33
 Coordinates=356,558,47,51
 
 [csDM.csFreshBatchesDS]
-Coordinates=898,673,138,51
+Coordinates=898,673,138,141
 
 [Label1]
 Coordinates=356,278,46,51
 
 [LogLevelCB]
 Coordinates=598,881,84,87
-
-[DBNavigator3]
-Coordinates=1040,407,82,51
 
 [csDM.csDustAssayDS]
 Coordinates=276,840,123,51
@@ -612,7 +609,7 @@ Coordinates=1271,687,93,33
 Coordinates=267,1486,66,33
 
 [csDM.csFreshBatchesCDS]
-Coordinates=1160,1177,145,51
+Coordinates=1160,1177,145,141
 
 [GroupBox5]
 Coordinates=95,735,70,51
@@ -622,9 +619,6 @@ Coordinates=792,1183,68,51
 
 [TabSheet10]
 Coordinates=188,1486,72,33
-
-[DBGrid3]
-Coordinates=129,1486,56,33
 
 [mDocsNavigator]
 Coordinates=177,840,96,51
@@ -650,6 +644,15 @@ Coordinates=356,488,47,51
 [mTablesLB]
 Coordinates=598,285,84,87
 
-[DBGrid1]
-Coordinates=1271,895,56,33
+[mCoverSlipsGrid]
+Coordinates=1271,895,98,33
+
+[CSFreshBatchNavigator]
+Coordinates=1040,407,132,51
+
+[mFreshBatchesGrid]
+Coordinates=129,1486,112,33
+
+[mPrintBatchLblBtn]
+Coordinates=84,206,108,51
 

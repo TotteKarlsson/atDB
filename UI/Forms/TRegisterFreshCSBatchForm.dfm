@@ -2,8 +2,8 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   Left = 0
   Top = 0
   Caption = 'Register Fresh Coverslip Batch'
-  ClientHeight = 269
-  ClientWidth = 598
+  ClientHeight = 137
+  ClientWidth = 484
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -31,28 +31,14 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     Height = 13
     Caption = 'Date'
   end
-  object Image1: TImage
-    Left = 464
-    Top = 96
-    Width = 105
-    Height = 105
-    Proportional = True
-    Stretch = True
-  end
-  object Label3: TLabel
-    Left = 16
-    Top = 160
-    Width = 82
-    Height = 13
-    Caption = 'Previous batches'
-  end
   object mDT: TDateTimePicker
     Left = 344
     Top = 40
-    Width = 186
+    Width = 121
     Height = 21
     Date = 0.587392870373150800
     Time = 0.587392870373150800
+    Enabled = False
     TabOrder = 0
   end
   object mCSCount: TIntegerLabeledEdit
@@ -78,44 +64,12 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     TabOrder = 2
   end
   object mRegisterBtn: TButton
-    Left = 16
-    Top = 96
+    Left = 176
+    Top = 80
     Width = 105
     Height = 41
     Caption = 'Register'
     TabOrder = 3
     OnClick = mRegisterBtnClick
-  end
-  object DBGrid1: TDBGrid
-    Left = 16
-    Top = 176
-    Width = 137
-    Height = 85
-    DataSource = csDM.csFreshBatchesDSource
-    TabOrder = 4
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'batchcode'
-        Width = 61
-        Visible = True
-      end>
-  end
-  object Barcode2D_DataMatrixEcc2001: TBarcode2D_DataMatrixEcc200
-    Image = Image1
-    Stretch = True
-    Left = 360
-    Top = 168
-  end
-  object DBBarcode2D1: TDBBarcode2D
-    DataField = 'Test'
-    Barcode2D = Barcode2D_DataMatrixEcc2001
-    Left = 368
-    Top = 104
   end
 end

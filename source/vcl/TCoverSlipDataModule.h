@@ -50,6 +50,11 @@ class TcsDM : public TDataModule
         TClientDataSet *csDustAssayCDS;
         TDataSource *csDustAsssayDSource;
 	TClientDataSet *csFreshBatchesCDS;
+	TIntegerField *csFreshBatchesCDSid;
+	TSQLTimeStampField *csFreshBatchesCDSdate_created;
+	TIntegerField *csFreshBatchesCDScount;
+	TStringField *csFreshBatchesCDSbatchcode;
+	TIntegerField *csFreshBatchesCDStype;
         void __fastcall csDSBeforeOpen(TDataSet *DataSet);
         void __fastcall CDSAfterPost(TDataSet *DataSet);
         void __fastcall CDSAfterScroll(TDataSet *DataSet);

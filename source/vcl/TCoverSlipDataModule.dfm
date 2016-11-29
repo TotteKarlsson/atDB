@@ -253,5 +253,25 @@ object csDM: TcsDM
     AfterDelete = CDSAfterDelete
     Left = 288
     Top = 408
+    object csFreshBatchesCDSid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object csFreshBatchesCDSdate_created: TSQLTimeStampField
+      FieldName = 'date_created'
+      Required = True
+    end
+    object csFreshBatchesCDScount: TIntegerField
+      FieldName = 'count'
+    end
+    object csFreshBatchesCDSbatchcode: TStringField
+      FieldName = 'batchcode'
+      Required = True
+      Size = 9
+    end
+    object csFreshBatchesCDStype: TIntegerField
+      FieldName = 'type'
+      Required = True
+    end
   end
 end

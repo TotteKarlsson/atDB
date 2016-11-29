@@ -744,22 +744,25 @@ object MainForm: TMainForm
         ImageIndex = 5
         object Panel7: TPanel
           Left = 0
-          Top = 41
+          Top = 0
           Width = 369
-          Height = 672
+          Height = 713
           Align = alLeft
           TabOrder = 0
+          ExplicitTop = 41
+          ExplicitHeight = 672
           object GroupBox8: TGroupBox
             Left = 1
             Top = 232
             Width = 367
-            Height = 236
+            Height = 277
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
+            ExplicitHeight = 236
             object CSNavigator: TDBNavigator
               Left = 2
-              Top = 209
+              Top = 250
               Width = 363
               Height = 25
               DataSource = csDM.csDSource
@@ -767,12 +770,13 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
+              ExplicitTop = 209
             end
-            object DBGrid1: TDBGrid
+            object mCoverSlipsGrid: TDBGrid
               Left = 2
               Top = 15
               Width = 363
-              Height = 194
+              Height = 235
               Align = alClient
               DataSource = csDM.csDSource
               TabOrder = 1
@@ -801,11 +805,12 @@ object MainForm: TMainForm
           end
           object Panel9: TPanel
             Left = 1
-            Top = 468
+            Top = 509
             Width = 367
             Height = 203
             Align = alBottom
             TabOrder = 1
+            ExplicitTop = 468
             object mCSImage: TImage
               Left = 24
               Top = 24
@@ -846,43 +851,93 @@ object MainForm: TMainForm
             Align = alTop
             Caption = 'Fresh Batches'
             TabOrder = 2
-            object DBGrid3: TDBGrid
+            object mFreshBatchesGrid: TDBGrid
               Left = 2
-              Top = 15
+              Top = 56
               Width = 363
-              Height = 189
+              Height = 148
               Align = alClient
               DataSource = csDM.csFreshBatchesDSource
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'batchcode'
+                  Width = 82
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'type'
+                  Width = 72
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'count'
+                  Visible = True
+                end>
             end
-            object DBNavigator3: TDBNavigator
+            object CSFreshBatchNavigator: TDBNavigator
               Left = 2
               Top = 204
               Width = 363
               Height = 25
               DataSource = csDM.csFreshBatchesDSource
-              VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 1
               OnClick = CoverSlipNavigatorsClick
+            end
+            object Panel12: TPanel
+              Left = 2
+              Top = 15
+              Width = 363
+              Height = 41
+              Align = alTop
+              TabOrder = 2
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 963
+              object mRegisterFreshBatchBtn: TButton
+                Left = 219
+                Top = 10
+                Width = 132
+                Height = 25
+                Caption = 'Register New Batch'
+                TabOrder = 0
+                OnClick = mRegisterFreshBatchBtnClick
+              end
+              object mPrintBatchLblBtn: TButton
+                Left = 2
+                Top = 10
+                Width = 125
+                Height = 25
+                Caption = 'Print Batch Label'
+                TabOrder = 1
+                OnClick = mRegisterFreshBatchBtnClick
+              end
             end
           end
         end
         object Panel8: TPanel
           Left = 369
-          Top = 41
+          Top = 0
           Width = 594
-          Height = 672
+          Height = 713
           Align = alClient
           TabOrder = 1
+          ExplicitTop = 41
+          ExplicitHeight = 672
           object Splitter2: TSplitter
             Left = 1
-            Top = 444
+            Top = 485
             Width = 592
             Height = 3
             Cursor = crVSplit
@@ -985,39 +1040,39 @@ object MainForm: TMainForm
             Left = 1
             Top = 265
             Width = 592
-            Height = 179
+            Height = 220
             Align = alClient
             TabOrder = 1
+            ExplicitHeight = 179
             object Splitter3: TSplitter
               Left = 225
               Top = 1
-              Height = 177
+              Height = 218
               ExplicitLeft = 289
               ExplicitTop = 6
-              ExplicitHeight = 218
             end
             object mBackgroundImagePanel: TPanel
               Left = 1
               Top = 1
               Width = 224
-              Height = 177
+              Height = 218
               Align = alLeft
               TabOrder = 0
+              ExplicitHeight = 177
               object mBackgroundImage: TImage
                 Left = 1
                 Top = 1
                 Width = 222
-                Height = 158
+                Height = 199
                 Align = alClient
                 IncrementalDisplay = True
                 Proportional = True
                 Stretch = True
                 ExplicitWidth = 221
-                ExplicitHeight = 199
               end
               object mIm1FName: TDBText
                 Left = 1
-                Top = 159
+                Top = 200
                 Width = 222
                 Height = 17
                 Align = alBottom
@@ -1032,25 +1087,25 @@ object MainForm: TMainForm
               Left = 228
               Top = 1
               Width = 363
-              Height = 177
+              Height = 218
               Align = alClient
               TabOrder = 1
+              ExplicitHeight = 177
               object mCoverslipImage: TImage
                 Left = 1
                 Top = 1
                 Width = 361
-                Height = 158
+                Height = 199
                 Align = alClient
                 IncrementalDisplay = True
                 Proportional = True
                 Stretch = True
                 ExplicitLeft = 120
                 ExplicitWidth = 242
-                ExplicitHeight = 199
               end
               object mIm2FName: TDBText
                 Left = 1
-                Top = 159
+                Top = 200
                 Width = 361
                 Height = 17
                 Align = alBottom
@@ -1064,11 +1119,12 @@ object MainForm: TMainForm
           end
           object mResultImagePanel: TPanel
             Left = 1
-            Top = 447
+            Top = 488
             Width = 592
             Height = 224
             Align = alBottom
             TabOrder = 2
+            ExplicitTop = 447
             object mResultImage: TImage
               Left = 1
               Top = 1
@@ -1095,23 +1151,6 @@ object MainForm: TMainForm
               ExplicitTop = 95
               ExplicitWidth = 121
             end
-          end
-        end
-        object Panel12: TPanel
-          Left = 0
-          Top = 0
-          Width = 963
-          Height = 41
-          Align = alTop
-          TabOrder = 2
-          object mRegisterFreshBatchBtn: TButton
-            Left = 5
-            Top = 8
-            Width = 132
-            Height = 25
-            Caption = 'Register Fresh Batch'
-            TabOrder = 0
-            OnClick = mRegisterFreshBatchBtnClick
           end
         end
       end
@@ -1507,14 +1546,14 @@ object MainForm: TMainForm
     Image = mCSImage
     Barcode = '7'
     Stretch = True
-    Left = 56
-    Top = 264
+    Left = 96
+    Top = 648
   end
   object mCSBarCode2D: TDBBarcode2D
     DataField = 'id'
     DataSource = csDM.csDSource
     Barcode2D = csBarCode
-    Left = 64
-    Top = 192
+    Left = 56
+    Top = 616
   end
 end
