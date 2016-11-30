@@ -26,6 +26,7 @@
 #include "TShowFileContentForm.h"
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
+#include "TPrintLabelForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -1017,6 +1018,27 @@ void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
     f->ShowModal();
     delete f;
 	csDM->csCDS->Refresh();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
+{
+	//Open print label form
+	TPrintLabelForm* f = new TPrintLabelForm(this);
+
+    //Get current Batch Label
+    String code = csDM->csFreshBatchesCDS->FieldByName("batchcode")->AsString;
+
+    if(code.Length())
+    {
+    	f->setup(stdstr(code));
+	    f->ShowModal();
+    	delete f;
+    }
+    else
+    {
+    	MessageDlg("No label to print was selected..", mtError, TMsgDlgButtons() << mbOK, 0);
+    }
 }
 
 

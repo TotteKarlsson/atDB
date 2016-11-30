@@ -58,7 +58,6 @@
 #include "pDBBarcode2D.hpp"
 #include "pQRCode.hpp"
 
-
 using mtk::Property;
 using mtk::SQLite;
 using mtk::MessageContainer;
@@ -252,6 +251,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
 	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
+	void __fastcall mPrintBatchLblBtnClick(TObject *Sender);
 
 
 
@@ -306,6 +306,7 @@ class TMainForm : public TRegistryForm
 		void 											openCurrentDocumentFile();
 		void 		__fastcall 							createBlockLabels();
 		bool 											loadImage(const string& fName, TImage* img);
+
         //Custom event
 		void 		__fastcall 							onDustAssayDataChanged(TObject *Sender);
 		bool											removeAssayFile(const string& f);
