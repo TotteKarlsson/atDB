@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ATDB"
-#define MyAppVersion "0.5.5-b"
+#define MyAppVersion "0.5.5"
 #define MyAppPublisher "Smith Lab"
 #define MyAppURL "http://www.example.com/"
 #define MyAppExeName "atdb.exe"
@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}
-OutputDir=x:\applications\atdb\installers
+OutputDir=x:\ATDB\versions
 Compression=lzma
 SolidCompression=yes
 
