@@ -1,4 +1,4 @@
-Release 0.5.4 (Nov 29)
+Release 0.5.5 (Nov 29)
 =======================
 * Added printing of fresh batch labels
 * Added registering of fresh coverslip batches
@@ -14,6 +14,10 @@ Release 0.5.4 (Nov 29)
 * Added a atdbVCLUtils unit
 * Added a CoverSlip data module
 * Linked dustassays data with coverslip master dataset
+
+Release 0.5.3 (Oct 27)
+=======================
+--SKIPPED ---
 
 Release 0.5.3 (Oct 27)
 =======================
