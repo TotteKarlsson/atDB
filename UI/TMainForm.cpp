@@ -27,6 +27,7 @@
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
 #include "TPrintLabelForm.h"
+#include "atQueryBuilder.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -43,6 +44,7 @@
 #pragma link "pDataMatrix"
 #pragma link "pDBBarcode2D"
 #pragma link "pQRCode"
+#pragma link "TIntLabel"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -371,7 +373,6 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
 	switch(Button)
     {
     	case TNavigateBtn::nbDelete:        break;
-
     	case TNavigateBtn::nbInsert:
         {
 	        atdbDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
@@ -614,22 +615,8 @@ void __fastcall TMainForm::selectBlocks()
     atdbDM->blocksCDS->Close();
   	if(mProcessForBlocksGrid->SelectedRows->Count > 0)
     {
-    	vector<int> p_ids;
+       	vector<int> p_ids = getSelectedIDS(mProcessForBlocksGrid, "process_id");
     	stringstream s;
-      	for(int i = 0; i < mProcessForBlocksGrid->SelectedRows->Count; i++)
-    	{
-    		TBookmarkList* bookMarkList = mProcessForBlocksGrid->SelectedRows;
-
-            if(bookMarkList->Count == mProcessForBlocksGrid->SelectedRows->Count)
-            {
-        		atdbDM->specimenCDS->GotoBookmark((*bookMarkList)[i]);
-                int pID = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
-				p_ids.push_back(pID);
-		        s << pID <<",";
-            }
-        }
-
-        s.str("");
         s << "SELECT * FROM block WHERE process_id IN (";
 
         for(int i = 0; i < p_ids.size(); i++)
@@ -1039,6 +1026,210 @@ void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
     {
     	MessageDlg("No label to print was selected..", mtError, TMsgDlgButtons() << mbOK, 0);
     }
+}
+
+void __fastcall TMainForm::mFreshBatchesGridCellClick(TColumn *Column)
+{
+	selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mFreshBatchesGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+    if(mFreshBatchesGrid->DataSource->DataSet->Eof != true)
+    {
+        selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detailGrid)
+{
+	//Retrieve selected ids from masterGrid
+    // and apply filter on details table
+    TClientDataSet* detailDataSet = dynamic_cast<TClientDataSet*>(detailGrid->DataSource->DataSet);
+    detailDataSet->Close();
+	TDataSet* masterDataSet = masterGrid->DataSource->DataSet;
+
+  	if(masterGrid->SelectedRows->Count > 0)
+    {
+    	vector<int> p_ids = getSelectedIDS(masterGrid, "id");
+
+    	QueryBuilder qb;
+        qb << "SELECT * FROM coverslip WHERE freshCSBatch IN (";
+
+        for(int i = 0; i < p_ids.size(); i++)
+        {
+			qb << p_ids[i];
+            if(i < p_ids.size() - 1)
+            {
+            	qb << ", ";
+            }
+        }
+        qb << ")";
+		detailDataSet->CommandText = qb.asCString();
+        Log(lDebug) << "Selected: "<<qb.asString();
+    }
+    else
+    {
+    	//Get master ID
+        int id = masterDataSet->FieldByName("id")->AsInteger;
+        detailDataSet->CommandText =
+        "SELECT * FROM coverslip WHERE freshCSBatch = " + IntToStr(id) +" ORDER BY freshCSBatch DESC";
+    }
+
+    detailDataSet->Open();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
+{
+	//Get selected cs records in the coverslip grid
+    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+
+    if(coverslipIDS.size() == 0)
+    {
+	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+		return;
+    }
+
+    StringList fromInts(coverslipIDS);
+	Log(lInfo) << "Selected ids: (" << fromInts.asString(',')<<")";
+    int mr = MessageDlg("Create a cleanround batch for selected coverslips?", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
+    if(mr != mrYes)
+    {
+    	return;
+    }
+
+    //Create a new cleanround record, and associate slected coverslips with it
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = atdbDM->SQLConnection1;
+    QueryBuilder qb;
+
+    int current_user = getCurrentUserID();
+    qb <<"INSERT into cleancsbatch (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+
+    Log(lDebug) << "Query: " << qb.asString();
+    q->SQL->Add(qb.asCString());
+    int res = q->ExecSQL();
+    Log(lDebug) << "Query result: " << res;
+
+    //Get last insert ID for cleanCS batch and update coverslips
+    int cleanCSBatchID = getLastInsertID(atdbDM->SQLConnection1);
+
+    for(int i = 0; i < coverslipIDS.size(); i++)
+    {
+        qb.clear();
+        qb 	<< "UPDATE coverslip SET status='4',cleanCSBatch='"<<cleanCSBatchID<<"' "
+            << "WHERE id='"<<coverslipIDS[i]<<"'";
+
+        Log(lDebug) << "Query: " << qb.asString();
+        q->SQL->Text = qb.asCString();
+        int res = q->ExecSQL();
+        Log(lDebug) << "Query result: " << res;
+
+        //Update status and associate each coverslip
+        Log(lInfo) << "Updating record:" <<coverslipIDS[i];
+    }
+
+    delete q;
+	csDM->csCDS->Refresh();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
+{
+	//Get selected cs records in the coverslip grid
+    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+
+    if(coverslipIDS.size() == 0)
+    {
+	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+		return;
+    }
+
+    StringList fromInts(coverslipIDS);
+	Log(lInfo) << "Selected ids: (" << fromInts.asString(',')<<")";
+    int mr = MessageDlg("Create a carboncoated batch for selected coverslips? This will also print coverslip labels.", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
+    if(mr != mrYes)
+    {
+    	return;
+    }
+
+    //Create a new cleanround record, and associate slected coverslips with it
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = atdbDM->SQLConnection1;
+
+    QueryBuilder qb;
+    int current_user = getCurrentUserID();
+    qb <<"INSERT into carboncoatedcsbatch (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+
+    Log(lDebug) << "Query: " << qb.asString();
+    q->SQL->Add(qb.asCString());
+    int res = q->ExecSQL();
+    Log(lDebug) << "Query result: " << res;
+
+    //Get last insert ID for cleanCS batch and update coverslips
+    int carboncoatbatchID = getLastInsertID(atdbDM->SQLConnection1);
+
+    for(int i = 0; i < coverslipIDS.size(); i++)
+    {
+        qb.clear();
+        qb 	<< "UPDATE coverslip SET status='5', carboncoatbatch='"<<carboncoatbatchID<<"' "
+            << "WHERE id='"<<coverslipIDS[i]<<"'";
+
+        Log(lDebug) << "Query: " << qb.asString();
+        q->SQL->Text = qb.asCString();
+        int res = q->ExecSQL();
+        Log(lDebug) << "Query result: " << res;
+
+        //Update status and associate each coverslip
+        Log(lInfo) << "Updating record:" <<coverslipIDS[i];
+    }
+
+    //Create and print labels
+    if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+    {
+		Log(lError) << "There was a problem creating and/or printing coverslip labels";
+    }
+
+    delete q;
+	csDM->csCDS->Refresh();
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
+{
+	//Get selected cs records in the coverslip grid
+    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+
+    if(coverslipIDS.size() == 0)
+    {
+	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+		return;
+    }
+
+    //Create and print labels
+    if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+    {
+		Log(lError) << "There was a problem creating and/or printing coverslip labels";
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+
+{
+	mCoverSlipsGrid->SelectedRows->Count;
+	mNrOfSelectedCS->SetValue(mCoverSlipsGrid->SelectedRows->Count);
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
+{
+	mCoverSlipsGrid->SelectedRows->Count;
+	mNrOfSelectedCS->SetValue(mCoverSlipsGrid->SelectedRows->Count);
 }
 
 

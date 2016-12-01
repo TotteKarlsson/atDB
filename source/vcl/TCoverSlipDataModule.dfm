@@ -29,6 +29,7 @@ object csDM: TcsDM
   end
   object csP: TDataSetProvider
     DataSet = csDS
+    Options = [poAllowCommandText, poUseQuoteChar]
     Left = 176
     Top = 56
   end

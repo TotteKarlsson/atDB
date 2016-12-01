@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=460,330,77,51
+Coordinates=792,1043,67,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -287,9 +287,6 @@ Coordinates=356,558,47,51
 [csDM.csFreshBatchesDS]
 Coordinates=898,673,138,51
 
-[Label1]
-Coordinates=356,278,46,51
-
 [LogLevelCB]
 Coordinates=598,881,84,87
 
@@ -322,9 +319,6 @@ Coordinates=183,1397,47,51
 
 [TabSheet8]
 Coordinates=940,222,66,33
-
-[Button2]
-Coordinates=346,735,53,51
 
 [DBNavigator1]
 Coordinates=792,267,82,51
@@ -394,9 +388,6 @@ Coordinates=174,447,107,177
 
 [cdDustAssayNavigator]
 Coordinates=1095,141,127,51
-
-[mCSImage]
-Coordinates=792,1043,67,51
 
 [atdbDM.specimenDS]
 Coordinates=405,805,116,393
@@ -484,9 +475,6 @@ Coordinates=818,867,84,87
 
 [atdbDM.postfix]
 Coordinates=1040,617,88,51
-
-[DBMemo1]
-Coordinates=839,1486,64,33
 
 [Image1]
 Coordinates=273,125,49,51

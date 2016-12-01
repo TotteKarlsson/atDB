@@ -57,6 +57,7 @@
 #include "pDataMatrix.hpp"
 #include "pDBBarcode2D.hpp"
 #include "pQRCode.hpp"
+#include "TIntLabel.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -168,11 +169,7 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox8;
 	TPanel *Panel9;
 	TBarcode2D_DataMatrix *csBarCode;
-	TImage *mCSImage;
 	TDBBarcode2D *mCSBarCode2D;
-	TButton *Button2;
-	TDBMemo *DBMemo1;
-	TLabel *Label1;
 	TPanel *Panel10;
 	TDBMemo *DBMemo2;
 	TLabel *Label4;
@@ -202,6 +199,18 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mFreshBatchesGrid;
 	TDBNavigator *CSFreshBatchNavigator;
 	TButton *mPrintBatchLblBtn;
+	TPanel *CSgridPanel;
+	TButton *mRegisterCleanRoundBtn;
+	TButton *mRegisterCarbonCoatBatchBtn;
+	TIntLabel *mNrOfSelectedCS;
+	TLabel *Label6;
+	TButton *mPrintCSLabelsBtn;
+	TPageControl *PageControl3;
+	TTabSheet *TabSheet11;
+	TTabSheet *TabSheet12;
+	TLabel *Label1;
+	TDBMemo *DBMemo1;
+	TImage *mCSImage;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -252,7 +261,13 @@ class TMainForm : public TRegistryForm
 	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
 	void __fastcall mPrintBatchLblBtnClick(TObject *Sender);
-
+	void __fastcall mFreshBatchesGridCellClick(TColumn *Column);
+	void __fastcall mFreshBatchesGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mRegisterCleanRoundBtnClick(TObject *Sender);
+	void __fastcall mRegisterCarbonCoatBatchBtnClick(TObject *Sender);
+	void __fastcall mPrintCSLabelsBtnClick(TObject *Sender);
+	void __fastcall mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
 
 
     private:
@@ -303,6 +318,7 @@ class TMainForm : public TRegistryForm
 		void       __fastcall							afterServerConnect(System::TObject* Sender);
 		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
 		void 		__fastcall 							selectBlocks();
+		void 		__fastcall							selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detailGrid);
 		void 											openCurrentDocumentFile();
 		void 		__fastcall 							createBlockLabels();
 		bool 											loadImage(const string& fName, TImage* img);
@@ -320,7 +336,5 @@ class TMainForm : public TRegistryForm
         END_MESSAGE_MAP(TForm)
 };
 
-//---------------------------------------------------------------------------
 extern PACKAGE TMainForm *MainForm;
-//---------------------------------------------------------------------------
 #endif

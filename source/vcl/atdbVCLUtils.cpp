@@ -1,11 +1,10 @@
 #pragma hdrstop
 #include "atdbVCLUtils.h"
 #include "mtkLogger.h"
+#include "labelprinter/atTSCLIB.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 using namespace mtk;
-
-
 
 bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
 {
@@ -65,3 +64,66 @@ bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
     return Result;
 }
 
+vector<int> getSelectedIDS(TDBGrid* grid, const string& field)
+{
+	vector<int> p_ids;
+	TDataSet* ds = grid->DataSource->DataSet;
+
+    for(int i = 0; i < grid->SelectedRows->Count; i++)
+    {
+        TBookmarkList* bookMarkList = grid->SelectedRows;
+        if(bookMarkList->Count == grid->SelectedRows->Count)
+        {
+            ds->GotoBookmark((*bookMarkList)[i]);
+            int pID = ds->FieldByName(field.c_str())->AsInteger;
+            p_ids.push_back(pID);
+        }
+    }
+
+	return p_ids;
+}
+
+int getLastInsertID(TSQLConnection* c)
+{
+	//Get last insert id, create and associate 'count' coverslips
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = c;
+
+    tq->SQL->Add("SELECT LAST_INSERT_ID();");
+    tq->Open();
+    int id = tq->Fields->operator [](0)->AsInteger;
+    tq->Close();
+    delete tq;
+    return id;
+}
+
+bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
+{
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = c;
+	TSCLIB lblPrinter;
+
+    if(!lblPrinter.load("TSCLIB.dll"))
+    {
+    	Log(lError) << "Failed to load mTSC library..";
+        return false;
+    }
+
+	for(int i = 0; i < csIDS.size(); i++)
+    {
+
+	    tq->SQL->Text = ("SELECT * FROM coverslip WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
+    	tq->Open();
+	    stringstream lbl;
+        lbl <<"B"<<tq->FieldByName("freshCSBatch")->AsInteger
+        	<<"C"<<tq->FieldByName("cleanCSBatch")->AsInteger
+           	<<"C"<<tq->FieldByName("carboncoatbatch")->AsInteger
+            <<"-"<<csIDS[i];
+
+		Log(lInfo) << "Printing label: "<<lbl.str();
+
+        lblPrinter.printCoverSlipLabel(lbl.str(), 1);
+    }
+
+	return true;
+}

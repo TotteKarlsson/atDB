@@ -24,12 +24,10 @@ void __fastcall TcsDM::afterConnect()
     csTypeCDS->Active 			= true;
     csDustAssayCDS->Active 		= true;
     csFreshBatchesCDS->Active 	= true;
-
 }
 
 void __fastcall TcsDM::afterDisConnect()
-{
-}
+{}
 
 //---------------------------------------------------------------------------
 void __fastcall TcsDM::csDSBeforeOpen(TDataSet *DataSet)

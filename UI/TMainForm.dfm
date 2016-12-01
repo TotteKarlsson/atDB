@@ -42,32 +42,24 @@ object MainForm: TMainForm
       Top = 1
       Width = 971
       Height = 741
-      ActivePage = TabSheet4
+      ActivePage = TabSheet9
       Align = alClient
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
           Width = 963
           Height = 713
-          ActivePage = TabSheet8
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 0
@@ -237,10 +229,6 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object ScrollBox1: TScrollBox
               Left = 0
               Top = 0
@@ -704,10 +692,6 @@ object MainForm: TMainForm
       object TabSheet1: TTabSheet
         Caption = 'Documents'
         ImageIndex = 3
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mDocsNavigator: TDBNavigator
           Left = 16
           Top = 24
@@ -769,34 +753,39 @@ object MainForm: TMainForm
             Left = 1
             Top = 232
             Width = 367
-            Height = 277
+            Height = 448
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
+            ExplicitHeight = 277
             object CSNavigator: TDBNavigator
               Left = 2
-              Top = 250
+              Top = 421
               Width = 363
               Height = 25
               DataSource = csDM.csDSource
-              VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
+              ExplicitTop = 250
             end
             object mCoverSlipsGrid: TDBGrid
               Left = 2
-              Top = 15
+              Top = 89
               Width = 363
-              Height = 235
+              Height = 332
               Align = alClient
               DataSource = csDM.csDSource
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 1
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
+              OnCellClick = mCoverSlipsGridCellClick
+              OnKeyUp = mCoverSlipsGridKeyUp
               Columns = <
                 item
                   Expanded = False
@@ -815,44 +804,69 @@ object MainForm: TMainForm
                   Visible = True
                 end>
             end
+            object CSgridPanel: TPanel
+              Left = 2
+              Top = 15
+              Width = 363
+              Height = 74
+              Align = alTop
+              TabOrder = 2
+              object mNrOfSelectedCS: TIntLabel
+                Left = 103
+                Top = 48
+                Width = 85
+                Height = 13
+                Caption = 'mNrOfSelectedCS'
+                ValueString = '12'
+                Value = -1
+                TheFont.Charset = DEFAULT_CHARSET
+                TheFont.Color = clWindowText
+                TheFont.Height = -11
+                TheFont.Name = 'Tahoma'
+                TheFont.Style = []
+              end
+              object Label6: TLabel
+                Left = 15
+                Top = 48
+                Width = 82
+                Height = 13
+                Caption = 'Selection Count: '
+              end
+              object mRegisterCleanRoundBtn: TButton
+                Left = 15
+                Top = 13
+                Width = 132
+                Height = 25
+                Caption = 'Register Clean Round'
+                TabOrder = 0
+                OnClick = mRegisterCleanRoundBtnClick
+              end
+              object mRegisterCarbonCoatBatchBtn: TButton
+                Left = 199
+                Top = 13
+                Width = 152
+                Height = 25
+                Caption = 'Register CarbonCoat Batch'
+                TabOrder = 1
+                OnClick = mRegisterCarbonCoatBatchBtnClick
+              end
+            end
           end
           object Panel9: TPanel
             Left = 1
-            Top = 509
+            Top = 680
             Width = 367
-            Height = 203
+            Height = 32
             Align = alBottom
             TabOrder = 1
-            object mCSImage: TImage
-              Left = 24
-              Top = 24
-              Width = 105
-              Height = 105
-            end
-            object Label1: TLabel
-              Left = 135
-              Top = 6
-              Width = 28
-              Height = 13
-              Caption = 'Notes'
-            end
-            object Button2: TButton
-              Left = 24
-              Top = 152
-              Width = 105
+            object mPrintCSLabelsBtn: TButton
+              Left = 266
+              Top = 4
+              Width = 87
               Height = 25
-              Caption = 'Print'
+              Caption = 'Print Labels'
               TabOrder = 0
-              OnClick = Button2Click
-            end
-            object DBMemo1: TDBMemo
-              Left = 135
-              Top = 25
-              Width = 218
-              Height = 161
-              DataField = 'notes'
-              DataSource = csDM.csDSource
-              TabOrder = 1
+              OnClick = mPrintCSLabelsBtnClick
             end
           end
           object GroupBox9: TGroupBox
@@ -870,13 +884,15 @@ object MainForm: TMainForm
               Height = 148
               Align = alClient
               DataSource = csDM.csFreshBatchesDSource
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
+              OnCellClick = mFreshBatchesGridCellClick
+              OnKeyUp = mFreshBatchesGridKeyUp
               Columns = <
                 item
                   Expanded = False
@@ -913,10 +929,11 @@ object MainForm: TMainForm
               Width = 363
               Height = 41
               Align = alTop
+              BevelOuter = bvNone
               TabOrder = 2
               object mRegisterFreshBatchBtn: TButton
                 Left = 15
-                Top = 2
+                Top = 7
                 Width = 132
                 Height = 25
                 Caption = 'Register New Batch'
@@ -925,7 +942,7 @@ object MainForm: TMainForm
               end
               object mPrintBatchLblBtn: TButton
                 Left = 226
-                Top = 2
+                Top = 7
                 Width = 125
                 Height = 25
                 Caption = 'Print Batch Label'
@@ -942,217 +959,280 @@ object MainForm: TMainForm
           Height = 713
           Align = alClient
           TabOrder = 1
-          object Splitter2: TSplitter
-            Left = 1
-            Top = 485
-            Width = 592
-            Height = 3
-            Cursor = crVSplit
-            Align = alBottom
-            ExplicitTop = 265
-            ExplicitWidth = 223
-          end
-          object GroupBox6: TGroupBox
+          object PageControl3: TPageControl
             Left = 1
             Top = 1
             Width = 592
-            Height = 264
-            Align = alTop
-            Caption = 'CoverSlip Dust Assays'
+            Height = 711
+            ActivePage = TabSheet11
+            Align = alClient
             TabOrder = 0
-            object cdDustAssayNavigator: TDBNavigator
-              Left = 2
-              Top = 237
-              Width = 588
-              Height = 25
-              DataSource = csDM.csDustAsssayDSource
-              VisibleButtons = [nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-              Align = alBottom
-              TabOrder = 0
-              BeforeAction = cdDustAssayNavigatorBeforeAction
-              OnClick = CoverSlipNavigatorsClick
-            end
-            object mCSDustAssaysGrid: TDBGrid
-              Left = 2
-              Top = 15
-              Width = 255
-              Height = 222
-              Align = alLeft
-              DataSource = csDM.csDustAsssayDSource
-              TabOrder = 1
-              TitleFont.Charset = DEFAULT_CHARSET
-              TitleFont.Color = clWindowText
-              TitleFont.Height = -11
-              TitleFont.Name = 'Tahoma'
-              TitleFont.Style = []
-              Columns = <
-                item
-                  Expanded = False
-                  FieldName = 'date'
-                  Width = 85
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'coverslip_id'
-                  Visible = True
-                end
-                item
-                  Expanded = False
-                  FieldName = 'coverslip_status'
-                  Visible = True
-                end>
-            end
-            object Panel10: TPanel
-              Left = 257
-              Top = 15
-              Width = 333
-              Height = 222
-              Align = alClient
-              TabOrder = 2
-              DesignSize = (
-                333
-                222)
-              object Label4: TLabel
-                Left = 6
-                Top = 13
+            object TabSheet11: TTabSheet
+              Caption = 'Coverslip Info'
+              ExplicitWidth = 409
+              ExplicitHeight = 416
+              object Label1: TLabel
+                Left = 351
+                Top = 25
                 Width = 28
                 Height = 13
                 Caption = 'Notes'
               end
-              object DBText1: TDBText
-                Left = 270
-                Top = 9
-                Width = 49
-                Height = 17
-                Alignment = taRightJustify
-                Anchors = [akTop, akRight]
-                DataField = 'id'
-                DataSource = csDM.csDustAsssayDSource
-                ExplicitLeft = 272
+              object mCSImage: TImage
+                Left = 233
+                Top = 84
+                Width = 105
+                Height = 105
+                Proportional = True
+                Stretch = True
               end
-              object DBMemo2: TDBMemo
-                Left = 1
-                Top = 32
-                Width = 331
-                Height = 189
-                Align = alBottom
-                DataField = 'note'
-                DataSource = csDM.csDustAsssayDSource
+              object DBMemo1: TDBMemo
+                Left = 351
+                Top = 44
+                Width = 218
+                Height = 161
+                DataField = 'notes'
+                DataSource = csDM.csDSource
                 TabOrder = 0
               end
             end
-          end
-          object Panel11: TPanel
-            Left = 1
-            Top = 265
-            Width = 592
-            Height = 220
-            Align = alClient
-            TabOrder = 1
-            object Splitter3: TSplitter
-              Left = 225
-              Top = 1
-              Height = 218
-              ExplicitLeft = 289
-              ExplicitTop = 6
-            end
-            object mBackgroundImagePanel: TPanel
-              Left = 1
-              Top = 1
-              Width = 224
-              Height = 218
-              Align = alLeft
-              TabOrder = 0
-              object mBackgroundImage: TImage
-                Left = 1
-                Top = 1
-                Width = 222
-                Height = 199
-                Align = alClient
-                IncrementalDisplay = True
-                Proportional = True
-                Stretch = True
-                ExplicitWidth = 221
-              end
-              object mIm1FName: TDBText
-                Left = 1
-                Top = 200
-                Width = 222
-                Height = 17
+            object TabSheet12: TTabSheet
+              Caption = 'Dust Assays'
+              ImageIndex = 1
+              ExplicitWidth = 409
+              ExplicitHeight = 416
+              object Splitter2: TSplitter
+                Left = 0
+                Top = 680
+                Width = 584
+                Height = 3
+                Cursor = crVSplit
                 Align = alBottom
-                DataField = 'background_image'
-                DataSource = csDM.csDustAsssayDSource
-                ExplicitLeft = 56
-                ExplicitTop = 199
-                ExplicitWidth = 121
+                ExplicitLeft = 1
+                ExplicitTop = 265
+                ExplicitWidth = 223
               end
-            end
-            object Panel14: TPanel
-              Left = 228
-              Top = 1
-              Width = 363
-              Height = 218
-              Align = alClient
-              TabOrder = 1
-              object mCoverslipImage: TImage
-                Left = 1
-                Top = 1
-                Width = 361
-                Height = 199
-                Align = alClient
-                IncrementalDisplay = True
-                Proportional = True
-                Stretch = True
-                ExplicitLeft = 120
-                ExplicitWidth = 242
+              object GroupBox6: TGroupBox
+                Left = 0
+                Top = 0
+                Width = 584
+                Height = 264
+                Align = alTop
+                Caption = 'CoverSlip Dust Assays'
+                TabOrder = 0
+                ExplicitLeft = 1
+                ExplicitTop = 1
+                ExplicitWidth = 592
+                object cdDustAssayNavigator: TDBNavigator
+                  Left = 2
+                  Top = 237
+                  Width = 580
+                  Height = 25
+                  DataSource = csDM.csDustAsssayDSource
+                  VisibleButtons = [nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+                  Align = alBottom
+                  TabOrder = 0
+                  BeforeAction = cdDustAssayNavigatorBeforeAction
+                  OnClick = CoverSlipNavigatorsClick
+                  ExplicitWidth = 588
+                end
+                object mCSDustAssaysGrid: TDBGrid
+                  Left = 2
+                  Top = 15
+                  Width = 255
+                  Height = 222
+                  Align = alLeft
+                  DataSource = csDM.csDustAsssayDSource
+                  TabOrder = 1
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'date'
+                      Width = 85
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'coverslip_id'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'coverslip_status'
+                      Visible = True
+                    end>
+                end
+                object Panel10: TPanel
+                  Left = 257
+                  Top = 15
+                  Width = 325
+                  Height = 222
+                  Align = alClient
+                  TabOrder = 2
+                  ExplicitWidth = 333
+                  DesignSize = (
+                    325
+                    222)
+                  object Label4: TLabel
+                    Left = 6
+                    Top = 13
+                    Width = 28
+                    Height = 13
+                    Caption = 'Notes'
+                  end
+                  object DBText1: TDBText
+                    Left = 262
+                    Top = 9
+                    Width = 49
+                    Height = 17
+                    Alignment = taRightJustify
+                    Anchors = [akTop, akRight]
+                    DataField = 'id'
+                    DataSource = csDM.csDustAsssayDSource
+                    ExplicitLeft = 272
+                  end
+                  object DBMemo2: TDBMemo
+                    Left = 1
+                    Top = 32
+                    Width = 323
+                    Height = 189
+                    Align = alBottom
+                    DataField = 'note'
+                    DataSource = csDM.csDustAsssayDSource
+                    TabOrder = 0
+                    ExplicitWidth = 331
+                  end
+                end
               end
-              object mIm2FName: TDBText
-                Left = 1
-                Top = 200
-                Width = 361
-                Height = 17
+              object mResultImagePanel: TPanel
+                Left = 0
+                Top = 456
+                Width = 584
+                Height = 224
                 Align = alBottom
-                DataField = 'coverslip_image'
-                DataSource = csDM.csDustAsssayDSource
-                ExplicitLeft = 245
-                ExplicitTop = 201
-                ExplicitWidth = 121
+                TabOrder = 1
+                ExplicitLeft = 1
+                ExplicitTop = 488
+                ExplicitWidth = 592
+                object mResultImage: TImage
+                  Left = 1
+                  Top = 1
+                  Width = 582
+                  Height = 205
+                  Align = alClient
+                  IncrementalDisplay = True
+                  Proportional = True
+                  Stretch = True
+                  ExplicitLeft = 208
+                  ExplicitTop = 31
+                  ExplicitWidth = 209
+                  ExplicitHeight = 105
+                end
+                object mIm3FName: TDBText
+                  Left = 1
+                  Top = 206
+                  Width = 582
+                  Height = 17
+                  Align = alBottom
+                  DataField = 'result_image'
+                  DataSource = csDM.csDustAsssayDSource
+                  ExplicitLeft = 56
+                  ExplicitTop = 95
+                  ExplicitWidth = 121
+                end
               end
-            end
-          end
-          object mResultImagePanel: TPanel
-            Left = 1
-            Top = 488
-            Width = 592
-            Height = 224
-            Align = alBottom
-            TabOrder = 2
-            object mResultImage: TImage
-              Left = 1
-              Top = 1
-              Width = 590
-              Height = 205
-              Align = alClient
-              IncrementalDisplay = True
-              Proportional = True
-              Stretch = True
-              ExplicitLeft = 208
-              ExplicitTop = 31
-              ExplicitWidth = 209
-              ExplicitHeight = 105
-            end
-            object mIm3FName: TDBText
-              Left = 1
-              Top = 206
-              Width = 590
-              Height = 17
-              Align = alBottom
-              DataField = 'result_image'
-              DataSource = csDM.csDustAsssayDSource
-              ExplicitLeft = 56
-              ExplicitTop = 95
-              ExplicitWidth = 121
+              object Panel11: TPanel
+                Left = 0
+                Top = 264
+                Width = 584
+                Height = 192
+                Align = alClient
+                TabOrder = 2
+                ExplicitTop = -292
+                ExplicitWidth = 409
+                ExplicitHeight = 708
+                object Splitter3: TSplitter
+                  Left = 225
+                  Top = 1
+                  Height = 190
+                  ExplicitLeft = 289
+                  ExplicitTop = 6
+                  ExplicitHeight = 218
+                end
+                object mBackgroundImagePanel: TPanel
+                  Left = 1
+                  Top = 1
+                  Width = 224
+                  Height = 190
+                  Align = alLeft
+                  TabOrder = 0
+                  ExplicitHeight = 706
+                  object mBackgroundImage: TImage
+                    Left = 1
+                    Top = 1
+                    Width = 222
+                    Height = 171
+                    Align = alClient
+                    IncrementalDisplay = True
+                    Proportional = True
+                    Stretch = True
+                    ExplicitWidth = 221
+                    ExplicitHeight = 199
+                  end
+                  object mIm1FName: TDBText
+                    Left = 1
+                    Top = 172
+                    Width = 222
+                    Height = 17
+                    Align = alBottom
+                    DataField = 'background_image'
+                    DataSource = csDM.csDustAsssayDSource
+                    ExplicitLeft = 56
+                    ExplicitTop = 199
+                    ExplicitWidth = 121
+                  end
+                end
+                object Panel14: TPanel
+                  Left = 228
+                  Top = 1
+                  Width = 355
+                  Height = 190
+                  Align = alClient
+                  TabOrder = 1
+                  ExplicitWidth = 363
+                  ExplicitHeight = 706
+                  object mCoverslipImage: TImage
+                    Left = 1
+                    Top = 1
+                    Width = 353
+                    Height = 171
+                    Align = alClient
+                    IncrementalDisplay = True
+                    Proportional = True
+                    Stretch = True
+                    ExplicitLeft = 120
+                    ExplicitWidth = 242
+                    ExplicitHeight = 199
+                  end
+                  object mIm2FName: TDBText
+                    Left = 1
+                    Top = 172
+                    Width = 353
+                    Height = 17
+                    Align = alBottom
+                    DataField = 'coverslip_image'
+                    DataSource = csDM.csDustAsssayDSource
+                    ExplicitLeft = 245
+                    ExplicitTop = 201
+                    ExplicitWidth = 121
+                  end
+                end
+              end
             end
           end
         end
@@ -1160,10 +1240,6 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1246,10 +1322,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object mUsersDBGrid: TDBGrid
           Left = 13
           Top = 63
@@ -1378,10 +1450,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -1560,15 +1628,17 @@ object MainForm: TMainForm
   object csBarCode: TBarcode2D_DataMatrix
     Image = mCSImage
     Barcode = '7'
+    BarColor = clNavy
     Stretch = True
-    Left = 96
-    Top = 648
+    ShowQuietZone = True
+    Left = 688
+    Top = 120
   end
   object mCSBarCode2D: TDBBarcode2D
     DataField = 'id'
     DataSource = csDM.csDSource
     Barcode2D = csBarCode
-    Left = 56
-    Top = 616
+    Left = 624
+    Top = 120
   end
 end
