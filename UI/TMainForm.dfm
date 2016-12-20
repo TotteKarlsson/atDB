@@ -42,7 +42,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 971
       Height = 741
-      ActivePage = TabSheet9
+      ActivePage = TabSheet4
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -54,7 +54,7 @@ object MainForm: TMainForm
           Top = 0
           Width = 963
           Height = 713
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -138,71 +138,6 @@ object MainForm: TMainForm
                     Expanded = False
                     FieldName = 'date_received'
                     Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'date_embedded'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Lpreproctreat'
-                    Title.Caption = 'Pre-Process Treatment'
-                    Width = 124
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'LFixative'
-                    Title.Caption = 'Fixative Protocol'
-                    Width = 124
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'LfixationMethod'
-                    Title.Caption = 'Fixation Protocol'
-                    Width = 150
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Lpostfix'
-                    Title.Caption = 'Postfix Protocol'
-                    Width = 124
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Lcryoprotection'
-                    Title.Caption = 'CryoProtection'
-                    Width = 124
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'LfreezeProtocol'
-                    Width = 150
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'LsubstitutionProtocol'
-                    Width = 124
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Linfiltration'
-                    Width = 50
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Lembedding'
-                    Width = 124
                     Visible = True
                   end
                   item
@@ -757,7 +692,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
-            ExplicitHeight = 277
             object CSNavigator: TDBNavigator
               Left = 2
               Top = 421
@@ -768,7 +702,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
-              ExplicitTop = 250
             end
             object mCoverSlipsGrid: TDBGrid
               Left = 2
@@ -814,10 +747,10 @@ object MainForm: TMainForm
               object mNrOfSelectedCS: TIntLabel
                 Left = 103
                 Top = 48
-                Width = 85
+                Width = 10
                 Height = 13
-                Caption = 'mNrOfSelectedCS'
-                ValueString = '12'
+                Caption = '-1'
+                ValueString = '-1'
                 Value = -1
                 TheFont.Charset = DEFAULT_CHARSET
                 TheFont.Color = clWindowText
@@ -969,8 +902,6 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
-              ExplicitWidth = 409
-              ExplicitHeight = 416
               object Label1: TLabel
                 Left = 351
                 Top = 25
@@ -999,8 +930,6 @@ object MainForm: TMainForm
             object TabSheet12: TTabSheet
               Caption = 'Dust Assays'
               ImageIndex = 1
-              ExplicitWidth = 409
-              ExplicitHeight = 416
               object Splitter2: TSplitter
                 Left = 0
                 Top = 680
@@ -1020,9 +949,6 @@ object MainForm: TMainForm
                 Align = alTop
                 Caption = 'CoverSlip Dust Assays'
                 TabOrder = 0
-                ExplicitLeft = 1
-                ExplicitTop = 1
-                ExplicitWidth = 592
                 object cdDustAssayNavigator: TDBNavigator
                   Left = 2
                   Top = 237
@@ -1034,7 +960,6 @@ object MainForm: TMainForm
                   TabOrder = 0
                   BeforeAction = cdDustAssayNavigatorBeforeAction
                   OnClick = CoverSlipNavigatorsClick
-                  ExplicitWidth = 588
                 end
                 object mCSDustAssaysGrid: TDBGrid
                   Left = 2
@@ -1074,7 +999,6 @@ object MainForm: TMainForm
                   Height = 222
                   Align = alClient
                   TabOrder = 2
-                  ExplicitWidth = 333
                   DesignSize = (
                     325
                     222)
@@ -1105,7 +1029,6 @@ object MainForm: TMainForm
                     DataField = 'note'
                     DataSource = csDM.csDustAsssayDSource
                     TabOrder = 0
-                    ExplicitWidth = 331
                   end
                 end
               end
@@ -1116,9 +1039,6 @@ object MainForm: TMainForm
                 Height = 224
                 Align = alBottom
                 TabOrder = 1
-                ExplicitLeft = 1
-                ExplicitTop = 488
-                ExplicitWidth = 592
                 object mResultImage: TImage
                   Left = 1
                   Top = 1
@@ -1153,9 +1073,6 @@ object MainForm: TMainForm
                 Height = 192
                 Align = alClient
                 TabOrder = 2
-                ExplicitTop = -292
-                ExplicitWidth = 409
-                ExplicitHeight = 708
                 object Splitter3: TSplitter
                   Left = 225
                   Top = 1
@@ -1171,7 +1088,6 @@ object MainForm: TMainForm
                   Height = 190
                   Align = alLeft
                   TabOrder = 0
-                  ExplicitHeight = 706
                   object mBackgroundImage: TImage
                     Left = 1
                     Top = 1
@@ -1204,8 +1120,6 @@ object MainForm: TMainForm
                   Height = 190
                   Align = alClient
                   TabOrder = 1
-                  ExplicitWidth = 363
-                  ExplicitHeight = 706
                   object mCoverslipImage: TImage
                     Left = 1
                     Top = 1
