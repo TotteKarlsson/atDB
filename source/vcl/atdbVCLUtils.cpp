@@ -112,7 +112,7 @@ bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
 	for(int i = 0; i < csIDS.size(); i++)
     {
 
-	    tq->SQL->Text = ("SELECT * FROM coverslip WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
+	    tq->SQL->Text = ("SELECT * FROM coverslips WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
     	tq->Open();
 	    stringstream lbl;
         lbl <<"B"<<tq->FieldByName("freshCSBatch")->AsInteger

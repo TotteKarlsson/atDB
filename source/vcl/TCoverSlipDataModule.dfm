@@ -4,7 +4,7 @@ object csDM: TcsDM
   Width = 602
   object csDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM `coverslip`'
+    CommandText = 'SELECT * FROM `coverslips`'
     MaxBlobSize = 1
     Params = <>
     SQLConnection = atdbDM.SQLConnection1
@@ -85,7 +85,7 @@ object csDM: TcsDM
   end
   object csStatusDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM `coverslipstatus` ORDER by id'
+    CommandText = 'SELECT * FROM `coverslipstatuses` ORDER by id'
     MaxBlobSize = 1
     Params = <>
     SQLConnection = atdbDM.SQLConnection1
@@ -138,7 +138,7 @@ object csDM: TcsDM
   end
   object csTypeDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM `coversliptype` ORDER by id'
+    CommandText = 'SELECT * FROM `coversliptypes` ORDER by id'
     MaxBlobSize = 1
     Params = <>
     SQLConnection = atdbDM.SQLConnection1
@@ -191,12 +191,12 @@ object csDM: TcsDM
   end
   object csDustAssayDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM coverslipdustassay where coverslip_id = :id'
+    CommandText = 'SELECT * FROM coverslipdustassays where coverslip_id = :id'
     DataSource = csDSource
     MaxBlobSize = 1
     Params = <
       item
-        DataType = ftVarBytes
+        DataType = ftInteger
         Name = 'id'
         ParamType = ptInput
       end>
@@ -238,7 +238,7 @@ object csDM: TcsDM
   end
   object csFreshBatchesDS: TSQLDataSet
     BeforeOpen = csDSBeforeOpen
-    CommandText = 'SELECT * FROM freshCSBatch'
+    CommandText = 'SELECT * FROM freshCSBatches'
     DataSource = csDSource
     MaxBlobSize = 1
     Params = <>
@@ -256,6 +256,7 @@ object csDM: TcsDM
     Top = 408
     object csFreshBatchesCDSid: TIntegerField
       FieldName = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object csFreshBatchesCDSdate_created: TSQLTimeStampField

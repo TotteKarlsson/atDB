@@ -57,7 +57,7 @@ int nrOfFreshBatchesToday()
 
     q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
-    sq << "SELECT COUNT(*) FROM freshCSbatch";
+    sq << "SELECT COUNT(*) FROM freshCSbatches";
     q->SQL->Add(sq.str().c_str());
 	q->Open();
     int rows = q->FieldByName("COUNT(*)")->AsInteger;
@@ -87,7 +87,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
     q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
-    sq << "INSERT into freshCSbatch (count, batchcode, type) VALUES ("<<count<<", '" <<lbl.str() <<"', '"<<csType<<"')";
+    sq << "INSERT into freshCSbatches (count, batchcode, type) VALUES ("<<count<<", '" <<lbl.str() <<"', '"<<csType<<"')";
 
     q->SQL->Add(sq.str().c_str());
     q->ExecSQL();
@@ -105,7 +105,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
     //Associate count coverslips with this batch
 	stringstream qs;
-    qs <<"INSERT INTO coverslip (status, type, freshCSBatch) VALUES ";
+    qs <<"INSERT INTO coverslips (status, type, freshCSBatch) VALUES ";
     for(int i = 0; i < count; i++)
     {
 	    qs<<"(1,"<<csType <<","<<id<<")";

@@ -3,8 +3,8 @@ object NewSpecimenForm: TNewSpecimenForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Specimen Form'
-  ClientHeight = 894
-  ClientWidth = 851
+  ClientHeight = 560
+  ClientWidth = 657
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,11 +25,12 @@ object NewSpecimenForm: TNewSpecimenForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 851
-    Height = 843
+    Width = 657
+    Height = 509
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 750
+    ExplicitWidth = 851
+    ExplicitHeight = 843
     object Label1: TLabel
       Left = 16
       Top = 16
@@ -85,70 +86,13 @@ object NewSpecimenForm: TNewSpecimenForm
       Caption = 'date_received'
       FocusControl = DBEdit6
     end
-    object Label8: TLabel
-      Left = 16
-      Top = 360
-      Width = 78
-      Height = 13
-      Caption = 'date_embedded'
-      FocusControl = DBEdit7
-    end
     object Label9: TLabel
       Left = 16
-      Top = 408
+      Top = 365
       Width = 113
       Height = 13
       Caption = 'brain_region_dissection'
       FocusControl = DBEdit8
-    end
-    object Label11: TLabel
-      Left = 16
-      Top = 453
-      Width = 106
-      Height = 13
-      Caption = 'Preprocess Treatment'
-    end
-    object Label12: TLabel
-      Left = 16
-      Top = 506
-      Width = 80
-      Height = 13
-      Caption = 'Fixative Protocol'
-    end
-    object Label13: TLabel
-      Left = 16
-      Top = 556
-      Width = 75
-      Height = 13
-      Caption = 'Postfix Protocol'
-    end
-    object Label14: TLabel
-      Left = 16
-      Top = 605
-      Width = 75
-      Height = 13
-      Caption = 'Cryo Protection'
-    end
-    object Label15: TLabel
-      Left = 16
-      Top = 650
-      Width = 75
-      Height = 13
-      Caption = 'Freeze Protocol'
-    end
-    object Label16: TLabel
-      Left = 16
-      Top = 708
-      Width = 99
-      Height = 13
-      Caption = 'Substitution Protocol'
-    end
-    object Label17: TLabel
-      Left = 16
-      Top = 757
-      Width = 94
-      Height = 13
-      Caption = 'Embedding Protocol'
     end
     object DBEdit1: TDBEdit
       Left = 16
@@ -166,9 +110,7 @@ object NewSpecimenForm: TNewSpecimenForm
       Height = 21
       DataField = 'Lspecie'
       DataSource = DataSource1
-      KeyField = 'id'
       ListField = 'name'
-      ListSource = DataSource2
       TabOrder = 1
     end
     object DBEdit2: TDBEdit
@@ -216,112 +158,30 @@ object NewSpecimenForm: TNewSpecimenForm
       DataSource = DataSource1
       TabOrder = 6
     end
-    object DBEdit7: TDBEdit
-      Left = 16
-      Top = 376
-      Width = 134
-      Height = 21
-      DataField = 'date_embedded'
-      DataSource = DataSource1
-      TabOrder = 7
-    end
     object DBEdit8: TDBEdit
       Left = 16
-      Top = 424
+      Top = 381
       Width = 512
       Height = 21
       DataField = 'brain_region_dissection'
       DataSource = DataSource1
-      TabOrder = 8
-    end
-    object DBLookupComboBox2: TDBLookupComboBox
-      Left = 18
-      Top = 472
-      Width = 512
-      Height = 21
-      DataField = 'Lpreproctreat'
-      DataSource = DataSource1
-      KeyField = 'id'
-      ListField = 'protocol'
-      ListSource = DataSource3
-      TabOrder = 9
-    end
-    object DBLookupComboBox3: TDBLookupComboBox
-      Left = 18
-      Top = 527
-      Width = 512
-      Height = 21
-      DataField = 'LfixationMethod'
-      DataSource = DataSource1
-      KeyField = 'id'
-      ListField = 'protocol'
-      ListSource = DataSource4
-      TabOrder = 10
-    end
-    object DBLookupComboBox4: TDBLookupComboBox
-      Left = 18
-      Top = 575
-      Width = 512
-      Height = 21
-      DataField = 'Lpostfix'
-      DataSource = DataSource1
-      ListSource = DataSource5
-      TabOrder = 11
-    end
-    object DBLookupComboBox5: TDBLookupComboBox
-      Left = 18
-      Top = 623
-      Width = 512
-      Height = 21
-      DataField = 'Lcryoprotection'
-      DataSource = DataSource1
-      ListSource = DataSource6
-      TabOrder = 12
-    end
-    object DBLookupComboBox6: TDBLookupComboBox
-      Left = 18
-      Top = 670
-      Width = 512
-      Height = 21
-      DataField = 'LfreezeProtocol'
-      DataSource = DataSource1
-      ListSource = DataSource7
-      TabOrder = 13
-    end
-    object DBLookupComboBox7: TDBLookupComboBox
-      Left = 18
-      Top = 726
-      Width = 512
-      Height = 21
-      DataField = 'LsubstitutionProtocol'
-      DataSource = DataSource1
-      ListSource = DataSource8
-      TabOrder = 14
-    end
-    object DBLookupComboBox8: TDBLookupComboBox
-      Left = 18
-      Top = 774
-      Width = 512
-      Height = 21
-      DataField = 'Lembedding'
-      DataSource = DataSource1
-      ListSource = DataSource9
-      TabOrder = 15
+      TabOrder = 7
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 843
-    Width = 851
+    Top = 509
+    Width = 657
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 750
+    ExplicitTop = 843
+    ExplicitWidth = 851
     DesignSize = (
-      851
+      657
       51)
     object Button1: TButton
-      Left = 771
+      Left = 577
       Top = 16
       Width = 60
       Height = 25
@@ -329,10 +189,10 @@ object NewSpecimenForm: TNewSpecimenForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
-      ExplicitLeft = 800
+      ExplicitLeft = 771
     end
     object Button2: TButton
-      Left = 690
+      Left = 496
       Top = 16
       Width = 60
       Height = 25
@@ -340,7 +200,7 @@ object NewSpecimenForm: TNewSpecimenForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 719
+      ExplicitLeft = 690
     end
   end
   object DataSource1: TDataSource
@@ -352,45 +212,5 @@ object NewSpecimenForm: TNewSpecimenForm
     DataSet = atdbDM.speciesDS
     Left = 568
     Top = 80
-  end
-  object DataSource3: TDataSource
-    DataSet = atdbDM.preprocesstreatmentDS
-    Left = 552
-    Top = 456
-  end
-  object DataSource4: TDataSource
-    DataSet = atdbDM.fixationMethodDS
-    Left = 552
-    Top = 520
-  end
-  object DataSource5: TDataSource
-    DataSet = atdbDM.postfix
-    Left = 560
-    Top = 576
-  end
-  object DataSource6: TDataSource
-    DataSet = atdbDM.cryoprotectionDS
-    Left = 624
-    Top = 600
-  end
-  object DataSource7: TDataSource
-    DataSet = atdbDM.freezeprotocolDS
-    Left = 640
-    Top = 664
-  end
-  object DataSource8: TDataSource
-    DataSet = atdbDM.substitutionProtocol
-    Left = 736
-    Top = 712
-  end
-  object DataSource9: TDataSource
-    DataSet = atdbDM.substitutionProtocol
-    Left = 568
-    Top = 768
-  end
-  object DataSource10: TDataSource
-    DataSet = atdbDM.documentsCDS
-    Left = 768
-    Top = 640
   end
 end

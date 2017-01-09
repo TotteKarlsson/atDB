@@ -449,7 +449,7 @@ void TMainForm::populateUsersCB()
     //Populate users CB
     TSQLQuery* q = new TSQLQuery(NULL);
     q->SQLConnection = atdbDM->SQLConnection1;
-    q->SQL->Add("SELECT id,user_name from user ORDER by user_name");
+    q->SQL->Add("SELECT id,user_name from users ORDER by user_name");
     q->Open();
 
 	mUsersCB->Clear();
@@ -617,7 +617,7 @@ void __fastcall TMainForm::selectBlocks()
     {
        	vector<int> p_ids = getSelectedIDS(mProcessForBlocksGrid, "process_id");
     	stringstream s;
-        s << "SELECT * FROM block WHERE process_id IN (";
+        s << "SELECT * FROM blocks WHERE process_id IN (";
 
         for(int i = 0; i < p_ids.size(); i++)
         {
@@ -633,8 +633,9 @@ void __fastcall TMainForm::selectBlocks()
     }
     else
     {
-        atdbDM->blocksCDS->CommandText = "SELECT * FROM block WHERE process_id = :process_id ORDER BY id DESC";
-    }                                                                               atdbDM->blocksCDS->Open();
+        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks WHERE process_id = :process_id ORDER BY id DESC";
+    }
+    atdbDM->blocksCDS->Open();
 }
 
 //---------------------------------------------------------------------------
@@ -644,7 +645,7 @@ void __fastcall TMainForm::PageControl2Change(TObject *Sender)
    	if(PageControl2->TabIndex == 2)
     {
         atdbDM->blocksCDS->Close();
-        atdbDM->blocksCDS->CommandText = "SELECT * FROM block ORDER BY id DESC";
+        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks ORDER BY id DESC";
         atdbDM->blocksCDS->Open();
     }
 }
@@ -732,6 +733,7 @@ void __fastcall TMainForm::mSpecimenGridDblClick(TObject *Sender)
 	//Show current record on a form
     TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
     atdbDM->specimenCDS->Edit();
+    atdbDM->substitutionProtocol->Open();
 	atdbDM->substitutionProtocol->Edit();
     int res = nsf->ShowModal();
     if(res == mrCancel)
@@ -1056,7 +1058,7 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
     	vector<int> p_ids = getSelectedIDS(masterGrid, "id");
 
     	QueryBuilder qb;
-        qb << "SELECT * FROM coverslip WHERE freshCSBatch IN (";
+        qb << "SELECT * FROM coverslips WHERE freshCSBatch IN (";
 
         for(int i = 0; i < p_ids.size(); i++)
         {
@@ -1075,7 +1077,7 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
     	//Get master ID
         int id = masterDataSet->FieldByName("id")->AsInteger;
         detailDataSet->CommandText =
-        "SELECT * FROM coverslip WHERE freshCSBatch = " + IntToStr(id) +" ORDER BY freshCSBatch DESC";
+        	"SELECT * FROM coverslips WHERE freshCSBatch = " + IntToStr(id) +" ORDER BY freshCSBatch DESC";
     }
 
     detailDataSet->Open();
@@ -1107,7 +1109,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
     QueryBuilder qb;
 
     int current_user = getCurrentUserID();
-    qb <<"INSERT into cleancsbatch (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+    qb <<"INSERT into cleancsbatches (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
 
     Log(lDebug) << "Query: " << qb.asString();
     q->SQL->Add(qb.asCString());
@@ -1120,7 +1122,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
         qb.clear();
-        qb 	<< "UPDATE coverslip SET status='4',cleanCSBatch='"<<cleanCSBatchID<<"' "
+        qb 	<< "UPDATE coverslips SET status='4',cleanCSBatch='"<<cleanCSBatchID<<"' "
             << "WHERE id='"<<coverslipIDS[i]<<"'";
 
         Log(lDebug) << "Query: " << qb.asString();
@@ -1162,7 +1164,7 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 
     QueryBuilder qb;
     int current_user = getCurrentUserID();
-    qb <<"INSERT into carboncoatedcsbatch (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+    qb <<"INSERT into carboncoatedcsbatches (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
 
     Log(lDebug) << "Query: " << qb.asString();
     q->SQL->Add(qb.asCString());
@@ -1175,7 +1177,7 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
         qb.clear();
-        qb 	<< "UPDATE coverslip SET status='5', carboncoatbatch='"<<carboncoatbatchID<<"' "
+        qb 	<< "UPDATE coverslips SET status='5', carboncoatbatch='"<<carboncoatbatchID<<"' "
             << "WHERE id='"<<coverslipIDS[i]<<"'";
 
         Log(lDebug) << "Query: " << qb.asString();

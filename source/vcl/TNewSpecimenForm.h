@@ -33,33 +33,9 @@ __published:	// IDE-managed Components
 	TDBEdit *DBEdit5;
 	TLabel *Label7;
 	TDBEdit *DBEdit6;
-	TLabel *Label8;
-	TDBEdit *DBEdit7;
 	TLabel *Label9;
 	TDBEdit *DBEdit8;
-	TDBLookupComboBox *DBLookupComboBox2;
 	TLabel *Label10;
-	TLabel *Label11;
-	TDataSource *DataSource3;
-	TDBLookupComboBox *DBLookupComboBox3;
-	TLabel *Label12;
-	TDataSource *DataSource4;
-	TDBLookupComboBox *DBLookupComboBox4;
-	TLabel *Label13;
-	TDataSource *DataSource5;
-	TDBLookupComboBox *DBLookupComboBox5;
-	TLabel *Label14;
-	TDataSource *DataSource6;
-	TLabel *Label15;
-	TDBLookupComboBox *DBLookupComboBox6;
-	TDataSource *DataSource7;
-	TDBLookupComboBox *DBLookupComboBox7;
-	TLabel *Label16;
-	TDataSource *DataSource8;
-	TDataSource *DataSource9;
-	TDBLookupComboBox *DBLookupComboBox8;
-	TLabel *Label17;
-	TDataSource *DataSource10;
 	void __fastcall Button3Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
