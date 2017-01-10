@@ -1,3 +1,11 @@
+Release 0.5.7 (Jan 9)
+=======================
+* Changed underlying DB schema
+* Added blocks form 
+* Moved all protocol fields from specimen table to blocks table
+
+------ 2017 ------
+
 Release 0.5.6 (Dec 1)
 =======================
 * Added creation of cleaning batches

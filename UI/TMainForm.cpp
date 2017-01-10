@@ -23,6 +23,7 @@
 #include "TMainForm.h"
 #include "TMemoLogger.h"
 #include "TNewSpecimenForm.h"
+#include "TNewBlockForm.h"
 #include "TShowFileContentForm.h"
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
@@ -341,26 +342,37 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
     	case TNavigateBtn::nbDelete:        break;
 
     	case TNavigateBtn::nbInsert:
-        	if(mUsersCB->ItemIndex != -1)
+
+           	if(mUsersCB->ItemIndex != -1)
             {
 	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
-	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
 	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
 	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
+	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
 
-                // Create block label
-                String str = createBlockLabel();
-
-	        	atdbDM->blocksCDS->FieldValues["label"] = str;
-	        	atdbDM->blocksCDS->FieldValues["status"] = 0;
-                atdbDM->blocksCDS->Post();
-			    atdbDM->blocksCDS->First();
+            	//Open New Block Dialog
+				TNewBlockForm* nbf = new TNewBlockForm(this);
+                int res = nbf->ShowModal();
+                if(res == mrCancel)
+                {
+                    atdbDM->specimenCDS->Cancel();
+                }
+                else
+                {
+	                // Create block label
+    	            String str = createBlockLabel();
+	        		atdbDM->blocksCDS->FieldValues["label"] = str;
+		        	atdbDM->blocksCDS->FieldValues["status"] = 0;
+	                atdbDM->blocksCDS->Post();
+			    	atdbDM->blocksCDS->First();
+                }
+                delete nbf;
             }
             else
             {
-            	MessageDlg("Select a user before inserting blocks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
-            	Log(lError) << "Bad...";
+            	MessageDlg("Select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
             }
+
         break;
         case TNavigateBtn::nbPost:        		break;
         case TNavigateBtn::nbRefresh:        	Log(lInfo) << "Refreshed Blocks Dataset"; 		break;
@@ -558,7 +570,7 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
 
-	int mr = MessageDlg("This will print using the default printer on your system.", mtInformation, TMsgDlgButtons() << mbOK<<mbCancel, 0);
+	int mr = MessageDlg("This will print using the default printer on your system (beta).", mtInformation, TMsgDlgButtons() << mbOK<<mbCancel, 0);
     if(mr == mrCancel)
     {
 		return;
@@ -1232,6 +1244,28 @@ void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
 {
 	mCoverSlipsGrid->SelectedRows->Count;
 	mNrOfSelectedCS->SetValue(mCoverSlipsGrid->SelectedRows->Count);
+}
+
+
+void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
+{
+	//Show current record on a form
+    TNewBlockForm* nsf = new TNewBlockForm(this);
+    atdbDM->blocksCDS->Edit();
+
+    int res = nsf->ShowModal();
+    if(res == mrCancel)
+    {
+        //revert
+        atdbDM->blocksCDS->Cancel();
+    }
+    else
+    {
+        atdbDM->blocksCDS->Post();
+        atdbDM->blocksCDS->First();
+    }
+
+    delete nsf;
 }
 
 

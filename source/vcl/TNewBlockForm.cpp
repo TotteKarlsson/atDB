@@ -1,19 +1,18 @@
 #include <vcl.h>
 #pragma hdrstop
-#include "TNewSpecimenForm.h"
+#include "TNewBlockForm.h"
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TNewSpecimenForm *NewSpecimenForm;
+TNewBlockForm *NewBlockForm;
 
 //---------------------------------------------------------------------------
-__fastcall TNewSpecimenForm::TNewSpecimenForm(TComponent* Owner)
+__fastcall TNewBlockForm::TNewBlockForm(TComponent* Owner)
 	: TForm(Owner)
 {
 }
 
 
-
-void __fastcall TNewSpecimenForm::Button3Click(TObject *Sender)
+void __fastcall TNewBlockForm::Button3Click(TObject *Sender)
 {
 	//Extract the document and open with default viewer
 
@@ -41,5 +40,10 @@ void __fastcall TNewSpecimenForm::Button3Click(TObject *Sender)
 
 }
 //---------------------------------------------------------------------------
+
+
+
+
+
 
 

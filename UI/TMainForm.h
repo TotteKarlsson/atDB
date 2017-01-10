@@ -211,6 +211,8 @@ class TMainForm : public TRegistryForm
 	TLabel *Label1;
 	TDBMemo *DBMemo1;
 	TImage *mCSImage;
+	TPanel *Panel13;
+	TGroupBox *GroupBox10;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -268,6 +270,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mPrintCSLabelsBtnClick(TObject *Sender);
 	void __fastcall mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
+	void __fastcall mBlocksGridDblClick(TObject *Sender);
 
 
     private:

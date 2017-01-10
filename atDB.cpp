@@ -4,14 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("UI\Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("UI\Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("UI\Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("UI\TMainForm.cpp", MainForm);
 USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
-USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("source\vcl\TNewBlockForm.cpp", NewBlockForm);
 USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -116,6 +117,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TcsDM), &csDM);
 		Application->CreateForm(__classid(TimageDM), &imageDM);
 		Application->CreateForm(__classid(TPrintLabelForm), &PrintLabelForm);
+		Application->CreateForm(__classid(TNewSpecimenForm), &NewSpecimenForm);
 		Application->Run();
 
         // Finish restarting process if needed

@@ -29,8 +29,6 @@ object NewSpecimenForm: TNewSpecimenForm
     Height = 509
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 851
-    ExplicitHeight = 843
     object Label1: TLabel
       Left = 16
       Top = 16
@@ -175,8 +173,6 @@ object NewSpecimenForm: TNewSpecimenForm
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 843
-    ExplicitWidth = 851
     DesignSize = (
       657
       51)
@@ -189,7 +185,6 @@ object NewSpecimenForm: TNewSpecimenForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
-      ExplicitLeft = 771
     end
     object Button2: TButton
       Left = 496
@@ -200,7 +195,6 @@ object NewSpecimenForm: TNewSpecimenForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 690
     end
   end
   object DataSource1: TDataSource
