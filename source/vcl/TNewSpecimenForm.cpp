@@ -11,8 +11,7 @@ __fastcall TNewSpecimenForm::TNewSpecimenForm(TComponent* Owner)
 {
 }
 
-
-
+//---------------------------------------------------------------------------
 void __fastcall TNewSpecimenForm::Button3Click(TObject *Sender)
 {
 	//Extract the document and open with default viewer
@@ -40,6 +39,6 @@ void __fastcall TNewSpecimenForm::Button3Click(TObject *Sender)
 //    ShellExecuteA(NULL, NULL, fName.c_str(), 0, 0, SW_SHOWNORMAL);
 
 }
-//---------------------------------------------------------------------------
+
 
 

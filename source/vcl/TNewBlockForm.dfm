@@ -309,6 +309,7 @@ object NewBlockForm: TNewBlockForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
+      OnClick = Button2Click
     end
   end
   object DataSource1: TDataSource

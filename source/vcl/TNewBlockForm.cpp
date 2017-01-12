@@ -11,7 +11,6 @@ __fastcall TNewBlockForm::TNewBlockForm(TComponent* Owner)
 {
 }
 
-
 void __fastcall TNewBlockForm::Button3Click(TObject *Sender)
 {
 	//Extract the document and open with default viewer
@@ -41,9 +40,15 @@ void __fastcall TNewBlockForm::Button3Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TNewBlockForm::Button2Click(TObject *Sender)
+{
+	//Find out if there are any changes...
+    int mrResult = MessageDlg("Sure you want to cancel?", mtWarning, TMsgDlgButtons() << mbYes<<mbNo, 0);
+    if (mrResult == mrNo)
+    {
+    	this->ModalResult = mrNone;
+    }
 
-
-
-
+}
 
 
