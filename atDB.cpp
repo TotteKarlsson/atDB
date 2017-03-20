@@ -4,15 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("UI\Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("UI\Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("UI\Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("UI\TMainForm.cpp", MainForm);
-USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TImagesDataModule.cpp", imageDM); /* TDataModule: File Type */
 USEFORM("source\vcl\TNewBlockForm.cpp", NewBlockForm);
+USEFORM("source\vcl\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("UI\Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("source\vcl\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("source\vcl\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -30,7 +30,6 @@ using std::string;
 
 extern HWND         gOtherAppWindow             = NULL;
 extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\atDB\\0.5.0";
-extern string       gDefaultAppTheme            = "Iceberg Classico";
 extern string       gAppMutexName           	= "ATDBAppMutex";
 extern bool 		gAppIsStartingUp 			= true;
 extern string       gRestartMutexName           = "ATDBRestartMutex";
@@ -42,8 +41,6 @@ extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "atDB.log";
 extern bool         gIsDevelopmentRelease       = false;
 
-extern bool         gHideSplash                 = true;
-//extern TSplashForm* gSplashForm                 = NULL;
 
 BOOL CALLBACK FindOtherWindow(HWND hwnd, LPARAM lParam) ;
 
@@ -93,22 +90,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->Initialize();
         Application->MainFormOnTaskBar = true;
 
-        //Load Styles from files
-//        loadStyles();
-//        setupApplicationTheme();
-
-//        gSplashForm = new TSplashForm(Application);
-//        if(!gHideSplash)
-//        {
-//            Application->ShowMainForm = false;
-//            gSplashForm->Show();
-//            gSplashForm->Update();
-//        }
-//        else
-//        {
-//            gSplashForm->Close();
-//        }
-
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->Title = "atDB";
         Application->ProcessMessages();
@@ -116,8 +97,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
 		Application->CreateForm(__classid(TimageDM), &imageDM);
-		Application->CreateForm(__classid(TPrintLabelForm), &PrintLabelForm);
-		Application->CreateForm(__classid(TNewSpecimenForm), &NewSpecimenForm);
+		Application->ShowMainForm = true;
 		Application->Run();
 
         // Finish restarting process if needed

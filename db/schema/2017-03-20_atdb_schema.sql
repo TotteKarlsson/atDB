@@ -368,6 +368,17 @@ CREATE TABLE `ribbons` (
   CONSTRAINT `ribbons_ibfk_1` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `sensordata` */
+
+DROP TABLE IF EXISTS `sensordata`;
+
+CREATE TABLE `sensordata` (
+  `sensor_id` int(11) DEFAULT NULL,
+  `data1` double DEFAULT NULL,
+  `data2` double DEFAULT NULL,
+  `date_time` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `species` */
 
 DROP TABLE IF EXISTS `species`;

@@ -42,7 +42,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 971
       Height = 739
-      ActivePage = TabSheet4
+      ActivePage = TabSheet6
       Align = alClient
       ParentShowHint = False
       ShowHint = True
