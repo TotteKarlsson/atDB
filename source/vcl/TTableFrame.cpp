@@ -46,6 +46,6 @@ bool TTableFrame::loadTable(const string& t)
     {
 		DBGrid1->Columns->Items[i]->Width = 200;
     }
-
+	return true;
 }
 

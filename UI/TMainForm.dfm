@@ -13,7 +13,7 @@ object MainForm: TMainForm
   KeyPreview = True
   Menu = MainMenu1
   OldCreateOrder = False
-  Position = poDefault
+  Position = poDesktopCenter
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -54,7 +54,7 @@ object MainForm: TMainForm
           Top = 0
           Width = 963
           Height = 711
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -752,7 +752,6 @@ object MainForm: TMainForm
                 Width = 10
                 Height = 13
                 Caption = '-1'
-                ValueString = '-1'
                 Value = -1
                 TheFont.Charset = DEFAULT_CHARSET
                 TheFont.Color = clWindowText

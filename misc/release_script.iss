@@ -22,7 +22,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputBaseFilename={#MyAppName}-{#MyAppVersion}
-OutputDir=x:\ATDB\versions
+OutputDir=x:\atSoftwareReleases
 Compression=lzma
 SolidCompression=yes
 

@@ -109,7 +109,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 //            gSplashForm->Close();
 //        }
 
-		TStyleManager::TrySetStyle(gDefaultAppTheme.c_str());
+		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);

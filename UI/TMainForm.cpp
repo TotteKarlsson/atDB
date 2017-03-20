@@ -1235,7 +1235,7 @@ void __fastcall TMainForm::mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShi
 
 {
 	mCoverSlipsGrid->SelectedRows->Count;
-	mNrOfSelectedCS->SetValue(mCoverSlipsGrid->SelectedRows->Count);
+	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
 }
 
 
@@ -1243,7 +1243,7 @@ void __fastcall TMainForm::mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShi
 void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
 {
 	mCoverSlipsGrid->SelectedRows->Count;
-	mNrOfSelectedCS->SetValue(mCoverSlipsGrid->SelectedRows->Count);
+	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
 }
 
 
