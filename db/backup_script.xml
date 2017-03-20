@@ -35,7 +35,7 @@
 </objects>
 </database>
 </databases>
-<script compress="no" fileordir="file" timestampdir="" timestamp="yes">X:\atdb\backups\atdb.sql</script>
+<script compress="no" fileordir="file" timestampdir="" timestamp="yes">X:\ATDB\backups\atdb.sql</script>
 </export>
 <options>
 <createdb>yes</createdb>
