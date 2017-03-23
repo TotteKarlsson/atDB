@@ -3,8 +3,8 @@ object NewSpecimenForm: TNewSpecimenForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Specimen Form'
-  ClientHeight = 560
-  ClientWidth = 657
+  ClientHeight = 472
+  ClientWidth = 548
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,20 +13,14 @@ object NewSpecimenForm: TNewSpecimenForm
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label10: TLabel
-    Left = 18
-    Top = 453
-    Width = 36
-    Height = 13
-    Caption = 'Species'
-  end
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 657
-    Height = 509
+    Width = 548
+    Height = 421
     Align = alClient
     TabOrder = 0
     object Label1: TLabel
@@ -91,6 +85,20 @@ object NewSpecimenForm: TNewSpecimenForm
       Height = 13
       Caption = 'brain_region_dissection'
       FocusControl = DBEdit8
+    end
+    object Label8: TLabel
+      Left = 156
+      Top = 290
+      Width = 55
+      Height = 13
+      Caption = '(M/D/YYYY)'
+    end
+    object Label10: TLabel
+      Left = 156
+      Top = 336
+      Width = 55
+      Height = 13
+      Caption = '(M/D/YYYY)'
     end
     object DBEdit1: TDBEdit
       Left = 16
@@ -168,16 +176,16 @@ object NewSpecimenForm: TNewSpecimenForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 509
-    Width = 657
+    Top = 421
+    Width = 548
     Height = 51
     Align = alBottom
     TabOrder = 1
     DesignSize = (
-      657
+      548
       51)
     object Button1: TButton
-      Left = 577
+      Left = 468
       Top = 16
       Width = 60
       Height = 25
@@ -187,7 +195,7 @@ object NewSpecimenForm: TNewSpecimenForm
       TabOrder = 1
     end
     object Button2: TButton
-      Left = 496
+      Left = 387
       Top = 16
       Width = 60
       Height = 25
@@ -199,12 +207,7 @@ object NewSpecimenForm: TNewSpecimenForm
   end
   object DataSource1: TDataSource
     DataSet = atdbDM.specimenCDS
-    Left = 576
-    Top = 24
-  end
-  object DataSource2: TDataSource
-    DataSet = atdbDM.speciesDS
-    Left = 568
-    Top = 80
+    Left = 472
+    Top = 128
   end
 end

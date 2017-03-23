@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=792,1043,67,51
+Coordinates=273,643,49,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -12,11 +12,11 @@ Coordinates=173,10,127,303
 Visible=False
 
 [SB]
-Coordinates=124,330,41,51
+Coordinates=1127,894,41,51
 LayerNames=OrdersLayer
 
 [TopPanel]
-Coordinates=10,452,60,51
+Coordinates=155,1030,60,51
 LayerNames=OrdersLayer
 
 [AmazonDataModule.OrderItemsCDS]
@@ -164,10 +164,10 @@ LayerNames=OrdersLayer
 LayerNames=OrdersLayer
 
 [PageControl1]
-Coordinates=748,452,81,33
+Coordinates=2201,1166,81,33
 
 [TabSheet2]
-Coordinates=10,513,66,33
+Coordinates=97,1166,66,33
 
 [DataModule1.blocksCDS]
 Coordinates=970,270,92,177
@@ -197,446 +197,485 @@ Coordinates=1061,1,142,51
 Coordinates=660,613,101,177
 
 [mBlocksNavigator]
-Coordinates=10,330,104,51
+Coordinates=559,1030,104,51
 
 [DBNavigator2]
-Coordinates=80,452,82,51
+Coordinates=644,962,82,51
 
 [mBlockNotesGrid]
-Coordinates=171,556,101,33
+Coordinates=2346,1098,101,33
 
 [Label2]
-Coordinates=868,197,46,51
+Coordinates=834,1030,46,51
 
 [BlockNotesGB]
-Coordinates=772,197,86,51
+Coordinates=2085,1030,86,51
 
 [ScrollBox1]
-Coordinates=670,452,68,33
+Coordinates=2173,1098,68,33
 
 [TabSheet5]
-Coordinates=432,556,66,33
+Coordinates=10,1166,66,33
 
 [atdbDM.blocksCDS]
-Coordinates=362,10,109,249
+Coordinates=10,10,148,609
 
 [atdbDM.ribbonsQ]
 Coordinates=141,10,100,177
 
 [atdbDM.blockNotesCDS]
-Coordinates=870,10,132,123
+Coordinates=2458,10,132,123
 
 [atdbDM.blockNotesQ]
 Coordinates=595,10,118,123
 
 [atdbDM.usersDS]
-Coordinates=143,197,96,105
+Coordinates=396,760,96,105
 
 [atdbDM.ribbonNotesCDS]
-Coordinates=723,10,137,123
+Coordinates=1796,10,137,123
 
 [atdbDM.ribbonNotesQ]
 Coordinates=10,197,123,123
 
 [atdbDM.mRibbonCDS]
-Coordinates=10,10,121,177
+Coordinates=821,10,121,177
 
 [atdbDM.noteDS]
-Coordinates=549,197,91,51
+Coordinates=1369,1030,91,51
 
 [atdbDM.usersCDS]
-Coordinates=249,197,104,105
+Coordinates=646,760,104,105
 
 [atdbDM.notesCDS]
-Coordinates=481,10,104,123
+Coordinates=1252,10,104,123
 
 [atdbDM.blocksDS]
-Coordinates=251,10,101,195
+Coordinates=198,10,148,375
 
 [MenuPanel]
-Coordinates=557,267,68,51
+Coordinates=1736,1030,68,51
 
 [mBlocksGB]
-Coordinates=10,391,72,51
+Coordinates=1279,1098,72,51
 
 [mBlockNoteMemo]
-Coordinates=376,513,104,33
+Coordinates=944,1166,104,33
 
 [PrintBarCodeBtn]
-Coordinates=792,547,97,51
+Coordinates=1110,760,97,51
 
 [atdbDM.documentsCDS]
-Coordinates=32,1236,131,123
+Coordinates=1474,10,131,123
 
 [DBText1]
-Coordinates=273,713,56,51
+Coordinates=2256,1030,56,51
 
 [mDustAssayImageFolderE]
-Coordinates=730,1236,144,51
+Coordinates=1485,1030,144,51
 
 [mDocumentsGrid]
-Coordinates=1095,1247,100,33
+Coordinates=416,1166,100,33
 
 [Panel9]
-Coordinates=356,558,47,51
+Coordinates=1760,760,47,51
 
 [csDM.csFreshBatchesDS]
-Coordinates=898,673,138,51
+Coordinates=2369,760,138,51
 
 [LogLevelCB]
-Coordinates=598,881,84,87
+Coordinates=888,760,84,87
 
 [csDM.csDustAssayDS]
-Coordinates=276,840,123,51
+Coordinates=2539,760,123,51
 
 [GroupBox1]
-Coordinates=792,973,70,51
+Coordinates=1197,962,70,51
 
 [mBackgroundImagePanel]
-Coordinates=28,840,140,51
+Coordinates=1231,760,140,51
 
 [atdbDM.blockNotesDS]
-Coordinates=598,143,124,123
+Coordinates=1965,10,124,123
 
 [csDM.csStatusCDS]
-Coordinates=898,549,109,105
+Coordinates=259,760,109,105
 
 [GroupBox4]
-Coordinates=583,391,70,51
+Coordinates=1671,760,70,51
 
 [mUsersDBGrid]
-Coordinates=1040,967,88,33
+Coordinates=2062,1098,88,33
 
 [atdbDM.cryoprotectionDS]
-Coordinates=898,1167,141,51
+Coordinates=913,1098,141,51
 
 [Panel4]
-Coordinates=183,1397,47,51
+Coordinates=2021,1030,47,51
 
 [TabSheet8]
-Coordinates=940,222,66,33
+Coordinates=2470,1098,66,33
 
 [DBNavigator1]
-Coordinates=792,267,82,51
+Coordinates=1286,962,82,51
 
 [mRibbonsNavigator]
-Coordinates=1095,71,112,51
+Coordinates=1390,962,112,51
 
 [CSNavigator]
-Coordinates=16,735,76,51
+Coordinates=2436,894,76,51
 
 [Splitter3]
-Coordinates=940,937,55,33
+Coordinates=1772,1166,55,33
 
 [TabSheet4]
-Coordinates=0,1364,66,33
+Coordinates=1073,1166,66,33
 
 [mRibbonNotesNavigator]
-Coordinates=1095,211,135,51
+Coordinates=832,894,135,51
 
 [atdbDM.blockstatusDS]
-Coordinates=1095,687,126,51
+Coordinates=1042,962,126,51
 
 [mCSDustAssaysGrid]
-Coordinates=1095,1299,117,33
+Coordinates=184,1166,117,33
 
 [DBMemo2]
-Coordinates=1095,281,64,33
+Coordinates=859,1166,64,33
 
 [ToolButton2]
-Coordinates=1095,1351,74,33
+Coordinates=2557,1098,74,33
 
 [GroupBox6]
-Coordinates=419,1397,70,51
+Coordinates=743,894,70,51
 
 [Panel1]
-Coordinates=356,418,47,51
+Coordinates=10,894,47,51
 
 [ToolBar1]
-Coordinates=1095,1403,58,33
+Coordinates=1247,1166,58,33
 
 [mBlockNoteNavigator]
-Coordinates=583,601,121,51
+Coordinates=2002,894,121,51
 
 [mRibbonNoteMemo]
-Coordinates=1389,71,111,33
+Coordinates=1562,1166,111,33
 
 [mLblMakerMemo]
-Coordinates=792,617,98,51
+Coordinates=790,1098,98,51
 
 [csDM.csTypeCDS]
-Coordinates=623,1129,101,105
+Coordinates=10,760,101,105
 
 [csDM.csDS]
-Coordinates=598,1236,70,123
+Coordinates=1383,10,70,123
 
 [csDM.csCDS]
-Coordinates=158,1,77,159
+Coordinates=972,10,77,159
 
 [mAddDocBtn]
-Coordinates=792,757,80,51
+Coordinates=2095,760,80,51
 
 [mBrowseForDustAssayImageFolder]
-Coordinates=1160,1107,191,51
+Coordinates=812,962,191,51
 
 [atdbDM.ribbonsDS]
-Coordinates=174,447,107,177
+Coordinates=688,10,107,177
 
 [cdDustAssayNavigator]
-Coordinates=1095,141,127,51
+Coordinates=440,1098,127,51
 
 [atdbDM.specimenDS]
-Coordinates=405,805,116,393
-
-[TabSheet1]
-Coordinates=1095,1455,66,33
+Coordinates=541,10,116,249
 
 [csDM.csStatusDS]
-Coordinates=898,743,101,105
+Coordinates=518,760,101,105
 
 [BottomPanel]
-Coordinates=792,477,77,51
+Coordinates=692,1098,77,51
 
 [Label5]
-Coordinates=498,1397,46,51
+Coordinates=1069,1030,46,51
 
 [DBText3]
-Coordinates=671,1236,56,51
+Coordinates=1662,1030,56,51
 
 [GroupBox7]
-Coordinates=583,531,70,51
+Coordinates=1664,894,70,51
 
 [TTableFrame1.ClientDataSet1]
-Coordinates=898,337,159,51
+Coordinates=74,1098,159,51
 
 [mATDBServerBtnConnect]
-Coordinates=583,811,142,51
+Coordinates=1132,1030,142,51
 
 [TabSheet9]
-Coordinates=1026,1486,66,33
+Coordinates=1844,1166,66,33
 
 [mIm3FName]
-Coordinates=940,867,75,51
+Coordinates=2122,962,75,51
 
 [atdbDM.substitutionProtocol]
-Coordinates=405,71,155,123
+Coordinates=2119,10,155,123
 
 [GroupBox2]
-Coordinates=232,1397,70,51
+Coordinates=2151,894,70,51
 
 [mProcessForBlocksGrid]
-Coordinates=1389,175,135,33
+Coordinates=1931,1166,135,33
 
 [DBGrid2]
-Coordinates=967,1486,56,33
+Coordinates=1324,1166,56,33
 
 [csDM.csTypeDS]
-Coordinates=273,1,94,105
+Coordinates=139,760,94,105
 
 [atdbDM.fixationMethodDS]
-Coordinates=1160,491,142,51
+Coordinates=2195,760,142,51
 
 [Panel10]
-Coordinates=547,1397,53,51
+Coordinates=1825,1030,53,51
 
 [mBackgroundImage]
-Coordinates=1095,547,113,51
+Coordinates=10,962,113,51
 
 [Panel2]
-Coordinates=678,531,47,51
+Coordinates=91,1030,47,51
 
 [mCoverslipImage]
-Coordinates=1095,351,100,51
+Coordinates=1897,1030,100,51
 
 [mResultImage]
-Coordinates=792,337,84,51
+Coordinates=2292,962,84,51
 
 [csDM.csDustAssayCDS]
-Coordinates=583,461,131,51
+Coordinates=221,962,131,51
 
 [atdbDM.embeddingProtocolDS]
-Coordinates=1160,617,165,51
+Coordinates=1527,962,165,51
 
 [GroupBox3]
-Coordinates=754,1397,70,51
+Coordinates=1458,1098,70,51
 
 [Label3]
-Coordinates=356,348,46,51
+Coordinates=1824,760,46,51
 
 [mSpecimenNavigator]
-Coordinates=1095,1037,119,51
+Coordinates=750,490,119,51
 
 [mUsersCB]
-Coordinates=818,867,84,87
+Coordinates=777,760,84,87
 
 [atdbDM.postfix]
-Coordinates=1040,617,88,51
+Coordinates=2012,962,88,51
 
 [Image1]
-Coordinates=273,125,49,51
+Coordinates=1728,962,49,51
 
 [Panel8]
-Coordinates=311,1397,47,51
+Coordinates=1884,962,47,51
 
 [atdbDM.fixativeTBL]
-Coordinates=898,973,110,51
+Coordinates=1527,894,110,51
 
 [PageControl2]
-Coordinates=1271,175,81,33
+Coordinates=662,1166,81,33
 
 [Panel7]
-Coordinates=356,628,47,51
+Coordinates=10,1098,47,51
 
 [Splitter2]
-Coordinates=780,1486,55,33
+Coordinates=1700,1166,55,33
 
 [TabSheet7]
-Coordinates=711,1486,66,33
+Coordinates=10,1212,66,33
 
 [Panel6]
-Coordinates=678,741,47,51
+Coordinates=1948,962,47,51
 
 [mBlocksForRibbonsGrid]
-Coordinates=1389,227,136,33
+Coordinates=1398,1166,136,33
 
 [atdbDM.processIDDS]
-Coordinates=1095,757,119,51
+Coordinates=2330,1030,119,51
 
 [ToolButton1]
-Coordinates=632,1486,74,33
+Coordinates=206,1212,74,33
 
 [Panel11]
-Coordinates=524,840,53,51
+Coordinates=2220,962,53,51
 
 [mUsersNavigator]
-Coordinates=792,687,99,51
+Coordinates=2399,962,99,51
 
 [mServerIPE]
-Coordinates=833,1397,72,51
+Coordinates=1403,760,72,51
 
 [mRegisterFreshBatchBtn]
-Coordinates=1095,827,138,51
+Coordinates=351,894,138,51
 
 [atdbDM.preprocesstreatmentDS]
-Coordinates=583,671,171,51
-
-[Image2]
-Coordinates=273,643,49,51
+Coordinates=1887,760,171,51
 
 [GroupBox8]
-Coordinates=792,152,70,51
+Coordinates=1841,894,70,51
 
 [Button1]
-Coordinates=583,741,53,51
+Coordinates=371,1098,53,51
 
 [atdbDM.specimenCDS]
-Coordinates=405,213,124,573
+Coordinates=386,10,124,267
 
 [infoMemo]
-Coordinates=685,1397,62,51
+Coordinates=10,1030,62,51
 
 [Panel14]
-Coordinates=75,1397,53,51
+Coordinates=519,894,53,51
 
 [TTableFrame1.SQLDataSet1]
-Coordinates=1160,967,152,51
+Coordinates=368,1030,152,51
 
 [mPasswordE]
-Coordinates=1040,477,79,51
+Coordinates=2240,894,79,51
 
 [atdbDM.freezeprotocolDS]
-Coordinates=405,1,140,51
+Coordinates=897,1030,140,51
 
 [atdbDM.speciesDS]
-Coordinates=1095,897,107,51
+Coordinates=234,1030,107,51
 
 [mRibbonNotesGrid]
-Coordinates=1389,331,108,33
+Coordinates=2517,1166,108,33
 
 [TabSheet3]
-Coordinates=484,1486,66,33
+Coordinates=1160,1166,66,33
 
 [atdbDM.infiltrationProtocolDS]
-Coordinates=1160,421,161,51
+Coordinates=1085,1098,161,51
 
 [mResultImagePanel]
-Coordinates=879,1236,112,51
+Coordinates=211,894,112,51
 
 [GroupBox9]
-Coordinates=792,407,70,51
+Coordinates=591,894,70,51
 
 [Panel12]
-Coordinates=360,1397,53,51
+Coordinates=149,962,53,51
 
 [Label4]
-Coordinates=678,391,46,51
+Coordinates=1306,1030,46,51
 
 [mRibbonNoteNavigator]
-Coordinates=1095,1,129,51
+Coordinates=1369,894,129,51
 
 [mIm2FName]
-Coordinates=940,152,75,51
+Coordinates=273,1098,75,51
 
 [mRibbonsGrid]
-Coordinates=1271,351,85,33
+Coordinates=2094,1166,85,33
 
 [TTableFrame1]
-Coordinates=1271,561,84,33
+Coordinates=97,1212,84,33
 
 [atdbDM.documentsDS]
-Coordinates=171,1236,124,123
+Coordinates=2305,10,124,123
 
 [mSpecimenGrid]
-Coordinates=1271,687,93,33
+Coordinates=2140,410,93,33
 
 [TabSheet6]
-Coordinates=267,1486,66,33
+Coordinates=329,1166,66,33
 
 [csDM.csFreshBatchesCDS]
-Coordinates=1160,1177,145,141
+Coordinates=1072,10,145,141
 
 [GroupBox5]
-Coordinates=95,735,70,51
+Coordinates=1795,962,70,51
 
 [mDBUserE]
-Coordinates=792,1183,68,51
+Coordinates=1370,1098,68,51
 
 [TabSheet10]
-Coordinates=188,1486,72,33
+Coordinates=765,1166,72,33
 
 [mDocsNavigator]
-Coordinates=177,840,96,51
+Coordinates=1186,894,96,51
 
 [mBlocksGrid]
-Coordinates=1271,843,78,33
+Coordinates=2304,1166,78,33
 
 [mIm1FName]
-Coordinates=792,1113,75,51
+Coordinates=546,962,75,51
 
 [atdbDM.ribbonNotesDS]
-Coordinates=898,407,129,123
+Coordinates=1636,10,129,123
 
 [mDatabaseE]
-Coordinates=606,1397,76,51
+Coordinates=594,1098,76,51
 
 [Panel3]
-Coordinates=134,1397,47,51
+Coordinates=748,962,47,51
 
 [Panel5]
-Coordinates=356,488,47,51
+Coordinates=1305,894,47,51
 
 [mTablesLB]
-Coordinates=598,285,84,87
+Coordinates=999,760,84,87
 
 [mCoverSlipsGrid]
-Coordinates=1271,895,98,33
+Coordinates=540,1166,98,33
 
 [CSFreshBatchNavigator]
-Coordinates=1040,407,132,51
+Coordinates=383,962,132,51
 
 [mFreshBatchesGrid]
-Coordinates=129,1486,112,33
+Coordinates=1923,1098,112,33
 
 [mPrintBatchLblBtn]
-Coordinates=84,206,108,51
+Coordinates=996,894,108,51
+
+[TabSheet12]
+Coordinates=1829,1098,72,33
+
+[mNrOfSelectedCS]
+Coordinates=2478,1030,103,51
+
+[mCSImage]
+Coordinates=1753,894,67,51
+
+[GroupBox10]
+Coordinates=2340,894,76,51
+
+[CSgridPanel]
+Coordinates=2523,962,75,51
+
+[Label1]
+Coordinates=2193,1030,46,51
+
+[Label6]
+Coordinates=680,894,46,51
+
+[Panel13]
+Coordinates=1930,894,53,51
+
+[mRegisterCarbonCoatBatchBtn]
+Coordinates=2533,894,169,51
+
+[mPrintCSLabelsBtn]
+Coordinates=74,894,111,51
+
+[DBMemo1]
+Coordinates=1744,1098,64,33
+
+[mRegisterCleanRoundBtn]
+Coordinates=1497,760,142,51
+
+[PageControl3]
+Coordinates=1641,1098,81,33
+
+[TabSheet11]
+Coordinates=1547,1098,72,33
+
+[mDocsTabSheet]
+Coordinates=2259,1098,95,33
 

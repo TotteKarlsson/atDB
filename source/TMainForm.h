@@ -52,11 +52,6 @@
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include "TTableFrame.h"
-#include "pBarcode2D.hpp"
-#include "pCore2D.hpp"
-#include "pDataMatrix.hpp"
-#include "pDBBarcode2D.hpp"
-#include "pQRCode.hpp"
 #include "TIntLabel.h"
 
 using mtk::Property;
@@ -133,7 +128,7 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mPasswordE;
 	TArrayBotButton *mATDBServerBtnConnect;
 	TSTDStringLabeledEdit *mDatabaseE;
-	TTabSheet *TabSheet1;
+	TTabSheet *mDocsTabSheet;
 	TDBNavigator *mDocsNavigator;
 	TDBGrid *mDocumentsGrid;
 	TButton *mAddDocBtn;
@@ -147,9 +142,6 @@ class TMainForm : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TPopupMenu *SpecimenPopup;
 	TMenuItem *openDocument;
-	TDBBarcode2D *DBBarcode2D1;
-	TImage *Image2;
-	TBarcode2D_QRCode *Barcode2D_QRCode1;
 	TDBText *DBText3;
 	TGroupBox *GroupBox5;
 	TPanel *Panel2;
@@ -167,8 +159,6 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel8;
 	TGroupBox *GroupBox8;
 	TPanel *Panel9;
-	TBarcode2D_DataMatrix *csBarCode;
-	TDBBarcode2D *mCSBarCode2D;
 	TPanel *Panel10;
 	TDBMemo *DBMemo2;
 	TLabel *Label4;

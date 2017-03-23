@@ -100,7 +100,6 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
     csDM->afterConnect();
     mATDBServerBtnConnect->Caption = "Disconnect";
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
-
 	populateUsersCB();
 }
 
@@ -407,7 +406,9 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
     	case TNavigateBtn::nbInsert:
         	if(mUsersCB->ItemIndex != -1)
             {
-                atdbDM->specimenCDS->FieldValues["specimen_id"] = "NEW SPECIMEN";
+
+                atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
+                atdbDM->specimenCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
 
             	//Open New specimen dialog
 				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
@@ -419,7 +420,7 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
                 else
                 {
 	                atdbDM->specimenCDS->Post();
-			    	atdbDM->specimenCDS->First();
+	                atdbDM->specimenCDS->First();
                 }
             }
             else
@@ -743,6 +744,7 @@ void __fastcall TMainForm::mSpecimenGridDblClick(TObject *Sender)
 {
 	//Show current record on a form
     TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
+    atdbDM->specimenCDS->Open();
     atdbDM->specimenCDS->Edit();
     atdbDM->substitutionProtocol->Open();
 	atdbDM->substitutionProtocol->Edit();

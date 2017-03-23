@@ -17,16 +17,16 @@ __fastcall TMainForm::~TMainForm()
     	createFolder(joinPath(gCommonAppDataLocation, "Grids"));
     }
 
-	Log(lInfo) << "Saving column states";
 
-	for(int i = 0; i < mDBGrids.size(); i++)
-    {
-    	if(mDBGrids[i] != NULL)
-        {
-            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
-		    mDBGrids[i]->Columns->SaveToFile(fName.c_str());
-        }
-    }
+//	Log(lInfo) << "Saving column states";
+//	for(int i = 0; i < mDBGrids.size(); i++)
+//    {
+//    	if(mDBGrids[i] != NULL)
+//        {
+//            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
+//		    mDBGrids[i]->Columns->SaveToFile(fName.c_str());
+//        }
+//    }
 }
 
 //---------------------------------------------------------------------------

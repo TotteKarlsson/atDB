@@ -117,20 +117,20 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	    populateListBox(tables, mTablesLB);
     }
 
-	//Read grid column settings from files in AppData/Grids folder
-	Log(lInfo) << "Saving column states";
-
-	for(int i = 0; i < mDBGrids.size(); i++)
-    {
-    	if(mDBGrids[i] != NULL)
-        {
-            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
-            if(fileExists(fName.c_str()))
-            {
-		    	mDBGrids[i]->Columns->LoadFromFile(fName.c_str());
-            }
-        }
-    }
+//	//Read grid column settings from files in AppData/Grids folder
+//	Log(lInfo) << "Reading column states";
+//
+//	for(int i = 0; i < mDBGrids.size(); i++)
+//    {
+//    	if(mDBGrids[i] != NULL)
+//        {
+//            string fName = joinPathU(gCommonAppDataLocation, "Grids", mDBGrids[i]->Name);
+//            if(fileExists(fName.c_str()))
+//            {
+//		    	mDBGrids[i]->Columns->LoadFromFile(fName.c_str());
+//            }
+//        }
+//    }
 }
 
 void TMainForm::setupIniFile()

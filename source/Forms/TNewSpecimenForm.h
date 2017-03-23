@@ -22,7 +22,6 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TDBLookupComboBox *DBLookupComboBox1;
 	TLabel *Label2;
-	TDataSource *DataSource2;
 	TLabel *Label3;
 	TDBEdit *DBEdit2;
 	TLabel *Label4;
@@ -35,8 +34,9 @@ __published:	// IDE-managed Components
 	TDBEdit *DBEdit6;
 	TLabel *Label9;
 	TDBEdit *DBEdit8;
+	TLabel *Label8;
 	TLabel *Label10;
-	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TNewSpecimenForm(TComponent* Owner);

@@ -6,13 +6,13 @@
         <Projects Include="P:\libs\atapi\source\atCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="UI\Core\atDBCore-static.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="atDB.cbproj">
+        <Projects Include="source\Core\atDBCore-static.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="source\atDB.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -32,15 +32,6 @@
     <Target Name="atCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDBCore-static">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj"/>
-    </Target>
-    <Target Name="atDBCore-static:Clean">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="atDBCore-static:Make">
-        <MSBuild Projects="UI\Core\atDBCore-static.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="atVCLCore">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
     </Target>
@@ -50,23 +41,32 @@
     <Target Name="atVCLCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="atDBCore-static">
+        <MSBuild Projects="source\Core\atDBCore-static.cbproj"/>
+    </Target>
+    <Target Name="atDBCore-static:Clean">
+        <MSBuild Projects="source\Core\atDBCore-static.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atDBCore-static:Make">
+        <MSBuild Projects="source\Core\atDBCore-static.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="atDB">
-        <MSBuild Projects="atDB.cbproj"/>
+        <MSBuild Projects="source\atDB.cbproj"/>
     </Target>
     <Target Name="atDB:Clean">
-        <MSBuild Projects="atDB.cbproj" Targets="Clean"/>
+        <MSBuild Projects="source\atDB.cbproj" Targets="Clean"/>
     </Target>
     <Target Name="atDB:Make">
-        <MSBuild Projects="atDB.cbproj" Targets="Make"/>
+        <MSBuild Projects="source\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atCore;atDBCore-static;atVCLCore;atDB"/>
+        <CallTarget Targets="atCore;atVCLCore;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atCore:Clean;atDBCore-static:Clean;atVCLCore:Clean;atDB:Clean"/>
+        <CallTarget Targets="atCore:Clean;atVCLCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atCore:Make;atDBCore-static:Make;atVCLCore:Make;atDB:Make"/>
+        <CallTarget Targets="atCore:Make;atVCLCore:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
