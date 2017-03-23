@@ -4,7 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
+USEFORM("DataModules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
+USEFORM("Forms\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
+USEFORM("Forms\TNewBlockForm.cpp", NewBlockForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -87,6 +95,13 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
+		Application->CreateForm(__classid(TatdbDM), &atdbDM);
+		Application->CreateForm(__classid(TcsDM), &csDM);
+		Application->CreateForm(__classid(TNewBlockForm), &NewBlockForm);
+		Application->CreateForm(__classid(TNewSpecimenForm), &NewSpecimenForm);
+		Application->CreateForm(__classid(TAboutATDBForm), &AboutATDBForm);
+		Application->CreateForm(__classid(TRegisterFreshCSBatchForm), &RegisterFreshCSBatchForm);
+		Application->CreateForm(__classid(TPrintLabelForm), &PrintLabelForm);
 		Application->ShowMainForm = true;
 		Application->Run();
 

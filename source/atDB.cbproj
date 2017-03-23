@@ -46,16 +46,17 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <BCC_IncludePath>DataModules;Forms;Frames;Package;Core;$(BCC_IncludePath)</BCC_IncludePath>
         <VerInfo_Keys>CompanyName=Dune Scientific, LLC;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=Dune Scientific, LLC;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>None</Manifest_File>
         <VCL_Custom_Styles>&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;;&quot;Obsidian|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Obsidian.vsf&quot;</VCL_Custom_Styles>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;UI\;UI\Forms\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>Package\;Forms\;DataModules\;Frames\;vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;UI\;UI\Forms\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <IncludePath>vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl;$(AT_ROOT)\source\vcl\datamodules\;UI\;UI\Forms\;..\;$(IncludePath)</IncludePath>
+        <IncludePath>Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
         <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -115,11 +116,10 @@
         <Debugger_DebugSourcePath>P:\libs\dslib\VCL\Common\;P:\libs\dslib\VCL\Components\;P:\libs\dslib\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
-        <Icon_MainIcon>..\UI\Resources\atDB.ico</Icon_MainIcon>
+        <Icon_MainIcon>Resources\atDB.ico</Icon_MainIcon>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_Debug>true</VerInfo_Debug>
-        <PostBuildEvent><![CDATA[xcopy CHANGELOG.txt                                 $(DEBUG_BUILD)\bin /y
-xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
+        <PostBuildEvent><![CDATA[xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
 xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
@@ -127,7 +127,7 @@ xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y
 xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y
 xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y
 xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y
-xcopy *.txt                                                   $(APP_RELEASES)\atdb /y
+xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y
 $(PostBuildEvent)]]></PostBuildEvent>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -146,13 +146,86 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="atDB.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
+        <CppCompile Include="auto_link.cpp">
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ClosingAppLogic.cpp">
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DataModules\TCoverSlipDataModule.cpp">
+            <Form>csDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>DataModules\TCoverSlipDataModule.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TAboutATDBForm.cpp">
+            <Form>AboutATDBForm</Form>
+            <DependentOn>Forms\TAboutATDBForm.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TNewBlockForm.cpp">
+            <Form>NewBlockForm</Form>
+            <DependentOn>Forms\TNewBlockForm.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TNewSpecimenForm.cpp">
+            <Form>NewSpecimenForm</Form>
+            <DependentOn>Forms\TNewSpecimenForm.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TPrintLabelForm.cpp">
+            <Form>PrintLabelForm</Form>
+            <DependentOn>Forms\TPrintLabelForm.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TRegisterFreshCSBatchForm.cpp">
+            <Form>RegisterFreshCSBatchForm</Form>
+            <DependentOn>Forms\TRegisterFreshCSBatchForm.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Frames\TTableFrame.cpp">
+            <Form>TableFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>Frames\TTableFrame.h</DependentOn>
+            <BuildOrder>2</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="InitializingAppLogic.cpp">
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Misc.cpp">
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="MiscDataBase.cpp">
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Package\atdbVCLUtils.cpp">
+            <DependentOn>Package\atdbVCLUtils.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ThemesLogic.cpp">
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
         <CppCompile Include="TMainForm.cpp">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp">
+            <Form>atdbDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <FormResources Include="DataModules\TCoverSlipDataModule.dfm"/>
+        <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
+        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TNewBlockForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -233,7 +306,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy CHANGELOG.txt                                 $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy *.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
+        <PostBuildEvent>xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>
