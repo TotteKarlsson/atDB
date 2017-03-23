@@ -15,10 +15,6 @@ Visible=False
 Coordinates=124,330,41,51
 LayerNames=OrdersLayer
 
-[Splitter1]
-Coordinates=524,513,55,33
-LayerNames=OrdersLayer
-
 [TopPanel]
 Coordinates=10,452,60,51
 LayerNames=OrdersLayer

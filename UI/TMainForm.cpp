@@ -50,7 +50,7 @@
 
 TMainForm *MainForm;
 using namespace mtk;
-using namespace ab;
+using namespace at;
 
 extern string gLogFileName;
 extern string gApplicationRegistryRoot;

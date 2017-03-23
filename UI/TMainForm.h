@@ -75,7 +75,6 @@ class TMainForm : public TRegistryForm
         TPopupMenu *PopupMenu1;
         TAction *ClearMemoA;
         TMenuItem *ClearMemoA1;
-    TSplitter *Splitter1;
     TPanel *TopPanel;
     mtkIniFileC *mIniFileC;
     TMainMenu *MainMenu1;
