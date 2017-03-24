@@ -19,6 +19,7 @@
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
 #include <Vcl.Mask.hpp>
+#include "TSTDStringLabeledEdit.h"
  //---------------------------------------------------------------------------
 class TRegisterFreshCSBatchForm : public TForm
 {
@@ -29,6 +30,7 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TButton *mRegisterBtn;
 	TLabel *Label2;
+	TSTDStringLabeledEdit *mCoverSlipLOTE;
 	void __fastcall mRegisterBtnClick(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);

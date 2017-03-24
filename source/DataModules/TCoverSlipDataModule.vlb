@@ -2,7 +2,7 @@
 Coordinates=615,143,107,177
 
 [csFreshBatchesCDS]
-Coordinates=817,405,115,141
+Coordinates=817,405,115,159
 
 [atdbDM.substitutionProtocol]
 Coordinates=622,1229,155,123
@@ -20,7 +20,7 @@ Coordinates=817,825,165,51
 Coordinates=93,915,71,105
 
 [atdbDM.specimenCDS]
-Coordinates=440,143,124,573
+Coordinates=440,143,124,267
 
 [csDustAssayDS]
 Coordinates=817,335,93,51
@@ -29,10 +29,10 @@ Coordinates=817,335,93,51
 Coordinates=817,1,107,51
 
 [atdbDM.blocksDS]
-Coordinates=622,731,101,195
+Coordinates=622,731,148,375
 
 [atdbDM.blocksCDS]
-Coordinates=622,339,109,249
+Coordinates=622,339,148,609
 
 [atdbDM.blockNotesCDS]
 Coordinates=615,1,132,123
@@ -50,7 +50,7 @@ Coordinates=817,755,91,51
 Coordinates=440,735,124,123
 
 [csFreshBatchesDS]
-Coordinates=817,685,108,141
+Coordinates=817,685,108,159
 
 [atdbDM.blockstatusDS]
 Coordinates=817,545,126,51
@@ -74,7 +74,7 @@ Coordinates=817,141,142,51
 Coordinates=817,475,110,51
 
 [atdbDM.specimenDS]
-Coordinates=468,877,116,393
+Coordinates=468,877,116,249
 
 [atdbDM.cryoprotectionDS]
 Coordinates=185,1308,141,51
@@ -86,7 +86,7 @@ Coordinates=301,754,129,123
 Coordinates=296,339,88,51
 
 [csCDS]
-Coordinates=296,409,47,159
+Coordinates=296,409,82,231
 
 [atdbDM.mRibbonCDS]
 Coordinates=334,1308,121,177
@@ -104,7 +104,7 @@ Coordinates=0,0,71,105
 Coordinates=296,587,79,105
 
 [csDS]
-Coordinates=12,304,40,123
+Coordinates=12,304,82,195
 
 [atdbDM.freezeprotocolDS]
 Coordinates=817,965,140,51

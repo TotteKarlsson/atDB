@@ -2,8 +2,8 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   Left = 0
   Top = 0
   Caption = 'Register Fresh Coverslip Batch'
-  ClientHeight = 137
-  ClientWidth = 484
+  ClientHeight = 128
+  ClientWidth = 486
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -64,12 +64,22 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     TabOrder = 2
   end
   object mRegisterBtn: TButton
-    Left = 176
-    Top = 80
-    Width = 105
-    Height = 41
+    Left = 344
+    Top = 67
+    Width = 121
+    Height = 50
     Caption = 'Register'
     TabOrder = 3
     OnClick = mRegisterBtnClick
+  end
+  object mCoverSlipLOTE: TSTDStringLabeledEdit
+    Left = 16
+    Top = 96
+    Width = 121
+    Height = 21
+    EditLabel.Width = 78
+    EditLabel.Height = 13
+    EditLabel.Caption = 'mCoverSlipLOTE'
+    TabOrder = 4
   end
 end

@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=273,643,49,51
+Coordinates=177,404,76,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -281,7 +281,7 @@ Coordinates=416,1166,100,33
 Coordinates=1760,760,47,51
 
 [csDM.csFreshBatchesDS]
-Coordinates=2369,760,138,51
+Coordinates=2369,760,138,159
 
 [LogLevelCB]
 Coordinates=888,760,84,87
@@ -368,10 +368,10 @@ Coordinates=790,1098,98,51
 Coordinates=10,760,101,105
 
 [csDM.csDS]
-Coordinates=1383,10,70,123
+Coordinates=1383,10,82,195
 
 [csDM.csCDS]
-Coordinates=972,10,77,159
+Coordinates=972,10,82,231
 
 [mAddDocBtn]
 Coordinates=2095,760,80,51
@@ -587,7 +587,7 @@ Coordinates=2140,410,93,33
 Coordinates=329,1166,66,33
 
 [csDM.csFreshBatchesCDS]
-Coordinates=1072,10,145,141
+Coordinates=1072,10,145,159
 
 [GroupBox5]
 Coordinates=1795,962,70,51

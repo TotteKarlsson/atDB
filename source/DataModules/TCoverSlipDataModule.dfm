@@ -26,6 +26,20 @@ object csDM: TcsDM
       BlobType = ftMemo
       Size = 1
     end
+    object csDSfreshCSBatch: TIntegerField
+      FieldName = 'freshCSBatch'
+      Required = True
+    end
+    object csDScleanCSBatch: TIntegerField
+      FieldName = 'cleanCSBatch'
+    end
+    object csDScarboncoatbatch: TIntegerField
+      FieldName = 'carboncoatbatch'
+    end
+    object csDSfrom_lot: TStringField
+      FieldName = 'from_lot'
+      Size = 128
+    end
   end
   object csP: TDataSetProvider
     DataSet = csDS
@@ -76,6 +90,20 @@ object csDM: TcsDM
       FieldName = 'notes'
       BlobType = ftMemo
       Size = 1
+    end
+    object csCDSfreshCSBatch: TIntegerField
+      FieldName = 'freshCSBatch'
+      Required = True
+    end
+    object csCDScleanCSBatch: TIntegerField
+      FieldName = 'cleanCSBatch'
+    end
+    object csCDScarboncoatbatch: TIntegerField
+      FieldName = 'carboncoatbatch'
+    end
+    object csCDSfrom_lot: TStringField
+      FieldName = 'from_lot'
+      Size = 128
     end
   end
   object csDSource: TDataSource
@@ -274,6 +302,10 @@ object csDM: TcsDM
     object csFreshBatchesCDStype: TIntegerField
       FieldName = 'type'
       Required = True
+    end
+    object csFreshBatchesCDSlot_number: TStringField
+      FieldName = 'lot_number'
+      Size = 128
     end
   end
 end

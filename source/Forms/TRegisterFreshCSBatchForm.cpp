@@ -16,6 +16,7 @@ using namespace std;
 #pragma link "pDataMatrixEcc200"
 #pragma link "pDBBarcode2D"
 #pragma link "TIntegerLabeledEdit"
+#pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TRegisterFreshCSBatchForm *RegisterFreshCSBatchForm;
 
@@ -52,9 +53,7 @@ string Month(int month)
 
 int nrOfFreshBatchesToday()
 {
-
     TSQLQuery* q = new TSQLQuery(NULL);
-
     q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
     sq << "SELECT COUNT(*) FROM freshCSbatches";
@@ -87,7 +86,8 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
     q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
-    sq << "INSERT into freshCSbatches (count, batchcode, type) VALUES ("<<count<<", '" <<lbl.str() <<"', '"<<csType<<"')";
+    sq << "INSERT into freshCSbatches (count, batchcode, lot_number, type) VALUES ("
+    		<<count<<", '" <<lbl.str() <<"', '"<<mCoverSlipLOTE->getValue()<<"', '"<<csType<<"')";
 
     q->SQL->Add(sq.str().c_str());
     q->ExecSQL();
@@ -100,15 +100,15 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
     tq->SQL->Add("SELECT LAST_INSERT_ID();");
     tq->Open();
-    int id = tq->Fields->operator [](0)->AsInteger;
+    int insert_id = tq->Fields->operator [](0)->AsInteger;
     tq->Close();
 
     //Associate count coverslips with this batch
 	stringstream qs;
-    qs <<"INSERT INTO coverslips (status, type, freshCSBatch) VALUES ";
+    qs <<"INSERT INTO coverslips (status, type, freshCSBatch, from_lot) VALUES ";
     for(int i = 0; i < count; i++)
     {
-	    qs<<"(1,"<<csType <<","<<id<<")";
+	    qs<<"(1,"<<csType <<","<<insert_id<<", \'"<<mCoverSlipLOTE->getValue()<<"\')";
         if(i < count-1)
         {
 	    	qs<<",";
@@ -119,8 +119,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 	tq->ExecSQL();
     delete tq;
     delete q;
-    Log(lInfo) << "The id: "<<id;
-
+    Log(lInfo) << "Batch ID: "<<insert_id;
     Sleep(1000);
     Close();
 }

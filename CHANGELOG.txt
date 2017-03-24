@@ -1,3 +1,12 @@
+Release 0.5.8 (March 23)
+=======================
+* Fixed default DB value error when entering a new specimen.
+* Re organizing atDB sources
+* Refactored dslib -> dsl
+* Removed references to splash and style selections
+* Updated backup script and windows task
+* Tracking atdb schema
+
 Release 0.5.7 (Jan 9)
 =======================
 * Changed underlying DB schema

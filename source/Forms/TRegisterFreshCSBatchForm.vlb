@@ -5,7 +5,7 @@ Coordinates=794,1266,99,33
 Coordinates=392,606,124,123
 
 [atdbDM.blocksCDS]
-Coordinates=172,330,109,249
+Coordinates=172,330,148,609
 
 [Label2]
 Coordinates=794,1035,46,51
@@ -44,7 +44,7 @@ Coordinates=392,166,104,105
 Coordinates=794,320,141,51
 
 [atdbDM.specimenDS]
-Coordinates=14,165,116,393
+Coordinates=14,165,116,249
 
 [atdbDM.fixationMethodDS]
 Coordinates=592,331,142,51
@@ -86,10 +86,10 @@ Coordinates=1023,1,161,51
 Coordinates=797,551,137,123
 
 [atdbDM.blocksDS]
-Coordinates=53,660,101,195
+Coordinates=53,660,148,375
 
 [atdbDM.specimenCDS]
-Coordinates=40,913,124,573
+Coordinates=40,913,124,267
 
 [atdbDM.mRibbonCDS]
 Coordinates=172,649,121,177
@@ -98,14 +98,14 @@ Coordinates=172,649,121,177
 Coordinates=592,408,124,123
 
 []
-Coordinates=151,1,53,51
+Coordinates=151,1,99,51
 Visible=True
 
 [csDM.csCDS]
-Coordinates=295,1022,77,159
+Coordinates=295,1022,82,231
 
 [csDM.csFreshBatchesDS]
-Coordinates=997,218,138,51
+Coordinates=997,218,138,159
 
 [csDM.csStatusDS]
 Coordinates=241,893,101,105
@@ -117,7 +117,7 @@ Coordinates=997,358,131,51
 Coordinates=166,1022,123,51
 
 [csDM.csDS]
-Coordinates=554,674,70,123
+Coordinates=554,674,82,195
 
 [csDM.csTypeDS]
 Coordinates=435,1524,94,105
@@ -126,11 +126,14 @@ Coordinates=435,1524,94,105
 Coordinates=663,1524,101,105
 
 [csDM.csFreshBatchesCDS]
-Coordinates=642,1022,145,51
+Coordinates=642,1022,145,159
 
 [csDM.csStatusCDS]
 Coordinates=772,1,109,105
 
 [mDT]
 Coordinates=794,1321,40,33
+
+[mCoverSlipLOTE]
+Coordinates=151,71,99,51
 

@@ -55,6 +55,15 @@ class TcsDM : public TDataModule
 	TIntegerField *csFreshBatchesCDScount;
 	TStringField *csFreshBatchesCDSbatchcode;
 	TIntegerField *csFreshBatchesCDStype;
+	TStringField *csFreshBatchesCDSlot_number;
+	TIntegerField *csDSfreshCSBatch;
+	TIntegerField *csDScleanCSBatch;
+	TIntegerField *csDScarboncoatbatch;
+	TStringField *csDSfrom_lot;
+	TIntegerField *csCDSfreshCSBatch;
+	TIntegerField *csCDScleanCSBatch;
+	TIntegerField *csCDScarboncoatbatch;
+	TStringField *csCDSfrom_lot;
         void __fastcall csDSBeforeOpen(TDataSet *DataSet);
         void __fastcall CDSAfterPost(TDataSet *DataSet);
         void __fastcall CDSAfterScroll(TDataSet *DataSet);

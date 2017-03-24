@@ -406,7 +406,6 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
     	case TNavigateBtn::nbInsert:
         	if(mUsersCB->ItemIndex != -1)
             {
-
                 atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
                 atdbDM->specimenCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
 
