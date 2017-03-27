@@ -41,6 +41,17 @@ int TMainForm::getCurrentUserID()
 	return  -1;
 }
 
+string TMainForm::getCurrentUserName()
+{
+	int i = mUsersCB->ItemIndex;
+    if(i > -1)
+    {
+    	return stdstr(mUsersCB->Items->Strings[i]);
+    }
+
+	return  "<none>";
+}
+
 void TMainForm::setupWindowTitle()
 {
 	string title = createWindowTitle("ATDB", Application);

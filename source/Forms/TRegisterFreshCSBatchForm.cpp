@@ -122,6 +122,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     Log(lInfo) << "Batch ID: "<<insert_id;
     Sleep(1000);
     Close();
+    csDM->csCDS->Refresh();
 }
 
 //Restore the filter

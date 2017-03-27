@@ -28,6 +28,7 @@
 #include "TRegisterFreshCSBatchForm.h"
 #include "TPrintLabelForm.h"
 #include "atQueryBuilder.h"
+#include "vcl/forms/TTextInputDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -1018,7 +1019,8 @@ void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
     TRegisterFreshCSBatchForm* f = new TRegisterFreshCSBatchForm(this);
     f->ShowModal();
     delete f;
-	csDM->csCDS->Refresh();
+
+	selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
 }
 
 //---------------------------------------------------------------------------
@@ -1214,30 +1216,55 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 {
-	//Get selected cs records in the coverslip grid
+    //Get selected cs records in the coverslip grid
     vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
 
     if(coverslipIDS.size() == 0)
     {
-	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
-		return;
+        MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+        return;
     }
 
-    //Create and print labels
-    if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+	TButton* b = dynamic_cast<TButton*>(Sender);
+	if(b == mPrintCSLabelsBtn)
     {
-		Log(lError) << "There was a problem creating and/or printing coverslip labels";
+        //Create and print labels
+        if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+        {
+            Log(lError) << "There was a problem creating and/or printing coverslip labels";
+        }
+    }
+    else if(b == mAddCSNote)
+    {
+    	TTextInputDialog* f = new TTextInputDialog(this);
+        f->Caption = "Add note to multiple coverslips";
+
+		stringstream msg;
+        msg <<"---------------------------------------------------------------------";
+        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<getCurrentUserName()<<endl;
+        msg <<"---------------------------------------------------------------------";
+        f->setText(msg.str().c_str());
+
+       	f->mInfoMemo->SelStart =f->mInfoMemo->GetTextLen();
+	    f->mInfoMemo->Perform(EM_SCROLLCARET, 0, 0);
+        int mr = f->ShowModal();
+
+        if(mr == mrOk)
+        {
+        	string note = f->getText();
+        	Log(lError) << "Adding note to multiple coverslips";
+            addNoteToMultipleCoverSlips(coverslipIDS, atdbDM->SQLConnection1, note);
+            CSNavigator->BtnClick(Data::Bind::Controls::nbRefresh);
+        }
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
-
 {
 	mCoverSlipsGrid->SelectedRows->Count;
 	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
@@ -1245,7 +1272,6 @@ void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
 	mCoverSlipsGrid->SelectedRows->Count;
 	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
 }
-
 
 void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 {
@@ -1267,5 +1293,3 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 
     delete nsf;
 }
-
-

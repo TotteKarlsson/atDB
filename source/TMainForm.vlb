@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=177,404,76,51
+Coordinates=1930,894,53,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -281,7 +281,7 @@ Coordinates=416,1166,100,33
 Coordinates=1760,760,47,51
 
 [csDM.csFreshBatchesDS]
-Coordinates=2369,760,138,159
+Coordinates=2369,760,138,51
 
 [LogLevelCB]
 Coordinates=888,760,84,87
@@ -640,23 +640,14 @@ Coordinates=1829,1098,72,33
 [mNrOfSelectedCS]
 Coordinates=2478,1030,103,51
 
-[mCSImage]
-Coordinates=1753,894,67,51
-
 [GroupBox10]
 Coordinates=2340,894,76,51
 
 [CSgridPanel]
 Coordinates=2523,962,75,51
 
-[Label1]
-Coordinates=2193,1030,46,51
-
 [Label6]
 Coordinates=680,894,46,51
-
-[Panel13]
-Coordinates=1930,894,53,51
 
 [mRegisterCarbonCoatBatchBtn]
 Coordinates=2533,894,169,51
@@ -678,4 +669,25 @@ Coordinates=1547,1098,72,33
 
 [mDocsTabSheet]
 Coordinates=2259,1098,95,33
+
+[GroupBox11]
+Coordinates=177,404,76,51
+
+[Label10]
+Coordinates=384,348,52,51
+
+[DBLookupComboBox1]
+Coordinates=384,418,127,33
+
+[Label16]
+Coordinates=549,592,52,51
+
+[DBEdit7]
+Coordinates=549,662,54,33
+
+[mAddCSNote]
+Coordinates=177,474,80,51
+
+[GroupBox12]
+Coordinates=177,544,76,51
 

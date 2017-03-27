@@ -197,11 +197,16 @@ class TMainForm : public TRegistryForm
 	TPageControl *PageControl3;
 	TTabSheet *TabSheet11;
 	TTabSheet *TabSheet12;
-	TLabel *Label1;
 	TDBMemo *DBMemo1;
-	TImage *mCSImage;
-	TPanel *Panel13;
 	TGroupBox *GroupBox10;
+	TDataSource *CoverslipsDataSource;
+	TGroupBox *GroupBox11;
+	TLabel *Label10;
+	TDBLookupComboBox *DBLookupComboBox1;
+	TLabel *Label16;
+	TDBEdit *DBEdit7;
+	TButton *mAddCSNote;
+	TGroupBox *GroupBox12;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -261,7 +266,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 
-
     private:
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
@@ -272,6 +276,8 @@ class TMainForm : public TRegistryForm
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
 		int 											getCurrentUserID();
+		string 											getCurrentUserName();
+
 		LogFileReader                                   mLogFileReader;
         vector<TDBGrid*>								mDBGrids;
 		bool                                            mIsStyleMenuPopulated;
@@ -279,10 +285,6 @@ class TMainForm : public TRegistryForm
 		void                                            updateWindowTitle();
 		string                                          mTempFileFolder;
 
-														//Threads can drop messages into the
-														//Message container. The main thread pops them
-														//using the messageProcessor
-		MessageContainer                                mMessages;
 
 		void											populateUsersCB();
 

@@ -105,7 +105,7 @@ Visible=True
 Coordinates=295,1022,82,231
 
 [csDM.csFreshBatchesDS]
-Coordinates=997,218,138,159
+Coordinates=997,218,138,51
 
 [csDM.csStatusDS]
 Coordinates=241,893,101,105

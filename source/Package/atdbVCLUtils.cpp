@@ -97,6 +97,31 @@ int getLastInsertID(TSQLConnection* c)
     return id;
 }
 
+bool addNoteToMultipleCoverSlips(const vector<int>& csIDS, TSQLConnection* c, const string& note)
+{
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = c;
+
+    if(note.size() < 1)
+    {
+    	Log(lError) << "Can't add an empty note..";
+        return false;
+    }
+
+	for(int i = 0; i < csIDS.size(); i++)
+    {
+		stringstream q;
+        q<<"UPDATE coverslips set notes = concat('" << "\n\n" << note <<"', IFNULL(notes, '')) WHERE id='"<<csIDS[i]<< "';";
+	    tq->SQL->Add(q.str().c_str());
+    	tq->ExecSQL(true);
+		Log(lInfo) << "Added note..";
+		tq->SQL->Clear();
+    }
+    delete tq;
+	return true;
+
+}
+
 bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
 {
     TSQLQuery* tq = new TSQLQuery(NULL);
@@ -115,10 +140,11 @@ bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
 	    tq->SQL->Text = ("SELECT * FROM coverslips WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
     	tq->Open();
 	    stringstream lbl;
-        lbl <<"B"<<tq->FieldByName("freshCSBatch")->AsInteger
-        	<<"C"<<tq->FieldByName("cleanCSBatch")->AsInteger
-           	<<"C"<<tq->FieldByName("carboncoatbatch")->AsInteger
-            <<"-"<<csIDS[i];
+        lbl <<"C"													//Barcode type: == coverslip
+        	<<"B"<<tq->FieldByName("freshCSBatch")->AsInteger   	//'Fresh' batch #
+        	<<"C"<<tq->FieldByName("cleanCSBatch")->AsInteger       //'Clean batch' #
+           	<<"C"<<tq->FieldByName("carboncoatbatch")->AsInteger    //'Carbon batch'
+            <<"-"<<csIDS[i];                                        //'CS ID'
 
 		Log(lInfo) << "Printing label: "<<lbl.str();
 
