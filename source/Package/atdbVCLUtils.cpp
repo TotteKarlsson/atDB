@@ -2,6 +2,9 @@
 #include "atdbVCLUtils.h"
 #include "mtkLogger.h"
 #include "labelprinter/atTSCLIB.h"
+#include "mtkStringUtils.h"
+
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 using namespace mtk;
@@ -122,7 +125,7 @@ bool addNoteToMultipleCoverSlips(const vector<int>& csIDS, TSQLConnection* c, co
 
 }
 
-bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
+bool createAndPrintCoverSlipLabels(BarcodePrintParameters& p, const vector<int>& csIDS, TSQLConnection* c)
 {
     TSQLQuery* tq = new TSQLQuery(NULL);
     tq->SQLConnection = c;
@@ -136,19 +139,17 @@ bool createAndPrintCoverSlipLabels(const vector<int>& csIDS, TSQLConnection* c)
 
 	for(int i = 0; i < csIDS.size(); i++)
     {
-
-	    tq->SQL->Text = ("SELECT * FROM coverslips WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
-    	tq->Open();
+//	    tq->SQL->Text = ("SELECT * FROM coverslips WHERE id='" + IntToStr(csIDS[i]) + "';").c_str();
+//    	tq->Open();
 	    stringstream lbl;
         lbl <<"C"													//Barcode type: == coverslip
-        	<<"B"<<tq->FieldByName("freshCSBatch")->AsInteger   	//'Fresh' batch #
-        	<<"C"<<tq->FieldByName("cleanCSBatch")->AsInteger       //'Clean batch' #
-           	<<"C"<<tq->FieldByName("carboncoatbatch")->AsInteger    //'Carbon batch'
-            <<"-"<<csIDS[i];                                        //'CS ID'
+//        	<<"B"<<tq->FieldByName("freshCSBatch")->AsInteger   	//'Fresh' batch #
+//        	<<"C"<<tq->FieldByName("cleanCSBatch")->AsInteger       //'Clean batch' #
+//           	<<"C"<<tq->FieldByName("carboncoatbatch")->AsInteger    //'Carbon batch'
+            <<createZeroPaddedString(7,csIDS[i]);                                        //'CS ID'
 
 		Log(lInfo) << "Printing label: "<<lbl.str();
-
-        lblPrinter.printCoverSlipLabel(lbl.str(), 1);
+        lblPrinter.printCoverSlipLabel(p, lbl.str(), 1);
     }
 
 	return true;

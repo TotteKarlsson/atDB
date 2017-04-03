@@ -1,8 +1,9 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
+  ActiveControl = mCoverSlipsGrid
   Caption = 'atDB'
-  ClientHeight = 635
+  ClientHeight = 764
   ClientWidth = 922
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -24,15 +25,15 @@ object MainForm: TMainForm
     Left = 0
     Top = 41
     Width = 922
-    Height = 575
+    Height = 704
     Align = alClient
     TabOrder = 0
     object PageControl1: TPageControl
       Left = 1
       Top = 1
       Width = 920
-      Height = 573
-      ActivePage = TabSheet4
+      Height = 702
+      ActivePage = TabSheet9
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -43,7 +44,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 912
-          Height = 545
+          Height = 674
           ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
@@ -54,7 +55,7 @@ object MainForm: TMainForm
               Left = 0
               Top = 0
               Width = 904
-              Height = 517
+              Height = 646
               Align = alClient
               Caption = 'Specimen'
               TabOrder = 0
@@ -62,7 +63,7 @@ object MainForm: TMainForm
                 Left = 2
                 Top = 15
                 Width = 900
-                Height = 475
+                Height = 604
                 Align = alClient
                 DataSource = atdbDM.specimenDataSource
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -140,7 +141,7 @@ object MainForm: TMainForm
               end
               object mSpecimenNavigator: TDBNavigator
                 Left = 2
-                Top = 490
+                Top = 619
                 Width = 900
                 Height = 25
                 DataSource = atdbDM.specimenDataSource
@@ -158,20 +159,20 @@ object MainForm: TMainForm
               Left = 0
               Top = 0
               Width = 904
-              Height = 517
+              Height = 646
               Align = alClient
               TabOrder = 0
               object mBlocksGB: TGroupBox
                 Left = 185
                 Top = 0
                 Width = 715
-                Height = 513
+                Height = 642
                 Align = alClient
                 Caption = 'Blocks'
                 TabOrder = 0
                 object BlockNotesGB: TGroupBox
                   Left = 2
-                  Top = 231
+                  Top = 360
                   Width = 711
                   Height = 280
                   Align = alBottom
@@ -258,7 +259,7 @@ object MainForm: TMainForm
                   Left = 2
                   Top = 15
                   Width = 711
-                  Height = 216
+                  Height = 345
                   Align = alClient
                   BevelEdges = []
                   BevelOuter = bvNone
@@ -267,14 +268,14 @@ object MainForm: TMainForm
                     Left = 0
                     Top = 0
                     Width = 393
-                    Height = 216
+                    Height = 345
                     Align = alLeft
                     TabOrder = 0
                     object mBlocksGrid: TDBGrid
                       Left = 1
                       Top = 1
                       Width = 391
-                      Height = 189
+                      Height = 318
                       Align = alClient
                       DataSource = atdbDM.blocksDataSource
                       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
@@ -307,7 +308,7 @@ object MainForm: TMainForm
                     end
                     object mBlocksNavigator: TDBNavigator
                       Left = 1
-                      Top = 190
+                      Top = 319
                       Width = 391
                       Height = 25
                       DataSource = atdbDM.blocksDataSource
@@ -323,14 +324,14 @@ object MainForm: TMainForm
                     Left = 393
                     Top = 0
                     Width = 318
-                    Height = 216
+                    Height = 345
                     Align = alClient
                     TabOrder = 1
                     object GroupBox10: TGroupBox
                       Left = 1
                       Top = 1
                       Width = 316
-                      Height = 214
+                      Height = 343
                       Align = alClient
                       Caption = 'Print block labels'
                       TabOrder = 0
@@ -338,7 +339,7 @@ object MainForm: TMainForm
                         Left = 2
                         Top = 15
                         Width = 144
-                        Height = 197
+                        Height = 326
                         Align = alLeft
                         Font.Charset = DEFAULT_CHARSET
                         Font.Color = clWindowText
@@ -365,7 +366,7 @@ object MainForm: TMainForm
                 Left = 0
                 Top = 0
                 Width = 185
-                Height = 513
+                Height = 642
                 Align = alLeft
                 Caption = 'Process IDs'
                 Padding.Left = 5
@@ -377,7 +378,7 @@ object MainForm: TMainForm
                   Left = 7
                   Top = 17
                   Width = 169
-                  Height = 492
+                  Height = 621
                   Align = alClient
                   DataSource = atdbDM.specimenDataSource
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
@@ -609,20 +610,20 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 369
-          Height = 545
+          Height = 674
           Align = alLeft
           TabOrder = 0
           object GroupBox8: TGroupBox
             Left = 1
             Top = 192
             Width = 367
-            Height = 320
+            Height = 449
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
             object CSNavigator: TDBNavigator
               Left = 2
-              Top = 293
+              Top = 422
               Width = 363
               Height = 25
               DataSource = csDM.csDSource
@@ -635,7 +636,7 @@ object MainForm: TMainForm
               Left = 2
               Top = 89
               Width = 363
-              Height = 204
+              Height = 333
               Align = alClient
               DataSource = csDM.csDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
@@ -714,7 +715,7 @@ object MainForm: TMainForm
           end
           object Panel9: TPanel
             Left = 1
-            Top = 512
+            Top = 641
             Width = 367
             Height = 32
             Align = alBottom
@@ -838,14 +839,14 @@ object MainForm: TMainForm
           Left = 369
           Top = 0
           Width = 543
-          Height = 545
+          Height = 674
           Align = alClient
           TabOrder = 1
           object PageControl3: TPageControl
             Left = 1
             Top = 1
             Width = 541
-            Height = 543
+            Height = 672
             ActivePage = TabSheet11
             Align = alClient
             TabOrder = 0
@@ -900,7 +901,7 @@ object MainForm: TMainForm
                 Left = 0
                 Top = 129
                 Width = 533
-                Height = 386
+                Height = 515
                 Align = alClient
                 Caption = 'Coverslip notes'
                 TabOrder = 1
@@ -908,7 +909,7 @@ object MainForm: TMainForm
                   Left = 2
                   Top = 15
                   Width = 529
-                  Height = 369
+                  Height = 498
                   Align = alClient
                   DataField = 'notes'
                   DataSource = csDM.csDSource
@@ -922,7 +923,7 @@ object MainForm: TMainForm
               ImageIndex = 1
               object Splitter2: TSplitter
                 Left = 0
-                Top = 512
+                Top = 417
                 Width = 533
                 Height = 3
                 Cursor = crVSplit
@@ -1024,7 +1025,7 @@ object MainForm: TMainForm
               end
               object mResultImagePanel: TPanel
                 Left = 0
-                Top = 288
+                Top = 420
                 Width = 533
                 Height = 224
                 Align = alBottom
@@ -1060,13 +1061,13 @@ object MainForm: TMainForm
                 Left = 0
                 Top = 264
                 Width = 533
-                Height = 24
+                Height = 153
                 Align = alClient
                 TabOrder = 2
                 object Splitter3: TSplitter
                   Left = 225
                   Top = 1
-                  Height = 22
+                  Height = 151
                   ExplicitLeft = 289
                   ExplicitTop = 6
                   ExplicitHeight = 218
@@ -1075,14 +1076,14 @@ object MainForm: TMainForm
                   Left = 1
                   Top = 1
                   Width = 224
-                  Height = 22
+                  Height = 151
                   Align = alLeft
                   TabOrder = 0
                   object mBackgroundImage: TImage
                     Left = 1
                     Top = 1
                     Width = 222
-                    Height = 3
+                    Height = 132
                     Align = alClient
                     IncrementalDisplay = True
                     Proportional = True
@@ -1092,7 +1093,7 @@ object MainForm: TMainForm
                   end
                   object mIm1FName: TDBText
                     Left = 1
-                    Top = 4
+                    Top = 133
                     Width = 222
                     Height = 17
                     Align = alBottom
@@ -1107,14 +1108,14 @@ object MainForm: TMainForm
                   Left = 228
                   Top = 1
                   Width = 304
-                  Height = 22
+                  Height = 151
                   Align = alClient
                   TabOrder = 1
                   object mCoverslipImage: TImage
                     Left = 1
                     Top = 1
                     Width = 302
-                    Height = 3
+                    Height = 132
                     Align = alClient
                     IncrementalDisplay = True
                     Proportional = True
@@ -1125,7 +1126,7 @@ object MainForm: TMainForm
                   end
                   object mIm2FName: TDBText
                     Left = 1
-                    Top = 4
+                    Top = 133
                     Width = 302
                     Height = 17
                     Align = alBottom
@@ -1173,44 +1174,13 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        object mUsersDBGrid: TDBGrid
-          Left = 13
-          Top = 63
-          Width = 240
-          Height = 190
-          DataSource = atdbDM.usersDataSource
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-          Columns = <
-            item
-              Expanded = False
-              FieldName = 'user_name'
-              Title.Caption = 'User'
-              Width = 206
-              Visible = True
-            end>
-        end
-        object mUsersNavigator: TDBNavigator
-          Left = 13
-          Top = 20
-          Width = 225
-          Height = 25
-          DataSource = atdbDM.usersDataSource
-          VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-          TabOrder = 1
-          OnClick = mUsersNavigatorClick
-        end
         object GroupBox3: TGroupBox
-          Left = 283
-          Top = 20
+          Left = 13
+          Top = 12
           Width = 286
           Height = 233
           Caption = 'ATDB Connection'
-          TabOrder = 2
+          TabOrder = 0
           object mServerIPE: TSTDStringLabeledEdit
             Left = 16
             Top = 40
@@ -1271,12 +1241,12 @@ object MainForm: TMainForm
           end
         end
         object GroupBox7: TGroupBox
-          Left = 13
-          Top = 272
+          Left = 654
+          Top = 20
           Width = 240
-          Height = 145
+          Height = 225
           Caption = 'Misc'
-          TabOrder = 3
+          TabOrder = 1
           object mDustAssayImageFolderE: TSTDStringLabeledEdit
             Left = 16
             Top = 32
@@ -1297,6 +1267,237 @@ object MainForm: TMainForm
             OnClick = mBrowseForDustAssayImageFolderClick
           end
         end
+        object GroupBox13: TGroupBox
+          Left = 305
+          Top = 12
+          Width = 345
+          Height = 233
+          Caption = 'ATDB Users'
+          TabOrder = 2
+          object mUsersDBGrid: TDBGrid
+            Left = 2
+            Top = 15
+            Width = 341
+            Height = 191
+            Align = alClient
+            DataSource = atdbDM.usersDataSource
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'user_name'
+                Title.Caption = 'User'
+                Width = 206
+                Visible = True
+              end>
+          end
+          object mUsersNavigator: TDBNavigator
+            Left = 2
+            Top = 206
+            Width = 341
+            Height = 25
+            DataSource = atdbDM.usersDataSource
+            VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+            Align = alBottom
+            TabOrder = 1
+            OnClick = mUsersNavigatorClick
+          end
+        end
+        object GroupBox14: TGroupBox
+          Left = 13
+          Top = 251
+          Width = 635
+          Height = 406
+          Caption = 'Coverslip Print Settings'
+          TabOrder = 3
+          object GroupBox15: TGroupBox
+            Left = 16
+            Top = 181
+            Width = 305
+            Height = 222
+            Caption = 'Barcode Settings'
+            TabOrder = 0
+            object mCodeStartX: TIntegerLabeledEdit
+              Left = 17
+              Top = 44
+              Width = 73
+              Height = 21
+              EditLabel.Width = 51
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Horiz Start'
+              TabOrder = 0
+              Text = '0'
+            end
+            object mCodeStartY: TIntegerLabeledEdit
+              Left = 112
+              Top = 44
+              Width = 74
+              Height = 21
+              EditLabel.Width = 62
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Vertical Start'
+              TabOrder = 1
+              Text = '0'
+            end
+            object mExpectedHeight: TIntegerLabeledEdit
+              Left = 112
+              Top = 95
+              Width = 73
+              Height = 21
+              EditLabel.Width = 79
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Expected Height'
+              TabOrder = 2
+              Text = '0'
+            end
+            object mExpectedWidth: TIntegerLabeledEdit
+              Left = 17
+              Top = 92
+              Width = 74
+              Height = 21
+              EditLabel.Width = 76
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Expected Width'
+              TabOrder = 3
+              Text = '0'
+            end
+            object mRowSymbolSize: TIntegerLabeledEdit
+              Left = 17
+              Top = 143
+              Width = 74
+              Height = 21
+              EditLabel.Width = 80
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Row Symbol Size'
+              TabOrder = 4
+              Text = '0'
+            end
+            object mColSymbolSize: TIntegerLabeledEdit
+              Left = 112
+              Top = 143
+              Width = 73
+              Height = 21
+              EditLabel.Width = 94
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Column Symbol Size'
+              TabOrder = 5
+              Text = '0'
+            end
+            object mModuleSize: TIntegerLabeledEdit
+              Left = 17
+              Top = 188
+              Width = 74
+              Height = 21
+              EditLabel.Width = 56
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Module Size'
+              TabOrder = 6
+              Text = '0'
+            end
+          end
+          object mTestLabel: TSTDStringLabeledEdit
+            Left = 352
+            Top = 200
+            Width = 121
+            Height = 21
+            EditLabel.Width = 75
+            EditLabel.Height = 13
+            EditLabel.Caption = 'Test Label Data'
+            TabOrder = 1
+            Text = '1234'
+            Value = '1234'
+          end
+          object mPrintTestLabelBtn: TButton
+            Left = 352
+            Top = 244
+            Width = 87
+            Height = 25
+            Caption = 'Print One'
+            TabOrder = 2
+            OnClick = mPrintTestLabelBtnClick
+          end
+          object GroupBox16: TGroupBox
+            Left = 16
+            Top = 32
+            Width = 457
+            Height = 143
+            Caption = 'Text Settings'
+            TabOrder = 3
+            object mBCTextAlignment: TIntegerLabeledEdit
+              Left = 125
+              Top = 100
+              Width = 74
+              Height = 21
+              EditLabel.Width = 72
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Text Alignment'
+              TabOrder = 0
+              Text = '0'
+            end
+            object mCSBCFont: TIntegerLabeledEdit
+              Left = 16
+              Top = 100
+              Width = 73
+              Height = 21
+              EditLabel.Width = 49
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Font (0-8)'
+              TabOrder = 1
+              Text = '0'
+            end
+            object mCSBCHeight: TFloatLabeledEdit
+              Left = 125
+              Top = 40
+              Width = 74
+              Height = 21
+              EditLabel.Width = 59
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Label Height'
+              TabOrder = 2
+              Text = '-1.00'
+              Value = -1.000000000000000000
+            end
+            object mCSBCTextXPos: TIntegerLabeledEdit
+              Left = 216
+              Top = 40
+              Width = 73
+              Height = 21
+              EditLabel.Width = 51
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Text X Pos'
+              TabOrder = 3
+              Text = '0'
+            end
+            object mCSBCTextYPos: TIntegerLabeledEdit
+              Left = 325
+              Top = 40
+              Width = 74
+              Height = 21
+              EditLabel.Width = 51
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Text Y Pos'
+              TabOrder = 4
+              Text = '0'
+            end
+            object mCSBCWidth: TFloatLabeledEdit
+              Left = 16
+              Top = 40
+              Width = 73
+              Height = 21
+              EditLabel.Width = 56
+              EditLabel.Height = 13
+              EditLabel.Caption = 'Label Width'
+              TabOrder = 5
+              Text = '-1.00'
+              Value = -1.000000000000000000
+            end
+          end
+        end
       end
       object TabSheet5: TTabSheet
         Caption = 'All Tables'
@@ -1305,29 +1506,29 @@ object MainForm: TMainForm
           Left = 153
           Top = 0
           Width = 759
-          Height = 545
+          Height = 674
           Align = alClient
           TabOrder = 0
           ExplicitLeft = 153
           ExplicitWidth = 759
-          ExplicitHeight = 545
+          ExplicitHeight = 674
           inherited GroupBox1: TGroupBox
             Width = 759
-            Height = 545
+            Height = 674
             Align = alClient
             ExplicitWidth = 759
-            ExplicitHeight = 545
+            ExplicitHeight = 674
             inherited DBGrid1: TDBGrid
               Top = 15
               Width = 755
-              Height = 486
+              Height = 615
               Align = alClient
             end
             inherited DBNavigator1: TDBNavigator
-              Top = 501
+              Top = 630
               Width = 755
               Hints.Strings = ()
-              ExplicitTop = 501
+              ExplicitTop = 630
               ExplicitWidth = 755
             end
           end
@@ -1344,7 +1545,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 153
-          Height = 545
+          Height = 674
           Align = alLeft
           ItemHeight = 13
           TabOrder = 1
@@ -1408,14 +1609,14 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 912
-          Height = 545
+          Height = 674
           Align = alClient
           TabOrder = 0
           object Panel1: TPanel
             Left = 1
             Top = 1
             Width = 910
-            Height = 543
+            Height = 672
             Align = alClient
             Caption = 'Panel1'
             TabOrder = 0
@@ -1423,7 +1624,7 @@ object MainForm: TMainForm
               Left = 1
               Top = 22
               Width = 908
-              Height = 520
+              Height = 649
               Align = alClient
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -1480,7 +1681,7 @@ object MainForm: TMainForm
   end
   object SB: TStatusBar
     Left = 0
-    Top = 616
+    Top = 745
     Width = 922
     Height = 19
     Panels = <>

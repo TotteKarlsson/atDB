@@ -53,6 +53,7 @@
 #include <Datasnap.Provider.hpp>
 #include "TTableFrame.h"
 #include "TIntLabel.h"
+#include "TFloatLabeledEdit.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -207,6 +208,25 @@ class TMainForm : public TRegistryForm
 	TDBEdit *DBEdit7;
 	TButton *mAddCSNote;
 	TGroupBox *GroupBox12;
+	TGroupBox *GroupBox13;
+	TGroupBox *GroupBox14;
+	TIntegerLabeledEdit *mCSBCTextXPos;
+	TIntegerLabeledEdit *mCSBCTextYPos;
+	TIntegerLabeledEdit *mCSBCFont;
+	TIntegerLabeledEdit *mBCTextAlignment;
+	TFloatLabeledEdit *mCSBCWidth;
+	TFloatLabeledEdit *mCSBCHeight;
+	TIntegerLabeledEdit *mCodeStartX;
+	TIntegerLabeledEdit *mCodeStartY;
+	TIntegerLabeledEdit *mExpectedHeight;
+	TIntegerLabeledEdit *mExpectedWidth;
+	TGroupBox *GroupBox15;
+	TIntegerLabeledEdit *mRowSymbolSize;
+	TIntegerLabeledEdit *mColSymbolSize;
+	TIntegerLabeledEdit *mModuleSize;
+	TSTDStringLabeledEdit *mTestLabel;
+	TButton *mPrintTestLabelBtn;
+	TGroupBox *GroupBox16;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -252,7 +272,7 @@ class TMainForm : public TRegistryForm
           int X, int Y);
 	void __fastcall mSpecimenGridTitleClick(TColumn *Column);
 	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall mPrintTestLabelBtnClick(TObject *Sender);
 	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
 	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
@@ -294,8 +314,9 @@ class TMainForm : public TRegistryForm
 		mtk::Property<int>	                            mMainTabIndex;
 		mtk::Property<int>	                            mDustAssayResultImageHeight;
 		mtk::Property<int>	                            mDustAssayBackGroundImageWidth;
-
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
+
+        IniFileProperties	      	                    mCoverslipPrintingProperties;
         TRegistryProperties   	  	                    mSplashProperties;
         mtk::Property<bool>                             mShowSplashOnStartup;
 

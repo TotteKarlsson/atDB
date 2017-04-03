@@ -3,7 +3,13 @@
         <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\libs\dsl\Common\mtkCommon.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="P:\libs\atapi\source\atCore.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\atapi\source\vcl\atVCLCore.cbproj">
@@ -13,7 +19,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="source\atDB.cbproj">
-            <Dependencies/>
+            <Dependencies>P:\libs\atapi\source\atCore.cbproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -23,6 +29,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="mtkCommon">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj"/>
+    </Target>
+    <Target Name="mtkCommon:Clean">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mtkCommon:Make">
+        <MSBuild Projects="P:\libs\dsl\Common\mtkCommon.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="atCore">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj"/>
     </Target>
@@ -31,6 +46,15 @@
     </Target>
     <Target Name="atCore:Make">
         <MSBuild Projects="P:\libs\atapi\source\atCore.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atVCLCore">
         <MSBuild Projects="P:\libs\atapi\source\vcl\atVCLCore.cbproj"/>
@@ -50,23 +74,23 @@
     <Target Name="atDBCore-static:Make">
         <MSBuild Projects="source\Core\atDBCore-static.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atDB">
+    <Target Name="atDB" DependsOnTargets="atCore">
         <MSBuild Projects="source\atDB.cbproj"/>
     </Target>
-    <Target Name="atDB:Clean">
+    <Target Name="atDB:Clean" DependsOnTargets="atCore:Clean">
         <MSBuild Projects="source\atDB.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atDB:Make">
+    <Target Name="atDB:Make" DependsOnTargets="atCore:Make">
         <MSBuild Projects="source\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atCore;atVCLCore;atDBCore-static;atDB"/>
+        <CallTarget Targets="mtkCommon;atCore;DuneComponents;atVCLCore;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atCore:Clean;atVCLCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
+        <CallTarget Targets="mtkCommon:Clean;atCore:Clean;DuneComponents:Clean;atVCLCore:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atCore:Make;atVCLCore:Make;atDBCore-static:Make;atDB:Make"/>
+        <CallTarget Targets="mtkCommon:Make;atCore:Make;DuneComponents:Make;atVCLCore:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

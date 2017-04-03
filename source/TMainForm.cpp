@@ -46,6 +46,7 @@
 #pragma link "pDBBarcode2D"
 #pragma link "pQRCode"
 #pragma link "TIntLabel"
+#pragma link "TFloatLabeledEdit"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -950,9 +951,30 @@ void __fastcall TMainForm::mSpecimenGridTitleClick(TColumn *Column)
 
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::Button2Click(TObject *Sender)
+void __fastcall TMainForm::mPrintTestLabelBtnClick(TObject *Sender)
 {
-	MessageDlg("Not yet implemented", mtInformation, TMsgDlgButtons() << mbOK, 0);
+   	TSCLIB lblPrinter;
+
+    if(!lblPrinter.load("TSCLIB.dll"))
+    {
+    	Log(lError) << "Failed to load mTSC library..";
+        return;
+    }
+
+    stringstream lbl;
+    lbl <<mTestLabel->getValue();
+    Log(lInfo) << "Printing label: "<<lbl.str();
+
+
+    BarcodePrintParameters p;
+    p.xStart 			= mCodeStartX->getValue();
+    p.yStart 			= mCodeStartY->getValue();
+    p.expectedWidth 	= mExpectedWidth->getValue();
+    p.expectedHeight	= mExpectedHeight->getValue();
+    p.moduleSize		= mModuleSize->getValue();
+    p.rowSymbolSize		= mRowSymbolSize->getValue();
+    p.colSymbolSize		= mColSymbolSize->getValue();
+    lblPrinter.printCoverSlipLabel(p, lbl.str(), 1);
 }
 
 void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
@@ -1203,8 +1225,17 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
         Log(lInfo) << "Updating record:" <<coverslipIDS[i];
     }
 
+    BarcodePrintParameters p;
+    p.xStart 			= mCodeStartX->getValue();
+    p.yStart 			= mCodeStartY->getValue();
+    p.expectedWidth 	= mExpectedWidth->getValue();
+    p.expectedHeight	= mExpectedHeight->getValue();
+    p.moduleSize		= mModuleSize->getValue();
+    p.rowSymbolSize		= mRowSymbolSize->getValue();
+    p.colSymbolSize		= mColSymbolSize->getValue();
+
     //Create and print labels
-    if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+    if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
     {
 		Log(lError) << "There was a problem creating and/or printing coverslip labels";
     }
@@ -1228,8 +1259,17 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 	TButton* b = dynamic_cast<TButton*>(Sender);
 	if(b == mPrintCSLabelsBtn)
     {
+        BarcodePrintParameters p;
+        p.xStart 			= mCodeStartX->getValue();
+        p.yStart 			= mCodeStartY->getValue();
+        p.expectedWidth 	= mExpectedWidth->getValue();
+        p.expectedHeight	= mExpectedHeight->getValue();
+        p.moduleSize		= mModuleSize->getValue();
+        p.rowSymbolSize		= mRowSymbolSize->getValue();
+        p.colSymbolSize		= mColSymbolSize->getValue();
+
         //Create and print labels
-        if(!createAndPrintCoverSlipLabels(coverslipIDS, atdbDM->SQLConnection1))
+        if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
         {
             Log(lError) << "There was a problem creating and/or printing coverslip labels";
         }
