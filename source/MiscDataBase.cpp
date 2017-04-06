@@ -13,5 +13,5 @@
 
 using namespace mtk;
 extern string gCommonAppDataLocation;
-//---------------------------------------------------------------------------
+
 

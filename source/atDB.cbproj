@@ -152,12 +152,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="ClosingAppLogic.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="DataModules\TCoverSlipDataModule.cpp">
-            <Form>csDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>DataModules\TCoverSlipDataModule.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
         <CppCompile Include="Forms\TAboutATDBForm.cpp">
             <Form>AboutATDBForm</Form>
             <DependentOn>Forms\TAboutATDBForm.h</DependentOn>
@@ -217,11 +211,17 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
             <BuildOrder>9</BuildOrder>
         </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp">
+            <Form>csDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
         <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="DataModules\TCoverSlipDataModule.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
         <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
