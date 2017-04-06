@@ -306,16 +306,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
-&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y
-&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y
-</PostBuildEvent>
+        <PostBuildEvent>xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

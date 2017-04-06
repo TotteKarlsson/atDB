@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  ActiveControl = mCoverSlipsGrid
+  ActiveControl = mATDBServerBtnConnect
   Caption = 'atDB'
   ClientHeight = 764
   ClientWidth = 922
@@ -33,13 +33,17 @@ object MainForm: TMainForm
       Top = 1
       Width = 920
       Height = 702
-      ActivePage = TabSheet9
+      ActivePage = TabSheet6
       Align = alClient
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -51,6 +55,10 @@ object MainForm: TMainForm
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 0
@@ -155,6 +163,10 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object ScrollBox1: TScrollBox
               Left = 0
               Top = 0
@@ -410,6 +422,10 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox2: TGroupBox
               Left = 3
               Top = 3
@@ -606,6 +622,10 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -852,6 +872,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox11: TGroupBox
                 Left = 0
                 Top = 0
@@ -1145,6 +1169,10 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1169,6 +1197,192 @@ object MainForm: TMainForm
           Width = 200
           Height = 25
           TabOrder = 1
+        end
+      end
+      object TabSheet5: TTabSheet
+        Caption = 'All Tables'
+        ImageIndex = 4
+        inline TTableFrame1: TTableFrame
+          Left = 153
+          Top = 0
+          Width = 759
+          Height = 674
+          Align = alClient
+          TabOrder = 0
+          ExplicitLeft = 153
+          ExplicitWidth = 759
+          ExplicitHeight = 674
+          inherited GroupBox1: TGroupBox
+            Width = 759
+            Height = 674
+            Align = alClient
+            ExplicitWidth = 759
+            ExplicitHeight = 674
+            inherited DBGrid1: TDBGrid
+              Top = 15
+              Width = 755
+              Height = 615
+              Align = alClient
+            end
+            inherited DBNavigator1: TDBNavigator
+              Top = 630
+              Width = 755
+              Hints.Strings = ()
+              ExplicitTop = 630
+              ExplicitWidth = 755
+            end
+          end
+          inherited ClientDataSet1: TClientDataSet
+            Left = 520
+            Top = 184
+          end
+          inherited SQLDataSet1: TSQLDataSet
+            Left = 520
+            Top = 112
+          end
+        end
+        object mTablesLB: TListBox
+          Left = 0
+          Top = 0
+          Width = 153
+          Height = 674
+          Align = alLeft
+          ItemHeight = 13
+          TabOrder = 1
+          OnClick = mTablesLBClick
+        end
+      end
+      object mDocsTabSheet: TTabSheet
+        Caption = 'Documents'
+        ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object mDocsNavigator: TDBNavigator
+          Left = 16
+          Top = 24
+          Width = 210
+          Height = 25
+          DataSource = atdbDM.documentsDSource
+          VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
+          TabOrder = 0
+        end
+        object mDocumentsGrid: TDBGrid
+          Left = 16
+          Top = 64
+          Width = 385
+          Height = 193
+          DataSource = atdbDM.documentsDSource
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          OnDblClick = mDocumentsGridDblClick
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'document_name'
+              Width = 263
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'type'
+              Width = 89
+              Visible = True
+            end>
+        end
+        object mAddDocBtn: TButton
+          Left = 16
+          Top = 263
+          Width = 121
+          Height = 58
+          Caption = 'Add Document'
+          TabOrder = 2
+          OnClick = mAddDocBtnClick
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'Logs'
+        ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        object BottomPanel: TPanel
+          Left = 0
+          Top = 0
+          Width = 912
+          Height = 674
+          Align = alClient
+          TabOrder = 0
+          object Panel1: TPanel
+            Left = 1
+            Top = 1
+            Width = 910
+            Height = 672
+            Align = alClient
+            Caption = 'Panel1'
+            TabOrder = 0
+            object infoMemo: TMemo
+              Left = 1
+              Top = 22
+              Width = 908
+              Height = 649
+              Align = alClient
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Consolas'
+              Font.Style = []
+              ParentFont = False
+              PopupMenu = PopupMenu1
+              ScrollBars = ssBoth
+              TabOrder = 0
+            end
+            object ToolBar1: TToolBar
+              Left = 1
+              Top = 1
+              Width = 908
+              Height = 21
+              AutoSize = True
+              ButtonHeight = 21
+              ButtonWidth = 82
+              Caption = 'ToolBar1'
+              ShowCaptions = True
+              TabOrder = 1
+              object ToolButton2: TToolButton
+                Left = 0
+                Top = 0
+                Action = ClearMemoA
+              end
+              object ToolButton1: TToolButton
+                Left = 82
+                Top = 0
+                Width = 41
+                Caption = 'ToolButton1'
+                ImageIndex = 0
+                Style = tbsSeparator
+              end
+              object LogLevelCB: TComboBox
+                Left = 123
+                Top = 0
+                Width = 145
+                Height = 21
+                ItemIndex = 0
+                TabOrder = 0
+                Text = 'INFO'
+                OnChange = LogLevelCBChange
+                Items.Strings = (
+                  'INFO'
+                  'Everything')
+              end
+            end
+          end
         end
       end
       object TabSheet6: TTabSheet
@@ -1495,184 +1709,6 @@ object MainForm: TMainForm
               TabOrder = 5
               Text = '-1.00'
               Value = -1.000000000000000000
-            end
-          end
-        end
-      end
-      object TabSheet5: TTabSheet
-        Caption = 'All Tables'
-        ImageIndex = 4
-        inline TTableFrame1: TTableFrame
-          Left = 153
-          Top = 0
-          Width = 759
-          Height = 674
-          Align = alClient
-          TabOrder = 0
-          ExplicitLeft = 153
-          ExplicitWidth = 759
-          ExplicitHeight = 674
-          inherited GroupBox1: TGroupBox
-            Width = 759
-            Height = 674
-            Align = alClient
-            ExplicitWidth = 759
-            ExplicitHeight = 674
-            inherited DBGrid1: TDBGrid
-              Top = 15
-              Width = 755
-              Height = 615
-              Align = alClient
-            end
-            inherited DBNavigator1: TDBNavigator
-              Top = 630
-              Width = 755
-              Hints.Strings = ()
-              ExplicitTop = 630
-              ExplicitWidth = 755
-            end
-          end
-          inherited ClientDataSet1: TClientDataSet
-            Left = 520
-            Top = 184
-          end
-          inherited SQLDataSet1: TSQLDataSet
-            Left = 520
-            Top = 112
-          end
-        end
-        object mTablesLB: TListBox
-          Left = 0
-          Top = 0
-          Width = 153
-          Height = 674
-          Align = alLeft
-          ItemHeight = 13
-          TabOrder = 1
-          OnClick = mTablesLBClick
-        end
-      end
-      object mDocsTabSheet: TTabSheet
-        Caption = 'Documents'
-        ImageIndex = 3
-        object mDocsNavigator: TDBNavigator
-          Left = 16
-          Top = 24
-          Width = 210
-          Height = 25
-          DataSource = atdbDM.documentsDSource
-          VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
-          TabOrder = 0
-        end
-        object mDocumentsGrid: TDBGrid
-          Left = 16
-          Top = 64
-          Width = 385
-          Height = 193
-          DataSource = atdbDM.documentsDSource
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-          TabOrder = 1
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
-          OnDblClick = mDocumentsGridDblClick
-          Columns = <
-            item
-              Expanded = False
-              FieldName = 'document_name'
-              Width = 263
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'type'
-              Width = 89
-              Visible = True
-            end>
-        end
-        object mAddDocBtn: TButton
-          Left = 16
-          Top = 263
-          Width = 121
-          Height = 58
-          Caption = 'Add Document'
-          TabOrder = 2
-          OnClick = mAddDocBtnClick
-        end
-      end
-      object TabSheet3: TTabSheet
-        Caption = 'Logs'
-        ImageIndex = 6
-        object BottomPanel: TPanel
-          Left = 0
-          Top = 0
-          Width = 912
-          Height = 674
-          Align = alClient
-          TabOrder = 0
-          object Panel1: TPanel
-            Left = 1
-            Top = 1
-            Width = 910
-            Height = 672
-            Align = alClient
-            Caption = 'Panel1'
-            TabOrder = 0
-            object infoMemo: TMemo
-              Left = 1
-              Top = 22
-              Width = 908
-              Height = 649
-              Align = alClient
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Consolas'
-              Font.Style = []
-              ParentFont = False
-              PopupMenu = PopupMenu1
-              ScrollBars = ssBoth
-              TabOrder = 0
-            end
-            object ToolBar1: TToolBar
-              Left = 1
-              Top = 1
-              Width = 908
-              Height = 21
-              AutoSize = True
-              ButtonHeight = 21
-              ButtonWidth = 82
-              Caption = 'ToolBar1'
-              ShowCaptions = True
-              TabOrder = 1
-              object ToolButton2: TToolButton
-                Left = 0
-                Top = 0
-                Action = ClearMemoA
-              end
-              object ToolButton1: TToolButton
-                Left = 82
-                Top = 0
-                Width = 41
-                Caption = 'ToolButton1'
-                ImageIndex = 0
-                Style = tbsSeparator
-              end
-              object LogLevelCB: TComboBox
-                Left = 123
-                Top = 0
-                Width = 145
-                Height = 21
-                ItemIndex = 0
-                TabOrder = 0
-                Text = 'INFO'
-                OnChange = LogLevelCBChange
-                Items.Strings = (
-                  'INFO'
-                  'Everything')
-              end
             end
           end
         end
