@@ -3,13 +3,13 @@
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include "TAboutATDBForm.h"
+#include "TATDBDataModule.h"
 #pragma package(smart_init)
 using Poco::DateTimeFormatter;
 
 using namespace mtk;
 
 extern HWND gOtherAppWindow;
-//extern TSplashForm*  gSplashForm;
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
@@ -32,24 +32,8 @@ void __fastcall TMainForm::ClearMemoAExecute(TObject *Sender)
 
 int TMainForm::getCurrentUserID()
 {
-	int i = mUsersCB->ItemIndex;
-    if(i > -1)
-    {
-    	return * ((int*) mUsersCB->Items->Objects[i]);
-    }
-
-	return  -1;
-}
-
-string TMainForm::getCurrentUserName()
-{
-	int i = mUsersCB->ItemIndex;
-    if(i > -1)
-    {
-    	return stdstr(mUsersCB->Items->Strings[i]);
-    }
-
-	return  "<none>";
+	int i = mUsersCB->KeyValue;
+	return  i;
 }
 
 void TMainForm::setupWindowTitle()

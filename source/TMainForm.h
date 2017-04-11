@@ -115,12 +115,9 @@ class TMainForm : public TRegistryForm
 	TListBox *mTablesLB;
 	TDBGrid *mBlocksGrid;
 	TButton *Button1;
-	TComboBox *mUsersCB;
 	TMemo *mLblMakerMemo;
 	TDBGrid *mProcessForBlocksGrid;
 	TDBGrid *mBlocksForRibbonsGrid;
-	TLabel *Label5;
-	TLabel *Label3;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *mUsersNavigator;
 	TGroupBox *GroupBox3;
@@ -227,6 +224,14 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mTestLabel;
 	TButton *mPrintTestLabelBtn;
 	TGroupBox *GroupBox16;
+	TGroupBox *GroupBox17;
+	TPanel *Panel13;
+	TPanel *Panel15;
+	TPanel *Panel16;
+	TSplitter *Splitter1;
+	TPanel *Panel17;
+	TDBText *DBText2;
+	TDBLookupComboBox *mUsersCB;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -296,7 +301,6 @@ class TMainForm : public TRegistryForm
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();
 		int 											getCurrentUserID();
-		string 											getCurrentUserName();
 
 		LogFileReader                                   mLogFileReader;
         vector<TDBGrid*>								mDBGrids;
@@ -304,9 +308,6 @@ class TMainForm : public TRegistryForm
 		void                                            setupWindowTitle();
 		void                                            updateWindowTitle();
 		string                                          mTempFileFolder;
-
-
-		void											populateUsersCB();
 
                                                         //INI Parameters...
         IniFileProperties	      	                    mGeneralProperties;

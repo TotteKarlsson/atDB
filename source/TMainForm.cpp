@@ -100,16 +100,16 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
 	atdbDM->afterConnect();
     csDM->afterConnect();
+    mUsersCB->KeyValue = mDBUserID.getValue();
     mATDBServerBtnConnect->Caption = "Disconnect";
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
-	populateUsersCB();
 }
 
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 {
-	mUsersCB->Enabled = false;
 	atdbDM->afterDisConnect();
     mATDBServerBtnConnect->Caption = "Connect";
+    mUsersCB->Enabled = false;
 }
 
 //This one is called from the reader thread
@@ -147,7 +147,7 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
         break;
         case TNavigateBtn::nbApplyUpdates:      									  break;
         case TNavigateBtn::nbRefresh:
-        	populateUsersCB();
+
         break;
     }
 }
@@ -343,12 +343,11 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 
     	case TNavigateBtn::nbInsert:
 
-           	if(mUsersCB->ItemIndex != -1)
+           	if(mUsersCB->KeyValue != -1)
             {
-	            int* userID = (int*) mUsersCB->Items->Objects[mUsersCB->ItemIndex];
 	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
 	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
-	        	atdbDM->blocksCDS->FieldValues["created_by"] = *userID;
+	        	atdbDM->blocksCDS->FieldValues["created_by"] = mUsersCB->KeyValue;
 
             	//Open New Block Dialog
 				TNewBlockForm* nbf = new TNewBlockForm(this);
@@ -406,7 +405,7 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
 	switch(Button)
     {
     	case TNavigateBtn::nbInsert:
-        	if(mUsersCB->ItemIndex != -1)
+        	if(mUsersCB->KeyValue != -1)
             {
                 atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
                 atdbDM->specimenCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
@@ -457,36 +456,35 @@ String __fastcall TMainForm::createBlockLabel()
 	return lbl;
 }
 
-void TMainForm::populateUsersCB()
-{
-    //Populate users CB
-    TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
-    q->SQL->Add("SELECT id,user_name from users ORDER by user_name");
-    q->Open();
-
-	mUsersCB->Clear();
-	while(!q->Eof)
-    {
-	    String s = (*q)["user_name"];
-        int *id = new int((*q)["id"]);
-	    mUsersCB->Items->AddObject(s, (TObject*) id);
-	   	q->Next();
-    }
-
-    //select current user
-    for(int i = 0; i < mUsersCB->Items->Count; i++)
-    {
-    	int uid = *(int*) mUsersCB->Items->Objects[i];
-        if(uid == mDBUserID.getValue())
-        {
-			mUsersCB->ItemIndex = i;
-            break;
-        }
-    }
-
-	mUsersCB->Enabled = true;
-}
+//void TMainForm::populateUsersCB()
+//{
+//    //Populate users CB
+//    TSQLQuery* q = new TSQLQuery(NULL);
+//    q->SQLConnection = atdbDM->SQLConnection1;
+//    q->SQL->Add("SELECT id,user_name from users ORDER by user_name");
+//    q->Open();
+//
+//	while(!q->Eof)
+//    {
+//	    String s = (*q)["user_name"];
+//        int *id = new int((*q)["id"]);
+//	    mUsersCB->Items->AddObject(s, (TObject*) id);
+//	   	q->Next();
+//    }
+//
+//    //select current user
+//    for(int i = 0; i < mUsersCB->Items->Count; i++)
+//    {
+//    	int uid = *(int*) mUsersCB->Items->Objects[i];
+//        if(uid == mDBUserID.getValue())
+//        {
+//			mUsersCB->ItemIndex = i;
+//            break;
+//        }
+//    }
+//
+//	mUsersCB->Enabled = true;
+//}
 
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
@@ -523,14 +521,14 @@ void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUsersCBCloseUp(TObject *Sender)
 {
-	if(mUsersCB->ItemIndex == -1)
+	if(mUsersCB->KeyValue == -1)
     {
     	enableDisableGroupBox(mBlocksGB, false);
     }
     else
     {
     	enableDisableGroupBox(mBlocksGB, true);
-		mDBUserID = *(int*) (mUsersCB->Items->Objects[mUsersCB->ItemIndex]);
+		mDBUserID = mUsersCB->KeyValue;
     }
 }
 
@@ -1281,7 +1279,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 
 		stringstream msg;
         msg <<"---------------------------------------------------------------------";
-        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<getCurrentUserName()<<endl;
+        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<atdbDM->getCurrentUserName()<<endl;
         msg <<"---------------------------------------------------------------------";
         f->setText(msg.str().c_str());
 

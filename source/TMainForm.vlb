@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1930,894,53,51
+Coordinates=777,760,84,87
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -394,9 +394,6 @@ Coordinates=518,760,101,105
 [BottomPanel]
 Coordinates=692,1098,77,51
 
-[Label5]
-Coordinates=1069,1030,46,51
-
 [DBText3]
 Coordinates=1662,1030,56,51
 
@@ -457,14 +454,8 @@ Coordinates=1527,962,165,51
 [GroupBox3]
 Coordinates=1458,1098,70,51
 
-[Label3]
-Coordinates=1824,760,46,51
-
 [mSpecimenNavigator]
 Coordinates=750,490,119,51
-
-[mUsersCB]
-Coordinates=777,760,84,87
 
 [atdbDM.postfix]
 Coordinates=2012,962,88,51
