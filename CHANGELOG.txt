@@ -1,3 +1,13 @@
+Release 0.5.9 (April 11)
+=======================
+* Fixed users Dropdown to be a dataaware control
+* Moved some db logic into the atdb datamodule
+* Moved Coverslip datamodule to main api
+* Added a RegisterNewRibbon form
+* Added printing properties
+* Added ability to add, append notes to one or more coverslips.
+* Added a 'C' prefix to coverslip barcodes
+
 Release 0.5.8 (March 23)
 =======================
 * Fixed default DB value error when entering a new specimen.
