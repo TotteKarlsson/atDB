@@ -98,8 +98,11 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 
 void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 {
+	//Enable datamodules
 	atdbDM->afterConnect();
     csDM->afterConnect();
+    RibbonsDataModule->afterConnect();
+
     mUsersCB->KeyValue = mDBUserID.getValue();
     mATDBServerBtnConnect->Caption = "Disconnect";
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);

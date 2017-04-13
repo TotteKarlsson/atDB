@@ -224,16 +224,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TRibbonsDataModule.h</DependentOn>
             <BuildOrder>17</BuildOrder>
         </CppCompile>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
-        <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
-        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
-        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="Forms\TNewBlockForm.dfm"/>
-        <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TRibbonsDataModule.dfm"/>
+        <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TNewBlockForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
+        <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

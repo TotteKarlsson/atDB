@@ -996,6 +996,7 @@ object MainForm: TMainForm
                     Width = 169
                     Height = 21
                     DataField = 'LStatus'
+                    DataSource = csDM.csDSource
                     TabOrder = 0
                   end
                   object DBEdit7: TDBEdit
@@ -1004,6 +1005,7 @@ object MainForm: TMainForm
                     Width = 74
                     Height = 21
                     DataField = 'from_lot'
+                    DataSource = csDM.csDSource
                     Enabled = False
                     ReadOnly = True
                     TabOrder = 1
@@ -1023,7 +1025,7 @@ object MainForm: TMainForm
                     Width = 244
                     Height = 96
                     Align = alClient
-                    DataSource = RibbonsDataModule.ROnCoverSlipsSource
+                    DataSource = atdbDM.ROnCoverSlipsSource
                     TabOrder = 0
                     TitleFont.Charset = DEFAULT_CHARSET
                     TitleFont.Color = clWindowText
