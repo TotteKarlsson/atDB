@@ -1279,7 +1279,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 
 		stringstream msg;
         msg <<"---------------------------------------------------------------------";
-        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<atdbDM->getCurrentUserName()<<endl;
+        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<stdstr(mUsersCB->Text)<<endl;
         msg <<"---------------------------------------------------------------------";
         f->setText(msg.str().c_str());
 

@@ -410,6 +410,10 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox2: TGroupBox
               Left = 303
               Top = 0
@@ -1347,81 +1351,6 @@ object MainForm: TMainForm
           OnClick = mAddDocBtnClick
         end
       end
-      object TabSheet3: TTabSheet
-        Caption = 'Logs'
-        ImageIndex = 6
-        object BottomPanel: TPanel
-          Left = 0
-          Top = 0
-          Width = 912
-          Height = 592
-          Align = alClient
-          TabOrder = 0
-          object Panel1: TPanel
-            Left = 1
-            Top = 1
-            Width = 910
-            Height = 590
-            Align = alClient
-            Caption = 'Panel1'
-            TabOrder = 0
-            object infoMemo: TMemo
-              Left = 1
-              Top = 22
-              Width = 908
-              Height = 567
-              Align = alClient
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'Consolas'
-              Font.Style = []
-              ParentFont = False
-              PopupMenu = PopupMenu1
-              ScrollBars = ssBoth
-              TabOrder = 0
-            end
-            object ToolBar1: TToolBar
-              Left = 1
-              Top = 1
-              Width = 908
-              Height = 21
-              AutoSize = True
-              ButtonHeight = 21
-              ButtonWidth = 82
-              Caption = 'ToolBar1'
-              ShowCaptions = True
-              TabOrder = 1
-              object ToolButton2: TToolButton
-                Left = 0
-                Top = 0
-                Action = ClearMemoA
-              end
-              object ToolButton1: TToolButton
-                Left = 82
-                Top = 0
-                Width = 41
-                Caption = 'ToolButton1'
-                ImageIndex = 0
-                Style = tbsSeparator
-              end
-              object LogLevelCB: TComboBox
-                Left = 123
-                Top = 0
-                Width = 145
-                Height = 21
-                ItemIndex = 0
-                TabOrder = 0
-                Text = 'INFO'
-                OnChange = LogLevelCBChange
-                Items.Strings = (
-                  'INFO'
-                  'Everything')
-              end
-            end
-          end
-        end
-      end
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
@@ -1750,6 +1679,81 @@ object MainForm: TMainForm
           end
         end
       end
+      object TabSheet3: TTabSheet
+        Caption = 'Logs'
+        ImageIndex = 6
+        object BottomPanel: TPanel
+          Left = 0
+          Top = 0
+          Width = 912
+          Height = 592
+          Align = alClient
+          TabOrder = 0
+          object Panel1: TPanel
+            Left = 1
+            Top = 1
+            Width = 910
+            Height = 590
+            Align = alClient
+            Caption = 'Panel1'
+            TabOrder = 0
+            object infoMemo: TMemo
+              Left = 1
+              Top = 22
+              Width = 908
+              Height = 567
+              Align = alClient
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Consolas'
+              Font.Style = []
+              ParentFont = False
+              PopupMenu = PopupMenu1
+              ScrollBars = ssBoth
+              TabOrder = 0
+            end
+            object ToolBar1: TToolBar
+              Left = 1
+              Top = 1
+              Width = 908
+              Height = 21
+              AutoSize = True
+              ButtonHeight = 21
+              ButtonWidth = 82
+              Caption = 'ToolBar1'
+              ShowCaptions = True
+              TabOrder = 1
+              object ToolButton2: TToolButton
+                Left = 0
+                Top = 0
+                Action = ClearMemoA
+              end
+              object ToolButton1: TToolButton
+                Left = 82
+                Top = 0
+                Width = 41
+                Caption = 'ToolButton1'
+                ImageIndex = 0
+                Style = tbsSeparator
+              end
+              object LogLevelCB: TComboBox
+                Left = 123
+                Top = 0
+                Width = 145
+                Height = 21
+                ItemIndex = 0
+                TabOrder = 0
+                Text = 'INFO'
+                OnChange = LogLevelCBChange
+                Items.Strings = (
+                  'INFO'
+                  'Everything')
+              end
+            end
+          end
+        end
+      end
     end
   end
   object SB: TStatusBar
@@ -1844,7 +1848,7 @@ object MainForm: TMainForm
   end
   object CoverslipsDataSource: TDataSource
     DataSet = csDM.csCDS
-    Left = 840
-    Top = 352
+    Left = 768
+    Top = 336
   end
 end
