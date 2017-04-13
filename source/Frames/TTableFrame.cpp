@@ -2,20 +2,22 @@
 #pragma hdrstop
 #include "TTableFrame.h"
 #include "mtkVCLUtils.h"
+//---------------------------------------------------------------------------
 
 using namespace mtk;
 
 
-//---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TTableFrame *TableFrame;
+
 //---------------------------------------------------------------------------
 __fastcall TTableFrame::TTableFrame(TComponent* Owner)
 	: TFrame(Owner)
 {
 }
 
+//---------------------------------------------------------------------------
 void TTableFrame::assignDBconnection(TSQLConnection* c)
 {
 	mDBConnection = c;
@@ -32,9 +34,9 @@ bool TTableFrame::loadTable(const string& t)
     }
 
 	String tableName = vclstr(t);
-	SQLDataSet1->Active = false;
-    ClientDataSet1->Active = false;
-    SQLDataSet1->CommandText = "SELECT * FROM " + tableName ;
+	SQLDataSet1->Active 		= false;
+    ClientDataSet1->Active 		= false;
+    SQLDataSet1->CommandText 	= "SELECT * FROM " + tableName ;
 
 	SQLDataSet1->Active = true;
     ClientDataSet1->Active = true;

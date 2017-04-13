@@ -1,8 +1,5 @@
-//---------------------------------------------------------------------------
-
 #ifndef TTableFrameH
 #define TTableFrameH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -19,7 +16,8 @@
 #include <string>
 //---------------------------------------------------------------------------
 using std::string;
-class TTableFrame : public TFrame
+
+class PACKAGE TTableFrame : public TFrame
 {
 __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
@@ -31,15 +29,15 @@ __published:	// IDE-managed Components
 	TSQLDataSet *SQLDataSet1;
 
 
-private:	// User declarations
+private:
 	TSQLConnection* 		 mDBConnection;
-public:		// User declarations
+
+public:
 				__fastcall TTableFrame(TComponent* Owner);
     bool					loadTable(const string& t);
     void					assignDBconnection(TSQLConnection* c);
 
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TTableFrame *TableFrame;
-//---------------------------------------------------------------------------
 #endif

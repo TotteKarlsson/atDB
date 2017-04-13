@@ -1050,11 +1050,12 @@ void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
 	TPrintLabelForm* f = new TPrintLabelForm(this);
 
     //Get current Batch Label
-    String code = csDM->csFreshBatchesCDS->FieldByName("batchcode")->AsString;
+    String code_1 = csDM->csFreshBatchesCDS->FieldByName("lot_number")->AsString;
+    String code_2 = csDM->csFreshBatchesCDS->FieldByName("box_number")->AsString;
 
-    if(code.Length())
+    if(code_1.Length())
     {
-    	f->setup(stdstr(code));
+    	f->setup(stdstr(code_1 + '_' + code_2));
 	    f->ShowModal();
     	delete f;
     }
@@ -1331,3 +1332,4 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 
     delete nsf;
 }
+

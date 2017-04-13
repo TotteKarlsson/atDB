@@ -31,8 +31,8 @@ __published:	// IDE-managed Components
 	TButton *mRegisterBtn;
 	TLabel *Label2;
 	TSTDStringLabeledEdit *mCoverSlipLOTE;
+	TSTDStringLabeledEdit *mBoxof100NrEdit;
 	void __fastcall mRegisterBtnClick(TObject *Sender);
-	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall FormShow(TObject *Sender);
 

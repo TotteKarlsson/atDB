@@ -57,7 +57,7 @@ object TableFrame: TTableFrame
   end
   object SQLDataSet1: TSQLDataSet
     Params = <>
-    Left = 568
+    Left = 544
     Top = 104
   end
 end

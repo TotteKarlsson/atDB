@@ -54,7 +54,7 @@
 #include "TTableFrame.h"
 #include "TIntLabel.h"
 #include "TFloatLabeledEdit.h"
-
+#include "TRibbonsDataModule.h"
 using mtk::Property;
 using mtk::SQLite;
 using mtk::MessageContainer;
@@ -100,7 +100,6 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox2;
 	TDBGrid *mRibbonsGrid;
 	TDBNavigator *mRibbonsNavigator;
-	TButton *PrintBarCodeBtn;
 	TGroupBox *GroupBox1;
 	TDBGrid *mRibbonNotesGrid;
 	TDBMemo *mRibbonNoteMemo;
@@ -197,7 +196,6 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet12;
 	TDBMemo *DBMemo1;
 	TGroupBox *GroupBox10;
-	TDataSource *CoverslipsDataSource;
 	TGroupBox *GroupBox11;
 	TLabel *Label10;
 	TDBLookupComboBox *DBLookupComboBox1;
@@ -232,6 +230,11 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel17;
 	TDBText *DBText2;
 	TDBLookupComboBox *mUsersCB;
+	TSplitter *Splitter4;
+	TSplitter *Splitter5;
+	TGroupBox *GroupBox18;
+	TPanel *Panel18;
+	TDBGrid *DBGrid1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=777,760,84,87
+Coordinates=1110,760,97,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -261,9 +261,6 @@ Coordinates=1279,1098,72,51
 
 [mBlockNoteMemo]
 Coordinates=944,1166,104,33
-
-[PrintBarCodeBtn]
-Coordinates=1110,760,97,51
 
 [atdbDM.documentsCDS]
 Coordinates=1474,10,131,123

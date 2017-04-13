@@ -66,6 +66,13 @@ int nrOfFreshBatchesToday()
 //---------------------------------------------------------------------------
 void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 {
+
+    if(mCoverSlipLOTE->Text.Length() < 1 || mBoxof100NrEdit->Text.Length() < 1)
+    {
+    	MessageDlg("Both Lot number and Box (of 100) number must be filled out!", mtError, TMsgDlgButtons() << mbOK, 0);
+    	return;
+    }
+
 	//Insert/create a new batch
     int count = mCSCount->getValue();
     TSQLQuery* q = new TSQLQuery(NULL);
@@ -77,17 +84,10 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     string 	month 	= Month(MonthOf(dt));
     int 	day   	= DayOf(dt);
 
-    //Get nr of batches created today
-    int batchCnt = nrOfFreshBatchesToday();
-    string 	dayBatchNr("0" + mtk::toString(batchCnt + 1));
-
-    stringstream lbl;
-    lbl << year << month << day<<dayBatchNr;
-
     q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
-    sq << "INSERT into freshCSbatches (count, batchcode, lot_number, type) VALUES ("
-    		<<count<<", '" <<lbl.str() <<"', '"<<mCoverSlipLOTE->getValue()<<"', '"<<csType<<"')";
+    sq << "INSERT into freshCSbatches (count, lot_number, box_number, type) VALUES ("
+    		<<count<<", '" <<mCoverSlipLOTE->getValue()<<"', '"<<mBoxof100NrEdit->getValue()<<"', '"<<csType<<"')";
 
     q->SQL->Add(sq.str().c_str());
     q->ExecSQL();
@@ -101,6 +101,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     tq->SQL->Add("SELECT LAST_INSERT_ID();");
     tq->Open();
     int insert_id = tq->Fields->operator [](0)->AsInteger;
+
     tq->Close();
 
     //Associate count coverslips with this batch
@@ -126,15 +127,6 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 }
 
 //Restore the filter
-void __fastcall TRegisterFreshCSBatchForm::FormClose(TObject *Sender, TCloseAction &Action)
-{
-//    csDM->csFreshbatchesCDS->Active = false;
-//	csDM->csFreshbatchesCDS->CommandText = "SELECT * from freshcsbatch";
-//    csDM->csFreshbatchesCDS->Execute();
-//    csDM->csFreshbatchesCDS->Active = true;
-
-}
-
 void __fastcall TRegisterFreshCSBatchForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)

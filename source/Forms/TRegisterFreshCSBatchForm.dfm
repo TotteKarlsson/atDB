@@ -2,8 +2,8 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   Left = 0
   Top = 0
   Caption = 'Register Fresh Coverslip Batch'
-  ClientHeight = 128
-  ClientWidth = 486
+  ClientHeight = 127
+  ClientWidth = 483
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +12,6 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  OnClose = FormClose
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -77,9 +76,19 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     Top = 96
     Width = 121
     Height = 21
+    EditLabel.Width = 98
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Manufacturer LOT #'
+    TabOrder = 4
+  end
+  object mBoxof100NrEdit: TSTDStringLabeledEdit
+    Left = 168
+    Top = 96
+    Width = 121
+    Height = 21
     EditLabel.Width = 78
     EditLabel.Height = 13
-    EditLabel.Caption = 'mCoverSlipLOTE'
-    TabOrder = 4
+    EditLabel.Caption = 'Box # From LOT'
+    TabOrder = 5
   end
 end
