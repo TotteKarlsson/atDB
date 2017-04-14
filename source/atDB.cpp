@@ -4,16 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TNewBlockForm.cpp", NewBlockForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("Forms\TNewSpecimenForm.cpp", NewSpecimenForm);
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TRibbonsDataModule.cpp", RibbonsDataModule); /* TDataModule: File Type */
+USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -97,7 +96,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
-		Application->CreateForm(__classid(TRibbonsDataModule), &RibbonsDataModule);
 		Application->ShowMainForm = true;
 		Application->Run();
 

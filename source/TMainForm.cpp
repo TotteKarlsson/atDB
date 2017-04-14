@@ -29,6 +29,8 @@
 #include "TPrintLabelForm.h"
 #include "atQueryBuilder.h"
 #include "vcl/forms/TTextInputDialog.h"
+#include "TATDBDataModule.h"
+#include "TCoverSlipDataModule.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -101,7 +103,7 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 	//Enable datamodules
 	atdbDM->afterConnect();
     csDM->afterConnect();
-    RibbonsDataModule->afterConnect();
+
 
     mUsersCB->KeyValue = mDBUserID.getValue();
     mATDBServerBtnConnect->Caption = "Disconnect";

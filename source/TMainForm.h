@@ -54,7 +54,7 @@
 #include "TTableFrame.h"
 #include "TIntLabel.h"
 #include "TFloatLabeledEdit.h"
-#include "TRibbonsDataModule.h"
+
 using mtk::Property;
 using mtk::SQLite;
 using mtk::MessageContainer;

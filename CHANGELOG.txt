@@ -1,3 +1,10 @@
+Release 0.6.0 (April 14)
+=======================
+* Added grid for related ribbons when browsing coverslips
+* Added proper printing of CS box labels
+* Added new Ribbons datamodule for specific ribbons database stuff
+* Cleaned up the table frame unit
+
 Release 0.5.9 (April 11)
 =======================
 * Fixed users Dropdown to be a dataaware control
