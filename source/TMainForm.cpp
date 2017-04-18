@@ -110,6 +110,7 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
     TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
 }
 
+//---------------------------------------------------------------------------
 void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 {
 	atdbDM->afterDisConnect();
@@ -186,6 +187,7 @@ void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBt
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
@@ -305,6 +307,7 @@ void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBt
     }
 }
 
+//---------------------------------------------------------------------------
 bool TMainForm::removeAssayFile(const string& f)
 {
 	//Create full path and check if exists before removing
@@ -340,6 +343,7 @@ bool TMainForm::removeAssayFile(const string& f)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
@@ -439,6 +443,7 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
     }
 }
 
+//---------------------------------------------------------------------------
 String __fastcall TMainForm::createBlockLabel()
 {
     String lbl;
@@ -461,36 +466,7 @@ String __fastcall TMainForm::createBlockLabel()
 	return lbl;
 }
 
-//void TMainForm::populateUsersCB()
-//{
-//    //Populate users CB
-//    TSQLQuery* q = new TSQLQuery(NULL);
-//    q->SQLConnection = atdbDM->SQLConnection1;
-//    q->SQL->Add("SELECT id,user_name from users ORDER by user_name");
-//    q->Open();
-//
-//	while(!q->Eof)
-//    {
-//	    String s = (*q)["user_name"];
-//        int *id = new int((*q)["id"]);
-//	    mUsersCB->Items->AddObject(s, (TObject*) id);
-//	   	q->Next();
-//    }
-//
-//    //select current user
-//    for(int i = 0; i < mUsersCB->Items->Count; i++)
-//    {
-//    	int uid = *(int*) mUsersCB->Items->Objects[i];
-//        if(uid == mDBUserID.getValue())
-//        {
-//			mUsersCB->ItemIndex = i;
-//            break;
-//        }
-//    }
-//
-//	mUsersCB->Enabled = true;
-//}
-
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
 	if(atdbDM->SQLConnection1->Connected)
@@ -562,6 +538,7 @@ void __fastcall TMainForm::mSpecimenGridDrawColumnCell(TObject *Sender, const TR
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
 {
 	if(mTablesLB->ItemIndex != -1)
@@ -571,6 +548,7 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::Button1Click(TObject *Sender)
 {
 
@@ -625,6 +603,7 @@ void __fastcall TMainForm::mProcessForBlocksGridCellClick(TColumn *Column)
 	selectBlocks();
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::selectBlocks()
 {
 	//Retrieve selected id and apply filter on blocks table
@@ -666,6 +645,7 @@ void __fastcall TMainForm::PageControl2Change(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mDocumentsGridDblClick(TObject *Sender)
 {
 	//Extract the document and open with default viewer
@@ -828,6 +808,7 @@ void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Bu
     }
 }
 
+//---------------------------------------------------------------------------
 void TMainForm::openCurrentDocumentFile()
 {
 	TClientDataSet* cds = atdbDM->documentsCDS;
@@ -863,6 +844,7 @@ void __fastcall TMainForm::mBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftSt
 	createBlockLabels();
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::createBlockLabels()
 {
 	mLblMakerMemo->Clear();
@@ -980,6 +962,7 @@ void __fastcall TMainForm::mPrintTestLabelBtnClick(TObject *Sender)
     lblPrinter.printCoverSlipLabel(p, lbl.str(), 1);
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
 {
 	Log(lInfo) << "Loading new Dust Assay Dataset";
@@ -989,6 +972,7 @@ void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
 
 }
 
+//---------------------------------------------------------------------------
 bool TMainForm::loadImage(const string& fName, TImage* img)
 {
 	//Extract image folder from DB fName
@@ -1070,6 +1054,7 @@ void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mFreshBatchesGridCellClick(TColumn *Column)
 {
 	selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
@@ -1162,7 +1147,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
         qb.clear();
-        qb 	<< "UPDATE coverslips SET status='4',cleanCSBatch='"<<cleanCSBatchID<<"' "
+        qb 	<< "UPDATE coverslips SET status='"<<cssPostSilanization<<"',cleanCSBatch='"<<cleanCSBatchID<<"' "
             << "WHERE id='"<<coverslipIDS[i]<<"'";
 
         Log(lDebug) << "Query: " << qb.asString();
@@ -1217,7 +1202,7 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
         qb.clear();
-        qb 	<< "UPDATE coverslips SET status='5', carboncoatbatch='"<<carboncoatbatchID<<"' "
+        qb 	<< "UPDATE coverslips SET status='"<<cssPostCarbonCoat<<"', carboncoatbatch='"<<carboncoatbatchID<<"' "
             << "WHERE id='"<<coverslipIDS[i]<<"'";
 
         Log(lDebug) << "Query: " << qb.asString();
@@ -1317,6 +1302,7 @@ void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
 	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 {
 	//Show current record on a form
@@ -1337,4 +1323,69 @@ void __fastcall TMainForm::mBlocksGridDblClick(TObject *Sender)
 
     delete nsf;
 }
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
+{
+
+	//Get selected cs records in the coverslip grid
+    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+    if(coverslipIDS.size() == 0)
+    {
+	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+		return;
+    }
+
+    StringList fromInts(coverslipIDS);
+	Log(lInfo) << "Selected ids: (" << fromInts.asString(',')<<")";
+
+
+	TMenuItem* mi = dynamic_cast<TMenuItem*>(Sender);
+    CoversSlipStatusE status;
+    int mr;
+    if(mi == DiscardedMenuItem)
+    {
+	    mr = MessageDlg("Change status to 'Discarded' for selected coverslips?", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
+		status = cssDiscarded;
+    }
+    else if(mi == FreshoutoftheBoxMenuItem)
+    {
+	    mr = MessageDlg("Change status to 'Fresh Out of the Box for selected Coverslips?", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
+    	status = cssFreshOutOfTheBox;
+    }
+    else
+    {
+	    MessageDlg("Invalid selection......!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+    }
+
+    if(mr != mrYes)
+    {
+    	return;
+    }
+
+    //Create a new cleanround record, and associate slected coverslips with it
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = atdbDM->SQLConnection1;
+    QueryBuilder qb;
+
+    int current_user = getCurrentUserID();
+    for(int i = 0; i < coverslipIDS.size(); i++)
+    {
+        qb.clear();
+        qb 	<< "UPDATE coverslips SET status='"<<status<<"'"
+            << "WHERE id='"<<coverslipIDS[i]<<"'";
+
+        Log(lDebug) << "Query: " << qb.asString();
+        q->SQL->Text = qb.asCString();
+        int res = q->ExecSQL();
+        Log(lDebug) << "Query result: " << res;
+
+        //Update status and associate each coverslip
+        Log(lInfo) << "Updating status for coverslip with ID:" <<coverslipIDS[i];
+    }
+
+    delete q;
+	csDM->csCDS->Refresh();
+}
+
 

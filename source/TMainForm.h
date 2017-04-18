@@ -68,7 +68,7 @@ class TMainForm : public TRegistryForm
     __published:	// IDE-managed Components
     TStatusBar *SB;
         TActionList *ActionList1;
-        TPopupMenu *PopupMenu1;
+	TPopupMenu *LogMemoPopup;
         TAction *ClearMemoA;
         TMenuItem *ClearMemoA1;
     TPanel *TopPanel;
@@ -235,6 +235,11 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox18;
 	TPanel *Panel18;
 	TDBGrid *DBGrid1;
+	TPopupMenu *CoverSlipPopup;
+	TMenuItem *SetStatus1;
+	TMenuItem *DiscardedMenuItem;
+	TMenuItem *FreshoutoftheBoxMenuItem;
+	TMenuItem *N1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -293,6 +298,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
+	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 
     private:
         bool                                            gCanClose;

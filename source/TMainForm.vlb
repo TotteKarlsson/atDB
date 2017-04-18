@@ -130,9 +130,6 @@ LayerNames=OrdersLayer
 [ADM.dsCustomerOrders]
 LayerNames=OrdersLayer
 
-[PopupMenu1]
-LayerNames=OrdersLayer
-
 [mIniFileC]
 LayerNames=OrdersLayer
 
@@ -678,4 +675,7 @@ Coordinates=177,474,80,51
 
 [GroupBox12]
 Coordinates=177,544,76,51
+
+[LogMemoPopup]
+LayerNames=OrdersLayer
 
