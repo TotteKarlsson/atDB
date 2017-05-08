@@ -4,15 +4,15 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
-USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("Forms\TNewBlockForm.cpp", NewBlockForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("Forms\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("Forms\TNewBlockForm.cpp", NewBlockForm);
+USEFORM("Forms\TNewSpecimenForm.cpp", NewSpecimenForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"

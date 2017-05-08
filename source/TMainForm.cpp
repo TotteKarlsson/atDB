@@ -646,33 +646,6 @@ void __fastcall TMainForm::PageControl2Change(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mDocumentsGridDblClick(TObject *Sender)
-{
-	//Extract the document and open with default viewer
-	String id  		= mDocumentsGrid->DataSource->DataSet->FieldByName("id")->AsString;
-	String docName  = mDocumentsGrid->DataSource->DataSet->FieldByName("document_name")->AsString;
-	String type 	= mDocumentsGrid->DataSource->DataSet->FieldByName("type")->AsString;
-    Log(lInfo) << "Opening a :"<<stdstr(type)<<" file";
-
-    TByteDynArray bytes = mDocumentsGrid->DataSource->DataSet->FieldByName("document")->AsBytes;
-
-    String fNames(docName + "." + type);
-    string fName(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA),"Temp", stdstr(fNames)));
-
-	fstream out(fName.c_str(), ios::out|ios::binary);
-    if(out)
-    {
-        for(int i = 0; i < bytes.Length; i++)
-        {
-            out << bytes[i];
-        }
-    }
-
-    out.close();
-    ShellExecuteA(NULL, NULL, fName.c_str(), 0, 0, SW_SHOWNORMAL);
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mAddDocBtnClick(TObject *Sender)
 {
 	//Browse for file
@@ -756,85 +729,6 @@ void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton 
 
 		SpecimenPopup->Popup(X,Y);
     }
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y)
-{
-	if(Button != TMouseButton::mbRight)
-    {
-    	return;
-    }
-
-    TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
-    TField* field =  mSpecimenGrid->Columns->operator [](c.X - 1)->Field;
-
-    if(field->FieldKind == fkLookup)
-    {
-        TPoint screen(mSpecimenGrid->ClientToScreen(Point(X,Y)));
-
-        Log(lInfo) << "Field: " << stdstr(field->Value);
-        Log(lInfo) << "Key Fields: " << stdstr(field->KeyFields);
-
-        Log(lInfo) << "Field Lookup: " << stdstr(field->LookupKeyFields);
-        String value = field->DataSet->FieldByName(field->KeyFields)->Value;
-
-        //Query lookup data set for document_id
-        TLocateOptions lo;
-        bool found = field->LookupDataSet->Locate("id", value, lo);
-
-        if(found)
-        {
-            int id = -1;
-            if(!field->LookupDataSet->FieldByName("document_id")->Value.IsNull())
-            {
-                id = field->LookupDataSet->FieldByName("document_id")->Value;
-            }
-
-            Log(lInfo) << "Opening document with id: "<<id;
-
-            TLocateOptions lo;
-            bool found = atdbDM->documentsCDS->Locate("id", id, lo);
-            if(found)
-            {
-            //	SpecimenPopup->Popup(screen.X, screen.Y);
-                openCurrentDocumentFile();
-            }
-        }
-
-        //Get document id
-        Log(lInfo) << "Field Lookup Value" << stdstr(value);
-    }
-}
-
-//---------------------------------------------------------------------------
-void TMainForm::openCurrentDocumentFile()
-{
-	TClientDataSet* cds = atdbDM->documentsCDS;
-
-	String id  		= cds->FieldByName("id")->AsString;
-	String docName  = cds->FieldByName("document_name")->AsString;
-	String type 	= cds->FieldByName("type")->AsString;
-
-    Log(lInfo) << "Opening a :"<<stdstr(type)<<" file";
-
-    TByteDynArray bytes = cds->FieldByName("document")->AsBytes;
-
-    String fNames(docName + "." + type);
-    string fName(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA),"Temp", stdstr(fNames)));
-
-	fstream out(fName.c_str(), ios::out|ios::binary);
-    if(out)
-    {
-        for(int i = 0; i < bytes.Length; i++)
-        {
-            out << bytes[i];
-        }
-    }
-
-    out.close();
-    ShellExecuteA(NULL, NULL, fName.c_str(), 0, 0, SW_SHOWNORMAL);
 }
 
 //---------------------------------------------------------------------------
@@ -952,13 +846,7 @@ void __fastcall TMainForm::mPrintTestLabelBtnClick(TObject *Sender)
 
 
     BarcodePrintParameters p;
-    p.xStart 			= mCodeStartX->getValue();
-    p.yStart 			= mCodeStartY->getValue();
-    p.expectedWidth 	= mExpectedWidth->getValue();
-    p.expectedHeight	= mExpectedHeight->getValue();
-    p.moduleSize		= mModuleSize->getValue();
-    p.rowSymbolSize		= mRowSymbolSize->getValue();
-    p.colSymbolSize		= mColSymbolSize->getValue();
+    p.command = stdlines(mBarCodeCommandMemo->Lines);
     lblPrinter.printCoverSlipLabel(p, lbl.str(), 1);
 }
 
@@ -969,7 +857,6 @@ void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
     loadImage(stdstr(mIm1FName->Caption), mBackgroundImage);
     loadImage(stdstr(mIm2FName->Caption), mCoverslipImage);
     loadImage(stdstr(mIm3FName->Caption), mResultImage);
-
 }
 
 //---------------------------------------------------------------------------
@@ -1215,13 +1102,7 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
     }
 
     BarcodePrintParameters p;
-    p.xStart 			= mCodeStartX->getValue();
-    p.yStart 			= mCodeStartY->getValue();
-    p.expectedWidth 	= mExpectedWidth->getValue();
-    p.expectedHeight	= mExpectedHeight->getValue();
-    p.moduleSize		= mModuleSize->getValue();
-    p.rowSymbolSize		= mRowSymbolSize->getValue();
-    p.colSymbolSize		= mColSymbolSize->getValue();
+    p.command = stdlines(mBarCodeCommandMemo->Lines);
 
     //Create and print labels
     if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
@@ -1249,13 +1130,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 	if(b == mPrintCSLabelsBtn)
     {
         BarcodePrintParameters p;
-        p.xStart 			= mCodeStartX->getValue();
-        p.yStart 			= mCodeStartY->getValue();
-        p.expectedWidth 	= mExpectedWidth->getValue();
-        p.expectedHeight	= mExpectedHeight->getValue();
-        p.moduleSize		= mModuleSize->getValue();
-        p.rowSymbolSize		= mRowSymbolSize->getValue();
-        p.colSymbolSize		= mColSymbolSize->getValue();
+        p.command 			= stdlines(mBarCodeCommandMemo->Lines);
 
         //Create and print labels
         if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
@@ -1388,4 +1263,16 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
 	csDM->csCDS->Refresh();
 }
 
+
+void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn Button)
+
+{
+//	switch(Button)
+//    {
+//    	case TNavigateBtn::nbInsert:
+//        	atdbDM->settingsCDS->FieldValues["id"] = "New User";
+//        break;
+//    }
+}
+//---------------------------------------------------------------------------
 

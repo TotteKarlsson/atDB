@@ -143,6 +143,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="Archived.cpp">
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
         <CppCompile Include="atDB.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>

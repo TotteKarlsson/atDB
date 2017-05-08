@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1110,760,97,51
+Coordinates=2259,1098,95,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -208,9 +208,6 @@ Coordinates=834,1030,46,51
 [BlockNotesGB]
 Coordinates=2085,1030,86,51
 
-[ScrollBox1]
-Coordinates=2173,1098,68,33
-
 [TabSheet5]
 Coordinates=10,1166,66,33
 
@@ -267,9 +264,6 @@ Coordinates=2256,1030,56,51
 
 [mDustAssayImageFolderE]
 Coordinates=1485,1030,144,51
-
-[mDocumentsGrid]
-Coordinates=416,1166,100,33
 
 [Panel9]
 Coordinates=1760,760,47,51
@@ -366,9 +360,6 @@ Coordinates=1383,10,82,195
 
 [csDM.csCDS]
 Coordinates=972,10,82,231
-
-[mAddDocBtn]
-Coordinates=2095,760,80,51
 
 [mBrowseForDustAssayImageFolder]
 Coordinates=812,962,191,51
@@ -583,9 +574,6 @@ Coordinates=1370,1098,68,51
 [TabSheet10]
 Coordinates=765,1166,72,33
 
-[mDocsNavigator]
-Coordinates=1186,894,96,51
-
 [mBlocksGrid]
 Coordinates=2304,1166,78,33
 
@@ -651,9 +639,6 @@ Coordinates=1641,1098,81,33
 
 [TabSheet11]
 Coordinates=1547,1098,72,33
-
-[mDocsTabSheet]
-Coordinates=2259,1098,95,33
 
 [GroupBox11]
 Coordinates=177,404,76,51

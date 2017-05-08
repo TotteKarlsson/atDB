@@ -88,7 +88,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *mBlockNoteMemo;
 	TDBNavigator *DBNavigator2;
-	TScrollBox *ScrollBox1;
 	TLabel *Label2;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
@@ -125,10 +124,6 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *mPasswordE;
 	TArrayBotButton *mATDBServerBtnConnect;
 	TSTDStringLabeledEdit *mDatabaseE;
-	TTabSheet *mDocsTabSheet;
-	TDBNavigator *mDocsNavigator;
-	TDBGrid *mDocumentsGrid;
-	TButton *mAddDocBtn;
 	TTabSheet *TabSheet3;
 	TPanel *BottomPanel;
 	TPanel *Panel1;
@@ -205,23 +200,8 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox12;
 	TGroupBox *GroupBox13;
 	TGroupBox *GroupBox14;
-	TIntegerLabeledEdit *mCSBCTextXPos;
-	TIntegerLabeledEdit *mCSBCTextYPos;
-	TIntegerLabeledEdit *mCSBCFont;
-	TIntegerLabeledEdit *mBCTextAlignment;
-	TFloatLabeledEdit *mCSBCWidth;
-	TFloatLabeledEdit *mCSBCHeight;
-	TIntegerLabeledEdit *mCodeStartX;
-	TIntegerLabeledEdit *mCodeStartY;
-	TIntegerLabeledEdit *mExpectedHeight;
-	TIntegerLabeledEdit *mExpectedWidth;
-	TGroupBox *GroupBox15;
-	TIntegerLabeledEdit *mRowSymbolSize;
-	TIntegerLabeledEdit *mColSymbolSize;
-	TIntegerLabeledEdit *mModuleSize;
 	TSTDStringLabeledEdit *mTestLabel;
 	TButton *mPrintTestLabelBtn;
-	TGroupBox *GroupBox16;
 	TGroupBox *GroupBox17;
 	TPanel *Panel13;
 	TPanel *Panel15;
@@ -240,6 +220,12 @@ class TMainForm : public TRegistryForm
 	TMenuItem *DiscardedMenuItem;
 	TMenuItem *FreshoutoftheBoxMenuItem;
 	TMenuItem *N1;
+	TSplitter *Splitter6;
+	TDBMemo *mBarCodeCommandMemo;
+	TDataSource *settingsDS;
+	TDBNavigator *settingsNavigator;
+	TDBText *DBText4;
+	TSplitter *Splitter7;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -271,7 +257,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mProcessForBlocksGridCellClick(TColumn *Column);
 	void __fastcall OpenAboutFormAExecute(TObject *Sender);
 	void __fastcall PageControl2Change(TObject *Sender);
-	void __fastcall mDocumentsGridDblClick(TObject *Sender);
 	void __fastcall mAddDocBtnClick(TObject *Sender);
 	void __fastcall mSpecimenGridDblClick(TObject *Sender);
 	void __fastcall mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
@@ -299,6 +284,8 @@ class TMainForm : public TRegistryForm
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
+	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
+
 
     private:
         bool                                            gCanClose;
@@ -344,7 +331,7 @@ class TMainForm : public TRegistryForm
 		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
 		void 		__fastcall 							selectBlocks();
 		void 		__fastcall							selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detailGrid);
-		void 											openCurrentDocumentFile();
+
 		void 		__fastcall 							createBlockLabels();
 		bool 											loadImage(const string& fName, TImage* img);
 
