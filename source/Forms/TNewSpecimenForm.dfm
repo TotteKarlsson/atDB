@@ -11,8 +11,10 @@ object NewSpecimenForm: TNewSpecimenForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -194,7 +196,7 @@ object NewSpecimenForm: TNewSpecimenForm
       ModalResult = 1
       TabOrder = 1
     end
-    object Button2: TButton
+    object CancelBtn: TButton
       Left = 387
       Top = 16
       Width = 60

@@ -77,8 +77,11 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 	//Save project history
 	mBottomPanelHeight          	= BottomPanel->Height;
+    BatchesGBHeight 				= BatchesGB->Height;
+
     mDustAssayResultImageHeight 	= mResultImagePanel->Height;
     mDustAssayBackGroundImageWidth 	= mBackgroundImagePanel->Width;
+
 
 	mGeneralProperties.write();
     mCoverslipPrintingProperties.write();

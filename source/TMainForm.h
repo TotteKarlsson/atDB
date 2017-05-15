@@ -54,6 +54,7 @@
 #include "TTableFrame.h"
 #include "TIntLabel.h"
 #include "TFloatLabeledEdit.h"
+#include "atBarCodeBuilder.h"
 
 using mtk::Property;
 using mtk::SQLite;
@@ -176,7 +177,7 @@ class TMainForm : public TRegistryForm
 	TButton *mBrowseForDustAssayImageFolder;
 	TPanel *Panel12;
 	TButton *mRegisterFreshBatchBtn;
-	TGroupBox *GroupBox9;
+	TGroupBox *BatchesGB;
 	TDBGrid *mFreshBatchesGrid;
 	TDBNavigator *CSFreshBatchNavigator;
 	TButton *mPrintBatchLblBtn;
@@ -285,6 +286,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBlocksGridDblClick(TObject *Sender);
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 
 
     private:
@@ -309,6 +311,7 @@ class TMainForm : public TRegistryForm
         IniFileProperties	      	                    mGeneralProperties;
         mtk::Property<int>	                            mBottomPanelHeight;
 		mtk::Property<int>	                            mMainTabIndex;
+		mtk::Property<int>	                            BatchesGBHeight;
 		mtk::Property<int>	                            mDustAssayResultImageHeight;
 		mtk::Property<int>	                            mDustAssayBackGroundImageWidth;
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
@@ -338,6 +341,7 @@ class TMainForm : public TRegistryForm
         //Custom event
 		void 		__fastcall 							onDustAssayDataChanged(TObject *Sender);
 		bool											removeAssayFile(const string& f);
+      	BarCodeBuilder									mBCBuilder;
 
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);

@@ -78,8 +78,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
 	mServerDBSession(""),
-    mDBUserID(0)
-
+    mDBUserID(0),
+	BatchesGBHeight(250)
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
@@ -1274,5 +1274,7 @@ void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn 
 //        break;
 //    }
 }
+//---------------------------------------------------------------------------
+
 //---------------------------------------------------------------------------
 

@@ -4,10 +4,10 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);

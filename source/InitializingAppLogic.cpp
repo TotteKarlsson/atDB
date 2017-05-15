@@ -170,6 +170,7 @@ bool TMainForm::setupAndReadIniParameters()
     																				"DUSTASSAY_IMAGER_FOLDER",    			        "c:\\"));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayBackGroundImageWidth.setup( 	"BACKGROUND_IMAGE_WIDTH",  	        100));
+	mGeneralProperties.add((BaseProperty*)  &BatchesGBHeight.setup( 				"BATCHES_GB_HEIGHT",  	        	250));
 
 	//Read from file. Create if file do not exist
 	mGeneralProperties.read();
@@ -187,40 +188,8 @@ bool TMainForm::setupAndReadIniParameters()
    	mCoverslipPrintingProperties.setIniFile(mIniFileC->getIniFile());
 	mCoverslipPrintingProperties.setSection("COVERSLIPLABEL_PRINTING");
 
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCSBCWidth->getProperty()->setup( 	    "LABEL_WIDTH",              0.965));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCSBCHeight->getProperty()->setup( 	    "LABEL_HEIGHT",             0.2874));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCSBCTextXPos->getProperty()->setup( 	"TEXT_X",               	200));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCSBCTextYPos->getProperty()->setup( 	"TEXT_Y",               	55));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCSBCFont->getProperty()->setup( 	    "FONT_NUMBER",              3));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mBCTextAlignment->getProperty()->setup( 	"TEXT_ALIGNMENT",           0));
-//
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCodeStartX->getProperty()->setup( 	    "BARCODE_X",               145));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mCodeStartY->getProperty()->setup( 	    "BARCODE_Y",               35));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mExpectedWidth->getProperty()->setup( 	"BC_EXPECTED_WIDTH",       15));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mExpectedHeight->getProperty()->setup( 	"BC_EXPECTED_HEIGHT",      15));
-//
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mRowSymbolSize->getProperty()->setup( 	"ROW_SYMBOL_SIZE",          43));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mColSymbolSize->getProperty()->setup( 	"COl_SYMBOL_SIZE",          43));
-//	mCoverslipPrintingProperties.add((BaseProperty*)  &mModuleSize->getProperty()->setup( 		"MODULE_SIZE",     		    3));
-
     mCoverslipPrintingProperties.read();
-
-	//Update
-//	mCSBCWidth->update();
-//    mCSBCHeight->update();
-//    mCSBCTextXPos->update();
-//    mCSBCTextYPos->update();
-//    mCSBCFont->update();
-//    mBCTextAlignment->update();
-//
-//    mCodeStartX->update();
-//    mCodeStartY->update();
-//    mExpectedWidth->update();
-//    mExpectedHeight->update();
-//
-//    mRowSymbolSize->update();
-//    mColSymbolSize->update();
-//    mModuleSize->update();
+    BatchesGB->Height = BatchesGBHeight;
 
 	//Setup UI elements
 	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
@@ -232,4 +201,3 @@ bool TMainForm::setupAndReadIniParameters()
 
 	return true;
 }
-

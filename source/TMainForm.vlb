@@ -532,9 +532,6 @@ Coordinates=1085,1098,161,51
 [mResultImagePanel]
 Coordinates=211,894,112,51
 
-[GroupBox9]
-Coordinates=591,894,70,51
-
 [Panel12]
 Coordinates=149,962,53,51
 
@@ -663,4 +660,7 @@ Coordinates=177,544,76,51
 
 [LogMemoPopup]
 LayerNames=OrdersLayer
+
+[BatchesGB]
+Coordinates=591,894,70,51
 

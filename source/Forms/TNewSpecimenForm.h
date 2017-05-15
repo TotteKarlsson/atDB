@@ -17,7 +17,7 @@ __published:	// IDE-managed Components
 	TScrollBox *ScrollBox1;
 	TPanel *Panel1;
 	TButton *Button1;
-	TButton *Button2;
+	TButton *CancelBtn;
 	TDBEdit *DBEdit1;
 	TLabel *Label1;
 	TDBLookupComboBox *DBLookupComboBox1;
@@ -37,6 +37,8 @@ __published:	// IDE-managed Components
 	TLabel *Label8;
 	TLabel *Label10;
 	void __fastcall FormShow(TObject *Sender);
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+
 private:	// User declarations
 public:		// User declarations
 	__fastcall TNewSpecimenForm(TComponent* Owner);

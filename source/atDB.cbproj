@@ -53,10 +53,10 @@
         <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Amethyst Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\AmethystKamri.vsf&quot;</VCL_Custom_Styles>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>Package\;Forms\;DataModules\;Frames\;vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;UI\;UI\Forms\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>Core\;Package\;Forms\;DataModules\;Frames\;vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;UI\;UI\Forms\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <_TCHARMapping>wchar_t</_TCHARMapping>
-        <IncludePath>Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
+        <IncludePath>Core\;Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
         <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
@@ -155,6 +155,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="ClosingAppLogic.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Core\atBarcodeBuilder.cpp">
+            <DependentOn>Core\atBarcodeBuilder.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Forms\TAboutATDBForm.cpp">
             <Form>AboutATDBForm</Form>
             <DependentOn>Forms\TAboutATDBForm.h</DependentOn>
@@ -220,10 +224,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>

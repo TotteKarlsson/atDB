@@ -21,3 +21,13 @@ void __fastcall TNewSpecimenForm::FormShow(TObject *Sender)
 }
 
 
+//---------------------------------------------------------------------------
+void __fastcall TNewSpecimenForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key == VK_ESCAPE)
+    {
+        CancelBtn->Click();
+    }
+}
+
+

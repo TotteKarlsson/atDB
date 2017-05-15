@@ -16,7 +16,28 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     {
         Close();
     }
+    else if(Key == VK_RETURN)
+    {
+    	string bc(mBCBuilder.getBarCode());
+    	//handle barcode
+        bc = trimChars(bc,"\r \n");
+        if(bc.size() == 8 && bc[0] == 'C')
+        {
+        	Log(lInfo) << "Current barcode is: " << bc;
+        }
+
+        mBCBuilder.reset();
+    }
+
 }
+
+void __fastcall TMainForm::FormKeyPress(TObject *Sender, System::WideChar &Key)
+{
+    //Check barcode from reader
+    mBCBuilder.build((char) Key);
+}
+
+
 
 void __fastcall TMainForm::OpenAboutFormAExecute(TObject *Sender)
 {
