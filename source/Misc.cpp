@@ -5,6 +5,8 @@
 #include "TAboutATDBForm.h"
 #include "TATDBDataModule.h"
 #pragma package(smart_init)
+#include "TCoverSlipForm.h"
+
 using Poco::DateTimeFormatter;
 
 using namespace mtk;
@@ -24,6 +26,10 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
         if(bc.size() == 8 && bc[0] == 'C')
         {
         	Log(lInfo) << "Current barcode is: " << bc;
+			TCoverSlipForm *cs = new TCoverSlipForm(bc, this);
+            cs->ShowModal();
+
+
         }
 
         mBCBuilder.reset();

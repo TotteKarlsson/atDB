@@ -13,6 +13,7 @@ USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TNewBlockForm.cpp", NewBlockForm);
 USEFORM("Forms\TNewSpecimenForm.cpp", NewSpecimenForm);
+USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -96,6 +97,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
+		Application->CreateForm(__classid(TCoverSlipForm), &CoverSlipForm);
 		Application->ShowMainForm = true;
 		Application->Run();
 
