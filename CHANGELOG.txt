@@ -1,3 +1,13 @@
+Release 0.6.1 (June 27)
+=======================
+* Added form to inspect a scanned coverslip
+* Added ability to read barcodes in ATDB
+* Removed old print labels code
+* Removed docs features
+* Added an Archived area in source repository
+* Added ability to change coverslip statuses for a set of coverslips
+* Renamed release script
+
 Release 0.6.0 (April 14)
 =======================
 * Added grid for related ribbons when browsing coverslips
