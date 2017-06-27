@@ -70,6 +70,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
                 if(gOtherAppWindow != NULL)
                 {
+                	MessageDlg("ATDB is already running!", mtWarning, TMsgDlgButtons() << mbOK, 0);
                     //Send a custom message to restore window here..
                     ::SwitchToThisWindow(gOtherAppWindow, false);
                 }
@@ -91,7 +92,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->Initialize();
         Application->MainFormOnTaskBar = true;
 
-		TStyleManager::TrySetStyle("Amethyst Kamri");
+		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->Title = "atDB";
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);

@@ -50,7 +50,7 @@
         <VerInfo_Keys>CompanyName=Dune Scientific, LLC;FileDescription=;FileVersion=0.5.0.0;InternalName=;LegalCopyright=;LegalTrademarks=Dune Scientific, LLC;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>None</Manifest_File>
-        <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Amethyst Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\AmethystKamri.vsf&quot;</VCL_Custom_Styles>
+        <VCL_Custom_Styles>&quot;Amakrits|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\Amakrits.vsf&quot;;&quot;Amethyst Kamri|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\AmethystKamri.vsf&quot;;&quot;Iceberg Classico|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\10.0\Styles\IcebergClassico.vsf&quot;</VCL_Custom_Styles>
         <ProjectType>CppVCLApplication</ProjectType>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <ILINK_LibraryPath>Core\;Package\;Forms\;DataModules\;Frames\;vcl\;..\UI\Forms\;..\UI\;P:\libs\atapi\source\database\;source\;p:\libs\atapi\source\vcl\datamodules\;source\vcl\;UI\;UI\Forms\;..\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -230,15 +230,15 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
-        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="Forms\TNewBlockForm.dfm"/>
         <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
+        <FormResources Include="Forms\TNewBlockForm.dfm"/>
+        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
