@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1143
       Height = 710
-      ActivePage = TabSheet9
+      ActivePage = TabSheet4
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -51,20 +51,20 @@ object MainForm: TMainForm
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
-            Caption = 'Specimen'
+            Caption = 'Cases && Specimens'
             object GroupBox4: TGroupBox
               Left = 0
-              Top = 0
+              Top = 264
               Width = 1127
-              Height = 654
-              Align = alClient
+              Height = 390
+              Align = alBottom
               Caption = 'Specimen'
               TabOrder = 0
               object mSpecimenGrid: TDBGrid
                 Left = 2
                 Top = 15
                 Width = 1123
-                Height = 612
+                Height = 348
                 Align = alClient
                 DataSource = atdbDM.specimenDataSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -84,65 +84,62 @@ object MainForm: TMainForm
                 Columns = <
                   item
                     Expanded = False
+                    FieldName = 'case_id'
+                    Width = 75
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
                     FieldName = 'specimen_id'
-                    Width = 88
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'process_id'
-                    ReadOnly = True
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'Lspecie'
-                    Width = 100
+                    Width = 75
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'lims_number'
-                    Title.Caption = 'Lims #'
-                    Width = 100
+                    Width = 75
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'additional_identifier'
-                    Width = 100
+                    FieldName = 'virus'
+                    Width = 75
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'age'
-                    Width = 63
+                    Width = 75
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'death_date'
-                    Title.Caption = 'Date of Death'
-                    Width = 100
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'date_received'
-                    Width = 100
+                    Width = 75
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'brain_region_dissection'
-                    Title.Caption = 'From Brain region'
-                    Width = 100
+                    Width = 75
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'entered_by'
+                    Width = 75
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'culture_time'
+                    Width = 75
                     Visible = True
                   end>
               end
               object mSpecimenNavigator: TDBNavigator
                 Left = 2
-                Top = 627
+                Top = 363
                 Width = 1123
                 Height = 25
                 DataSource = atdbDM.specimenDataSource
@@ -150,6 +147,72 @@ object MainForm: TMainForm
                 Align = alBottom
                 TabOrder = 1
                 OnClick = mSpecimenNavigatorClick
+                ExplicitTop = 627
+              end
+            end
+            object GroupBox9: TGroupBox
+              Left = 0
+              Top = 0
+              Width = 1127
+              Height = 209
+              Align = alTop
+              Caption = 'Cases'
+              TabOrder = 1
+              object DBNavigator3: TDBNavigator
+                Left = 2
+                Top = 182
+                Width = 1123
+                Height = 25
+                DataSource = CasesDS
+                VisibleButtons = [nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+                Align = alBottom
+                TabOrder = 0
+                ExplicitLeft = 464
+                ExplicitTop = -128
+                ExplicitWidth = 240
+              end
+              object DBGrid3: TDBGrid
+                Left = 2
+                Top = 15
+                Width = 1123
+                Height = 167
+                Align = alClient
+                DataSource = CasesDS
+                Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                TabOrder = 1
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -11
+                TitleFont.Name = 'Tahoma'
+                TitleFont.Style = []
+                Columns = <
+                  item
+                    Expanded = False
+                    FieldName = 'id'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'animal_id'
+                    Width = 64
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'intake_date'
+                    Width = 64
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'specie'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'entered_by'
+                    Visible = True
+                  end>
               end
             end
           end
@@ -194,12 +257,6 @@ object MainForm: TMainForm
                 OnCellClick = mProcessForBlocksGridCellClick
                 OnKeyUp = mProcessForBlocksGridKeyUp
                 Columns = <
-                  item
-                    Expanded = False
-                    FieldName = 'process_id'
-                    Width = 74
-                    Visible = True
-                  end
                   item
                     Expanded = False
                     FieldName = 'specimen_id'
@@ -359,7 +416,7 @@ object MainForm: TMainForm
                       end
                       item
                         Expanded = False
-                        FieldName = 'process_id'
+                        FieldName = 'specimen_id'
                         Visible = True
                       end
                       item
@@ -371,7 +428,6 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'LUser'
-                        Width = 64
                         Visible = True
                       end>
                   end
@@ -1747,5 +1803,10 @@ object MainForm: TMainForm
     DataSet = atdbDM.settingsCDS
     Left = 440
     Top = 280
+  end
+  object CasesDS: TDataSource
+    DataSet = atdbDM.casesCDS
+    Left = 296
+    Top = 152
   end
 end

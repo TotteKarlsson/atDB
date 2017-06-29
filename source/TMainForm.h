@@ -227,6 +227,10 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *settingsNavigator;
 	TDBText *DBText4;
 	TSplitter *Splitter7;
+	TGroupBox *GroupBox9;
+	TDBNavigator *DBNavigator3;
+	TDBGrid *DBGrid3;
+	TDataSource *CasesDS;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

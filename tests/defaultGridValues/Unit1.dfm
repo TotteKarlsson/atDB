@@ -30,7 +30,7 @@ object Form1: TForm1
     Columns = <
       item
         Expanded = False
-        FieldName = 'process_id'
+        FieldName = 'specimen_id'
         Visible = True
       end
       item

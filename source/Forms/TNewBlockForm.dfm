@@ -74,7 +74,7 @@ object NewBlockForm: TNewBlockForm
       Top = 32
       Width = 512
       Height = 21
-      DataField = 'process_id'
+      DataField = 'specimen_id'
       DataSource = DataSource1
       Enabled = False
       ReadOnly = True

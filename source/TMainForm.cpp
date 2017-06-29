@@ -354,7 +354,7 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 
            	if(mUsersCB->KeyValue != -1)
             {
-	        	atdbDM->blocksCDS->FieldValues["process_id"] = atdbDM->specimenCDS->FieldByName("process_id")->AsInteger;
+	        	atdbDM->blocksCDS->FieldValues["specimen_id"] = atdbDM->specimenCDS->FieldByName("specimen_id")->AsInteger;
 	        	atdbDM->blocksCDS->FieldValues["serial"] 	 = atdbDM->blocksCDS->RecordCount + 1;
 	        	atdbDM->blocksCDS->FieldValues["created_by"] = mUsersCB->KeyValue;
 
@@ -610,9 +610,9 @@ void __fastcall TMainForm::selectBlocks()
     atdbDM->blocksCDS->Close();
   	if(mProcessForBlocksGrid->SelectedRows->Count > 0)
     {
-       	vector<int> p_ids = getSelectedIDS(mProcessForBlocksGrid, "process_id");
+       	vector<int> p_ids = getSelectedIDS(mProcessForBlocksGrid, "specimen_id");
     	stringstream s;
-        s << "SELECT * FROM blocks WHERE process_id IN (";
+        s << "SELECT * FROM blocks WHERE specimen_id IN (";
 
         for(int i = 0; i < p_ids.size(); i++)
         {
@@ -628,7 +628,7 @@ void __fastcall TMainForm::selectBlocks()
     }
     else
     {
-        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks WHERE process_id = :process_id ORDER BY id DESC";
+        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks WHERE specimen_id = :specimen_id ORDER BY id DESC";
     }
     atdbDM->blocksCDS->Open();
 }
