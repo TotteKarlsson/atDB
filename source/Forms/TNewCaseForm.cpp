@@ -12,7 +12,6 @@ __fastcall TNewCaseForm::TNewCaseForm(TComponent* Owner)
 
 }
 
-
 //---------------------------------------------------------------------------
 void __fastcall TNewCaseForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {

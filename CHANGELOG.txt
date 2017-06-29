@@ -1,3 +1,13 @@
+Release 0.6.2 (June 29)
+=======================
+* Added form for adding new cases
+* Bunch of changes as schema changed
+* Implementing cases table
+* process_id is now specimen_id
+* Changed Schema,
+* Added case and cultured_time_point table
+* Cleaned up the atdb repository somewhat
+
 Release 0.6.1 (June 27)
 =======================
 * Added form to inspect a scanned coverslip
