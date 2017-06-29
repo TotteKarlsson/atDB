@@ -228,8 +228,8 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText4;
 	TSplitter *Splitter7;
 	TGroupBox *GroupBox9;
-	TDBNavigator *DBNavigator3;
-	TDBGrid *DBGrid3;
+	TDBNavigator *CasesDBNavigator;
+	TDBGrid *CasesDBGrid;
 	TDataSource *CasesDS;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
@@ -291,6 +291,9 @@ class TMainForm : public TRegistryForm
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall CasesDBNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall CasesDBGridDblClick(TObject *Sender);
+
 
 
     private:

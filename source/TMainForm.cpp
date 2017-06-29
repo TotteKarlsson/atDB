@@ -23,6 +23,7 @@
 #include "TMemoLogger.h"
 #include "TNewSpecimenForm.h"
 #include "TNewBlockForm.h"
+#include "TNewCaseForm.h"
 #include "TShowFileContentForm.h"
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
@@ -151,7 +152,7 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
     	case TNavigateBtn::nbInsert:
         	atdbDM->usersCDS->FieldValues["user_name"] = "New User";
         break;
-        case TNavigateBtn::nbApplyUpdates:      									  break;
+        case TNavigateBtn::nbApplyUpdates:  break;
         case TNavigateBtn::nbRefresh:
 
         break;
@@ -416,7 +417,7 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
     	case TNavigateBtn::nbInsert:
         	if(mUsersCB->KeyValue != -1)
             {
-                atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
+//                atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
                 atdbDM->specimenCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
 
             	//Open New specimen dialog
@@ -440,6 +441,58 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
 
        	case TNavigateBtn::nbRefresh:
         break;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::CasesDBNavigatorClick(TObject *Sender, TNavigateBtn Button)
+{
+	switch(Button)
+    {
+    	case TNavigateBtn::nbInsert:
+        	if(mUsersCB->KeyValue != -1)
+            {
+                atdbDM->casesCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
+                string timestamp = getFormattedDateTimeString("%D %R");
+                atdbDM->casesCDS->FieldByName("intake_date")->Value = timestamp.c_str(); //"06/29/2017 12:09";getDateTimeString().c_str();
+
+            	//Open New specimen dialog
+				TNewCaseForm* f = new TNewCaseForm(this);
+                int res = f->ShowModal();
+                if(res == mrCancel)
+                {
+                    atdbDM->casesCDS->Cancel();
+                }
+                else
+                {
+	                atdbDM->casesCDS->Post();
+	                atdbDM->casesCDS->First();
+                }
+            }
+            else
+            {
+            	MessageDlg("Please select a user before inserting new data ", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            }
+        break;
+    }
+}
+
+void __fastcall TMainForm::CasesDBGridDblClick(TObject *Sender)
+{
+	//Show current record on a form
+    TNewCaseForm* f = new TNewCaseForm(this);
+    atdbDM->casesCDS->Open();
+    atdbDM->casesCDS->Edit();
+    int res = f->ShowModal();
+    if(res == mrCancel)
+    {
+        //revert
+        atdbDM->casesCDS->Cancel();
+    }
+    else
+    {
+        atdbDM->casesCDS->Post();
+        atdbDM->casesCDS->First();
     }
 }
 
@@ -725,9 +778,11 @@ void __fastcall TMainForm::mSpecimenGridMouseDown(TObject *Sender, TMouseButton 
 	if(Button == TMouseButton::mbRight)
     {
     	TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
-		TField* field =  mSpecimenGrid->Columns->operator [](c.X)->Field;
-
-		SpecimenPopup->Popup(X,Y);
+        if(c.X > -1 && c.Y > -1)
+        {
+			TField* field =  mSpecimenGrid->Columns->operator [](c.X)->Field;
+			SpecimenPopup->Popup(X,Y);
+        }
     }
 }
 
@@ -1277,4 +1332,7 @@ void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn 
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
+
+
+
 

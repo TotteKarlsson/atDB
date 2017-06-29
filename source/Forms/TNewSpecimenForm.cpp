@@ -31,3 +31,4 @@ void __fastcall TNewSpecimenForm::FormKeyDown(TObject *Sender, WORD &Key, TShift
 }
 
 
+

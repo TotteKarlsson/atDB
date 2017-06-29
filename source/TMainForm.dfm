@@ -54,17 +54,17 @@ object MainForm: TMainForm
             Caption = 'Cases && Specimens'
             object GroupBox4: TGroupBox
               Left = 0
-              Top = 264
+              Top = 209
               Width = 1127
-              Height = 390
-              Align = alBottom
+              Height = 445
+              Align = alClient
               Caption = 'Specimen'
               TabOrder = 0
               object mSpecimenGrid: TDBGrid
                 Left = 2
                 Top = 15
                 Width = 1123
-                Height = 348
+                Height = 403
                 Align = alClient
                 DataSource = atdbDM.specimenDataSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -85,61 +85,31 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'case_id'
-                    Width = 75
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'specimen_id'
-                    Width = 75
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'lims_number'
-                    Width = 75
+                    Width = 200
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'virus'
-                    Width = 75
+                    Width = 200
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'age'
-                    Width = 75
+                    FieldName = 'LEnteredBy'
+                    Width = 200
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'death_date'
-                    Width = 75
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'brain_region_dissection'
-                    Width = 75
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'entered_by'
-                    Width = 75
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'culture_time'
-                    Width = 75
+                    FieldName = 'LCulturedTP'
+                    Width = 200
                     Visible = True
                   end>
               end
               object mSpecimenNavigator: TDBNavigator
                 Left = 2
-                Top = 363
+                Top = 418
                 Width = 1123
                 Height = 25
                 DataSource = atdbDM.specimenDataSource
@@ -147,7 +117,6 @@ object MainForm: TMainForm
                 Align = alBottom
                 TabOrder = 1
                 OnClick = mSpecimenNavigatorClick
-                ExplicitTop = 627
               end
             end
             object GroupBox9: TGroupBox
@@ -158,7 +127,7 @@ object MainForm: TMainForm
               Align = alTop
               Caption = 'Cases'
               TabOrder = 1
-              object DBNavigator3: TDBNavigator
+              object CasesDBNavigator: TDBNavigator
                 Left = 2
                 Top = 182
                 Width = 1123
@@ -167,11 +136,9 @@ object MainForm: TMainForm
                 VisibleButtons = [nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 0
-                ExplicitLeft = 464
-                ExplicitTop = -128
-                ExplicitWidth = 240
+                OnClick = CasesDBNavigatorClick
               end
-              object DBGrid3: TDBGrid
+              object CasesDBGrid: TDBGrid
                 Left = 2
                 Top = 15
                 Width = 1123
@@ -185,32 +152,36 @@ object MainForm: TMainForm
                 TitleFont.Height = -11
                 TitleFont.Name = 'Tahoma'
                 TitleFont.Style = []
+                OnDblClick = CasesDBGridDblClick
                 Columns = <
                   item
                     Expanded = False
                     FieldName = 'id'
+                    Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'animal_id'
-                    Width = 64
+                    Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'intake_date'
-                    Width = 64
+                    Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'specie'
+                    FieldName = 'LUser'
+                    Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
-                    FieldName = 'entered_by'
+                    FieldName = 'LSpecie'
+                    Width = 80
                     Visible = True
                   end>
               end
@@ -1742,8 +1713,8 @@ object MainForm: TMainForm
     end
   end
   object LogMemoPopup: TPopupMenu
-    Left = 152
-    Top = 336
+    Left = 144
+    Top = 424
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -1775,8 +1746,8 @@ object MainForm: TMainForm
     Left = 314
   end
   object SpecimenPopup: TPopupMenu
-    Left = 56
-    Top = 176
+    Left = 472
+    Top = 384
     object openDocument: TMenuItem
       Caption = 'Open Document'
     end
@@ -1801,8 +1772,8 @@ object MainForm: TMainForm
   end
   object settingsDS: TDataSource
     DataSet = atdbDM.settingsCDS
-    Left = 440
-    Top = 280
+    Left = 64
+    Top = 392
   end
   object CasesDS: TDataSource
     DataSet = atdbDM.casesCDS

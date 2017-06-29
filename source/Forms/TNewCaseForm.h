@@ -1,5 +1,5 @@
-#ifndef TNewSpecimenFormH
-#define TNewSpecimenFormH
+#ifndef TNewCaseFormH
+#define TNewCaseFormH
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -10,7 +10,7 @@
 #include <Vcl.Mask.hpp>
 #include "TATDBDataModule.h"
 //---------------------------------------------------------------------------
-class TNewSpecimenForm : public TForm
+class TNewCaseForm : public TForm
 {
 __published:	// IDE-managed Components
 	TDataSource *DataSource1;
@@ -18,24 +18,20 @@ __published:	// IDE-managed Components
 	TPanel *Panel1;
 	TButton *Button1;
 	TButton *CancelBtn;
-	TLabel *Label1;
-	TDBEdit *DBEdit1;
 	TLabel *Label2;
 	TDBEdit *DBEdit2;
 	TLabel *Label3;
 	TDBEdit *DBEdit3;
-	TDBLookupComboBox *DBLookupComboBox1;
-	TDBLookupComboBox *DBLookupComboBox2;
 	TLabel *Label4;
-	TLabel *Label5;
-	void __fastcall FormShow(TObject *Sender);
+	TDBLookupComboBox *UserCB;
+	TDBLookupComboBox *DBLookupComboBox1;
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
 private:	// User declarations
 public:		// User declarations
-	__fastcall TNewSpecimenForm(TComponent* Owner);
+	__fastcall TNewCaseForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TNewSpecimenForm *NewSpecimenForm;
+extern PACKAGE TNewCaseForm *NewCaseForm;
 //---------------------------------------------------------------------------
 #endif
