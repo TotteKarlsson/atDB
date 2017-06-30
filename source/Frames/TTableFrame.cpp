@@ -2,18 +2,18 @@
 #pragma hdrstop
 #include "TTableFrame.h"
 #include "mtkVCLUtils.h"
+#include "mtkLogger.h"
 //---------------------------------------------------------------------------
-
-using namespace mtk;
-
-
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TTableFrame *TableFrame;
 
+using namespace mtk;
+
 //---------------------------------------------------------------------------
 __fastcall TTableFrame::TTableFrame(TComponent* Owner)
-	: TFrame(Owner)
+	: TFrame(Owner),
+    mLockoutTimeout(Poco::Timespan(10*Poco::Timespan::SECONDS))
 {
 }
 
@@ -22,6 +22,23 @@ void TTableFrame::assignDBconnection(TSQLConnection* c)
 {
 	mDBConnection = c;
 	SQLDataSet1->SQLConnection = mDBConnection;
+}
+
+void TTableFrame::unlock()
+{
+	DBNavigator1->Enabled = true;
+    DBGrid1->Enabled = true;
+    DBGrid1->ReadOnly = false;
+    LockoutCheckTimer->Enabled = true;
+    mLockoutTimer.start();
+}
+
+void TTableFrame::lock()
+{
+	DBNavigator1->Enabled = false;
+    DBGrid1->Enabled = false;
+    DBGrid1->ReadOnly = true;
+    mLockoutTimer.stop();
 }
 
 //---------------------------------------------------------------------------
@@ -50,4 +67,29 @@ bool TTableFrame::loadTable(const string& t)
     }
 	return true;
 }
+
+void __fastcall TTableFrame::LockoutCheckTimerTimer(TObject *Sender)
+{
+	if(mLockoutTimer.getElapsedTime() > mLockoutTimeout)
+    {
+    	lock();
+		LockoutCheckTimer->Enabled = false;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TTableFrame::DBGrid1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	mLockoutTimer.reStart();
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TTableFrame::DBGrid1MouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y)
+{
+	mLockoutTimer.reStart();
+    Log(lDebug) << "Restarting table lockout timer";
+}
+
 

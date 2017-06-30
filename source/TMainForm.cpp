@@ -32,6 +32,7 @@
 #include "vcl/forms/TTextInputDialog.h"
 #include "TATDBDataModule.h"
 #include "TCoverSlipDataModule.h"
+#include "forms/TStringInputDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -80,7 +81,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
 	mServerDBSession(""),
     mDBUserID(0),
-	BatchesGBHeight(250)
+	BatchesGBHeight(250),
+    mTableUnlockPassword("")
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
@@ -598,6 +600,7 @@ void __fastcall TMainForm::mTablesLBClick(TObject *Sender)
     {
 		String tbl = mTablesLB->Items->Strings[mTablesLB->ItemIndex];
 		TTableFrame1->loadTable(stdstr(tbl));
+        TTableFrame1->lock();
     }
 }
 
@@ -1320,7 +1323,6 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
 
 
 void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn Button)
-
 {
 //	switch(Button)
 //    {
@@ -1329,10 +1331,49 @@ void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn 
 //        break;
 //    }
 }
-//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::UnlocktablesBtnClick(TObject *Sender)
+{
+	static int nrOfTrys = 1;
+	//Enable editing of current table
+	auto_ptr<TStringInputDialog> f(new TStringInputDialog(this));
+    f->Caption = "Input password";
+    f->STDStringLabeledEdit1->EditLabel->Visible = false;
+    f->BottomPanel->Visible = false;
+    f->Width = 473;
+    f->Height = 110;
+    f->STDStringLabeledEdit1->PasswordChar = '*';
 
+    if(f->ShowModal() == mrCancel)
+    {
+    	return;
+    }
 
+    if(f->getText() == mTableUnlockPassword.getValue())
+    {
+    	TTableFrame1->unlock();
+	    nrOfTrys = 0;
+    }
+    else
+    {
+    	switch(nrOfTrys)
+        {
+    		case 1:
+            	MessageDlg("That password is not the right one!\n\nYou get one more try, but after that, all files on this computer will be erased!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+			    nrOfTrys++;
+			break;
+    		case 2:
+            	MessageDlg("We are sorry. That password is not the right one!\n\nAll files on this computer will now be erased!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+            	MessageDlg("Ok, one more try!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+			    nrOfTrys++;
+			break;
+			default:
+            	MessageDlg("Ok, one more try!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+			    nrOfTrys = 1;
+            break;
+        }
+    }
+}
 
 

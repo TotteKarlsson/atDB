@@ -141,7 +141,6 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel3;
 	TPanel *Panel4;
 	TPanel *Panel5;
-	TPanel *Panel6;
 	TTabSheet *TabSheet9;
 	TDBGrid *mCoverSlipsGrid;
 	TDBNavigator *CSNavigator;
@@ -231,6 +230,11 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *CasesDBNavigator;
 	TDBGrid *CasesDBGrid;
 	TDataSource *CasesDS;
+	TPanel *LeftPanel;
+	TGroupBox *GroupBox15;
+	TPanel *Panel6;
+	TPanel *Panel19;
+	TBitBtn *UnlocktablesBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -293,6 +297,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall CasesDBNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall CasesDBGridDblClick(TObject *Sender);
+	void __fastcall UnlocktablesBtnClick(TObject *Sender);
 
 
 
@@ -322,6 +327,7 @@ class TMainForm : public TRegistryForm
 		mtk::Property<int>	                            mDustAssayResultImageHeight;
 		mtk::Property<int>	                            mDustAssayBackGroundImageWidth;
 		mtk::Property<mtk::LogLevel>	                mLogLevel;
+		mtk::Property<string>	         		        mTableUnlockPassword;
 
         IniFileProperties	      	                    mCoverslipPrintingProperties;
         TRegistryProperties   	  	                    mSplashProperties;

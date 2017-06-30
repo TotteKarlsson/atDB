@@ -14,8 +14,11 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
 #include <string>
+#include "mtkStopWatch.h"
+
 //---------------------------------------------------------------------------
 using std::string;
+using mtk::StopWatch;
 
 class PACKAGE TTableFrame : public TFrame
 {
@@ -27,15 +30,25 @@ __published:	// IDE-managed Components
 	TClientDataSet *ClientDataSet1;
 	TDataSetProvider *DataSetProvider1;
 	TSQLDataSet *SQLDataSet1;
+	TTimer *LockoutCheckTimer;
+	void __fastcall LockoutCheckTimerTimer(TObject *Sender);
+	void __fastcall DBGrid1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall DBGrid1MouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y);
+
 
 
 private:
-	TSQLConnection* 		 mDBConnection;
+	TSQLConnection* 		mDBConnection;
+    Poco::Timespan			mLockoutTimeout;
 
 public:
 				__fastcall TTableFrame(TComponent* Owner);
     bool					loadTable(const string& t);
     void					assignDBconnection(TSQLConnection* c);
+    void					unlock();
+    void					lock();
+    StopWatch				mLockoutTimer;
 
 };
 

@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=2259,1098,95,33
+Coordinates=1948,962,47,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -465,9 +465,6 @@ Coordinates=1700,1166,55,33
 
 [TabSheet7]
 Coordinates=10,1212,66,33
-
-[Panel6]
-Coordinates=1948,962,47,51
 
 [mBlocksForRibbonsGrid]
 Coordinates=1398,1166,136,33

@@ -160,6 +160,7 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mBottomPanelHeight.setup( 	            "HEIGHT_OF_BOTTOM_PANEL",    	    205));
 	mGeneralProperties.add((BaseProperty*)  &mMainTabIndex.setup( 	                "MAIN_TAB_INDEX",           	    0));
 	mGeneralProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+	mGeneralProperties.add((BaseProperty*)  &mTableUnlockPassword.setup( 	        "TABLE_UNLOCK_PASSWORD",            "atdb123"));
 
 	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    	0));
 	mGeneralProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));

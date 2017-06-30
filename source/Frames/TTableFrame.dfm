@@ -13,26 +13,31 @@ object TableFrame: TTableFrame
     TabOrder = 0
     object DBGrid1: TDBGrid
       Left = 2
-      Top = 67
+      Top = 25
       Width = 700
       Height = 217
       Align = alBottom
       DataSource = DataSource1
+      Enabled = False
+      ReadOnly = True
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnKeyDown = DBGrid1KeyDown
+      OnMouseMove = DBGrid1MouseMove
     end
     object DBNavigator1: TDBNavigator
       Left = 2
-      Top = 25
+      Top = 242
       Width = 700
       Height = 42
       DataSource = DataSource1
       VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
       Align = alBottom
+      Enabled = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
@@ -59,5 +64,11 @@ object TableFrame: TTableFrame
     Params = <>
     Left = 544
     Top = 104
+  end
+  object LockoutCheckTimer: TTimer
+    Enabled = False
+    OnTimer = LockoutCheckTimerTimer
+    Left = 416
+    Top = 192
   end
 end

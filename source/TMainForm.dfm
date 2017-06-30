@@ -34,24 +34,32 @@ object MainForm: TMainForm
       Top = 1
       Width = 1143
       Height = 710
-      ActivePage = TabSheet4
+      ActivePage = TabSheet5
       Align = alClient
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
           Width = 1135
           Height = 682
-          ActivePage = TabSheet8
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Cases && Specimens'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 209
@@ -157,30 +165,35 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'id'
+                    Title.Caption = 'ID'
                     Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'animal_id'
+                    Title.Caption = 'Animal ID'
                     Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'intake_date'
+                    Title.Caption = 'Intake Date'
                     Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LUser'
+                    Title.Caption = 'User'
                     Width = 80
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'LSpecie'
+                    Title.Caption = 'Specie'
                     Width = 80
                     Visible = True
                   end>
@@ -190,64 +203,32 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter6: TSplitter
-              Left = 233
+              Left = 185
               Top = 0
               Height = 654
               ExplicitLeft = 216
               ExplicitTop = -3
               ExplicitHeight = 677
             end
-            object GroupBox5: TGroupBox
-              Left = 0
-              Top = 0
-              Width = 233
-              Height = 654
-              Align = alLeft
-              Caption = 'Process IDs'
-              Padding.Left = 5
-              Padding.Top = 2
-              Padding.Right = 7
-              Padding.Bottom = 2
-              TabOrder = 0
-              object mProcessForBlocksGrid: TDBGrid
-                Left = 7
-                Top = 17
-                Width = 217
-                Height = 633
-                Align = alClient
-                DataSource = atdbDM.specimenDataSource
-                Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
-                ReadOnly = True
-                TabOrder = 0
-                TitleFont.Charset = DEFAULT_CHARSET
-                TitleFont.Color = clWindowText
-                TitleFont.Height = -11
-                TitleFont.Name = 'Tahoma'
-                TitleFont.Style = []
-                OnCellClick = mProcessForBlocksGridCellClick
-                OnKeyUp = mProcessForBlocksGridKeyUp
-                Columns = <
-                  item
-                    Expanded = False
-                    FieldName = 'specimen_id'
-                    Width = 100
-                    Visible = True
-                  end>
-              end
-            end
             object mBlocksGB: TGroupBox
-              Left = 236
+              Left = 188
               Top = 0
-              Width = 891
+              Width = 939
               Height = 654
               Align = alClient
               Caption = 'Blocks'
-              TabOrder = 1
+              TabOrder = 0
+              ExplicitLeft = 236
+              ExplicitWidth = 891
               object BlockNotesGB: TGroupBox
                 Left = 2
                 Top = 372
-                Width = 887
+                Width = 935
                 Height = 280
                 Align = alBottom
                 Caption = 'Notes'
@@ -256,32 +237,36 @@ object MainForm: TMainForm
                 Padding.Right = 5
                 Padding.Bottom = 5
                 TabOrder = 0
+                ExplicitWidth = 887
                 object Panel3: TPanel
                   Left = 206
                   Top = 20
-                  Width = 674
+                  Width = 722
                   Height = 253
                   Align = alClient
                   TabOrder = 0
+                  ExplicitWidth = 674
                   object mBlockNoteMemo: TDBMemo
                     Left = 1
                     Top = 1
-                    Width = 672
+                    Width = 720
                     Height = 226
                     Align = alClient
                     DataField = 'note'
                     DataSource = atdbDM.blockNotesDSource
                     TabOrder = 0
+                    ExplicitWidth = 672
                   end
                   object DBNavigator2: TDBNavigator
                     Left = 1
                     Top = 227
-                    Width = 672
+                    Width = 720
                     Height = 25
                     DataSource = atdbDM.blockNotesDSource
                     VisibleButtons = [nbPost, nbCancel]
                     Align = alBottom
                     TabOrder = 1
+                    ExplicitWidth = 672
                   end
                 end
                 object Panel4: TPanel
@@ -332,23 +317,25 @@ object MainForm: TMainForm
               object Panel2: TPanel
                 Left = 2
                 Top = 15
-                Width = 887
+                Width = 645
                 Height = 357
                 Align = alClient
                 BevelEdges = []
                 BevelOuter = bvNone
                 TabOrder = 1
+                ExplicitWidth = 887
                 object Panel5: TPanel
                   Left = 0
                   Top = 0
-                  Width = 540
+                  Width = 645
                   Height = 357
-                  Align = alLeft
+                  Align = alClient
                   TabOrder = 0
+                  ExplicitWidth = 540
                   object mBlocksGrid: TDBGrid
                     Left = 1
                     Top = 1
-                    Width = 538
+                    Width = 643
                     Height = 330
                     Align = alClient
                     DataSource = atdbDM.blocksDataSource
@@ -364,48 +351,128 @@ object MainForm: TMainForm
                     OnKeyUp = mBlocksGridKeyUp
                     Columns = <
                       item
+                        Color = clMoneyGreen
                         Expanded = False
                         FieldName = 'id'
-                        Width = 34
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'serial'
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'LBlockStatus'
-                        Width = 43
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'date_embedded'
+                        ReadOnly = True
+                        Title.Caption = 'ID'
+                        Width = 54
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'specimen_id'
+                        ReadOnly = True
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'serial'
+                        Width = 100
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'created'
-                        Width = 82
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'date_embedded'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'modified'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'label'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LBlockStatus'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'Cblock_label'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LPreprocessTreatmentProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LFixativeProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LFixationProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LPostFixProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LCryoProtectionProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LFreezingProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LSubstitutionProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LInfiltrationProtocol'
+                        Width = 100
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'LEmbeddingProtocol'
+                        Width = 100
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'LUser'
+                        Width = 100
                         Visible = True
                       end>
                   end
                   object mBlocksNavigator: TDBNavigator
                     Left = 1
                     Top = 331
-                    Width = 538
+                    Width = 643
                     Height = 25
                     DataSource = atdbDM.blocksDataSource
                     VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
@@ -414,54 +481,119 @@ object MainForm: TMainForm
                     TabOrder = 1
                     BeforeAction = mBlocksNavigatorBeforeAction
                     OnClick = mBlocksNavigatorClick
+                    ExplicitWidth = 538
                   end
                 end
-                object Panel6: TPanel
-                  Left = 540
-                  Top = 0
-                  Width = 347
-                  Height = 357
-                  Align = alClient
+              end
+              object GroupBox10: TGroupBox
+                Left = 647
+                Top = 15
+                Width = 290
+                Height = 357
+                Align = alRight
+                Caption = 'Print block labels'
+                TabOrder = 2
+                ExplicitLeft = 644
+                ExplicitTop = 1
+                ExplicitHeight = 355
+                object mLblMakerMemo: TMemo
+                  Left = 2
+                  Top = 15
+                  Width = 144
+                  Height = 340
+                  Align = alLeft
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -11
+                  Font.Name = 'Times New Roman'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 0
+                  ExplicitHeight = 338
+                end
+                object Button1: TButton
+                  Left = 168
+                  Top = 23
+                  Width = 107
+                  Height = 37
+                  Caption = 'Print Block Info'
                   TabOrder = 1
-                  object GroupBox10: TGroupBox
-                    Left = 1
-                    Top = 1
-                    Width = 345
-                    Height = 355
-                    Align = alClient
-                    Caption = 'Print block labels'
-                    TabOrder = 0
-                    object mLblMakerMemo: TMemo
-                      Left = 2
-                      Top = 15
-                      Width = 144
-                      Height = 338
-                      Align = alLeft
-                      Font.Charset = DEFAULT_CHARSET
-                      Font.Color = clWindowText
-                      Font.Height = -11
-                      Font.Name = 'Times New Roman'
-                      Font.Style = []
-                      ParentFont = False
-                      TabOrder = 0
-                    end
-                    object Button1: TButton
-                      Left = 168
-                      Top = 23
-                      Width = 107
-                      Height = 37
-                      Caption = 'Print Block Info'
-                      TabOrder = 1
-                      OnClick = Button1Click
-                    end
-                  end
+                  OnClick = Button1Click
                 end
+              end
+            end
+            object LeftPanel: TPanel
+              Left = 0
+              Top = 0
+              Width = 185
+              Height = 654
+              Align = alLeft
+              Caption = 'LeftPanel'
+              TabOrder = 1
+              ExplicitLeft = -127
+              ExplicitTop = -20
+              object GroupBox5: TGroupBox
+                Left = 1
+                Top = 106
+                Width = 233
+                Height = 547
+                Align = alLeft
+                Caption = 'Specimens'
+                Padding.Left = 5
+                Padding.Top = 2
+                Padding.Right = 7
+                Padding.Bottom = 2
+                TabOrder = 0
+                ExplicitLeft = -48
+                ExplicitTop = 1
+                ExplicitHeight = 652
+                object mProcessForBlocksGrid: TDBGrid
+                  Left = 7
+                  Top = 17
+                  Width = 217
+                  Height = 526
+                  Align = alClient
+                  DataSource = atdbDM.specimenDataSource
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+                  ReadOnly = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -11
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  OnCellClick = mProcessForBlocksGridCellClick
+                  OnKeyUp = mProcessForBlocksGridKeyUp
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'specimen_id'
+                      Width = 100
+                      Visible = True
+                    end>
+                end
+              end
+              object GroupBox15: TGroupBox
+                Left = 1
+                Top = 1
+                Width = 183
+                Height = 105
+                Align = alTop
+                Caption = 'Case'
+                TabOrder = 1
+                ExplicitLeft = 0
+                ExplicitTop = 98
+                ExplicitWidth = 185
               end
             end
           end
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter5: TSplitter
               Left = 121
               Top = 0
@@ -711,6 +843,10 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -970,6 +1106,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 115
@@ -1084,6 +1224,10 @@ object MainForm: TMainForm
             object TabSheet12: TTabSheet
               Caption = 'Dust Assays'
               ImageIndex = 1
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Splitter2: TSplitter
                 Left = 0
                 Top = 425
@@ -1308,6 +1452,10 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1337,45 +1485,6 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'All Tables'
         ImageIndex = 4
-        inline TTableFrame1: TTableFrame
-          Left = 153
-          Top = 0
-          Width = 982
-          Height = 682
-          Align = alClient
-          TabOrder = 0
-          ExplicitLeft = 153
-          ExplicitWidth = 982
-          ExplicitHeight = 682
-          inherited GroupBox1: TGroupBox
-            Width = 982
-            Height = 682
-            Align = alClient
-            ExplicitWidth = 982
-            ExplicitHeight = 682
-            inherited DBGrid1: TDBGrid
-              Top = 15
-              Width = 978
-              Height = 623
-              Align = alClient
-            end
-            inherited DBNavigator1: TDBNavigator
-              Top = 638
-              Width = 978
-              Hints.Strings = ()
-              ExplicitTop = 638
-              ExplicitWidth = 978
-            end
-          end
-          inherited ClientDataSet1: TClientDataSet
-            Left = 520
-            Top = 184
-          end
-          inherited SQLDataSet1: TSQLDataSet
-            Left = 520
-            Top = 112
-          end
-        end
         object mTablesLB: TListBox
           Left = 0
           Top = 0
@@ -1383,13 +1492,140 @@ object MainForm: TMainForm
           Height = 682
           Align = alLeft
           ItemHeight = 13
-          TabOrder = 1
+          TabOrder = 0
           OnClick = mTablesLBClick
+        end
+        object Panel6: TPanel
+          Left = 153
+          Top = 0
+          Width = 982
+          Height = 682
+          Align = alClient
+          Caption = 'Panel6'
+          TabOrder = 1
+          inline TTableFrame1: TTableFrame
+            Left = 1
+            Top = 65
+            Width = 980
+            Height = 616
+            Align = alClient
+            TabOrder = 0
+            ExplicitLeft = 1
+            ExplicitTop = 65
+            ExplicitWidth = 980
+            ExplicitHeight = 616
+            inherited GroupBox1: TGroupBox
+              Width = 980
+              Height = 616
+              Align = alClient
+              ExplicitWidth = 980
+              ExplicitHeight = 616
+              inherited DBGrid1: TDBGrid
+                Top = 15
+                Width = 976
+                Height = 557
+                Align = alClient
+              end
+              inherited DBNavigator1: TDBNavigator
+                Top = 572
+                Width = 976
+                Hints.Strings = ()
+                ExplicitTop = 572
+                ExplicitWidth = 976
+              end
+            end
+            inherited ClientDataSet1: TClientDataSet
+              Left = 520
+              Top = 184
+            end
+            inherited SQLDataSet1: TSQLDataSet
+              Left = 520
+              Top = 112
+            end
+          end
+          object Panel19: TPanel
+            Left = 1
+            Top = 1
+            Width = 980
+            Height = 64
+            Align = alTop
+            TabOrder = 1
+            object UnlocktablesBtn: TBitBtn
+              Left = 5
+              Top = 11
+              Width = 84
+              Height = 38
+              Caption = 'Unlock'
+              Glyph.Data = {
+                F6060000424DF606000000000000360000002800000018000000180000000100
+                180000000000C0060000C30E0000C30E00000000000000000000C6D4DDABB5C3
+                B3BBC7DDDDDEFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFF98D0EB308CDE2874D85688C3D9DADCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFF85AEDB42A2E32F88D91D77DDA7BACDFEFEFEFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF64BDE9307CCB45A9E440AEE37699
+                BB9EB6C8DCDDDEFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDEEDF44DAAE9
+                2974C749B2E549AEE5399BEC79ABC8F3F3F3FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFDEECF452B3EE3082CA54B7E95BB4E3509ACE90B0C4DBDBDCFEFEFE
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE1EFF461C7F13A8ACE6BC5EB6BBBE136
+                A2EA6BA7C9DBDCDDFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFEDF468C6
+                F24792CD69C4EA46A3DE3AA1EB72AAC9DBDBDCFEFEFEFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFE2EEF49BE5F44B95CD53BBEB4CA8DD3CA0E86DA8C8D7D8D9FEFE
+                FEFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6F1F58CDCF33D8ECE58C0ED4CA2D8
+                379CE467A9C7BBC5C9C2C9CBEEEEEFD5D9DDC2C8CECBCFD3E5E5E6F9F9F9FFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE2EEF46C
+                D1F43C8DCB57BFEC52A6D5308BCB56C6F166CCEB4875B22765BC2B85DF359AE5
+                489CD27E9FBAD8D9DAFDFDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFE4F0F567CAF32880C64FBBEB61D1FA5BD4FF59D4FF55C3F545
+                B2F361D1FC50C4FA41AFF6369AF34B8CCFC1C8CEFDFDFDFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFEDF469CBF456C8F668DAFF61DC
+                FF5ED9FF58D2FF51CAFF68D9FE59CEFB68CCF881CBF64E9EF0488ED7D3D7DAFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3EEF3
+                79DCFA6BDEFF64E1FF61DDFF5BD6FF54CEFF65D6FD8EDBFD9BE2FDC3DDE7B5DB
+                F73B92F0709CCAF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFF4F7F966B1EF71E2FE65E2FF62DDFF5CD7FF53CBFEB0E6FEA9E5FD
+                BBD7DFFDFEFEE4F0F95DA2ED3E90E3D9DCDFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFD7E4F065B8F86BE0FF62DDFF5DD8FF57D1FEAB
+                E5FEC4EFFDC4DBE1FDFDFDFFFFFFFDFEFE67A1E348A2F3B2C4D2FFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCADEED75CAFD5FD7FF59D3
+                FF57CDFEB2E9FEC2F3FDCBDEE1FEFEFEFFFFFFFFFFFFFFFFFF72A1E058AFF7A6
+                C2D4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD4E4EF
+                83D1FD50C5FC4BBFFBA7E2FDCBF8FDCADCDDFEFEFEFFFFFFFFFFFFFFFFFFFFFF
+                FF6997D956B3F9B3CCDCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFEDF3F78AD4F953B5F74CB1F6B7F1FDC7DBDCFDFDFDFFFFFFFFFFFF
+                FFFFFFFFFFFFEEF1F44E8CDE51B3F6D7E1E7FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFDFEFE9FD8F384C6F73D9EEEB6D4D7FDFDFDFF
+                FFFFFFFFFFFFFFFFFFFFFFFEFEFE86AAD851A3F26BB6EAFBFBFBFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFEEF6B7E5FC6DAE
+                EE6D93BCD3D4D5F5F5F5FCFCFCFCFBFCEEEFF18FB5D85EA8EF45A6F7C8DEEDFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFD6ECF6EBF7FD9EC5F35188D0648CBF7CA1C574A5CC6BAFE17EC3FA52AD
+                F9A8D1EDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFE5F2F8E0F3F9D4F4FDACDCF9A0D7F9ABE0FC
+                91D7FE7BC5F7C3E0F3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8FCFDDFF0F8C7
+                EAF7B9E6F6C2E7F7D3EAF6F6FBFDFFFFFFFFFFFFFFFFFFFFFFFF}
+              TabOrder = 0
+              OnClick = UnlocktablesBtnClick
+            end
+          end
         end
       end
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 13
           Top = 12
@@ -1588,6 +1824,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -1713,8 +1953,8 @@ object MainForm: TMainForm
     end
   end
   object LogMemoPopup: TPopupMenu
-    Left = 144
-    Top = 424
+    Left = 928
+    Top = 328
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -1746,15 +1986,15 @@ object MainForm: TMainForm
     Left = 314
   end
   object SpecimenPopup: TPopupMenu
-    Left = 472
-    Top = 384
+    Left = 1016
+    Top = 328
     object openDocument: TMenuItem
       Caption = 'Open Document'
     end
   end
   object CoverSlipPopup: TPopupMenu
-    Left = 264
-    Top = 424
+    Left = 1024
+    Top = 392
     object SetStatus1: TMenuItem
       Caption = 'Set Status'
       object FreshoutoftheBoxMenuItem: TMenuItem
@@ -1772,12 +2012,12 @@ object MainForm: TMainForm
   end
   object settingsDS: TDataSource
     DataSet = atdbDM.settingsCDS
-    Left = 64
-    Top = 392
+    Left = 728
+    Top = 8
   end
   object CasesDS: TDataSource
     DataSet = atdbDM.casesCDS
-    Left = 296
-    Top = 152
+    Left = 824
+    Top = 88
   end
 end
