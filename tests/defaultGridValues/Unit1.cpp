@@ -28,14 +28,12 @@ void __fastcall TForm1::FormShow(TObject *Sender)
     try
     {
 	    connected = atdbDM->connect("127.0.0.1", "atdb_client", "atdb123", "atdb");
+	    atdbDM->afterConnect();
     }
     catch (const TDBXError &e)
 	{
     	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
 	}
-
-
-    atdbDM->afterConnect();
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::DBNavigator1Click(TObject *Sender, TNavigateBtn Button)

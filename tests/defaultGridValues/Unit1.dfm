@@ -31,68 +31,67 @@ object Form1: TForm1
       item
         Expanded = False
         FieldName = 'specimen_id'
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'specimen_id'
-        Width = 62
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'specie'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'additional_identifier'
-        Width = 64
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'age'
-        Width = 64
+        FieldName = 'case_id'
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'lims_number'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'virus'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'age'
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'death_date'
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'brain_region_dissection'
-        Width = 64
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'date_received'
-        Width = 64
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Lspecie'
-        Width = 64
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'date_entered'
-        Width = 64
+        Width = 80
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'entered_by'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'culture_time'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'LEnteredBy'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'LCulturedTP'
+        Width = 80
         Visible = True
       end>
   end

@@ -79,7 +79,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
-	mServerDBSession(""),
+	mServerDBSession("", "", "" ,""),
     mDBUserID(0),
 	BatchesGBHeight(250),
     mTableUnlockPassword("")
@@ -419,9 +419,8 @@ void __fastcall TMainForm::mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn
     	case TNavigateBtn::nbInsert:
         	if(mUsersCB->KeyValue != -1)
             {
-//                atdbDM->specimenCDS->FieldByName("specimen_id")->Value = "NEW SPECIMEN";
                 atdbDM->specimenCDS->FieldByName("entered_by")->Value = toInt(mDBUserID.getValueAsString());
-
+                atdbDM->specimenCDS->FieldByName("case_id")->Value = atdbDM->casesCDS->FieldByName("id")->AsInteger;
             	//Open New specimen dialog
 				TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
                 int res = nsf->ShowModal();
@@ -502,7 +501,7 @@ void __fastcall TMainForm::CasesDBGridDblClick(TObject *Sender)
 String __fastcall TMainForm::createBlockLabel()
 {
     String lbl;
-    String specie = atdbDM->specimenCDS->FieldByName("Lspecie")->AsString;
+    String specie = atdbDM->casesCDS->FieldByName("Lspecie")->AsString;
 	if(specie == "Human")
     {
     	lbl = "H";

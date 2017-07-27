@@ -58,7 +58,7 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <IncludePath>Core\;Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib;DuneForms.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -106,24 +106,23 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>3</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <VerInfo_MinorVer>6</VerInfo_MinorVer>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.3.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.2.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib</LinkPackageStatics>
+        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;DuneForms.lib</LinkPackageStatics>
         <Debugger_DebugSourcePath>P:\libs\dsl\VCL\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\Common\;P:\libs\dsl\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
         <Icon_MainIcon>Resources\atDB.ico</Icon_MainIcon>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_Debug>true</VerInfo_Debug>
-        <PostBuildEvent><![CDATA[xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
+        <PostBuildEvent><![CDATA[xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
+xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
 xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y
-xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
-xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y
 xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y
 xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y
 xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y
@@ -326,7 +325,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.exe                          $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
+        <PostBuildEvent>xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\xe3_ide\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

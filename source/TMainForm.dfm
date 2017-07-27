@@ -34,32 +34,24 @@ object MainForm: TMainForm
       Top = 1
       Width = 1143
       Height = 710
-      ActivePage = TabSheet5
+      ActivePage = TabSheet4
       Align = alClient
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
           Width = 1135
           Height = 682
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Cases && Specimens'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 209
@@ -93,7 +85,6 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'case_id'
-                    Width = 200
                     Visible = True
                   end
                   item
@@ -112,6 +103,11 @@ object MainForm: TMainForm
                     Expanded = False
                     FieldName = 'LCulturedTP'
                     Width = 200
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
+                    FieldName = 'specimen_id'
                     Visible = True
                   end>
               end
@@ -203,10 +199,6 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object Splitter6: TSplitter
               Left = 185
               Top = 0
@@ -223,8 +215,6 @@ object MainForm: TMainForm
               Align = alClient
               Caption = 'Blocks'
               TabOrder = 0
-              ExplicitLeft = 236
-              ExplicitWidth = 891
               object BlockNotesGB: TGroupBox
                 Left = 2
                 Top = 372
@@ -237,7 +227,6 @@ object MainForm: TMainForm
                 Padding.Right = 5
                 Padding.Bottom = 5
                 TabOrder = 0
-                ExplicitWidth = 887
                 object Panel3: TPanel
                   Left = 206
                   Top = 20
@@ -245,7 +234,6 @@ object MainForm: TMainForm
                   Height = 253
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 674
                   object mBlockNoteMemo: TDBMemo
                     Left = 1
                     Top = 1
@@ -255,7 +243,6 @@ object MainForm: TMainForm
                     DataField = 'note'
                     DataSource = atdbDM.blockNotesDSource
                     TabOrder = 0
-                    ExplicitWidth = 672
                   end
                   object DBNavigator2: TDBNavigator
                     Left = 1
@@ -266,7 +253,6 @@ object MainForm: TMainForm
                     VisibleButtons = [nbPost, nbCancel]
                     Align = alBottom
                     TabOrder = 1
-                    ExplicitWidth = 672
                   end
                 end
                 object Panel4: TPanel
@@ -323,7 +309,6 @@ object MainForm: TMainForm
                 BevelEdges = []
                 BevelOuter = bvNone
                 TabOrder = 1
-                ExplicitWidth = 887
                 object Panel5: TPanel
                   Left = 0
                   Top = 0
@@ -331,7 +316,6 @@ object MainForm: TMainForm
                   Height = 357
                   Align = alClient
                   TabOrder = 0
-                  ExplicitWidth = 540
                   object mBlocksGrid: TDBGrid
                     Left = 1
                     Top = 1
@@ -481,7 +465,6 @@ object MainForm: TMainForm
                     TabOrder = 1
                     BeforeAction = mBlocksNavigatorBeforeAction
                     OnClick = mBlocksNavigatorClick
-                    ExplicitWidth = 538
                   end
                 end
               end
@@ -493,9 +476,6 @@ object MainForm: TMainForm
                 Align = alRight
                 Caption = 'Print block labels'
                 TabOrder = 2
-                ExplicitLeft = 644
-                ExplicitTop = 1
-                ExplicitHeight = 355
                 object mLblMakerMemo: TMemo
                   Left = 2
                   Top = 15
@@ -509,7 +489,6 @@ object MainForm: TMainForm
                   Font.Style = []
                   ParentFont = False
                   TabOrder = 0
-                  ExplicitHeight = 338
                 end
                 object Button1: TButton
                   Left = 168
@@ -530,27 +509,22 @@ object MainForm: TMainForm
               Align = alLeft
               Caption = 'LeftPanel'
               TabOrder = 1
-              ExplicitLeft = -127
-              ExplicitTop = -20
               object GroupBox5: TGroupBox
                 Left = 1
                 Top = 106
-                Width = 233
+                Width = 183
                 Height = 547
-                Align = alLeft
+                Align = alClient
                 Caption = 'Specimens'
                 Padding.Left = 5
                 Padding.Top = 2
                 Padding.Right = 7
                 Padding.Bottom = 2
                 TabOrder = 0
-                ExplicitLeft = -48
-                ExplicitTop = 1
-                ExplicitHeight = 652
                 object mProcessForBlocksGrid: TDBGrid
                   Left = 7
                   Top = 17
-                  Width = 217
+                  Width = 167
                   Height = 526
                   Align = alClient
                   DataSource = atdbDM.specimenDataSource
@@ -581,19 +555,12 @@ object MainForm: TMainForm
                 Align = alTop
                 Caption = 'Case'
                 TabOrder = 1
-                ExplicitLeft = 0
-                ExplicitTop = 98
-                ExplicitWidth = 185
               end
             end
           end
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object Splitter5: TSplitter
               Left = 121
               Top = 0
@@ -843,10 +810,6 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -1106,10 +1069,6 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 115
@@ -1224,10 +1183,6 @@ object MainForm: TMainForm
             object TabSheet12: TTabSheet
               Caption = 'Dust Assays'
               ImageIndex = 1
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object Splitter2: TSplitter
                 Left = 0
                 Top = 425
@@ -1452,10 +1407,6 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1622,10 +1573,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 13
           Top = 12
@@ -1824,10 +1771,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
