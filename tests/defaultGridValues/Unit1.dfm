@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 282
-  ClientWidth = 771
+  ClientWidth = 1325
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,10 +17,10 @@ object Form1: TForm1
   object DBGrid1: TDBGrid
     Left = 0
     Top = 25
-    Width = 771
-    Height = 120
-    Align = alTop
-    DataSource = atdbDM.specimenDataSource
+    Width = 1325
+    Height = 257
+    Align = alClient
+    DataSource = atdbDM.slicesDataSource
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -98,11 +98,13 @@ object Form1: TForm1
   object DBNavigator1: TDBNavigator
     Left = 0
     Top = 0
-    Width = 771
+    Width = 1325
     Height = 25
-    DataSource = atdbDM.specimenDataSource
+    DataSource = atdbDM.slicesDataSource
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
     Align = alTop
     TabOrder = 1
     OnClick = DBNavigator1Click
+    ExplicitWidth = 771
   end
 end
