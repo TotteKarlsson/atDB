@@ -7,7 +7,6 @@
 
 using namespace mtk;
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -16,9 +15,7 @@ TMainForm *MainForm;
 extern bool gAppIsStartingUp;
 __fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TForm(Owner)
-{
-
-}
+{}
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::FormShow(TObject *Sender)
 {
@@ -35,6 +32,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
 	}
 	UserCB->KeyValue = 27;
+	SpecieRGClick(Sender);
 }
 
 TDateTime __fastcall NowUTC()
@@ -45,32 +43,63 @@ TDateTime __fastcall NowUTC()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::DBNavigator1Click(TObject *Sender, TNavigateBtn Button)
-
+void __fastcall TMainForm::SpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
-	switch(Button)
+	TDBNavigator* n = dynamic_cast<TDBNavigator*>(Sender);
+    if( n == SpecimenNavigator)
     {
-    	case nbInsert:
+        switch(Button)
         {
-                atdbDM->specimenCDS->FieldByName("animal_id")->Value = "XXXX-XX";
-                atdbDM->specimenCDS->FieldByName("entered_by")->Value = UserCB->KeyValue;
+            case nbInsert:
+            {
+                    atdbDM->specimenCDS->FieldByName("animal_id")->Value = "XXXX-XX";
+                    atdbDM->specimenCDS->FieldByName("entered_by")->Value = UserCB->KeyValue;
 
-                if(SpecieRG->ItemIndex != -1)
-                {
-                	string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
-	                atdbDM->specimenCDS->FieldByName("specie")->Value = atdbDM->getIDForSpecie(specie);
-                }
+                    if(SpecieRG->ItemIndex != -1)
+                    {
+                        string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
+                        atdbDM->specimenCDS->FieldByName("specie")->Value = atdbDM->getIDForSpecie(specie);
+                    }
 
-                TDateTime dt;
-                dt = Now();
-                atdbDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
+                    TDateTime dt;
+                    dt = Now();
+                    atdbDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
 
-                //Open new specimen form
-			    openSpecimenForm();
-            
+                    //Open new specimen form
+                    openSpecimenForm();
+
+            }
+            break;
         }
-        break;
     }
+    else if( n == SlicesNavigator)
+    {
+        switch(Button)
+        {
+            case nbInsert:
+            {
+//                    atdbDM->specimenCDS->FieldByName("animal_id")->Value = "XXXX-XX";
+//                    atdbDM->specimenCDS->FieldByName("entered_by")->Value = UserCB->KeyValue;
+//
+//                    if(SpecieRG->ItemIndex != -1)
+//                    {
+//                        string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
+//                        atdbDM->specimenCDS->FieldByName("specie")->Value = atdbDM->getIDForSpecie(specie);
+//                    }
+//
+//                    TDateTime dt;
+//                    dt = Now();
+//                    atdbDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
+//
+//                    //Open new specimen form
+//                    openSpecimenForm();
+
+            }
+            break;
+        }
+    }
+
+
 }
 
 //---------------------------------------------------------------------------
@@ -102,6 +131,18 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     {
         Close();
     }
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::SpecieRGClick(TObject *Sender)
+{
+    //Apply filter to specimen table
+   	string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
+    int specieID = atdbDM->getIDForSpecie(specie);
+
+	atdbDM->specimenCDS->Filter = "specie = '" + IntToStr(specieID) + "'";
+    atdbDM->specimenCDS->Filtered = true;
 }
 
 

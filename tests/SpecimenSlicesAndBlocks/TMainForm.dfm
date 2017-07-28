@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'MainForm'
+  Caption = 'Specimen, Slices and Blocks'
   ClientHeight = 842
   ClientWidth = 1505
   Color = clBtnFace
@@ -12,26 +12,27 @@ object MainForm: TMainForm
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
+  ShowHint = True
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 202
+    Top = 73
     Width = 1505
-    Height = 249
+    Height = 360
     Align = alTop
     Caption = 'Specimen'
     TabOrder = 0
     object DBGrid1: TDBGrid
       Left = 2
-      Top = 15
+      Top = 112
       Width = 1501
-      Height = 207
+      Height = 221
       Align = alClient
       DataSource = atdbDM.specimenDataSource
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -43,30 +44,29 @@ object MainForm: TMainForm
         item
           Expanded = False
           FieldName = 'id'
-          Width = 144
+          Width = 48
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'animal_id'
+          Width = 171
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'LSpecie'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'intake_date'
-          Width = 210
+          Width = 182
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'LUser'
-          Width = 64
           Visible = True
         end
         item
@@ -75,46 +75,49 @@ object MainForm: TMainForm
           Visible = True
         end>
     end
-    object DBNavigator1: TDBNavigator
+    object SpecimenNavigator: TDBNavigator
       Left = 2
-      Top = 222
+      Top = 333
       Width = 1501
       Height = 25
       DataSource = atdbDM.specimenDataSource
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
       Align = alBottom
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 1
-      OnClick = DBNavigator1Click
+      OnClick = SpecimenNavigatorClick
     end
-  end
-  object Panel1: TPanel
-    Left = 0
-    Top = 105
-    Width = 1505
-    Height = 97
-    Align = alTop
-    TabOrder = 1
-    object GroupBox2: TGroupBox
-      Left = 1
-      Top = 1
-      Width = 256
-      Height = 95
-      Align = alLeft
-      Caption = 'Filters'
-      TabOrder = 0
-      object SpecieRG: TRadioGroup
-        Left = 2
-        Top = 15
-        Width = 185
-        Height = 78
+    object Panel1: TPanel
+      Left = 2
+      Top = 15
+      Width = 1501
+      Height = 97
+      Align = alTop
+      TabOrder = 2
+      object GroupBox2: TGroupBox
+        Left = 1
+        Top = 1
+        Width = 256
+        Height = 95
         Align = alLeft
-        Caption = 'Species'
-        Columns = 2
-        ItemIndex = 0
-        Items.Strings = (
-          'Human'
-          'Mouse')
+        Caption = 'Filters'
         TabOrder = 0
+        object SpecieRG: TRadioGroup
+          Left = 2
+          Top = 15
+          Width = 185
+          Height = 78
+          Align = alLeft
+          Caption = 'Species'
+          Columns = 2
+          ItemIndex = 0
+          Items.Strings = (
+            'Human'
+            'Mouse')
+          TabOrder = 0
+          OnClick = SpecieRGClick
+        end
       end
     end
   end
@@ -122,10 +125,10 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 1505
-    Height = 105
+    Height = 73
     Align = alTop
     Caption = 'Misc'
-    TabOrder = 2
+    TabOrder = 1
     object UserCB: TDBLookupComboBox
       Left = 24
       Top = 24
@@ -135,6 +138,110 @@ object MainForm: TMainForm
       ListField = 'user_name'
       ListSource = atdbDM.usersDataSource
       TabOrder = 0
+    end
+  end
+  object GroupBox4: TGroupBox
+    Left = 0
+    Top = 433
+    Width = 1505
+    Height = 409
+    Align = alClient
+    Caption = 'Slices'
+    TabOrder = 2
+    object DBGrid2: TDBGrid
+      Left = 2
+      Top = 15
+      Width = 1501
+      Height = 367
+      Align = alClient
+      DataSource = atdbDM.slicesDataSource
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'id'
+          Width = 52
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'specimen_id'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'virus'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'virus_dilution'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'brain_region_dissection'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'culture_timeL'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'entered_byL'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'preprocess_treatment_protocolL'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'fixative_protocolL'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'fixation_protocolL'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'postfix_protocolL'
+          Width = 120
+          Visible = True
+        end>
+    end
+    object SlicesNavigator: TDBNavigator
+      Left = 2
+      Top = 382
+      Width = 1501
+      Height = 25
+      DataSource = atdbDM.slicesDataSource
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+      Align = alBottom
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      OnClick = SpecimenNavigatorClick
     end
   end
 end
