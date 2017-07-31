@@ -24,14 +24,12 @@ object SpecimenForm: TSpecimenForm
     Height = 348
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 384
-    ExplicitHeight = 268
     object Label2: TLabel
       Left = 24
       Top = 24
-      Width = 44
+      Width = 45
       Height = 13
-      Caption = 'animal_id'
+      Caption = 'Animal ID'
       FocusControl = DBEdit2
     end
     object Label3: TLabel
@@ -39,15 +37,15 @@ object SpecimenForm: TSpecimenForm
       Top = 64
       Width = 57
       Height = 13
-      Caption = 'intake_date'
+      Caption = 'Intake Date'
       FocusControl = DBEdit3
     end
     object Label4: TLabel
       Left = 24
       Top = 184
-      Width = 30
+      Width = 36
       Height = 13
-      Caption = 'specie'
+      Caption = 'Species'
     end
     object Label1: TLabel
       Left = 24
@@ -59,9 +57,9 @@ object SpecimenForm: TSpecimenForm
     object Label5: TLabel
       Left = 24
       Top = 104
-      Width = 43
+      Width = 44
       Height = 13
-      Caption = 'summary'
+      Caption = 'Summary'
       FocusControl = DBMemo1
     end
     object DBEdit2: TDBEdit
@@ -117,8 +115,6 @@ object SpecimenForm: TSpecimenForm
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 268
-    ExplicitWidth = 384
     DesignSize = (
       339
       51)
@@ -131,7 +127,6 @@ object SpecimenForm: TSpecimenForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
-      ExplicitLeft = 304
     end
     object CancelBtn: TButton
       Left = 178
@@ -142,12 +137,11 @@ object SpecimenForm: TSpecimenForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 223
     end
   end
   object DataSource1: TDataSource
     DataSet = atdbDM.specimenCDS
-    Left = 312
-    Top = 80
+    Left = 280
+    Top = 104
   end
 end

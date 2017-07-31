@@ -1492,13 +1492,10 @@ void __fastcall TMainForm::openBlocksForm()
     }
 }
 
-
 //---------------------------------------------------------------------------
-
 void __fastcall TMainForm::ApplicationEvents1Exception(TObject *Sender, Exception *E)
-
 {
 	Log(lError) << "There was an exception";
 }
-//---------------------------------------------------------------------------
+
 

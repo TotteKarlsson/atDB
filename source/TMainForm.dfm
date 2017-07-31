@@ -46,12 +46,16 @@ object MainForm: TMainForm
           Top = 0
           Width = 1238
           Height = 767
-          ActivePage = TabSheet8
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen && Slices'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 297
@@ -84,6 +88,12 @@ object MainForm: TMainForm
                 Columns = <
                   item
                     Expanded = False
+                    FieldName = 'id'
+                    Title.Caption = 'Slice ID'
+                    Visible = True
+                  end
+                  item
+                    Expanded = False
                     FieldName = 'specimen_id'
                     Width = 74
                     Visible = True
@@ -97,7 +107,6 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'virus_dilution'
-                    Width = 120
                     Visible = True
                   end
                   item
@@ -149,7 +158,7 @@ object MainForm: TMainForm
                 Width = 1226
                 Height = 25
                 DataSource = atdbDM.slicesDataSource
-                VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+                VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 1
                 OnClick = SlicesNavigatorClick
@@ -169,7 +178,7 @@ object MainForm: TMainForm
                 Width = 1226
                 Height = 25
                 DataSource = SpecimenDS
-                VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+                VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 0
                 BeforeAction = SpecimenNavigatorBeforeAction
@@ -194,18 +203,21 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'id'
-                    Width = 38
+                    Title.Caption = 'Specimen ID'
+                    Width = 65
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'animal_id'
+                    Title.Caption = 'Animal ID'
                     Width = 117
                     Visible = True
                   end
                   item
                     Expanded = False
                     FieldName = 'intake_date'
+                    Title.Caption = 'Intake Date'
                     Width = 148
                     Visible = True
                   end
@@ -218,6 +230,7 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'summary'
+                    Title.Caption = 'Summary'
                     Width = 185
                     Visible = True
                   end
@@ -557,8 +570,15 @@ object MainForm: TMainForm
                   Columns = <
                     item
                       Expanded = False
+                      FieldName = 'id'
+                      Title.Caption = 'Slice ID'
+                      Width = 39
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
                       FieldName = 'specimen_id'
-                      Width = 100
+                      Width = 72
                       Visible = True
                     end>
                 end
@@ -588,6 +608,10 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter5: TSplitter
               Left = 121
               Top = 0
@@ -837,6 +861,10 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -1096,6 +1124,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 115
@@ -1210,6 +1242,10 @@ object MainForm: TMainForm
             object TabSheet12: TTabSheet
               Caption = 'Dust Assays'
               ImageIndex = 1
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object Splitter2: TSplitter
                 Left = 0
                 Top = 510
@@ -1434,6 +1470,10 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1600,6 +1640,10 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 13
           Top = 12
@@ -1798,6 +1842,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
