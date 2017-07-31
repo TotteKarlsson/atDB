@@ -106,10 +106,20 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\..\source\Forms\TBlockForm.cpp">
+            <Form>BlockForm</Form>
+            <DependentOn>..\..\source\Forms\TBlockForm.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\source\Forms\TSlicesForm.cpp">
+            <Form>SlicesForm</Form>
+            <DependentOn>..\..\source\Forms\TSlicesForm.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\..\source\Forms\TSpecimenForm.cpp">
             <Form>SpecimenForm</Form>
             <DependentOn>..\..\source\Forms\TSpecimenForm.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
+            <BuildOrder>5</BuildOrder>
         </CppCompile>
         <CppCompile Include="SpecimenSlicesAndBlocks.cpp">
             <BuildOrder>0</BuildOrder>
@@ -131,7 +141,9 @@
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <FormResources Include="..\..\source\Forms\TSlicesForm.dfm"/>
         <FormResources Include="..\..\source\Forms\TSpecimenForm.dfm"/>
+        <FormResources Include="..\..\source\Forms\TBlockForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

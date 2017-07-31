@@ -58,7 +58,7 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <IncludePath>Core\;Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib;DuneForms.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;DbxDevartSQLiteDriver170.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;CSKGenerator.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;RaizeComponentsTrialVcl.lib;RaizeComponentsTrialVclDb.lib;HsBarcode1DRun.lib;DBXMySQLDriver.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib;DuneForms.lib;ArrayCamPackage.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -106,13 +106,13 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Release>3</VerInfo_Release>
         <VerInfo_MinorVer>6</VerInfo_MinorVer>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.2.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.3.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;DuneForms.lib</LinkPackageStatics>
+        <LinkPackageStatics>HsBarcode1DRun.lib;HsBarcode2DRun.lib;atVCLCore.lib;vcldbx.lib;DuneForms.lib;ArrayCamPackage.lib</LinkPackageStatics>
         <Debugger_DebugSourcePath>P:\libs\dsl\VCL\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\Common\;P:\libs\dsl\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
@@ -163,26 +163,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>Forms\TAboutATDBForm.h</DependentOn>
             <BuildOrder>13</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Forms\TBlockForm.cpp">
+            <Form>BlockForm</Form>
+            <DependentOn>Forms\TBlockForm.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Forms\TCoverSlipForm.cpp">
             <Form>CoverSlipForm</Form>
             <FormType>dfm</FormType>
             <DependentOn>Forms\TCoverSlipForm.h</DependentOn>
             <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Forms\TNewBlockForm.cpp">
-            <Form>NewBlockForm</Form>
-            <DependentOn>Forms\TNewBlockForm.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Forms\TNewCaseForm.cpp">
-            <Form>NewCaseForm</Form>
-            <DependentOn>Forms\TNewCaseForm.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Forms\TNewSpecimenForm.cpp">
-            <Form>NewSpecimenForm</Form>
-            <DependentOn>Forms\TNewSpecimenForm.h</DependentOn>
-            <BuildOrder>20</BuildOrder>
         </CppCompile>
         <CppCompile Include="Forms\TPrintLabelForm.cpp">
             <Form>PrintLabelForm</Form>
@@ -193,6 +183,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>RegisterFreshCSBatchForm</Form>
             <DependentOn>Forms\TRegisterFreshCSBatchForm.h</DependentOn>
             <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TSlicesForm.cpp">
+            <Form>SlicesForm</Form>
+            <DependentOn>Forms\TSlicesForm.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Forms\TSpecimenForm.cpp">
+            <Form>SpecimenForm</Form>
+            <DependentOn>Forms\TSpecimenForm.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
         </CppCompile>
         <CppCompile Include="Frames\TTableFrame.cpp">
             <Form>TableFrame</Form>
@@ -234,17 +234,17 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.h</DependentOn>
             <BuildOrder>10</BuildOrder>
         </CppCompile>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TNewCaseForm.dfm"/>
-        <FormResources Include="Forms\TNewSpecimenForm.dfm"/>
-        <FormResources Include="Forms\TNewBlockForm.dfm"/>
-        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
+        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TBlockForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

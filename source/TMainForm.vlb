@@ -439,9 +439,6 @@ Coordinates=1527,962,165,51
 [GroupBox3]
 Coordinates=1458,1098,70,51
 
-[mSpecimenNavigator]
-Coordinates=750,490,119,51
-
 [atdbDM.postfix]
 Coordinates=2012,962,88,51
 
@@ -550,9 +547,6 @@ Coordinates=97,1212,84,33
 [atdbDM.documentsDS]
 Coordinates=2305,10,124,123
 
-[mSpecimenGrid]
-Coordinates=2140,410,93,33
-
 [TabSheet6]
 Coordinates=329,1166,66,33
 
@@ -567,9 +561,6 @@ Coordinates=1370,1098,68,51
 
 [TabSheet10]
 Coordinates=765,1166,72,33
-
-[mBlocksGrid]
-Coordinates=2304,1166,78,33
 
 [mIm1FName]
 Coordinates=546,962,75,51
@@ -660,4 +651,13 @@ LayerNames=OrdersLayer
 
 [BatchesGB]
 Coordinates=591,894,70,51
+
+[SlicesNavigator]
+Coordinates=750,490,119,51
+
+[SlicesGrid]
+Coordinates=2140,410,93,33
+
+[BlocksGrid]
+Coordinates=2304,1166,78,33
 

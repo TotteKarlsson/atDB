@@ -1,3 +1,25 @@
+Release 0.6.3 (July 31)
+=======================
+* Added new lookup fields reflecting DB changes.
+* Redoing some DB stuff
+* Adding document for tracking changes to the database
+* Major changes to database naming of tables fields etc..
+* Added password protection of the all tables page
+* Added lockout timer logic to the alltables frame
+* Added a dbsensors datamodule
+* Many changes to atdbDataModule due to schema changes
+* Need more research on how to use datamodule from package
+* Some minor compilation speed updates
+* Added frames and datamodules to atVCLCore package
+* Added common pch header
+* Restructered: core files into core folder
+* Preparing some frames for packaging.
+* Added lookup fields in case Client dataset
+* Changed schema to use "cases"
+* ProcessID -> specimen_id
+* Added client datasets, and associated components for cases data
+* Refactored ab -> at
+
 Release 0.6.2 (June 29)
 =======================
 * Added form for adding new cases

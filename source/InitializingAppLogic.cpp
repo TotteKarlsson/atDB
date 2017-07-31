@@ -131,6 +131,9 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 //            }
 //        }
 //    }
+
+	//Filter Specimen data
+	SpecieRGClick(Sender);
 }
 
 void TMainForm::setupIniFile()

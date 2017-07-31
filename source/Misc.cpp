@@ -59,7 +59,7 @@ void __fastcall TMainForm::ClearMemoAExecute(TObject *Sender)
 
 int TMainForm::getCurrentUserID()
 {
-	int i = mUsersCB->KeyValue;
+	int i = UsersCB->KeyValue;
 	return  i;
 }
 

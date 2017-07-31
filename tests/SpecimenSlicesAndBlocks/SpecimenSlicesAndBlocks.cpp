@@ -7,7 +7,9 @@
 #include <Vcl.Themes.hpp>
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
+USEFORM("..\..\source\Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("..\..\source\Forms\TSpecimenForm.cpp", SpecimenForm);
+USEFORM("..\..\source\Forms\TBlockForm.cpp", BlockForm);
 //---------------------------------------------------------------------------
 extern bool gAppIsStartingUp = true;
 
@@ -20,7 +22,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		TStyleManager::TrySetStyle("Amethyst Kamri");
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
-		Application->CreateForm(__classid(TSpecimenForm), &SpecimenForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

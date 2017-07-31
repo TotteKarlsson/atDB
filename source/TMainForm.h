@@ -108,11 +108,11 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet4;
 	TPageControl *PageControl2;
 	TTabSheet *TabSheet8;
-	TDBGrid *mSpecimenGrid;
-	TDBNavigator *mSpecimenNavigator;
+	TDBGrid *SlicesGrid;
+	TDBNavigator *SlicesNavigator;
 	TGroupBox *GroupBox4;
 	TListBox *mTablesLB;
-	TDBGrid *mBlocksGrid;
+	TDBGrid *BlocksGrid;
 	TButton *Button1;
 	TMemo *mLblMakerMemo;
 	TDBGrid *mProcessForBlocksGrid;
@@ -209,7 +209,7 @@ class TMainForm : public TRegistryForm
 	TSplitter *Splitter1;
 	TPanel *Panel17;
 	TDBText *DBText2;
-	TDBLookupComboBox *mUsersCB;
+	TDBLookupComboBox *UsersCB;
 	TSplitter *Splitter4;
 	TSplitter *Splitter5;
 	TGroupBox *GroupBox18;
@@ -227,14 +227,18 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText4;
 	TSplitter *Splitter7;
 	TGroupBox *GroupBox9;
-	TDBNavigator *CasesDBNavigator;
-	TDBGrid *CasesDBGrid;
-	TDataSource *CasesDS;
+	TDBNavigator *SpecimenNavigator;
+	TDBGrid *SpecimenGrid;
+	TDataSource *SpecimenDS;
 	TPanel *LeftPanel;
 	TGroupBox *GroupBox15;
 	TPanel *Panel6;
 	TPanel *Panel19;
 	TBitBtn *UnlocktablesBtn;
+	TPanel *Panel20;
+	TRadioGroup *SpecieRG;
+	TDBLookupListBox *DBLookupListBox1;
+	TApplicationEvents *ApplicationEvents1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -252,32 +256,32 @@ class TMainForm : public TRegistryForm
 	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
-	void __fastcall mUsersCBCloseUp(TObject *Sender);
+	void __fastcall UsersCBCloseUp(TObject *Sender);
 	void __fastcall mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mSpecimenGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
+	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
-	void __fastcall mSpecimenGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
+	void __fastcall SlicesGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall mSpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall SlicesNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mProcessForBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mProcessForBlocksGridCellClick(TColumn *Column);
 	void __fastcall OpenAboutFormAExecute(TObject *Sender);
 	void __fastcall PageControl2Change(TObject *Sender);
 	void __fastcall mAddDocBtnClick(TObject *Sender);
-	void __fastcall mSpecimenGridDblClick(TObject *Sender);
-	void __fastcall mSpecimenGridMouseDown(TObject *Sender, TMouseButton Button,
+	void __fastcall SlicesDBGridDblClick(TObject *Sender);
+	void __fastcall SlicesGridMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-	void __fastcall mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
+	void __fastcall SlicesGridMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-	void __fastcall mBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall mBlocksGridCellClick(TColumn *Column);
+	void __fastcall BlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall BlocksGridCellClick(TColumn *Column);
 //	void __fastcall DataSource1DataChange(TObject *Sender, TField *Field);
-	void __fastcall mSpecimenGridMouseMove(TObject *Sender, TShiftState Shift,
+	void __fastcall SlicesGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-	void __fastcall mSpecimenGridTitleClick(TColumn *Column);
+	void __fastcall SlicesGridTitleClick(TColumn *Column);
 	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mPrintTestLabelBtnClick(TObject *Sender);
 	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
@@ -291,13 +295,18 @@ class TMainForm : public TRegistryForm
 	void __fastcall mPrintCSLabelsBtnClick(TObject *Sender);
 	void __fastcall mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
-	void __fastcall mBlocksGridDblClick(TObject *Sender);
+	void __fastcall DBGrid_DBLClick(TObject *Sender);
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall CasesDBNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall CasesDBGridDblClick(TObject *Sender);
+	void __fastcall SpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall DBGridDblClick(TObject *Sender);
 	void __fastcall UnlocktablesBtnClick(TObject *Sender);
+	void __fastcall SpecieRGClick(TObject *Sender);
+	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
+
+
 
 
 
@@ -355,6 +364,11 @@ class TMainForm : public TRegistryForm
 		void 		__fastcall 							onDustAssayDataChanged(TObject *Sender);
 		bool											removeAssayFile(const string& f);
       	BarCodeBuilder									mBCBuilder;
+
+		void __fastcall 								openSpecimenForm();
+		void __fastcall 								openSlicesForm();
+		void __fastcall 								openBlocksForm();
+
 
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);

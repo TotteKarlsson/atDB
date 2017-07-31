@@ -2,7 +2,7 @@
 #include "TMainForm.h"
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Button,
+void __fastcall TMainForm::SlicesGridMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y)
 {
 //	if(Button != TMouseButton::mbRight)
@@ -10,12 +10,12 @@ void __fastcall TMainForm::mSpecimenGridMouseUp(TObject *Sender, TMouseButton Bu
 //    	return;
 //    }
 //
-//    TGridCoord c = mSpecimenGrid->MouseCoord(X,Y);
-//    TField* field =  mSpecimenGrid->Columns->operator [](c.X - 1)->Field;
+//    TGridCoord c = SlicesDBGrid->MouseCoord(X,Y);
+//    TField* field =  SlicesDBGrid->Columns->operator [](c.X - 1)->Field;
 //
 //    if(field->FieldKind == fkLookup)
 //    {
-//        TPoint screen(mSpecimenGrid->ClientToScreen(Point(X,Y)));
+//        TPoint screen(SlicesDBGrid->ClientToScreen(Point(X,Y)));
 //
 //        Log(lInfo) << "Field: " << stdstr(field->Value);
 //        Log(lInfo) << "Key Fields: " << stdstr(field->KeyFields);
