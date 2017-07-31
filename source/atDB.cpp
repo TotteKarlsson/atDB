@@ -12,8 +12,8 @@ USEFORM("TMainForm.cpp", MainForm);
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
-USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
 //---------------------------------------------------------------------------
 #include "mtkUtils.h"
@@ -99,7 +99,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
-		Application->CreateForm(__classid(TBlockForm), &BlockForm);
 		Application->ShowMainForm = true;
 		Application->Run();
 

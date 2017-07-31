@@ -1,5 +1,8 @@
 Release 0.6.3 (July 31)
 =======================
+* Added Slices Form
+* Renamed TNewBlockForm -> TBlockForm
+* Added filter for Human vs Mouse
 * Added new lookup fields reflecting DB changes.
 * Redoing some DB stuff
 * Adding document for tracking changes to the database
