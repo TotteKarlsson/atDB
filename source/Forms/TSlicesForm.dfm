@@ -24,8 +24,6 @@ object SlicesForm: TSlicesForm
     Height = 640
     Align = alClient
     TabOrder = 0
-    ExplicitTop = -6
-    ExplicitWidth = 499
     object Label1: TLabel
       Left = 322
       Top = 16
@@ -45,9 +43,9 @@ object SlicesForm: TSlicesForm
     object Label3: TLabel
       Left = 56
       Top = 120
-      Width = 23
+      Width = 148
       Height = 13
-      Caption = 'Virus'
+      Caption = 'Fluorescence (Virus/Genotype)'
       FocusControl = DBEdit3
     end
     object Label4: TLabel
@@ -235,7 +233,6 @@ object SlicesForm: TSlicesForm
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 499
     DesignSize = (
       535
       51)
@@ -248,7 +245,6 @@ object SlicesForm: TSlicesForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
-      ExplicitLeft = 419
     end
     object CancelBtn: TButton
       Left = 374
@@ -259,7 +255,6 @@ object SlicesForm: TSlicesForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 338
     end
   end
   object DataSource1: TDataSource

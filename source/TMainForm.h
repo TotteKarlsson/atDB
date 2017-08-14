@@ -115,7 +115,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *BlocksGrid;
 	TButton *Button1;
 	TMemo *mLblMakerMemo;
-	TDBGrid *mProcessForBlocksGrid;
 	TDBGrid *mBlocksForRibbonsGrid;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *mUsersNavigator;
@@ -136,7 +135,6 @@ class TMainForm : public TRegistryForm
 	TPopupMenu *SpecimenPopup;
 	TMenuItem *openDocument;
 	TDBText *DBText3;
-	TGroupBox *GroupBox5;
 	TPanel *Panel2;
 	TPanel *Panel3;
 	TPanel *Panel4;
@@ -239,6 +237,12 @@ class TMainForm : public TRegistryForm
 	TRadioGroup *SpecieRG;
 	TDBLookupListBox *DBLookupListBox1;
 	TApplicationEvents *ApplicationEvents1;
+	TLabel *Label1;
+	TGroupBox *GroupBox5;
+	TDBGrid *mProcessForBlocksGrid;
+	TDBText *DBText5;
+	TPanel *Panel21;
+	TLabel *Label3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

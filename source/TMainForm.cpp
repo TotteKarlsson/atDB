@@ -366,12 +366,33 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 		        	atdbDM->blocksCDS->FieldValues["slice_id"] 			            = atdbDM->slicesCDS->FieldByName("id")->AsInteger;
 		        	atdbDM->blocksCDS->FieldValues["serial"] 	 		            = atdbDM->blocksCDS->RecordCount + 1;
 		        	atdbDM->blocksCDS->FieldByName("date_embedded")->Value 			= dt.CurrentDate();
-		        	atdbDM->blocksCDS->FieldValues["status"] 	 					= 0;
-		        	atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= 0;
-		        	atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= 0;
-		        	atdbDM->blocksCDS->FieldValues["substitution_protocol"]    		= 0;
-		        	atdbDM->blocksCDS->FieldValues["infiltration_protocol"]    		= 0;
-		        	atdbDM->blocksCDS->FieldValues["embedding_protocol"]    		= 0;
+
+                    if(atdbDM->blocksCDS->RecordCount < 1)
+                    {
+                        atdbDM->blocksCDS->FieldValues["status"] 	 					= 0;
+                        atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= 0;
+                        atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= 0;
+                        atdbDM->blocksCDS->FieldValues["substitution_protocol"]    		= 0;
+                        atdbDM->blocksCDS->FieldValues["infiltration_protocol"]    		= 0;
+                        atdbDM->blocksCDS->FieldValues["embedding_protocol"]    		= 0;
+                    }
+                    else
+                    {
+                    	//Clone the cursor
+						TClientDataSet *clone = new TClientDataSet(NULL);
+                        clone->CloneCursor(atdbDM->blocksCDS, false, false);
+                        clone->Last();
+
+
+                        atdbDM->blocksCDS->FieldValues["status"] 	 					= clone->FieldByName("status")->Value;
+                        atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= clone->FieldByName("cryoprotection_protocol")->Value;
+                        atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= clone->FieldByName("freezing_protocol")->Value;
+                        atdbDM->blocksCDS->FieldValues["substitution_protocol"]    		= clone->FieldByName("substitution_protocol")->Value;
+                        atdbDM->blocksCDS->FieldValues["infiltration_protocol"]    		= clone->FieldByName("infiltration_protocol")->Value;
+                        atdbDM->blocksCDS->FieldValues["embedding_protocol"]    		= clone->FieldByName("embedding_protocol")->Value;
+                        clone->Close();
+                        delete clone;
+                    }
 
                     //Open form
                     openBlocksForm();
@@ -513,22 +534,6 @@ void __fastcall TMainForm::DBGridDblClick(TObject *Sender)
     {
     	openSlicesForm();
     }
-
-	//Show current record on a form
-//    TNewCaseForm* f = new TNewCaseForm(this);
-//    atdbDM->casesCDS->Open();
-//    atdbDM->casesCDS->Edit();
-//    int res = f->ShowModal();
-//    if(res == mrCancel)
-//    {
-//        //revert
-//        atdbDM->casesCDS->Cancel();
-//    }
-//    else
-//    {
-//        atdbDM->casesCDS->Post();
-//        atdbDM->casesCDS->First();
-//    }
 }
 
 void __fastcall TMainForm::openSpecimenForm()
@@ -1497,5 +1502,6 @@ void __fastcall TMainForm::ApplicationEvents1Exception(TObject *Sender, Exceptio
 {
 	Log(lError) << "There was an exception";
 }
+
 
 

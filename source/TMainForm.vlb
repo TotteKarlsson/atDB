@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1948,962,47,51
+Coordinates=1795,962,70,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -403,9 +403,6 @@ Coordinates=2119,10,155,123
 [GroupBox2]
 Coordinates=2151,894,70,51
 
-[mProcessForBlocksGrid]
-Coordinates=1931,1166,135,33
-
 [DBGrid2]
 Coordinates=1324,1166,56,33
 
@@ -552,9 +549,6 @@ Coordinates=329,1166,66,33
 
 [csDM.csFreshBatchesCDS]
 Coordinates=1072,10,145,159
-
-[GroupBox5]
-Coordinates=1795,962,70,51
 
 [mDBUserE]
 Coordinates=1370,1098,68,51
