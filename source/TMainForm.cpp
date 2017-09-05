@@ -382,8 +382,6 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 						TClientDataSet *clone = new TClientDataSet(NULL);
                         clone->CloneCursor(atdbDM->blocksCDS, false, false);
                         clone->Last();
-
-
                         atdbDM->blocksCDS->FieldValues["status"] 	 					= clone->FieldByName("status")->Value;
                         atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= clone->FieldByName("cryoprotection_protocol")->Value;
                         atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= clone->FieldByName("freezing_protocol")->Value;
