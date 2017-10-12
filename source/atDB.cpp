@@ -23,7 +23,7 @@ USEFORM("Forms\TBlockForm.cpp", BlockForm);
 #include "mtkLogger.h"
 #include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
-#include "mtkSQLite.h"
+#include "database/mtkSQLite.h"
 #include "datamodules/TATDBDataModule.h"
 #pragma package(smart_init)
 

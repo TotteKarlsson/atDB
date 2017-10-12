@@ -2,7 +2,7 @@
 #define atDBUtilitiesH
 #include "atDBCoreExporter.h"
 #include "atDBDataStructures.h"
-#include "mtkSQLite.h"
+#include "database/mtkSQLite.h"
 #include "mtkStringList.h"
 
 using mtk::SQLite;

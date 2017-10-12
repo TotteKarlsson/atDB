@@ -11,10 +11,10 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "pBarcode2D"
-#pragma link "pCore2D"
-#pragma link "pDataMatrixEcc200"
-#pragma link "pDBBarcode2D"
+//#pragma link "pBarcode2D"
+//#pragma link "pCore2D"
+//#pragma link "pDataMatrixEcc200"
+//#pragma link "pDBBarcode2D"
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"

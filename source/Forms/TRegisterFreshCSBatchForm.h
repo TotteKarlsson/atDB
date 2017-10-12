@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #ifndef TRegisterFreshCSBatchFormH
 #define TRegisterFreshCSBatchFormH
 //---------------------------------------------------------------------------
@@ -7,10 +5,10 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "pBarcode2D.hpp"
-#include "pCore2D.hpp"
-#include "pDataMatrixEcc200.hpp"
-#include "pDBBarcode2D.hpp"
+//#include "pBarcode2D.hpp"
+//#include "pCore2D.hpp"
+//#include "pDataMatrixEcc200.hpp"
+//#include "pDBBarcode2D.hpp"
 #include "TIntegerLabeledEdit.h"
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.DBCtrls.hpp>

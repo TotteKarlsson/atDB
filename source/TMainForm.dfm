@@ -41,25 +41,17 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
           Width = 1323
           Height = 844
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen && Slices'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 297
@@ -260,10 +252,6 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object Splitter6: TSplitter
               Left = 185
               Top = 0
@@ -879,10 +867,6 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -957,7 +941,6 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
-                  Width = 64
                   Visible = True
                 end>
             end
@@ -1142,10 +1125,6 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 115
@@ -1260,10 +1239,6 @@ object MainForm: TMainForm
             object TabSheet12: TTabSheet
               Caption = 'Dust Assays'
               ImageIndex = 1
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object Splitter2: TSplitter
                 Left = 0
                 Top = 587
@@ -1488,10 +1463,6 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Images'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Image1: TImage
           Left = 480
           Top = 16
@@ -1658,10 +1629,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 13
           Top = 12
@@ -1860,10 +1827,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -1984,8 +1947,6 @@ object MainForm: TMainForm
         'Mouse')
       TabOrder = 1
       OnClick = SpecieRGClick
-      ExplicitLeft = 1125
-      ExplicitHeight = 56
     end
   end
   object ActionList1: TActionList

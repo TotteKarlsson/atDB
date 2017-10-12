@@ -16,9 +16,9 @@
 #include "mtkLogLevel.h"
 #include "mtkMessageContainer.h"
 #include "mtkProperty.h"
-#include "mtkSQLite.h"
+//#include "mtkSQLite.h"
 #include "TApplicationProperties.h"
-#include "TRegistryForm.h"
+#include "forms/TRegistryForm.h"
 #include "TRegistryProperties.h"
 #include "TSTDStringLabeledEdit.h"
 #include <System.Actions.hpp>
@@ -57,7 +57,7 @@
 #include "atBarCodeBuilder.h"
 
 using mtk::Property;
-using mtk::SQLite;
+//using mtk::SQLite;
 using mtk::MessageContainer;
 using mtk::IniFileProperties;
 using mtk::TRegistryProperties;
