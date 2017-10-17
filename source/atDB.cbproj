@@ -106,10 +106,10 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>3</VerInfo_Release>
+        <VerInfo_Release>4</VerInfo_Release>
         <VerInfo_MinorVer>6</VerInfo_MinorVer>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.3.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.4.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <LinkPackageStatics>atVCLCore.lib;vcldbx.lib;DuneForms.lib;ArrayCamPackage.lib</LinkPackageStatics>
@@ -228,6 +228,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
             <BuildOrder>9</BuildOrder>
         </CppCompile>
+        <CppCompile Include="p:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp">
             <Form>csDM</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -236,15 +239,15 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </CppCompile>
         <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="Frames\TTableFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="Forms\TCoverSlipForm.dfm"/>
-        <FormResources Include="Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="Forms\TBlockForm.dfm"/>
+        <FormResources Include="Forms\TCoverSlipForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -306,6 +309,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="p:\build\debug\BPL\ArrayBotPackage.bpl">File p:\build\debug\BPL\ArrayBotPackage.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

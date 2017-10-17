@@ -55,12 +55,18 @@
 #include "TIntLabel.h"
 #include "TFloatLabeledEdit.h"
 #include "atBarCodeBuilder.h"
+#include "core/atVideoCompressorThread.h"
+#include "TSTDStringEdit.h"
 
 using mtk::Property;
 //using mtk::SQLite;
 using mtk::MessageContainer;
 using mtk::IniFileProperties;
 using mtk::TRegistryProperties;
+using std::list;
+using mtk::StringList;
+class TFFMPEGOutputFrame;
+class TMovieItemFrame;
 
 extern string gApplicationRegistryRoot;
 
@@ -154,9 +160,6 @@ class TMainForm : public TRegistryForm
 	TLabel *Label4;
 	TDBText *DBText1;
 	TTabSheet *TabSheet10;
-	TDBGrid *DBGrid2;
-	TImage *Image1;
-	TDBNavigator *DBNavigator1;
 	TImage *mBackgroundImage;
 	TImage *mCoverslipImage;
 	TImage *mResultImage;
@@ -235,7 +238,7 @@ class TMainForm : public TRegistryForm
 	TBitBtn *UnlocktablesBtn;
 	TPanel *Panel20;
 	TRadioGroup *SpecieRG;
-	TDBLookupListBox *DBLookupListBox1;
+	TDBLookupListBox *AnimalIDLookupListBox;
 	TApplicationEvents *ApplicationEvents1;
 	TLabel *Label1;
 	TGroupBox *GroupBox5;
@@ -243,6 +246,24 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText5;
 	TPanel *Panel21;
 	TLabel *Label3;
+	TPageControl *PageControl4;
+	TTabSheet *TabSheet1;
+	TScrollBox *ScrollBox1;
+	TFlowPanel *FlowPanel1;
+	TPanel *Panel22;
+	TLabel *Label5;
+	TIntLabel *NrOfRecordsLbl;
+	TTabSheet *TabSheet13;
+	TDBGrid *DBGrid2;
+	TGroupBox *GroupBox16;
+	TDBNavigator *DBNavigator1;
+	TDBLookupListBox *BlockIDSLLB;
+	TSQLQuery *SQLQuery1;
+	TGroupBox *GroupBox19;
+	TPanel *Panel23;
+	TSTDStringEdit *MovieFolder;
+	TButton *Button2;
+	TBrowseForFolder *BrowseForFolder1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -309,9 +330,13 @@ class TMainForm : public TRegistryForm
 	void __fastcall SpecieRGClick(TObject *Sender);
 	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
-
-
-
+	void __fastcall BlockIDSLLBMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+	void __fastcall BlockIDSLLBKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall BlockIDSLLBKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y);
+	void __fastcall BrowseForFolder1Accept(TObject *Sender);
 
 
     private:
@@ -373,6 +398,10 @@ class TMainForm : public TRegistryForm
 		void __fastcall 								openSlicesForm();
 		void __fastcall 								openBlocksForm();
 
+		list<TMovieItemFrame*>                  mMovies;
+   		void 									populateMovieFrames(const StringList& l);
+		void 									clearMovieFrames();
+		StringList								fetchRecords();
 
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);

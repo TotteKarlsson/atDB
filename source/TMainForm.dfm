@@ -530,25 +530,25 @@ object MainForm: TMainForm
                 Caption = 'Specimen'
                 TabOrder = 0
                 object Label1: TLabel
-                  Left = 8
-                  Top = 113
+                  Left = 16
+                  Top = 161
                   Width = 63
                   Height = 13
                   Caption = 'Specimen ID:'
                 end
                 object DBText5: TDBText
-                  Left = 92
-                  Top = 112
+                  Left = 100
+                  Top = 160
                   Width = 65
                   Height = 17
                   DataField = 'id'
                   DataSource = atdbDM.specimenDataSource
                 end
-                object DBLookupListBox1: TDBLookupListBox
+                object AnimalIDLookupListBox: TDBLookupListBox
                   Left = 2
                   Top = 41
                   Width = 179
-                  Height = 56
+                  Height = 108
                   Align = alTop
                   KeyField = 'id'
                   ListField = 'animal_id'
@@ -615,10 +615,6 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object Splitter5: TSplitter
               Left = 121
               Top = 0
@@ -941,6 +937,7 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
+                  Width = 64
                   Visible = True
                 end>
             end
@@ -1461,32 +1458,156 @@ object MainForm: TMainForm
         end
       end
       object TabSheet10: TTabSheet
-        Caption = 'Images'
+        Caption = 'Movies'
         ImageIndex = 6
-        object Image1: TImage
-          Left = 480
-          Top = 16
-          Width = 441
-          Height = 425
-        end
-        object DBGrid2: TDBGrid
-          Left = 11
-          Top = 16
-          Width = 200
-          Height = 313
+        object PageControl4: TPageControl
+          Left = 113
+          Top = 0
+          Width = 1210
+          Height = 844
+          ActivePage = TabSheet1
+          Align = alClient
           TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'Tahoma'
-          TitleFont.Style = []
+          object TabSheet1: TTabSheet
+            Caption = 'Movies'
+            ImageIndex = 1
+            object ScrollBox1: TScrollBox
+              Left = 0
+              Top = 0
+              Width = 1202
+              Height = 761
+              Align = alClient
+              TabOrder = 0
+              object FlowPanel1: TFlowPanel
+                Left = 0
+                Top = 0
+                Width = 1198
+                Height = 481
+                Align = alTop
+                AutoSize = True
+                BevelOuter = bvNone
+                TabOrder = 0
+              end
+            end
+            object Panel22: TPanel
+              Left = 0
+              Top = 761
+              Width = 1202
+              Height = 55
+              Align = alBottom
+              TabOrder = 1
+              object Label5: TLabel
+                Left = 32
+                Top = 24
+                Width = 96
+                Height = 13
+                Caption = 'Number of Records:'
+              end
+              object NrOfRecordsLbl: TIntLabel
+                Left = 134
+                Top = 24
+                Width = 10
+                Height = 13
+                Caption = '-1'
+                Value = -1
+                TheFont.Charset = DEFAULT_CHARSET
+                TheFont.Color = clWindowText
+                TheFont.Height = -11
+                TheFont.Name = 'Tahoma'
+                TheFont.Style = []
+              end
+            end
+          end
+          object TabSheet13: TTabSheet
+            Caption = 'Table'
+            object DBGrid2: TDBGrid
+              Left = 0
+              Top = 0
+              Width = 1202
+              Height = 816
+              Align = alClient
+              DataSource = ImagesAndMoviesDM.MoviesDataSource
+              TabOrder = 0
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'id'
+                  Width = 55
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'created'
+                  Width = 150
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'fileextension'
+                  Width = 150
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'created_by'
+                  Width = 150
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'coverslip_id'
+                  Width = 150
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'block_id'
+                  Width = 150
+                  Visible = True
+                end>
+            end
+          end
         end
-        object DBNavigator1: TDBNavigator
-          Left = 11
-          Top = 360
-          Width = 200
-          Height = 25
+        object GroupBox16: TGroupBox
+          Left = 0
+          Top = 0
+          Width = 113
+          Height = 844
+          Align = alLeft
+          Caption = 'Block IDs'
+          Color = clBtnFace
+          ParentColor = False
           TabOrder = 1
+          object DBNavigator1: TDBNavigator
+            Left = 2
+            Top = 817
+            Width = 109
+            Height = 25
+            DataSource = atdbDM.blockIDsDataSource
+            VisibleButtons = [nbPrior, nbNext]
+            Align = alBottom
+            TabOrder = 0
+          end
+          object BlockIDSLLB: TDBLookupListBox
+            Left = 2
+            Top = 15
+            Width = 109
+            Height = 797
+            Align = alClient
+            KeyField = 'id'
+            ListField = 'id'
+            ListSource = atdbDM.blockIDsDataSource
+            TabOrder = 1
+            OnKeyDown = BlockIDSLLBKeyDown
+            OnKeyUp = BlockIDSLLBKeyUp
+            OnMouseDown = BlockIDSLLBMouseDown
+            OnMouseUp = BlockIDSLLBMouseUp
+          end
         end
       end
       object TabSheet5: TTabSheet
@@ -1823,6 +1944,39 @@ object MainForm: TMainForm
             OnClick = settingsNavigatorClick
           end
         end
+        object GroupBox19: TGroupBox
+          Left = 654
+          Top = 264
+          Width = 505
+          Height = 68
+          Caption = 'Data Folder Selection'
+          TabOrder = 4
+          object Panel23: TPanel
+            Left = 2
+            Top = 15
+            Width = 501
+            Height = 41
+            Align = alTop
+            TabOrder = 0
+            object MovieFolder: TSTDStringEdit
+              Left = 9
+              Top = 11
+              Width = 440
+              Height = 21
+              TabOrder = 0
+              Text = 'E:\at_media\movies'
+              Value = 'E:\at_media\movies'
+            end
+            object Button2: TButton
+              Left = 455
+              Top = 10
+              Width = 34
+              Height = 25
+              Action = BrowseForFolder1
+              TabOrder = 1
+            end
+          end
+        end
       end
       object TabSheet3: TTabSheet
         Caption = 'Logs'
@@ -1965,6 +2119,13 @@ object MainForm: TMainForm
       Caption = 'About'
       OnExecute = OpenAboutFormAExecute
     end
+    object BrowseForFolder1: TBrowseForFolder
+      Category = 'File'
+      Caption = '...'
+      DialogCaption = '...'
+      BrowseOptions = [bifEditBox, bifNewDialogStyle, bifStatusText]
+      OnAccept = BrowseForFolder1Accept
+    end
   end
   object LogMemoPopup: TPopupMenu
     Left = 912
@@ -2038,5 +2199,22 @@ object MainForm: TMainForm
     OnException = ApplicationEvents1Exception
     Left = 952
     Top = 16
+  end
+  object SQLQuery1: TSQLQuery
+    DataSource = atdbDM.blockIDsDataSource
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      
+        'SELECT id,created from movies where block_id=:id ORDER by create' +
+        'd DESC')
+    SQLConnection = atdbDM.SQLConnection1
+    Left = 208
+    Top = 208
   end
 end

@@ -4,6 +4,17 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
+#include "TATDBImagesAndMoviesDataModule.h"
+#include "mtkUtils.h"
+#include "mtkVCLUtils.h"
+#include "mtkIniKey.h"
+#include "mtkRestartApplicationUtils.h"
+#include "mtkLogger.h"
+#include "Core/atDBUtilities.h"
+#include "mtkMoleculixException.h"
+#include "database/mtkSQLite.h"
+#include "datamodules/TATDBDataModule.h"
+
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
@@ -16,15 +27,7 @@ USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
 //---------------------------------------------------------------------------
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkIniKey.h"
-#include "mtkRestartApplicationUtils.h"
-#include "mtkLogger.h"
-#include "Core/atDBUtilities.h"
-#include "mtkMoleculixException.h"
-#include "database/mtkSQLite.h"
-#include "datamodules/TATDBDataModule.h"
+
 #pragma package(smart_init)
 
 using namespace mtk;
@@ -99,6 +102,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
+		Application->CreateForm(__classid(TImagesAndMoviesDM), &ImagesAndMoviesDM);
 		Application->ShowMainForm = true;
 		Application->Run();
 

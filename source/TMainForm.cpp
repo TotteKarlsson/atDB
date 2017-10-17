@@ -6,8 +6,6 @@
 #include "mtkLogger.h"
 #include "mtkMoleculixException.h"
 #include "database/mtkSQLiteException.h"
-//#include "database/mtkSQLiteQuery.h"
-//#include "database/mtkSQLiteTable.h"
 #include "mtkStringUtils.h"
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
@@ -28,29 +26,25 @@
 #include "atQueryBuilder.h"
 #include "vcl/forms/TTextInputDialog.h"
 #include "TATDBDataModule.h"
+#include "TATDBImagesAndMoviesDataModule.h"
 #include "TCoverSlipDataModule.h"
 #include "forms/TStringInputDialog.h"
 #include "TSpecimenForm.h"
 #include "TSlicesForm.h"
 #include "TBlockForm.h"
+#include "Poco/Path.h"
+#include "Poco/File.h"
+#include "frames/TMovieItemFrame.h"
+#include <JPEG.hpp>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
 #pragma link "TIntegerLabeledEdit"
-//#pragma link "pBarcode1D"
-//#pragma link "pUPC"
-//#pragma link "pUPCA"
-//#pragma link "pCode39"
-//#pragma link "pDBBarcode1D"
 #pragma link "TArrayBotBtn"
 #pragma link "TTableFrame"
-//#pragma link "pBarcode2D"
-//#pragma link "pCore2D"
-//#pragma link "pDataMatrix"
-//#pragma link "pDBBarcode2D"
-//#pragma link "pQRCode"
 #pragma link "TIntLabel"
 #pragma link "TFloatLabeledEdit"
+#pragma link "TSTDStringEdit"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -64,6 +58,7 @@ extern string gFullDateTimeFormat;
 extern bool gIsDevelopmentRelease;
 //extern TSplashForm*  gSplashForm;
 
+//using Poco::Path;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
     : TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
@@ -106,7 +101,7 @@ void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
 	//Enable datamodules
 	atdbDM->afterConnect();
     csDM->afterConnect();
-
+    ImagesAndMoviesDM->afterConnect();
 
     UsersCB->KeyValue = mDBUserID.getValue();
     UsersCB->Enabled = true;
@@ -120,6 +115,7 @@ void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
 	atdbDM->afterDisConnect();
     mATDBServerBtnConnect->Caption = "Connect";
     UsersCB->Enabled = false;
+
 }
 
 //This one is called from the reader thread
@@ -1286,7 +1282,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
         	string note = f->getText();
         	Log(lError) << "Adding note to multiple coverslips";
             addNoteToMultipleCoverSlips(coverslipIDS, atdbDM->SQLConnection1, note);
-            CSNavigator->BtnClick(Data::Bind::Controls::nbRefresh);
+            CSNavigator->BtnClick(::Data::Bind::Controls::nbRefresh);
         }
     }
 }
@@ -1501,5 +1497,133 @@ void __fastcall TMainForm::ApplicationEvents1Exception(TObject *Sender, Exceptio
 	Log(lError) << "There was an exception";
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDSLLBMouseDown(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	Log(lInfo) << "Mouse down................................";
+}
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDSLLBKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	if(Key == vkUp || Key == vkDown || Key == vkLeft|| Key == vkRight)
+    {
+		SQLQuery1->Open();
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDSLLBKeyUp(TObject *Sender, WORD &Key,
+          TShiftState Shift)
+{
+	if(Key == vkUp || Key == vkDown|| Key == vkLeft|| Key == vkRight)
+    {
+        //Log(lInfo) << "Key up................................";
+        StringList movies = fetchRecords();
+        populateMovieFrames(movies);
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	Log(lInfo) << "Mouse up................................";
+	SQLQuery1->Open();
+    StringList movies = fetchRecords();
+	populateMovieFrames(movies);
+
+}
+
+StringList TMainForm::fetchRecords()
+{
+	StringList movies;
+    while(!SQLQuery1->Eof)
+    {
+		stringstream rec;
+        rec <<stdstr(SQLQuery1->FieldByName("created")->AsString) <<"," <<stdstr(SQLQuery1->FieldByName("id")->AsString) <<".mp4";
+        movies.append(rec.str());
+        Log(lInfo) << "Got record: "<< stdstr(SQLQuery1->FieldByName("id")->AsString) << " at " << stdstr(SQLQuery1->FieldByName("created")->AsString);
+        SQLQuery1->Next();
+    }
+
+	return movies;
+}
+
+void TMainForm::clearMovieFrames()
+{
+	list<TMovieItemFrame*>::iterator i = mMovies.begin();
+    while(i != mMovies.end())
+    {
+    	delete (*i);
+    	mMovies.erase(i++);
+    }
+}
+
+void TMainForm::populateMovieFrames(const StringList& l)
+{
+	try
+    {
+        clearMovieFrames();
+
+        if(l.count())
+        {
+            ScrollBox1->VertScrollBar->Visible = false;
+        }
+
+        //Current block nr
+		if(BlockIDSLLB->KeyValue.IsNull())
+        {
+        	return;
+        }
+
+        //Create path
+        Poco::Path p(stdstr(MovieFolder->Text));
+
+        int blockID = BlockIDSLLB->KeyValue;
+
+        p.append(mtk::toString(blockID));
+        for(int i = 0; i < l.count(); i++)
+        {
+            StringList item(l[i], ',');
+            if(item.count() == 2)
+            {
+                Poco::File f(Poco::Path(p, item[1]));
+
+                TMovieItemFrame* frame = new TMovieItemFrame(f,this);
+                frame->Visible = false;
+                frame->MovieLbl->Caption = item[0].c_str();
+                mMovies.push_back(frame);
+            }
+            else
+            {
+                Log(lError) << "Bad movie record..";
+            }
+        }
+
+        list<TMovieItemFrame*>::iterator i = mMovies.begin();
+        while(i != mMovies.end())
+        {
+            (*i)->Parent = FlowPanel1;;
+            (*i)->Visible = true;
+            i++;
+        }
+
+        ScrollBox1->VertScrollBar->Visible = true;
+        NrOfRecordsLbl->setValue(l.count());
+    }
+    catch(...)
+    {
+    	Log(lError) << "There was a problem...";
+    }
+}
+
+
+void __fastcall TMainForm::BrowseForFolder1Accept(TObject *Sender)
+{
+	MovieFolder->setValue(stdstr(BrowseForFolder1->Folder));
+}
+//---------------------------------------------------------------------------
 

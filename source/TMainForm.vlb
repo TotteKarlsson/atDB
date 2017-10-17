@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1795,962,70,51
+Coordinates=1286,962,82,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -304,9 +304,6 @@ Coordinates=2021,1030,47,51
 [TabSheet8]
 Coordinates=2470,1098,66,33
 
-[DBNavigator1]
-Coordinates=1286,962,82,51
-
 [mRibbonsNavigator]
 Coordinates=1390,962,112,51
 
@@ -403,9 +400,6 @@ Coordinates=2119,10,155,123
 [GroupBox2]
 Coordinates=2151,894,70,51
 
-[DBGrid2]
-Coordinates=1324,1166,56,33
-
 [csDM.csTypeDS]
 Coordinates=139,760,94,105
 
@@ -438,9 +432,6 @@ Coordinates=1458,1098,70,51
 
 [atdbDM.postfix]
 Coordinates=2012,962,88,51
-
-[Image1]
-Coordinates=1728,962,49,51
 
 [Panel8]
 Coordinates=1884,962,47,51
