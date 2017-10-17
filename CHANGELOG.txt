@@ -1,7 +1,11 @@
-Release 0.6.4 (July 31)
+Release 0.6.4 (Oct 17)
 =======================
-
-
+* Added movie page, to watch ribbon cutting movies
+* Compiled on windows 10
+* Added SimpleGrid application
+* Changed position of Human/Mouse toggler
+* Changed title for "virus"
+* Added code for preset of blocks data in a series
 
 Release 0.6.3 (July 31)
 =======================
