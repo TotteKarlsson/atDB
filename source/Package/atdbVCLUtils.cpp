@@ -4,7 +4,6 @@
 #include "labelprinter/atTSCLIB.h"
 #include "mtkStringUtils.h"
 
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 using namespace mtk;

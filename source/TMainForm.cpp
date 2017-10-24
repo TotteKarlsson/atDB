@@ -45,6 +45,8 @@
 #pragma link "TIntLabel"
 #pragma link "TFloatLabeledEdit"
 #pragma link "TSTDStringEdit"
+#pragma link "TImagesFrame"
+#pragma link "TMoviesFrame"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -1498,20 +1500,20 @@ void __fastcall TMainForm::ApplicationEvents1Exception(TObject *Sender, Exceptio
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::BlockIDSLLBMouseDown(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y)
-{
-	Log(lInfo) << "Mouse down................................";
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::BlockIDSLLBKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift)
 {
 	if(Key == vkUp || Key == vkDown || Key == vkLeft|| Key == vkRight)
     {
-		SQLQuery1->Open();
+
     }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button,
+          TShiftState Shift, int X, int Y)
+{
+	populateMedia();
 }
 
 //---------------------------------------------------------------------------
@@ -1520,110 +1522,40 @@ void __fastcall TMainForm::BlockIDSLLBKeyUp(TObject *Sender, WORD &Key,
 {
 	if(Key == vkUp || Key == vkDown|| Key == vkLeft|| Key == vkRight)
     {
-        //Log(lInfo) << "Key up................................";
-        StringList movies = fetchRecords();
-        populateMovieFrames(movies);
+        populateMedia();
     }
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y)
-{
-	Log(lInfo) << "Mouse up................................";
-	SQLQuery1->Open();
-    StringList movies = fetchRecords();
-	populateMovieFrames(movies);
-
-}
-
-StringList TMainForm::fetchRecords()
-{
-	StringList movies;
-    while(!SQLQuery1->Eof)
-    {
-		stringstream rec;
-        rec <<stdstr(SQLQuery1->FieldByName("created")->AsString) <<"," <<stdstr(SQLQuery1->FieldByName("id")->AsString) <<".mp4";
-        movies.append(rec.str());
-        Log(lInfo) << "Got record: "<< stdstr(SQLQuery1->FieldByName("id")->AsString) << " at " << stdstr(SQLQuery1->FieldByName("created")->AsString);
-        SQLQuery1->Next();
-    }
-
-	return movies;
-}
-
-void TMainForm::clearMovieFrames()
-{
-	list<TMovieItemFrame*>::iterator i = mMovies.begin();
-    while(i != mMovies.end())
-    {
-    	delete (*i);
-    	mMovies.erase(i++);
-    }
-}
-
-void TMainForm::populateMovieFrames(const StringList& l)
-{
-	try
-    {
-        clearMovieFrames();
-
-        if(l.count())
-        {
-            ScrollBox1->VertScrollBar->Visible = false;
-        }
-
-        //Current block nr
-		if(BlockIDSLLB->KeyValue.IsNull())
-        {
-        	return;
-        }
-
-        //Create path
-        Poco::Path p(stdstr(MovieFolder->Text));
-
-        int blockID = BlockIDSLLB->KeyValue;
-
-        p.append(mtk::toString(blockID));
-        for(int i = 0; i < l.count(); i++)
-        {
-            StringList item(l[i], ',');
-            if(item.count() == 2)
-            {
-                Poco::File f(Poco::Path(p, item[1]));
-
-                TMovieItemFrame* frame = new TMovieItemFrame(f,this);
-                frame->Visible = false;
-                frame->MovieLbl->Caption = item[0].c_str();
-                mMovies.push_back(frame);
-            }
-            else
-            {
-                Log(lError) << "Bad movie record..";
-            }
-        }
-
-        list<TMovieItemFrame*>::iterator i = mMovies.begin();
-        while(i != mMovies.end())
-        {
-            (*i)->Parent = FlowPanel1;;
-            (*i)->Visible = true;
-            i++;
-        }
-
-        ScrollBox1->VertScrollBar->Visible = true;
-        NrOfRecordsLbl->setValue(l.count());
-    }
-    catch(...)
-    {
-    	Log(lError) << "There was a problem...";
-    }
-}
-
-
 void __fastcall TMainForm::BrowseForFolder1Accept(TObject *Sender)
 {
-	MovieFolder->setValue(stdstr(BrowseForFolder1->Folder));
+	MediaFolderE->setValue(stdstr(BrowseForFolder1->Folder));
 }
+
 //---------------------------------------------------------------------------
+void __fastcall TMainForm::MediaPageControlChange(TObject *Sender)
+{
+	populateMedia();
+}
+
+void TMainForm::populateMedia()
+{
+    if(BlockIDSLLB->KeyValue.IsNull())
+    {
+        return;
+    }
+
+    //Check what page is open, movies or images
+    Poco::Path p(MediaFolderE->getValue());
+    if(MediaPageControl->TabIndex == 0)
+    {
+		TMoviesFrame1->populate(BlockIDSLLB->KeyValue, p);
+    }
+    else //Populate Images
+	{
+		TImagesFrame1->populate(BlockIDSLLB->KeyValue, p);
+    }
+}
+
+
 

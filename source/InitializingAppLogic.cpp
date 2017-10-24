@@ -171,7 +171,9 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
 	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup(
-    																				"DUSTASSAY_IMAGER_FOLDER",    			        "c:\\"));
+    																				"DUSTASSAY_IMAGER_FOLDER",          "c:\\"));
+
+	mGeneralProperties.add((BaseProperty*)  &MediaFolderE->getProperty()->setup(    "MEDIA_FOLDER",   		            "C:\\Temp"	));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayBackGroundImageWidth.setup( 	"BACKGROUND_IMAGE_WIDTH",  	        100));
 	mGeneralProperties.add((BaseProperty*)  &BatchesGBHeight.setup( 				"BATCHES_GB_HEIGHT",  	        	250));
@@ -187,6 +189,7 @@ bool TMainForm::setupAndReadIniParameters()
     mDatabaseE->update();
 	mServerIPE->update();
 	mDustAssayImageFolderE->update();
+    MediaFolderE->update();
 
     //Coverslip properties
    	mCoverslipPrintingProperties.setIniFile(mIniFileC->getIniFile());

@@ -33,8 +33,6 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-; Source: "P:\AppReleases\atdb\atdb.exe"; DestDir: "{app}"; Flags: ignoreversion
-; Source: "P:\atdb\db\atDB.db";      DestDir: "{localappdata}\ArrayBot"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "P:\AppReleases\atdb\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

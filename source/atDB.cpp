@@ -17,17 +17,18 @@
 
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("TMainForm.cpp", MainForm);
+USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
-USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
-USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
+USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
-
 #pragma package(smart_init)
 
 using namespace mtk;
@@ -103,6 +104,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TatdbDM), &atdbDM);
 		Application->CreateForm(__classid(TcsDM), &csDM);
 		Application->CreateForm(__classid(TImagesAndMoviesDM), &ImagesAndMoviesDM);
+		Application->CreateForm(__classid(TImagesFrame), &ImagesFrame);
+		Application->CreateForm(__classid(TMoviesFrame), &MoviesFrame);
 		Application->ShowMainForm = true;
 		Application->Run();
 

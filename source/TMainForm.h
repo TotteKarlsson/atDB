@@ -57,6 +57,8 @@
 #include "atBarCodeBuilder.h"
 #include "core/atVideoCompressorThread.h"
 #include "TSTDStringEdit.h"
+#include "TImagesFrame.h"
+#include "TMoviesFrame.h"
 
 using mtk::Property;
 //using mtk::SQLite;
@@ -246,24 +248,18 @@ class TMainForm : public TRegistryForm
 	TDBText *DBText5;
 	TPanel *Panel21;
 	TLabel *Label3;
-	TPageControl *PageControl4;
+	TPageControl *MediaPageControl;
 	TTabSheet *TabSheet1;
-	TScrollBox *ScrollBox1;
-	TFlowPanel *FlowPanel1;
-	TPanel *Panel22;
-	TLabel *Label5;
-	TIntLabel *NrOfRecordsLbl;
-	TTabSheet *TabSheet13;
-	TDBGrid *DBGrid2;
 	TGroupBox *GroupBox16;
-	TDBNavigator *DBNavigator1;
 	TDBLookupListBox *BlockIDSLLB;
-	TSQLQuery *SQLQuery1;
-	TGroupBox *GroupBox19;
-	TPanel *Panel23;
-	TSTDStringEdit *MovieFolder;
-	TButton *Button2;
 	TBrowseForFolder *BrowseForFolder1;
+	TTabSheet *TabSheet14;
+	TImagesFrame *TImagesFrame1;
+	TMoviesFrame *TMoviesFrame1;
+	TPanel *Panel22;
+	TGroupBox *GroupBox20;
+	TButton *BrowseForMediaFolderBtn;
+	TSTDStringLabeledEdit *MediaFolderE;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -330,14 +326,12 @@ class TMainForm : public TRegistryForm
 	void __fastcall SpecieRGClick(TObject *Sender);
 	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
-	void __fastcall BlockIDSLLBMouseDown(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
 	void __fastcall BlockIDSLLBKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlockIDSLLBKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
 	void __fastcall BrowseForFolder1Accept(TObject *Sender);
-
+	void __fastcall MediaPageControlChange(TObject *Sender);
+	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 
     private:
         bool                                            gCanClose;
@@ -398,11 +392,7 @@ class TMainForm : public TRegistryForm
 		void __fastcall 								openSlicesForm();
 		void __fastcall 								openBlocksForm();
 
-		list<TMovieItemFrame*>                  mMovies;
-   		void 									populateMovieFrames(const StringList& l);
-		void 									clearMovieFrames();
-		StringList								fetchRecords();
-
+		void            								populateMedia();
     public:		// User declarations
                     __fastcall                          TMainForm(TComponent* Owner);
                     __fastcall                          ~TMainForm();
