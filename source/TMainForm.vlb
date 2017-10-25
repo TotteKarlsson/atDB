@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1286,962,82,51
+Coordinates=1497,760,142,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -600,9 +600,6 @@ Coordinates=74,894,111,51
 
 [DBMemo1]
 Coordinates=1744,1098,64,33
-
-[mRegisterCleanRoundBtn]
-Coordinates=1497,760,142,51
 
 [PageControl3]
 Coordinates=1641,1098,81,33

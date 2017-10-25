@@ -184,7 +184,6 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *CSFreshBatchNavigator;
 	TButton *mPrintBatchLblBtn;
 	TPanel *CSgridPanel;
-	TButton *mRegisterCleanRoundBtn;
 	TButton *mRegisterCarbonCoatBatchBtn;
 	TIntLabel *mNrOfSelectedCS;
 	TLabel *Label6;
@@ -260,6 +259,8 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox20;
 	TButton *BrowseForMediaFolderBtn;
 	TSTDStringLabeledEdit *MediaFolderE;
+	TButton *RegisterPostSilanizationBatch;
+	TButton *mRegisterCleanRoundBtn;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

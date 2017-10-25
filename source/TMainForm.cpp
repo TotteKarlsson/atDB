@@ -1122,6 +1122,8 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
 }
 
 //---------------------------------------------------------------------------
+//Rename to RegisterSilanized
+
 void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 {
 	//Get selected cs records in the coverslip grid
@@ -1135,7 +1137,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 
     StringList fromInts(coverslipIDS);
 	Log(lInfo) << "Selected ids: (" << fromInts.asString(',')<<")";
-    int mr = MessageDlg("Create a cleanround batch for selected coverslips?", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
+    int mr = MessageDlg("Register a SILANIZED batch for selected coverslips?", mtInformation, TMsgDlgButtons() << mbYes << mbCancel, 0);
     if(mr != mrYes)
     {
     	return;

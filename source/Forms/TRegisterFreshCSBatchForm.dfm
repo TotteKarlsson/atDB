@@ -90,5 +90,8 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     EditLabel.Height = 13
     EditLabel.Caption = 'Box # From LOT'
     TabOrder = 5
+    Text = '-1'
+    Visible = False
+    Value = '-1'
   end
 end
