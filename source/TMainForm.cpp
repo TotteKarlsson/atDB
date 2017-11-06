@@ -47,6 +47,7 @@
 #pragma link "TSTDStringEdit"
 #pragma link "TImagesFrame"
 #pragma link "TMoviesFrame"
+#pragma link "TSyncMySQLToPostgresFrame"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -86,6 +87,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     TMemoLogger::mMemoIsEnabled = false;
     setupIniFile();
     setupAndReadIniParameters();
+
+    TSyncMySQLToPostgresFrame1->init(mIniFileC->getIniFile(), "SYNC_DB_WITH_AMAZON");
 
     //Add grids to db grids container for reading/saving column states
     mDBGrids.push_back(mProcessForBlocksGrid);

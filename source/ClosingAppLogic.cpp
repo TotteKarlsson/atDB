@@ -86,8 +86,11 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 	mGeneralProperties.write();
     mCoverslipPrintingProperties.write();
 
+	TSyncMySQLToPostgresFrame1->writeParameters();
+
 	//Write to file
 	mIniFileC->save();
+
 
 	//Registry settings
 	mSplashProperties.write();

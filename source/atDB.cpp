@@ -15,19 +15,20 @@
 #include "database/mtkSQLite.h"
 #include "datamodules/TATDBDataModule.h"
 
-USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp", csDM); /* TDataModule: File Type */
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp", atdbDM); /* TDataModule: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
-USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
-USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
+USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp", SyncMySQLToPostgresFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -106,6 +107,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TImagesAndMoviesDM), &ImagesAndMoviesDM);
 		Application->CreateForm(__classid(TImagesFrame), &ImagesFrame);
 		Application->CreateForm(__classid(TMoviesFrame), &MoviesFrame);
+		Application->CreateForm(__classid(TSyncMySQLToPostgresFrame), &SyncMySQLToPostgresFrame);
 		Application->ShowMainForm = true;
 		Application->Run();
 

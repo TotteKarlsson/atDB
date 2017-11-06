@@ -119,14 +119,15 @@
         <Icon_MainIcon>Resources\atDB.ico</Icon_MainIcon>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_Debug>true</VerInfo_Debug>
-        <PostBuildEvent><![CDATA[xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
+        <PostBuildEvent><![CDATA[xcopy atdb_2_amazon_atdb.s2p                  $(OUTPUTDIR) /y
 xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y
+xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y
 xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y
-xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y
-xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y
-xcopy p:\build\debug\bpl\*.bpl                  $(APP_RELEASES)\atdb /y
-xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y
+xcopy p:\redist\atdb\*                                 $(APP_RELEASES)\atdb /y
+xcopy p:\build\debug\bpl\*.bpl                     $(APP_RELEASES)\atdb /y
+xcopy ..\*.txt                                                $(APP_RELEASES)\atdb /y
+xcopy atdb_2_amazon_atdb.s2p                  $(APP_RELEASES)\atdb /y
 $(PostBuildEvent)]]></PostBuildEvent>
         <FinalOutputDir>$(DEBUG_BUILD)\bin</FinalOutputDir>
         <ILINK_LibraryPath>$(DEBUG_BUILD)\lib;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -249,19 +250,26 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
             <BuildOrder>23</BuildOrder>
         </CppCompile>
-        <FormResources Include="Forms\TSpecimenForm.dfm"/>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp">
+            <Form>SyncMySQLToPostgresFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
+        </CppCompile>
         <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TSlicesForm.dfm"/>
-        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
+        <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="Forms\TBlockForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -343,7 +351,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*.bpl                            $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\debug\bpl\*.bpl                  $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                   $(APP_RELEASES)\atdb /y</PostBuildEvent>
+        <PostBuildEvent>xcopy atdb_2_amazon_atdb.s2p                  $(OUTPUTDIR) /y&amp;&amp;xcopy p:\redist\atdb\TSCLIB.dll                    $(DEBUG_BUILD)\bin /y&amp;&amp;xcopy $(OUTPUTDIR)$(OUTPUTFILENAME) $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.dll                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy $(OUTPUTDIR)*.ini                             $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\redist\atdb\*                                 $(APP_RELEASES)\atdb /y&amp;&amp;xcopy p:\build\debug\bpl\*.bpl                     $(APP_RELEASES)\atdb /y&amp;&amp;xcopy ..\*.txt                                                $(APP_RELEASES)\atdb /y&amp;&amp;xcopy atdb_2_amazon_atdb.s2p                  $(APP_RELEASES)\atdb /y</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

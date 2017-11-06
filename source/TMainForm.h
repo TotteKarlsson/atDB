@@ -59,6 +59,7 @@
 #include "TSTDStringEdit.h"
 #include "TImagesFrame.h"
 #include "TMoviesFrame.h"
+#include "TSyncMySQLToPostgresFrame.h"
 
 using mtk::Property;
 //using mtk::SQLite;
@@ -261,6 +262,8 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *MediaFolderE;
 	TButton *RegisterPostSilanizationBatch;
 	TButton *mRegisterCleanRoundBtn;
+	TTabSheet *TabSheet13;
+	TSyncMySQLToPostgresFrame *TSyncMySQLToPostgresFrame1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 

@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1331
       Height = 872
-      ActivePage = TabSheet9
+      ActivePage = TabSheet13
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -928,7 +928,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = CoverSlipNavigatorsClick
-              ExplicitTop = 505
             end
             object mCoverSlipsGrid: TDBGrid
               Left = 2
@@ -2017,6 +2016,35 @@ object MainForm: TMainForm
                   'INFO'
                   'Everything')
               end
+            end
+          end
+        end
+      end
+      object TabSheet13: TTabSheet
+        Caption = 'Synchronize'
+        ImageIndex = 6
+        inline TSyncMySQLToPostgresFrame1: TSyncMySQLToPostgresFrame
+          Left = 0
+          Top = 0
+          Width = 1323
+          Height = 844
+          Align = alClient
+          TabOrder = 0
+          ExplicitLeft = 144
+          ExplicitTop = 128
+          inherited Panel1: TPanel
+            Width = 1323
+            Height = 844
+            inherited GroupBox2: TGroupBox
+              Width = 1321
+              Height = 674
+              inherited SyncLogMemo: TMemo
+                Width = 1317
+                Height = 657
+              end
+            end
+            inherited GroupBox1: TGroupBox
+              Width = 1321
             end
           end
         end
