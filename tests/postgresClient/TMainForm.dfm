@@ -72,77 +72,39 @@ object MainForm: TMainForm
       TabOrder = 2
     end
   end
-  object GroupBox2: TGroupBox
-    Left = 19
-    Top = 8
-    Width = 310
-    Height = 129
-    Caption = 'MySQL Connection'
-    TabOrder = 1
-    object mUserNameE: TSTDStringLabeledEdit
-      Left = 13
-      Top = 32
-      Width = 92
-      Height = 21
-      EditLabel.Width = 52
-      EditLabel.Height = 13
-      EditLabel.Caption = 'User Name'
-      TabOrder = 0
-      Text = 'atdb_client'
-      Value = 'atdb_client'
-    end
-    object mPassWordE: TSTDStringLabeledEdit
-      Left = 13
-      Top = 72
-      Width = 92
-      Height = 21
-      EditLabel.Width = 46
-      EditLabel.Height = 13
-      EditLabel.Caption = 'Password'
-      TabOrder = 1
-      Text = 'atdb123'
-      Value = 'atdb123'
-    end
-    object MaskEdit1: TMaskEdit
-      Left = 168
-      Top = 32
-      Width = 121
-      Height = 21
-      EditMask = '!099.099.099.099;1; '
-      MaxLength = 15
-      TabOrder = 2
-      Text = '127.0  .0  .1  '
-      OnExit = MaskEdit1Exit
-    end
-    object Button1: TButton
-      Left = 168
-      Top = 59
-      Width = 121
-      Height = 25
-      Action = ConnectToDBA
-      Caption = 'Toggle Connection'
-      TabOrder = 3
-    end
-  end
   object mySQLC: TSQLConnection
-    ConnectionName = 'MySQLConnection'
-    DriverName = 'MySQL'
+    ConnectionName = 'LocalPG'
+    DriverName = 'DevartPostgreSQL'
     KeepConnection = False
     LoadParamsOnConnect = True
     LoginPrompt = False
     Params.Strings = (
-      'DriverName=MySQL'
-      'HostName=localhost'
-      'Database=atdb'
-      'User_Name=atdb_client'
-      'Password=atdb123'
-      'ServerCharSet='
-      'BlobSize=-1'
-      'ErrorResourceFile='
+      'DriverName=DevartPostgreSQL'
+      'DriverUnit=DbxDevartPostgreSQL'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DBXCommonDriver170.' +
+        'bpl'
+      
+        'MetaDataPackageLoader=TDBXDevartPostgreSQLMetaDataCommandFactory' +
+        ',DbxDevartPostgreSQLDriver170.bpl'
+      'ProductName=DevartPostgreSQL'
+      'LibraryName=dbexppgsql40.dll'
       'LocaleCode=0000'
-      'Compressed=False'
-      'Encrypted=False'
-      'ConnectTimeout=60')
+      'IsolationLevel=ReadCommitted'
+      'MaxBlobSize=-1'
+      'FetchAll=True'
+      'UseQuoteChar=False'
+      'UseUnicode=True'
+      'IPVersion=IPv4'
+      'VendorLib=dbexppgsql40.dll'
+      'BlobSize=-1'
+      'HostName=localhost'
+      'SchemaName='
+      'Database=shotgundb'
+      'User_Name=admin'
+      'Password=totte'
+      'EnableBCD=True')
+    Connected = True
     Left = 736
     Top = 40
   end
@@ -160,11 +122,9 @@ object MainForm: TMainForm
     Top = 232
     object usersCDSid: TIntegerField
       FieldName = 'id'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
     end
-    object usersCDSuser_name: TStringField
+    object usersCDSuser_name: TWideStringField
       FieldName = 'user_name'
-      Required = True
       Size = 255
     end
     object usersCDScreated: TSQLTimeStampField
@@ -172,7 +132,8 @@ object MainForm: TMainForm
     end
   end
   object usersDS: TSQLDataSet
-    CommandText = 'select * from user'
+    Active = True
+    CommandText = 'select * from users'
     DataSource = usersDSource
     MaxBlobSize = -1
     Params = <>
@@ -182,9 +143,8 @@ object MainForm: TMainForm
     object usersDSid: TIntegerField
       FieldName = 'id'
     end
-    object usersDSuser_name: TStringField
+    object usersDSuser_name: TWideStringField
       FieldName = 'user_name'
-      Required = True
       Size = 255
     end
     object usersDScreated: TSQLTimeStampField
@@ -201,7 +161,6 @@ object MainForm: TMainForm
     Top = 40
     object ConnectToDBA: TAction
       Caption = 'ToggleDbConenctionA'
-      OnExecute = ConnectToDBAExecute
     end
   end
 end

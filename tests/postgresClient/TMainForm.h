@@ -21,6 +21,7 @@
 #include <Vcl.Mask.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
+#include "DbxDevartPostgreSQL.hpp"
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -34,23 +35,17 @@ __published:	// IDE-managed Components
 	TGroupBox *GroupBox1;
 	TButton *AddUserBtn;
 	TDBNavigator *DBNavigator1;
-	TGroupBox *GroupBox2;
-	TSTDStringLabeledEdit *mUserNameE;
-	TSTDStringLabeledEdit *mPassWordE;
-	TMaskEdit *MaskEdit1;
-	TButton *Button1;
 	TActionList *ActionList1;
 	TAction *ConnectToDBA;
-	TIntegerField *usersCDSid;
-	TStringField *usersCDSuser_name;
-	TSQLTimeStampField *usersCDScreated;
 	TIntegerField *usersDSid;
-	TStringField *usersDSuser_name;
+	TWideStringField *usersDSuser_name;
 	TSQLTimeStampField *usersDScreated;
+	TIntegerField *usersCDSid;
+	TWideStringField *usersCDSuser_name;
+	TSQLTimeStampField *usersCDScreated;
 	void __fastcall AddUserBtnClick(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall MaskEdit1Exit(TObject *Sender);
-	void __fastcall ConnectToDBAExecute(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations
