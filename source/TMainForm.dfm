@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1331
       Height = 872
-      ActivePage = TabSheet13
+      ActivePage = TabSheet4
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -267,6 +267,10 @@ object MainForm: TMainForm
           object TabSheet2: TTabSheet
             Caption = 'Blocks'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter6: TSplitter
               Left = 185
               Top = 0
@@ -630,6 +634,10 @@ object MainForm: TMainForm
           object TabSheet7: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter5: TSplitter
               Left = 121
               Top = 0
@@ -1149,6 +1157,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 115
@@ -1723,6 +1735,10 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox3: TGroupBox
           Left = 13
           Top = 12
@@ -2030,21 +2046,28 @@ object MainForm: TMainForm
           Height = 844
           Align = alClient
           TabOrder = 0
-          ExplicitLeft = 144
-          ExplicitTop = 128
+          ExplicitWidth = 1323
+          ExplicitHeight = 844
           inherited Panel1: TPanel
             Width = 1323
             Height = 844
+            ExplicitWidth = 1323
+            ExplicitHeight = 844
             inherited GroupBox2: TGroupBox
               Width = 1321
               Height = 674
+              ExplicitWidth = 1321
+              ExplicitHeight = 674
               inherited SyncLogMemo: TMemo
                 Width = 1317
                 Height = 657
+                ExplicitWidth = 1317
+                ExplicitHeight = 657
               end
             end
             inherited GroupBox1: TGroupBox
               Width = 1321
+              ExplicitWidth = 1321
             end
           end
         end
