@@ -4,7 +4,7 @@
         <ProjectVersion>14.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>Project1.cpp</MainSource>
+        <MainSource>PGTester.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -37,12 +37,12 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;DBXMySQLDriver.lib;dsnap.lib;vcldb.lib;DuneComponents.lib;vclactnband.lib;vclx.lib;VCLCommon.lib;DbxDevartPostgreSQLDriver170.lib;dbxcds.lib</AllPackageLibs>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <ProjectType>CppVCLApplication</ProjectType>
-        <IncludePath>P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(IncludePath)</IncludePath>
+        <IncludePath>P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(IncludePath)</IncludePath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -96,10 +96,10 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="Project1.cpp">
+        <CppCompile Include="PGTester.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="Project1PCH1.h">
+        <PCHCompile Include="PGTesterPCH1.h">
             <BuildOrder>1</BuildOrder>
         </PCHCompile>
         <CppCompile Include="TMainForm.cpp">
@@ -108,21 +108,21 @@
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp">
-            <Form>atdbDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp">
             <Form>pgDM</Form>
             <DesignClass>TDataModule</DesignClass>
             <DependentOn>P:\libs\atapi\source\vcl\datamodules\TPGDataModule.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp">
+            <Form>PGConnectionFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -141,7 +141,7 @@
         <BorlandProject>
             <CPlusPlusBuilder.Personality>
                 <Source>
-                    <Source Name="MainSource">Project1.cpp</Source>
+                    <Source Name="MainSource">PGTester.cpp</Source>
                 </Source>
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>

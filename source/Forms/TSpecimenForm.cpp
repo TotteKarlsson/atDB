@@ -8,9 +8,7 @@ TSpecimenForm *SpecimenForm;
 //---------------------------------------------------------------------------
 __fastcall TSpecimenForm::TSpecimenForm(TComponent* Owner)
 	: TForm(Owner)
-{
-
-}
+{}
 
 //---------------------------------------------------------------------------
 void __fastcall TSpecimenForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)

@@ -4,7 +4,7 @@ object SpecimenForm: TSpecimenForm
   BorderStyle = bsDialog
   Caption = 'Specimen Form'
   ClientHeight = 399
-  ClientWidth = 339
+  ClientWidth = 289
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,10 +20,12 @@ object SpecimenForm: TSpecimenForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 339
-    Height = 348
+    Width = 289
+    Height = 354
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 339
+    ExplicitHeight = 348
     object Label2: TLabel
       Left = 24
       Top = 24
@@ -110,17 +112,17 @@ object SpecimenForm: TSpecimenForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 348
-    Width = 339
-    Height = 51
+    Top = 354
+    Width = 289
+    Height = 45
     Align = alBottom
     TabOrder = 1
     DesignSize = (
-      339
-      51)
+      289
+      45)
     object Button1: TButton
-      Left = 259
-      Top = 16
+      Left = 113
+      Top = 11
       Width = 60
       Height = 25
       Anchors = [akTop, akRight]
@@ -129,8 +131,8 @@ object SpecimenForm: TSpecimenForm
       TabOrder = 1
     end
     object CancelBtn: TButton
-      Left = 178
-      Top = 16
+      Left = 198
+      Top = 11
       Width = 60
       Height = 25
       Anchors = [akTop, akRight]
@@ -140,8 +142,8 @@ object SpecimenForm: TSpecimenForm
     end
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.specimenCDS
-    Left = 280
-    Top = 104
+    DataSet = pgDM.specimenCDS
+    Left = 224
+    Top = 128
   end
 end

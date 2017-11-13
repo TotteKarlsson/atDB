@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #ifndef TMainFormH
 #define TMainFormH
 //---------------------------------------------------------------------------
@@ -22,36 +20,41 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include "DbxDevartPostgreSQL.hpp"
+#include "TPGDataModule.h"
+#include "TPGConnectionFrame.h"
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
 __published:	// IDE-managed Components
-	TSQLConnection *mySQLC;
-	TDataSetProvider *usersDSP;
-	TClientDataSet *usersCDS;
-	TSQLDataSet *usersDS;
-	TDataSource *usersDSource;
-	TDBGrid *DBGrid1;
-	TGroupBox *GroupBox1;
-	TButton *AddUserBtn;
-	TDBNavigator *DBNavigator1;
 	TActionList *ActionList1;
 	TAction *ConnectToDBA;
-	TIntegerField *usersDSid;
-	TWideStringField *usersDSuser_name;
-	TSQLTimeStampField *usersDScreated;
-	TIntegerField *usersCDSid;
-	TWideStringField *usersCDSuser_name;
-	TSQLTimeStampField *usersCDScreated;
-	void __fastcall AddUserBtnClick(TObject *Sender);
+	TGroupBox *GroupBox1;
+	TDBGrid *DBGrid1;
+	TDBNavigator *DBNavigator1;
+	TGroupBox *GroupBox2;
+	TDBGrid *DBGrid2;
+	TDBNavigator *DBNavigator2;
+	TDBMemo *DBMemo1;
+	TDBGrid *DBGrid3;
+	TPGConnectionFrame *TPGConnectionFrame1;
+	TDBNavigator *DBNavigator3;
+	TPageControl *PageControl1;
+	TTabSheet *TabSheet1;
+	TTabSheet *TabSheet2;
+	TTabSheet *TabSheet3;
+	TPanel *Panel1;
+	TTabSheet *TabSheet4;
+	TDBGrid *DBGrid4;
+	TDataSource *AllBlocksDSrc;
+
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-	void __fastcall MaskEdit1Exit(TObject *Sender);
+
 
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TMainForm *MainForm;
-//---------------------------------------------------------------------------
 #endif

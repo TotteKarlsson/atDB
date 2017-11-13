@@ -1,5 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
+#include "TMainForm.h"
 #include "Package/atdbVCLUtils.h"
 #include "atVCLUtils.h"
 #include "database/atDBUtils.h"
@@ -14,10 +15,9 @@
 #include "Poco/DateTimeFormatter.h"
 #include "Poco/Glob.h"
 #include "Poco/Timezone.h"
-#include "TATDBDataModule.h"
-#include "TCoverSlipDataModule.h"
-#include "TImagesDataModule.h"
-#include "TMainForm.h"
+#include "TPGDataModule.h"
+#include "TPGCoverSlipDataModule.h"
+#include "TPGImagesAndMoviesDataModule.h"
 #include "TMemoLogger.h"
 #include "TShowFileContentForm.h"
 #include "TTableUpdateForm.h"
@@ -25,9 +25,6 @@
 #include "TPrintLabelForm.h"
 #include "atQueryBuilder.h"
 #include "vcl/forms/TTextInputDialog.h"
-#include "TATDBDataModule.h"
-#include "TATDBImagesAndMoviesDataModule.h"
-#include "TCoverSlipDataModule.h"
 #include "forms/TStringInputDialog.h"
 #include "TSpecimenForm.h"
 #include "TSlicesForm.h"
@@ -48,6 +45,7 @@
 #pragma link "TImagesFrame"
 #pragma link "TMoviesFrame"
 #pragma link "TSyncMySQLToPostgresFrame"
+#pragma link "TPGConnectionFrame"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
@@ -88,8 +86,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     setupIniFile();
     setupAndReadIniParameters();
 
-    TSyncMySQLToPostgresFrame1->init(mIniFileC->getIniFile(), "SYNC_DB_WITH_AMAZON");
-
     //Add grids to db grids container for reading/saving column states
     mDBGrids.push_back(mProcessForBlocksGrid);
     mDBGrids.push_back(BlocksGrid);
@@ -101,26 +97,27 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	mDBGrids.push_back(SlicesGrid);
 }
 
-void __fastcall	TMainForm::afterServerConnect(System::TObject* Sender)
+void __fastcall	TMainForm::afterDBServerConnect(System::TObject* Sender)
 {
 	//Enable datamodules
-	atdbDM->afterConnect();
-    csDM->afterConnect();
-    ImagesAndMoviesDM->afterConnect();
+    TPGConnectionFrame1->afterConnect();
+	pgDM->afterConnect();
+    csPGDM->afterConnect();
+    PGImagesAndMoviesDM->afterConnect();
 
     UsersCB->KeyValue = mDBUserID.getValue();
     UsersCB->Enabled = true;
-    mATDBServerBtnConnect->Caption = "Disconnect";
-    TTableFrame1->assignDBconnection(atdbDM->SQLConnection1);
+
+    TTableFrame1->assignDBconnection(pgDM->SQLConnection1);
+	SpecieRGClick(NULL);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall	TMainForm::afterServerDisconnect(System::TObject* Sender)
+void __fastcall	TMainForm::afterDBServerDisconnect(System::TObject* Sender)
 {
-	atdbDM->afterDisConnect();
-    mATDBServerBtnConnect->Caption = "Connect";
+	pgDM->afterDisConnect();
+    TPGConnectionFrame1->afterDisconnect();
     UsersCB->Enabled = false;
-
 }
 
 //This one is called from the reader thread
@@ -141,7 +138,7 @@ void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNaviga
 				Abort();
              }
 
-			int blockID = atdbDM->blocksCDS->FieldByName("id")->Value;
+			int blockID = pgDM->blocksCDS->FieldByName("id")->Value;
             mServerDBSession.deleteNotesForBlock(blockID);
             mServerDBSession.deleteRibbonsForBlock(blockID);
         break;
@@ -154,7 +151,7 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
 	switch(Button)
     {
     	case TNavigateBtn::nbInsert:
-        	atdbDM->usersCDS->FieldValues["user_name"] = "New User";
+        	pgDM->usersCDS->FieldValues["user_name"] = "New User";
         break;
         case TNavigateBtn::nbApplyUpdates:  break;
         case TNavigateBtn::nbRefresh:
@@ -170,8 +167,8 @@ void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBt
     {
     	case TNavigateBtn::nbInsert:
 			{
-                int uID = atdbDM->usersCDS->FieldByName("id")->AsInteger;
-                int blockID = atdbDM->blocksCDSid->Value;
+                int uID = pgDM->usersCDS->FieldByName("id")->AsInteger;
+                int blockID = pgDM->blocksCDSid->Value;
                 string note("Block Note..");
 
                 try
@@ -183,8 +180,8 @@ void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBt
                     handleMySQLException();
                 }
 
-                atdbDM->blockNotesCDS->Refresh();
-                atdbDM->blockNotesCDS->Last();
+                pgDM->blockNotesCDS->Refresh();
+                pgDM->blockNotesCDS->Last();
             }
         break;
 
@@ -200,7 +197,7 @@ void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigate
     	case TNavigateBtn::nbInsert:
         {
             int uID = getCurrentUserID();
-            String rID = atdbDM->mRibbonCDSid->Value;
+            String rID = pgDM->mRibbonCDSid->Value;
             string note("Ribbon Note..");
 
             try
@@ -212,65 +209,14 @@ void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigate
                 handleMySQLException();
             }
 
-            atdbDM->ribbonNotesCDS->Refresh();
-            atdbDM->ribbonNotesCDS->Last();
+            pgDM->ribbonNotesCDS->Refresh();
+            pgDM->ribbonNotesCDS->Last();
         }
         break;
 
     	case TNavigateBtn::nbDelete:        break;
     }
 }
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::cdDustAssayNavigatorBeforeAction(TObject *Sender,
-          TNavigateBtn Button)
-{
-	TDBNavigator* nav = dynamic_cast<TDBNavigator*>(Sender);
-    if(nav == CSNavigator)
-    {
-        switch(Button)
-        {
-        }
-    }
-    else if(nav == cdDustAssayNavigator)
-    {
-        switch(Button)
-        {
-
-            case TNavigateBtn::nbDelete:
-            {
-            	//Remove assay image files
-                if(!csDM->csDustAssayCDS->FieldByName("background_image")->IsNull )
-                {
-                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("background_image")->AsString);
-                    if(removeAssayFile(f))
-                    {
-                    	Log(lInfo) << "Removed file: "<<f;
-                    }
-                }
-
-                if(!csDM->csDustAssayCDS->FieldByName("coverslip_image")->IsNull)
-                {
-                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("coverslip_image")->AsString);
-                    if(removeAssayFile(f))
-                    {
-                    	Log(lInfo) << "Removed file: "<<f;
-                    }
-                }
-                if(!csDM->csDustAssayCDS->FieldByName("result_image")->IsNull)
-                {
-                	string f = stdstr(csDM->csDustAssayCDS->FieldByName("result_image")->AsString);
-                    if(removeAssayFile(f))
-                    {
-                    	Log(lInfo) << "Removed file: "<<f;
-                    }
-                }
-            }
-            break;
-        }
-    }
-}
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button)
@@ -281,70 +227,16 @@ void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBt
         switch(Button)
         {
             case TNavigateBtn::nbInsert:
-                    csDM->csCDS->FieldValues["status"] 	= 1;
-                    csDM->csCDS->FieldValues["type"] 	= 1;
-                    csDM->csCDS->Post();
-                    csDM->csCDS->First();
-            break;
-        }
-    }
-    else if(nav == cdDustAssayNavigator)
-    {
-        switch(Button)
-        {
-            case TNavigateBtn::nbInsert:
-                csDM->csDustAssayCDS->FieldValues["coverslip_id"] 		= csDM->csCDS->FieldByName("id")->AsInteger;
-                csDM->csDustAssayCDS->FieldValues["coverslip_status"] 	= csDM->csCDS->FieldByName("status")->AsInteger;
-                csDM->csDustAssayCDS->Post();
-                csDM->csDustAssayCDS->First();
-            break;
-
-            case TNavigateBtn::nbDelete:
-            {
-
-            }
+                    csPGDM->csCDS->FieldValues["status"] 	= 1;
+                    csPGDM->csCDS->FieldValues["type"] 	= 1;
+                    csPGDM->csCDS->Post();
+                    csPGDM->csCDS->First();
             break;
         }
     }
     else if(nav == CSFreshBatchNavigator)
     {
-		csDM->csCDS->Refresh();
-    }
-}
-
-//---------------------------------------------------------------------------
-bool TMainForm::removeAssayFile(const string& f)
-{
-	//Create full path and check if exists before removing
-    StringList path(f, '-');
-	string imagePath;
-    if(path.count() > 1)
-    {
-    	imagePath = joinPath(mDustAssayImageFolderE->getValue(), path[0] + path[1]);
-    }
-    else
-    {
-    	Log(lError) << "The image path for image: "<<f<<" is not correct";
-       	Log(lError) << "Can't delete image";
-        return false;
-    }
-
-	if(!folderExists(imagePath))
-    {
-		Log(lError) << "The image path: "<<imagePath<<" does not exist";
-        return false;
-    }
-
-    string imFName = joinPath(imagePath, f);
-
-    if(fileExists(imFName))
-    {
-		return removeFile(imFName);
-    }
-    else
-    {
-		Log(lError) << "The image "<<imFName<<" does not exist!";
-		return false;
+		csPGDM->csCDS->Refresh();
     }
 }
 
@@ -362,33 +254,33 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
                     TDateTime dt;
                     dt = Now();
 
-                    atdbDM->blocksCDS->FieldByName("entered_by")->Value             = UsersCB->KeyValue;
-                    atdbDM->blocksCDS->FieldByName("entered_on")->Value             = dt.CurrentDate();
-		        	atdbDM->blocksCDS->FieldValues["slice_id"] 			            = atdbDM->slicesCDS->FieldByName("id")->AsInteger;
-		        	atdbDM->blocksCDS->FieldValues["serial"] 	 		            = atdbDM->blocksCDS->RecordCount + 1;
-		        	atdbDM->blocksCDS->FieldByName("date_embedded")->Value 			= dt.CurrentDate();
+                    pgDM->blocksCDS->FieldByName("entered_by")->Value             = UsersCB->KeyValue;
+                    pgDM->blocksCDS->FieldByName("entered_on")->Value             = dt.CurrentDate();
+		        	pgDM->blocksCDS->FieldValues["slice_id"] 			            = pgDM->slicesCDS->FieldByName("id")->AsInteger;
+		        	pgDM->blocksCDS->FieldValues["serial"] 	 		            = pgDM->blocksCDS->RecordCount + 1;
+		        	pgDM->blocksCDS->FieldByName("date_embedded")->Value 			= dt.CurrentDate();
 
-                    if(atdbDM->blocksCDS->RecordCount < 1)
+                    if(pgDM->blocksCDS->RecordCount < 1)
                     {
-                        atdbDM->blocksCDS->FieldValues["status"] 	 					= 0;
-                        atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= 0;
-                        atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= 0;
-                        atdbDM->blocksCDS->FieldValues["substitution_protocol"]    		= 0;
-                        atdbDM->blocksCDS->FieldValues["infiltration_protocol"]    		= 0;
-                        atdbDM->blocksCDS->FieldValues["embedding_protocol"]    		= 0;
+                        pgDM->blocksCDS->FieldValues["status"] 	 					= 0;
+                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= 0;
+                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= 0;
+                        pgDM->blocksCDS->FieldValues["substitution_protocol"]    		= 0;
+                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]    		= 0;
+                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    		= 0;
                     }
                     else
                     {
                     	//Clone the cursor
 						TClientDataSet *clone = new TClientDataSet(NULL);
-                        clone->CloneCursor(atdbDM->blocksCDS, false, false);
+                        clone->CloneCursor(pgDM->blocksCDS, false, false);
                         clone->Last();
-                        atdbDM->blocksCDS->FieldValues["status"] 	 					= clone->FieldByName("status")->Value;
-                        atdbDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= clone->FieldByName("cryoprotection_protocol")->Value;
-                        atdbDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= clone->FieldByName("freezing_protocol")->Value;
-                        atdbDM->blocksCDS->FieldValues["substitution_protocol"]    		= clone->FieldByName("substitution_protocol")->Value;
-                        atdbDM->blocksCDS->FieldValues["infiltration_protocol"]    		= clone->FieldByName("infiltration_protocol")->Value;
-                        atdbDM->blocksCDS->FieldValues["embedding_protocol"]    		= clone->FieldByName("embedding_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["status"] 	 					= clone->FieldByName("status")->Value;
+                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= clone->FieldByName("cryoprotection_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= clone->FieldByName("freezing_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["substitution_protocol"]    		= clone->FieldByName("substitution_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]    		= clone->FieldByName("infiltration_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    		= clone->FieldByName("embedding_protocol")->Value;
                         clone->Close();
                         delete clone;
                     }
@@ -415,10 +307,10 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
     	case TNavigateBtn::nbDelete:        break;
     	case TNavigateBtn::nbInsert:
         {
-	        atdbDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
-	        atdbDM->mRibbonCDS->FieldByName("block_id")->Value 	= atdbDM->blocksCDS->FieldByName("id")->Value;
-            atdbDM->mRibbonCDS->Post();
-			atdbDM->mRibbonCDS->First();
+	        pgDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
+	        pgDM->mRibbonCDS->FieldByName("block_id")->Value 	= pgDM->blocksCDS->FieldByName("id")->Value;
+            pgDM->mRibbonCDS->Post();
+			pgDM->mRibbonCDS->First();
         }
         break;
         case TNavigateBtn::nbPost:
@@ -436,18 +328,18 @@ void __fastcall TMainForm::SlicesNavigatorClick(TObject *Sender, TNavigateBtn Bu
     	case TNavigateBtn::nbInsert:
         	if(UsersCB->KeyValue != -1)
             {
-                atdbDM->slicesCDS->FieldByName("specimen_id")->Value = atdbDM->specimenCDS->FieldByName("id")->Value;
-                atdbDM->slicesCDS->FieldByName("entered_by")->Value = UsersCB->KeyValue;
+                pgDM->slicesCDS->FieldByName("specimen_id")->Value = pgDM->specimenCDS->FieldByName("id")->Value;
+                pgDM->slicesCDS->FieldByName("entered_by")->Value = UsersCB->KeyValue;
 
                 if(SpecieRG->ItemIndex != -1)
                 {
                     string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
-                    //atdbDM->slices->FieldByName("specie")->Value = atdbDM->getIDForSpecie(specie);
+                    //pgDM->slices->FieldByName("specie")->Value = pgDM->getIDForSpecie(specie);
                 }
 
                 TDateTime dt;
                 dt = Now();
-                //atdbDM->slices->FieldByName("intake_date")->Value = dt.CurrentDate();
+                //pgDM->slices->FieldByName("intake_date")->Value = dt.CurrentDate();
 
                 //Open new specimen form
                 openSlicesForm();
@@ -471,19 +363,18 @@ void __fastcall TMainForm::SpecimenNavigatorClick(TObject *Sender, TNavigateBtn 
     	case TNavigateBtn::nbInsert:
         	if(UsersCB->KeyValue != -1)
             {
-
-                atdbDM->specimenCDS->FieldByName("animal_id")->Value = "XXXX-XX";
-                atdbDM->specimenCDS->FieldByName("entered_by")->Value = UsersCB->KeyValue;
+                pgDM->specimenCDS->FieldByName("animal_id")->Value = "XXXX-XX";
+                pgDM->specimenCDS->FieldByName("entered_by")->Value = UsersCB->KeyValue;
 
                 if(SpecieRG->ItemIndex != -1)
                 {
                     string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
-                    atdbDM->specimenCDS->FieldByName("specie")->Value = atdbDM->getIDForSpecie(specie);
+                    pgDM->specimenCDS->FieldByName("specie")->Value = pgDM->getIDForSpecie(specie);
                 }
 
                 TDateTime dt;
                 dt = Now();
-                atdbDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
+                pgDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
 
                 //Open new specimen form
                 openSpecimenForm();
@@ -502,9 +393,7 @@ void __fastcall TMainForm::SpecimenNavigatorClick(TObject *Sender, TNavigateBtn 
             	Log(lWarning) << "About to delete a row";
             }
             catch(...)
-            {
-
-            }
+            {}
         break;
     }
 }
@@ -517,9 +406,7 @@ void __fastcall TMainForm::SpecimenNavigatorBeforeAction(TObject *Sender, TNavig
            	Log(lWarning) << "About to delete a specimen";
     }
     catch(...)
-    {
-
-    }
+    {}
 }
 
 void __fastcall TMainForm::DBGridDblClick(TObject *Sender)
@@ -543,12 +430,12 @@ void __fastcall TMainForm::openSpecimenForm()
 
     if(res != mrCancel)
     {
-        atdbDM->specimenCDS->Post();
-        atdbDM->specimenCDS->First();
+        pgDM->specimenCDS->Post();
+        pgDM->specimenCDS->First();
     }
     else
     {
-		atdbDM->specimenCDS->Cancel();
+		pgDM->specimenCDS->Cancel();
     }
 }
 
@@ -560,12 +447,12 @@ void __fastcall TMainForm::openSlicesForm()
 
     if(res != mrCancel)
     {
-        atdbDM->slicesCDS->Post();
-        atdbDM->slicesCDS->First();
+        pgDM->slicesCDS->Post();
+        pgDM->slicesCDS->First();
     }
     else
     {
-		atdbDM->slicesCDS->Cancel();
+		pgDM->slicesCDS->Cancel();
     }
 }
 
@@ -573,7 +460,7 @@ void __fastcall TMainForm::openSlicesForm()
 String __fastcall TMainForm::createBlockLabel()
 {
     String lbl;
-    String specie = atdbDM->specimenCDS->FieldByName("Lspecie")->AsString;
+    String specie = pgDM->specimenCDS->FieldByName("Lspecie")->AsString;
 	if(specie == "Human")
     {
     	lbl = "H";
@@ -587,7 +474,7 @@ String __fastcall TMainForm::createBlockLabel()
     	lbl = "HS";
     }
 
-	lbl = lbl + atdbDM->specimenCDS->FieldByName("specimen_id")->AsString + "-" + (atdbDM->blocksCDS->RecordCount + 1);
+	lbl = lbl + pgDM->specimenCDS->FieldByName("specimen_id")->AsString + "-" + (pgDM->blocksCDS->RecordCount + 1);
 
 	return lbl;
 }
@@ -595,10 +482,10 @@ String __fastcall TMainForm::createBlockLabel()
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
 {
-	if(atdbDM->SQLConnection1->Connected)
+	if(pgDM->SQLConnection1->Connected)
     {
     	//Remove runtime indices
-    	TClientDataSet* cds = atdbDM->specimenCDS;
+    	TClientDataSet* cds = pgDM->specimenCDS;
 	    cds->IndexDefs->Update();
         for(int i = 0; i <cds->IndexDefs->Count; i++)
         {
@@ -610,19 +497,20 @@ void __fastcall TMainForm::mATDBServerBtnConnectClick(TObject *Sender)
             }
         }
 
-	    atdbDM->SQLConnection1->Connected = false;
-	    atdbDM->SQLConnection1->Close();
+	    pgDM->SQLConnection1->Connected = false;
+	    pgDM->SQLConnection1->Close();
     }
     else
     {
-	    atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+//	    pgDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
+	    pgDM->connect(PGConnectionFrame->getCredentials());
     }
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mUpdateNoteBtnClick(TObject *Sender)
 {
-	atdbDM->blockNotesCDS->Post();
+	pgDM->blockNotesCDS->Post();
 }
 
 //---------------------------------------------------------------------------
@@ -734,7 +622,7 @@ void __fastcall TMainForm::mProcessForBlocksGridCellClick(TColumn *Column)
 void __fastcall TMainForm::selectBlocks()
 {
 //	//Retrieve selected id and apply filter on blocks table
-//    atdbDM->blocksCDS->Close();
+//    pgDM->blocksCDS->Close();
 //  	if(mProcessForBlocksGrid->SelectedRows->Count > 0)
 //    {
 //       	vector<int> p_ids = getSelectedIDS(mProcessForBlocksGrid, "specimen_id");
@@ -750,14 +638,14 @@ void __fastcall TMainForm::selectBlocks()
 //            }
 //        }
 //        s << ")";
-//		atdbDM->blocksCDS->CommandText = s.str().c_str();
+//		pgDM->blocksCDS->CommandText = s.str().c_str();
 //        Log(lDebug) << "Selected: "<<s.str();
 //    }
 //    else
 //    {
-//        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks WHERE specimen_id = :specimen_id ORDER BY id DESC";
+//        pgDM->blocksCDS->CommandText = "SELECT * FROM blocks WHERE specimen_id = :specimen_id ORDER BY id DESC";
 //    }
-//    atdbDM->blocksCDS->Open();
+//    pgDM->blocksCDS->Open();
 }
 
 //---------------------------------------------------------------------------
@@ -766,9 +654,9 @@ void __fastcall TMainForm::PageControl2Change(TObject *Sender)
 	//If we are opening the Ribbons page, sett blocks query to select all blocks
    	if(PageControl2->TabIndex == 2)
     {
-//        atdbDM->blocksCDS->Close();
-//        atdbDM->blocksCDS->CommandText = "SELECT * FROM blocks ORDER BY id DESC";
-//        atdbDM->blocksCDS->Open();
+//        pgDM->blocksCDS->Close();
+//        pgDM->blocksCDS->CommandText = "SELECT * FROM blocks ORDER BY id DESC";
+//        pgDM->blocksCDS->Open();
     }
 }
 
@@ -799,7 +687,7 @@ void __fastcall TMainForm::mAddDocBtnClick(TObject *Sender)
 //	    ifs.read(&result[0], pos);
 //
 //		TSQLQuery* q = new TSQLQuery(NULL);
-//        q->SQLConnection = atdbDM->SQLConnection1;
+//        q->SQLConnection = pgDM->SQLConnection1;
 //    	stringstream s;
 //
 //        q->SQL->Add("INSERT INTO documents ");
@@ -818,9 +706,9 @@ void __fastcall TMainForm::mAddDocBtnClick(TObject *Sender)
 //		q->ParamByName("type")->Value = fExt.c_str();
 //        q->ExecSQL();
 //        delete q;
-//       	atdbDM->documentsCDS->ApplyUpdates(0);
+//       	pgDM->documentsCDS->ApplyUpdates(0);
 //    }
-//	atdbDM->documentsCDS->Refresh();
+//	pgDM->documentsCDS->Refresh();
 }
 
 //---------------------------------------------------------------------------
@@ -828,20 +716,20 @@ void __fastcall TMainForm::SlicesDBGridDblClick(TObject *Sender)
 {
 //	//Show current record on a form
 //    TNewSpecimenForm* nsf = new TNewSpecimenForm(this);
-//    atdbDM->specimenCDS->Open();
-//    atdbDM->specimenCDS->Edit();
-//    atdbDM->substitutionProtocol->Open();
-//	atdbDM->substitutionProtocol->Edit();
+//    pgDM->specimenCDS->Open();
+//    pgDM->specimenCDS->Edit();
+//    pgDM->substitutionProtocol->Open();
+//	pgDM->substitutionProtocol->Edit();
 //    int res = nsf->ShowModal();
 //    if(res == mrCancel)
 //    {
 //        //revert
-//        atdbDM->specimenCDS->Cancel();
+//        pgDM->specimenCDS->Cancel();
 //    }
 //    else
 //    {
-//        atdbDM->specimenCDS->Post();
-//        atdbDM->specimenCDS->First();
+//        pgDM->specimenCDS->Post();
+//        pgDM->specimenCDS->First();
 //    }
 }
 
@@ -879,8 +767,8 @@ void __fastcall TMainForm::createBlockLabels()
     		TBookmarkList* bookMarkList = BlocksGrid->SelectedRows;
             if(bookMarkList->Count == BlocksGrid->SelectedRows->Count)
             {
-        		atdbDM->blocksCDS->GotoBookmark((*bookMarkList)[i]);
-                String str = atdbDM->blocksCDS->FieldByName("Cblock_label")->AsString;
+        		pgDM->blocksCDS->GotoBookmark((*bookMarkList)[i]);
+                String str = pgDM->blocksCDS->FieldByName("Cblock_label")->AsString;
 		        s << stdstr(str);
                 if(i < BlocksGrid->SelectedRows->Count -1)
                 {
@@ -898,7 +786,7 @@ void __fastcall TMainForm::createBlockLabels()
     }
     else
     {
-        String str = atdbDM->blocksCDS->FieldByName("Cblock_label")->AsString;
+        String str = pgDM->blocksCDS->FieldByName("Cblock_label")->AsString;
 		s << stdstr(str);
 
         StringList l(s.str(), '\n');
@@ -929,7 +817,7 @@ void __fastcall TMainForm::SlicesGridTitleClick(TColumn *Column)
 {
 	TField* field =  Column->Field;
 	static int PreviousColumnIndex = -1;
-	if(SlicesGrid->DataSource->DataSet == atdbDM->specimenCDS && PreviousColumnIndex != -1)
+	if(SlicesGrid->DataSource->DataSet == pgDM->specimenCDS && PreviousColumnIndex != -1)
     {
     	TColumn* prevCol = SlicesGrid->Columns->Items[PreviousColumnIndex];
         if(prevCol)
@@ -942,7 +830,7 @@ void __fastcall TMainForm::SlicesGridTitleClick(TColumn *Column)
 	PreviousColumnIndex = Column->Index;
 
     String fieldName;
-	TField* Field = atdbDM->specimenCDS->Fields->FindField(Column->FieldName);
+	TField* Field = pgDM->specimenCDS->Fields->FindField(Column->FieldName);
     if(Field)
     {
     	if(Field->FieldKind == fkLookup)
@@ -954,9 +842,8 @@ void __fastcall TMainForm::SlicesGridTitleClick(TColumn *Column)
         	fieldName = Column->FieldName;
         }
     }
-	SortClientDataSet(atdbDM->specimenCDS, fieldName);
+	SortClientDataSet(pgDM->specimenCDS, fieldName);
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::mPrintTestLabelBtnClick(TObject *Sender)
@@ -980,64 +867,6 @@ void __fastcall TMainForm::mPrintTestLabelBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::onDustAssayDataChanged(TObject *Sender)
-{
-	Log(lInfo) << "Loading new Dust Assay Dataset";
-    loadImage(stdstr(mIm1FName->Caption), mBackgroundImage);
-    loadImage(stdstr(mIm2FName->Caption), mCoverslipImage);
-    loadImage(stdstr(mIm3FName->Caption), mResultImage);
-}
-
-//---------------------------------------------------------------------------
-bool TMainForm::loadImage(const string& fName, TImage* img)
-{
-	//Extract image folder from DB fName
-    //Folder is baseFolder + yearmonth
-    StringList path(fName, '-');
-	string imagePath;
-    if(path.count() > 1)
-    {
-    	imagePath = joinPath(mDustAssayImageFolderE->getValue(), path[0] + path[1]);
-    }
-    else
-    {
-    	Log(lError) << "The image path for image: "<<fName<<" is not correct";
-       	Log(lError) << "Can't open image";
-        return false;
-    }
-
-	if(!folderExists(imagePath))
-    {
-		Log(lError) << "The image path: "<<imagePath<<" does not exist";
-        return false;
-    }
-
-    string imFName = joinPath(imagePath, fName);
-
-    if(fileExists(imFName))
-    {
-    	img->Picture->LoadFromFile(vclstr(imFName));
-    }
-    else
-    {
-		Log(lError) << "The image "<<imFName<<" does not exist!";
-		img->Picture = NULL;
-    }
-    return img->Picture->Graphic;
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::mBrowseForDustAssayImageFolderClick(TObject *Sender)
-{
-	string folder = browseForFolder();
-
-    if(folder.size())
-    {
-    	mDustAssayImageFolderE->setValue(folder);
-    }
-}
-
-//---------------------------------------------------------------------------
 void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
 {
 	//Open Register batch form
@@ -1055,8 +884,8 @@ void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
 	TPrintLabelForm* f = new TPrintLabelForm(this);
 
     //Get current Batch Label
-    String code_1 = csDM->csFreshBatchesCDS->FieldByName("lot_number")->AsString;
-    String code_2 = csDM->csFreshBatchesCDS->FieldByName("box_number")->AsString;
+    String code_1 = csPGDM->csFreshBatchesCDS->FieldByName("lot_number")->AsString;
+    String code_2 = csPGDM->csFreshBatchesCDS->FieldByName("box_number")->AsString;
 
     if(code_1.Length())
     {
@@ -1148,19 +977,21 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 
     //Create a new cleanround record, and associate slected coverslips with it
     TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQLConnection = pgDM->SQLConnection1;
     QueryBuilder qb;
 
     int current_user = getCurrentUserID();
-    qb <<"INSERT into cleancsbatches (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+    qb <<"INSERT into cleancsbatches (user_id, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"') RETURNING id";
 
     Log(lDebug) << "Query: " << qb.asString();
     q->SQL->Add(qb.asCString());
-    int res = q->ExecSQL();
-    Log(lDebug) << "Query result: " << res;
+    q->Open();
+
 
     //Get last insert ID for cleanCS batch and update coverslips
-    int cleanCSBatchID = getLastInsertID(atdbDM->SQLConnection1);
+    int cleanCSBatchID = q->FieldByName("id")->AsInteger;
+
+//    int cleanCSBatchID = getLastInsertID(pgDM->SQLConnection1);
 
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
@@ -1178,7 +1009,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
     }
 
     delete q;
-	csDM->csCDS->Refresh();
+	csPGDM->csCDS->Refresh();
 }
 
 //---------------------------------------------------------------------------
@@ -1203,19 +1034,19 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 
     //Create a new cleanround record, and associate slected coverslips with it
     TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQLConnection = pgDM->SQLConnection1;
 
     QueryBuilder qb;
     int current_user = getCurrentUserID();
-    qb <<"INSERT into carboncoatedcsbatches (user, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"')";
+    qb <<"INSERT into carboncoatedcsbatches (user_id, count) VALUES ('"<<current_user<<"','"<<coverslipIDS.size()<<"') RETURNING id";
 
     Log(lDebug) << "Query: " << qb.asString();
     q->SQL->Add(qb.asCString());
-    int res = q->ExecSQL();
-    Log(lDebug) << "Query result: " << res;
+   	q->Open();
 
     //Get last insert ID for cleanCS batch and update coverslips
-    int carboncoatbatchID = getLastInsertID(atdbDM->SQLConnection1);
+//    int carboncoatbatchID = getLastInsertID(pgDM->SQLConnection1);
+    int carboncoatbatchID = q->FieldByName("id")->AsInteger;;
 
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
@@ -1236,13 +1067,13 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
     p.command = stdlines(mBarCodeCommandMemo->Lines);
 
     //Create and print labels
-    if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
+    if(!createAndPrintCoverSlipLabels(p, coverslipIDS, pgDM->SQLConnection1))
     {
 		Log(lError) << "There was a problem creating and/or printing coverslip labels";
     }
 
     delete q;
-	csDM->csCDS->Refresh();
+	csPGDM->csCDS->Refresh();
 }
 
 //---------------------------------------------------------------------------
@@ -1264,7 +1095,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
         p.command 			= stdlines(mBarCodeCommandMemo->Lines);
 
         //Create and print labels
-        if(!createAndPrintCoverSlipLabels(p, coverslipIDS, atdbDM->SQLConnection1))
+        if(!createAndPrintCoverSlipLabels(p, coverslipIDS, pgDM->SQLConnection1))
         {
             Log(lError) << "There was a problem creating and/or printing coverslip labels";
         }
@@ -1288,7 +1119,7 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
         {
         	string note = f->getText();
         	Log(lError) << "Adding note to multiple coverslips";
-            addNoteToMultipleCoverSlips(coverslipIDS, atdbDM->SQLConnection1, note);
+            addNoteToMultipleCoverSlips(coverslipIDS, pgDM->SQLConnection1, note);
             CSNavigator->BtnClick(::Data::Bind::Controls::nbRefresh);
         }
     }
@@ -1327,18 +1158,18 @@ void __fastcall TMainForm::DBGrid_DBLClick(TObject *Sender)
 //
 //	//Show current record on a form
 //    TNewBlockForm* nsf = new TNewBlockForm(this);
-//    atdbDM->blocksCDS->Edit();
+//    pgDM->blocksCDS->Edit();
 //
 //    int res = nsf->ShowModal();
 //    if(res == mrCancel)
 //    {
 //        //revert
-//        atdbDM->blocksCDS->Cancel();
+//        pgDM->blocksCDS->Cancel();
 //    }
 //    else
 //    {
-//        atdbDM->blocksCDS->Post();
-//        atdbDM->blocksCDS->First();
+//        pgDM->blocksCDS->Post();
+//        pgDM->blocksCDS->First();
 //    }
 //
 //    delete nsf;
@@ -1385,7 +1216,7 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
 
     //Create a new cleanround record, and associate slected coverslips with it
     TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQLConnection = pgDM->SQLConnection1;
     QueryBuilder qb;
 
     int current_user = getCurrentUserID();
@@ -1405,7 +1236,7 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
     }
 
     delete q;
-	csDM->csCDS->Refresh();
+	csPGDM->csCDS->Refresh();
 }
 
 
@@ -1414,7 +1245,7 @@ void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn 
 //	switch(Button)
 //    {
 //    	case TNavigateBtn::nbInsert:
-//        	atdbDM->settingsCDS->FieldValues["id"] = "New User";
+//        	pgDM->settingsCDS->FieldValues["id"] = "New User";
 //        break;
 //    }
 }
@@ -1467,12 +1298,16 @@ void __fastcall TMainForm::UnlocktablesBtnClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::SpecieRGClick(TObject *Sender)
 {
+	if(!pgDM)
+    {
+    	return;
+    }
     //Apply filter to specimen table
    	string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
-    int specieID = atdbDM->getIDForSpecie(specie);
+    int specieID = pgDM->getIDForSpecie(specie);
 
-	atdbDM->specimenCDS->Filter = "specie = '" + IntToStr(specieID) + "'";
-    atdbDM->specimenCDS->Filtered = true;
+	pgDM->specimenCDS->Filter = "specie = '" + IntToStr(specieID) + "'";
+    pgDM->specimenCDS->Filtered = true;
 }
 
 void __fastcall TMainForm::openBlocksForm()
@@ -1484,17 +1319,17 @@ void __fastcall TMainForm::openBlocksForm()
     if(res != mrCancel)
     {
     	// Create block label
-        String str = atdbDM->createBlockLabel();
-        atdbDM->blocksCDS->FieldValues["label"] = str;
-//        atdbDM->blocksCDS->FieldValues["status"] = 0;
+        String str = pgDM->createBlockLabel();
+        pgDM->blocksCDS->FieldValues["label"] = str;
+//        pgDM->blocksCDS->FieldValues["status"] = 0;
 
 
-        atdbDM->blocksCDS->Post();
-        atdbDM->blocksCDS->First();
+        pgDM->blocksCDS->Post();
+        pgDM->blocksCDS->First();
     }
     else
     {
-		atdbDM->blocksCDS->Cancel();
+		pgDM->blocksCDS->Cancel();
     }
 }
 
@@ -1561,6 +1396,7 @@ void TMainForm::populateMedia()
 		TImagesFrame1->populate(BlockIDSLLB->KeyValue, p);
     }
 }
+
 
 
 

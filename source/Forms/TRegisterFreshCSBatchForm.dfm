@@ -59,7 +59,7 @@ object RegisterFreshCSBatchForm: TRegisterFreshCSBatchForm
     Height = 21
     KeyField = 'id'
     ListField = 'type'
-    ListSource = csDM.csTypeDSource
+    ListSource = csPGDM.csTypeDSource
     TabOrder = 2
   end
   object mRegisterBtn: TButton

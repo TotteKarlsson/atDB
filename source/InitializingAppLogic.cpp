@@ -1,6 +1,5 @@
 #pragma hdrstop
 #include "TMainForm.h"
-//#include "TSplashForm.h"
 #include "TMemoLogger.h"
 #include "mtkVCLUtils.h"
 #include "Poco/DateTime.h"
@@ -9,9 +8,9 @@
 #include "mtkIniSection.h"
 #include "Core/atDBUtilities.h"
 #include "Poco/Timezone.h"
-#include "TATDBDataModule.h"
+#include "TPGDataModule.h"
 #include "database/atDBUtils.h"
-#include "TCoverSlipDataModule.h"
+#include "TPGCoverSlipDataModule.h"
 
 extern bool             gAppIsStartingUp;
 extern bool             gIsDevelopmentRelease;
@@ -67,6 +66,9 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 	}
 
 	mLogFileReader.start(true);
+
+	pgDM->SQLConnection1->AfterConnect 		= afterDBServerConnect;
+    pgDM->SQLConnection1->AfterDisconnect 	= afterDBServerDisconnect;
 }
 
 //---------------------------------------------------------------------------
@@ -81,43 +83,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	SB->Top = MainForm->Top + MainForm->Height + 10;
 	SB->SizeGrip = true;
 
-   	atdbDM->SQLConnection1->AfterConnect 	= afterServerConnect;
-   	atdbDM->SQLConnection1->AfterDisconnect = afterServerDisconnect;
-
-    csDM->csDustAssayCDSOnDataChanged = onDustAssayDataChanged;
-
-    bool connected = false;
-    try
-    {
-	    connected = atdbDM->connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
-    }
-    catch (const TDBXError &e)
-	{
-    	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
-	}
-
-	//Low level connection
-    try
-    {
-        if(!mServerDBSession.isConnected())
-        {
-            mServerDBSession.connect(mServerIPE->getValue(), mDBUserE->getValue(), mPasswordE->getValue(), mDatabaseE->getValue());
-        }
-    }
-    catch(...)
-    {
-    	handleMySQLException();
-    }
-
-    if(mServerDBSession.isConnected())
-    {
-        Log(lInfo) << "Connected to remote database.";
-		//Populate table dropdown
-	    StringList tables = mServerDBSession.getTableNames();
-	    populateListBox(tables, mTablesLB);
-    }
-
-//	//Read grid column settings from files in AppData/Grids folder
+	//Read grid column settings from files in AppData/Grids folder
 //	Log(lInfo) << "Reading column states";
 //
 //	for(int i = 0; i < mDBGrids.size(); i++)
@@ -131,6 +97,25 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 //            }
 //        }
 //    }
+
+
+   	TPGConnectionFrame1->init(mIniFileC->getFile(), "POSTGRESDB_CONNECTION");
+
+    try
+    {
+	    TPGConnectionFrame1->ConnectA->Execute();
+    }
+    catch (const TDBXError &e)
+	{
+    	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
+	}
+
+    if(pgDM->isConnected())
+    {
+		//Populate table dropdown
+	    StringList tables = pgDM->getTableNames();
+	    populateListBox(tables, mTablesLB);
+    }
 
 	//Filter Specimen data
 	SpecieRGClick(Sender);
@@ -166,12 +151,12 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.add((BaseProperty*)  &mTableUnlockPassword.setup( 	        "TABLE_UNLOCK_PASSWORD",            "atdb123"));
 
 	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    	0));
-	mGeneralProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));
-	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
-	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
-	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
-	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup(
-    																				"DUSTASSAY_IMAGER_FOLDER",          "c:\\"));
+//	mGeneralProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));
+//	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
+//	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
+//	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
+//	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup(
+//    																				"DUSTASSAY_IMAGER_FOLDER",          "c:\\"));
 
 	mGeneralProperties.add((BaseProperty*)  &MediaFolderE->getProperty()->setup(    "MEDIA_FOLDER",   		            "C:\\Temp"	));
 	mGeneralProperties.add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
@@ -182,13 +167,11 @@ bool TMainForm::setupAndReadIniParameters()
 	mGeneralProperties.read();
 
 	//Update
-    mResultImagePanel->Height 		= mDustAssayResultImageHeight.getValue();
-    mBackgroundImagePanel->Width 	= mDustAssayBackGroundImageWidth.getValue();
-    mDBUserE->update();
-    mPasswordE->update();
-    mDatabaseE->update();
-	mServerIPE->update();
-	mDustAssayImageFolderE->update();
+//    mDBUserE->update();
+//    mPasswordE->update();
+//    mDatabaseE->update();
+//	mServerIPE->update();
+//	mDustAssayImageFolderE->update();
     MediaFolderE->update();
 
     //Coverslip properties

@@ -151,7 +151,7 @@ object NewSpecimenForm: TNewSpecimenForm
     end
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.specimenCDS
+    DataSet = pgDM.specimenCDS
     Left = 344
     Top = 160
   end

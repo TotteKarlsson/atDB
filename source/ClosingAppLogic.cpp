@@ -2,11 +2,10 @@
 #include "TMainForm.h"
 #include "mtkLogger.h"
 #include "TMemoLogger.h"
-//#include "TSplashForm.h"
-#include "TATDBDataModule.h"
+#include "TPGDataModule.h"
 #include "mtkVCLUtils.h"
+
 using namespace mtk;
-//extern TSplashForm*  gSplashForm;
 extern string gCommonAppDataLocation;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::~TMainForm()
@@ -40,9 +39,9 @@ void __fastcall TMainForm::ShutDownTimerTimer(TObject *Sender)
 		mLogFileReader.stop();
 	}
 
-    if(atdbDM->SQLConnection1->Connected)
+    if(pgDM->SQLConnection1->Connected)
     {
-    	atdbDM->SQLConnection1->Connected = false;
+    	pgDM->SQLConnection1->Connected = false;
     }
 
     Close();
@@ -54,7 +53,7 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 	Log(lInfo) << "Closing down....";
 
 	//Check if we can close.. abort all threads..
-	if(mLogFileReader.isRunning() || atdbDM->SQLConnection1->Connected)
+	if(mLogFileReader.isRunning() || pgDM->SQLConnection1->Connected)
     {
 		CanClose = false;
     }
@@ -75,22 +74,17 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 	Log(lInfo) << "In FormClose";
 	mIniFileC->clear();
 
+	TPGConnectionFrame1->writeParameters();
+
 	//Save project history
 	mBottomPanelHeight          	= BottomPanel->Height;
     BatchesGBHeight 				= BatchesGB->Height;
 
-    mDustAssayResultImageHeight 	= mResultImagePanel->Height;
-    mDustAssayBackGroundImageWidth 	= mBackgroundImagePanel->Width;
-
-
 	mGeneralProperties.write();
     mCoverslipPrintingProperties.write();
 
-	TSyncMySQLToPostgresFrame1->writeParameters();
-
 	//Write to file
 	mIniFileC->save();
-
 
 	//Registry settings
 	mSplashProperties.write();

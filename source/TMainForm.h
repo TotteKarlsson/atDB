@@ -7,7 +7,6 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
-//---------------------------------------------------------------------------
 #include "Core/atDBApplicationMessages.h"
 #include "Core/atDBDataStructures.h"
 #include "mtkIniFileC.h"
@@ -16,7 +15,7 @@
 #include "mtkLogLevel.h"
 #include "mtkMessageContainer.h"
 #include "mtkProperty.h"
-//#include "mtkSQLite.h"
+#include "atATDBServerSession.h"
 #include "TApplicationProperties.h"
 #include "forms/TRegistryForm.h"
 #include "TRegistryProperties.h"
@@ -48,7 +47,6 @@
 #include <Data.SqlExpr.hpp>
 #include <Vcl.Mask.hpp>
 #include "TArrayBotBtn.h"
-#include "database/atATDBServerSession.h"
 #include <Datasnap.DBClient.hpp>
 #include <Datasnap.Provider.hpp>
 #include "TTableFrame.h"
@@ -60,9 +58,10 @@
 #include "TImagesFrame.h"
 #include "TMoviesFrame.h"
 #include "TSyncMySQLToPostgresFrame.h"
+#include "TPGConnectionFrame.h"
+//---------------------------------------------------------------------------
 
 using mtk::Property;
-//using mtk::SQLite;
 using mtk::MessageContainer;
 using mtk::IniFileProperties;
 using mtk::TRegistryProperties;
@@ -127,12 +126,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mBlocksForRibbonsGrid;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *mUsersNavigator;
-	TGroupBox *GroupBox3;
-	TSTDStringLabeledEdit *mServerIPE;
-	TSTDStringLabeledEdit *mDBUserE;
-	TSTDStringLabeledEdit *mPasswordE;
-	TArrayBotButton *mATDBServerBtnConnect;
-	TSTDStringLabeledEdit *mDatabaseE;
 	TTabSheet *TabSheet3;
 	TPanel *BottomPanel;
 	TPanel *Panel1;
@@ -152,32 +145,10 @@ class TMainForm : public TRegistryForm
 	TDBGrid *mCoverSlipsGrid;
 	TDBNavigator *CSNavigator;
 	TPanel *Panel7;
-	TDBGrid *mCSDustAssaysGrid;
-	TDBNavigator *cdDustAssayNavigator;
-	TGroupBox *GroupBox6;
 	TPanel *Panel8;
 	TGroupBox *GroupBox8;
 	TPanel *Panel9;
-	TPanel *Panel10;
-	TDBMemo *DBMemo2;
-	TLabel *Label4;
-	TDBText *DBText1;
 	TTabSheet *TabSheet10;
-	TImage *mBackgroundImage;
-	TImage *mCoverslipImage;
-	TImage *mResultImage;
-	TDBText *mIm1FName;
-	TDBText *mIm2FName;
-	TDBText *mIm3FName;
-	TPanel *Panel11;
-	TPanel *mResultImagePanel;
-	TPanel *mBackgroundImagePanel;
-	TPanel *Panel14;
-	TSplitter *Splitter2;
-	TSplitter *Splitter3;
-	TGroupBox *GroupBox7;
-	TSTDStringLabeledEdit *mDustAssayImageFolderE;
-	TButton *mBrowseForDustAssayImageFolder;
 	TPanel *Panel12;
 	TButton *mRegisterFreshBatchBtn;
 	TGroupBox *BatchesGB;
@@ -191,7 +162,6 @@ class TMainForm : public TRegistryForm
 	TButton *mPrintCSLabelsBtn;
 	TPageControl *PageControl3;
 	TTabSheet *TabSheet11;
-	TTabSheet *TabSheet12;
 	TDBMemo *DBMemo1;
 	TGroupBox *GroupBox10;
 	TGroupBox *GroupBox11;
@@ -262,8 +232,7 @@ class TMainForm : public TRegistryForm
 	TSTDStringLabeledEdit *MediaFolderE;
 	TButton *RegisterPostSilanizationBatch;
 	TButton *mRegisterCleanRoundBtn;
-	TTabSheet *TabSheet13;
-	TSyncMySQLToPostgresFrame *TSyncMySQLToPostgresFrame1;
+	TPGConnectionFrame *TPGConnectionFrame1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -303,14 +272,12 @@ class TMainForm : public TRegistryForm
           TShiftState Shift, int X, int Y);
 	void __fastcall BlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlocksGridCellClick(TColumn *Column);
-//	void __fastcall DataSource1DataChange(TObject *Sender, TField *Field);
+
 	void __fastcall SlicesGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
 	void __fastcall SlicesGridTitleClick(TColumn *Column);
 	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mPrintTestLabelBtnClick(TObject *Sender);
-	void __fastcall mBrowseForDustAssayImageFolderClick(TObject *Sender);
-	void __fastcall cdDustAssayNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
 	void __fastcall mPrintBatchLblBtnClick(TObject *Sender);
 	void __fastcall mFreshBatchesGridCellClick(TColumn *Column);
@@ -379,8 +346,8 @@ class TMainForm : public TRegistryForm
 		void __fastcall                                 AppInBox(mlxStructMessage &Msg);
 
 		void    										populateUsers();
-		void       __fastcall							afterServerConnect(System::TObject* Sender);
-		void       __fastcall							afterServerDisconnect(System::TObject* Sender);
+		void       __fastcall							afterDBServerConnect(System::TObject* Sender);
+		void       __fastcall							afterDBServerDisconnect(System::TObject* Sender);
 		void 		__fastcall 							selectBlocks();
 		void 		__fastcall							selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detailGrid);
 
@@ -389,7 +356,6 @@ class TMainForm : public TRegistryForm
 
         //Custom event
 		void 		__fastcall 							onDustAssayDataChanged(TObject *Sender);
-		bool											removeAssayFile(const string& f);
       	BarCodeBuilder									mBCBuilder;
 
 		void __fastcall 								openSpecimenForm();

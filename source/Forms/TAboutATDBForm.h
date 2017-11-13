@@ -1,6 +1,5 @@
 #ifndef TAboutATDBFormH
 #define TAboutATDBFormH
-//---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -8,6 +7,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 //---------------------------------------------------------------------------
+
 class TAboutATDBForm : public TForm
 {
 __published:	// IDE-managed Components
@@ -22,11 +22,10 @@ __published:	// IDE-managed Components
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 
-private:	// User declarations
-public:		// User declarations
+private:
+public:
 	__fastcall TAboutATDBForm(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TAboutATDBForm *AboutATDBForm;
-//---------------------------------------------------------------------------
 #endif

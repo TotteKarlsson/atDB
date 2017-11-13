@@ -1,18 +1,16 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TCoverSlipForm.h"
-#include "TCoverSlipDataModule.h"
+#include "TPGCoverSlipDataModule.h"
 #include "mtkStringUtils.h"
 #include "mtkLogger.h"
-
-
-using namespace mtk;
-
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
+
+using namespace mtk;
+
 
 TCoverSlipForm *CoverSlipForm;
 
@@ -26,7 +24,7 @@ __fastcall TCoverSlipForm::TCoverSlipForm(const string& csID, TComponent* Owner)
 void __fastcall TCoverSlipForm::FormShow(TObject *Sender)
 {
 	//Try to select coverslip
-//    csDM->csCDS
+//    csPGDM->csCDS
 	initForm();
 }
 

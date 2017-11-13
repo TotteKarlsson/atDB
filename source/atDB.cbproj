@@ -58,7 +58,7 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <IncludePath>P:\libs\atapi\source\vcl\frames\;Core\;Package\;Forms\;DataModules\;Frames\;P:\libs\atapi\source\database\;p:\libs\atapi\source\vcl\datamodules\;$(AT_ROOT)\source;$(AT_ROOT)\source\vcl\datamodules\;Frames;Forms;DataModules;$(IncludePath)</IncludePath>
         <Multithreaded>true</Multithreaded>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;DBXMySQLDriver.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib;DuneForms.lib;ArrayCamPackage.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;dsnap.lib;vcldb.lib;dbxcds.lib;VCLCommon.lib;vclactnband.lib;vclx.lib;vclimg.lib;adortl.lib;DuneComponents.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;TeeDB.lib;TeeUI.lib;Tee.lib;DBXMySQLDriver.lib;atVCLCore.lib;vcldbx.lib;bdertl.lib;DuneForms.lib;DbxDevartPostgreSQLDriver170.lib</AllPackageLibs>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -112,8 +112,8 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=0.6.4.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <_TCHARMapping>char</_TCHARMapping>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <LinkPackageStatics>atVCLCore.lib;vcldbx.lib;DuneForms.lib;ArrayCamPackage.lib</LinkPackageStatics>
-        <Debugger_DebugSourcePath>P:\libs\dsl\VCL\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\Common\;P:\libs\dsl\Common\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <LinkPackageStatics>atVCLCore.lib;vcldbx.lib;DuneForms.lib;DbxDevartPostgreSQLDriver170.lib</LinkPackageStatics>
+        <Debugger_DebugSourcePath>P:\libs\dsl\VCL\Common\;P:\libs\dsl\VCL\Components\;P:\libs\dsl\Common\;P:\libs\dsl\Common\;P:\libs\atapi\source\database\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
         <BCC_PCHCache>true</BCC_PCHCache>
         <Icon_MainIcon>Resources\atDB.ico</Icon_MainIcon>
@@ -223,20 +223,24 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.cpp">
-            <Form>atdbDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
+        <CppCompile Include="P:\libs\atapi\source\database\atDBCredentials.cpp">
+            <DependentOn>P:\libs\atapi\source\database\atDBCredentials.h</DependentOn>
+            <BuildOrder>27</BuildOrder>
         </CppCompile>
-        <CppCompile Include="p:\libs\atapi\source\vcl\datamodules\TATDBImagesAndMoviesDataModule.cpp">
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.cpp">
+            <Form>csPGDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.h</DependentOn>
+            <BuildOrder>25</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp">
+            <Form>pgDM</Form>
+            <DesignClass>TDataModule</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TPGDataModule.h</DependentOn>
+            <BuildOrder>24</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGImagesAndMoviesDataModule.cpp">
             <BuildOrder>21</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.cpp">
-            <Form>csDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
         </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp">
             <Form>ImagesFrame</Form>
@@ -250,6 +254,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
             <BuildOrder>23</BuildOrder>
         </CppCompile>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp">
+            <Form>PGConnectionFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.h</DependentOn>
+            <BuildOrder>26</BuildOrder>
+        </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp">
             <Form>SyncMySQLToPostgresFrame</Form>
             <DesignClass>TFrame</DesignClass>
@@ -257,19 +267,20 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>24</BuildOrder>
         </CppCompile>
         <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TATDBDataModule.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TCoverSlipDataModule.dfm"/>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Forms\TBlockForm.dfm"/>
         <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TSpecimenForm.dfm"/>
-        <FormResources Include="Forms\TBlockForm.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -331,6 +342,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="p:\build\debug\BPL\ArrayCamPackage.bpl">ArrayCam VCL Core package</Excluded_Packages>
                     <Excluded_Packages Name="p:\build\debug\BPL\ArrayBotPackage.bpl">File p:\build\debug\BPL\ArrayBotPackage.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>

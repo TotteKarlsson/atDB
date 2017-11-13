@@ -1,14 +1,5 @@
-﻿[atdbDM.cryoprotectionDS]
-Coordinates=758,1475,141,51
-
-[Label13]
+﻿[Label13]
 Coordinates=52,809,52,51
-
-[atdbDM.embeddingProtocolDS]
-Coordinates=758,635,165,51
-
-[atdbDM.ribbonsDS]
-Coordinates=565,567,107,177
 
 [DBLookupComboBox9]
 Coordinates=108,1456,127,33
@@ -28,17 +19,8 @@ Coordinates=539,1,124,123
 [Label9]
 Coordinates=758,353,46,51
 
-[atdbDM.blockNotesDS]
-Coordinates=436,1342,124,123
-
 [DBLookupComboBox10]
 Coordinates=967,105,132,33
-
-[atdbDM.usersCDS]
-Coordinates=344,429,104,105
-
-[atdbDM.specimenCDS]
-Coordinates=29,194,124,267
 
 [DBLookupComboBox5]
 Coordinates=967,157,127,33
@@ -46,26 +28,11 @@ Coordinates=967,157,127,33
 [Label12]
 Coordinates=758,705,52,51
 
-[atdbDM.fixationMethodDS]
-Coordinates=758,1055,142,51
-
 [DBEdit3]
 Coordinates=967,261,54,33
 
-[atdbDM.usersDS]
-Coordinates=245,648,96,105
-
-[atdbDM.ribbonNotesCDS]
-Coordinates=565,1313,137,123
-
-[atdbDM.postfix]
-Coordinates=758,1405,88,51
-
 [GroupBox1]
 Coordinates=151,1342,70,51
-
-[atdbDM.preprocesstreatmentDS]
-Coordinates=758,1265,171,51
 
 [atdbDM.documentsCDS]
 Coordinates=565,285,131,123
@@ -73,38 +40,17 @@ Coordinates=565,285,131,123
 [Label14]
 Coordinates=758,985,52,51
 
-[atdbDM.blockNotesCDS]
-Coordinates=106,648,132,123
-
-[atdbDM.specimenDS]
-Coordinates=111,809,116,249
-
-[atdbDM.blocksCDS]
-Coordinates=158,1,148,609
-
-[atdbDM.freezeprotocolDS]
-Coordinates=758,1125,140,51
-
 [Label8]
 Coordinates=60,124,46,51
 
-[atdbDM.substitutionProtocol]
-Coordinates=565,833,155,123
-
 [DBLookupComboBox8]
 Coordinates=967,365,127,33
-
-[atdbDM.notesCDS]
-Coordinates=565,975,104,123
 
 [DBLookupComboBox6]
 Coordinates=967,417,127,33
 
 [Label15]
 Coordinates=758,1,52,51
-
-[atdbDM.ribbonNotesDS]
-Coordinates=758,423,129,123
 
 [Label6]
 Coordinates=109,124,46,51
@@ -115,9 +61,6 @@ Coordinates=967,469,54,33
 [Label7]
 Coordinates=539,497,46,51
 
-[atdbDM.mRibbonCDS]
-Coordinates=565,1117,121,177
-
 [DBLookupComboBox11]
 Coordinates=967,521,132,33
 
@@ -127,32 +70,14 @@ Coordinates=0,758,47,51
 [Button2]
 Coordinates=758,1335,53,51
 
-[atdbDM.blockstatusDS]
-Coordinates=758,775,126,51
-
 [Button1]
 Coordinates=758,845,53,51
-
-[atdbDM.blocksDS]
-Coordinates=286,1456,148,375
 
 [Label1]
 Coordinates=709,1456,46,51
 
-[atdbDM.noteDS]
-Coordinates=0,597,91,51
-
-[atdbDM.fixativeTBL]
-Coordinates=32,1342,110,51
-
 [atdbDM.processIDDS]
 Coordinates=758,565,119,51
-
-[atdbDM.speciesDS]
-Coordinates=565,763,107,51
-
-[atdbDM.infiltrationProtocolDS]
-Coordinates=758,915,161,51
 
 []
 Coordinates=967,209,68,33

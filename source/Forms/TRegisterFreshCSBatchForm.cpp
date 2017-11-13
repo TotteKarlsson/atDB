@@ -1,8 +1,8 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TRegisterFreshCSBatchForm.h"
-#include "TCoverSlipDataModule.h"
-#include "TATDBDataModule.h"
+#include "TPGCoverSlipDataModule.h"
+#include "TPGDataModule.h"
 #include "mtkLogger.h"
 #include <sstream>
 #include <System.DateUtils.hpp>
@@ -11,10 +11,6 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-//#pragma link "pBarcode2D"
-//#pragma link "pCore2D"
-//#pragma link "pDataMatrixEcc200"
-//#pragma link "pDBBarcode2D"
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TSTDStringLabeledEdit"
 #pragma resource "*.dfm"
@@ -24,10 +20,10 @@ TRegisterFreshCSBatchForm *RegisterFreshCSBatchForm;
 __fastcall TRegisterFreshCSBatchForm::TRegisterFreshCSBatchForm(TComponent* Owner)
 	: TForm(Owner)
 {
-////    csDM->csFreshbatchesCDS->Active = false;
-//	csDM->csFreshbatchesCDS->CommandText = "SELECT * from freshcsbatch where DATE(date_created) = CURDATE()";
-//    csDM->csFreshbatchesCDS->Execute();
-//    csDM->csFreshbatchesCDS->Active = true;
+////    csPGDM->csFreshbatchesCDS->Active = false;
+//	csPGDM->csFreshbatchesCDS->CommandText = "SELECT * from freshcsbatch where DATE(date_created) = CURDATE()";
+//    csPGDM->csFreshbatchesCDS->Execute();
+//    csPGDM->csFreshbatchesCDS->Active = true;
 
 }
 
@@ -54,7 +50,7 @@ string Month(int month)
 int nrOfFreshBatchesToday()
 {
     TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = atdbDM->SQLConnection1;
+    q->SQLConnection = pgDM->SQLConnection1;
     stringstream sq;
     sq << "SELECT COUNT(*) FROM freshCSbatches";
     q->SQL->Add(sq.str().c_str());
@@ -76,7 +72,9 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 	//Insert/create a new batch
     int count = mCSCount->getValue();
     TSQLQuery* q = new TSQLQuery(NULL);
-    int csType = csDM->csTypeCDS->FieldByName("id")->AsInteger;
+    q->SQLConnection = pgDM->SQLConnection1;
+
+    int csType = csPGDM->csTypeCDS->FieldByName("id")->AsInteger;
 
     //Parse date time
     TDateTime dt 	= mDT->DateTime;
@@ -84,25 +82,21 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     string 	month 	= Month(MonthOf(dt));
     int 	day   	= DayOf(dt);
 
-    q->SQLConnection = atdbDM->SQLConnection1;
     stringstream sq;
     sq << "INSERT into freshCSbatches (count, lot_number, box_number, type) VALUES ("
-    		<<count<<", '" <<mCoverSlipLOTE->getValue()<<"', '"<<mBoxof100NrEdit->getValue()<<"', '"<<csType<<"')";
+    		<<count<<", '" <<mCoverSlipLOTE->getValue()<<"', '"<<mBoxof100NrEdit->getValue()<<"', '"<<csType<<"') RETURNING id";
 
     q->SQL->Add(sq.str().c_str());
-    q->ExecSQL();
-	csDM->csFreshBatchesCDS->ApplyUpdates(0);
-    csDM->csFreshBatchesCDS->Refresh();
+    q->Open();
+
+    int insert_id = q->FieldByName("id")->AsInteger;
+
+	csPGDM->csFreshBatchesCDS->ApplyUpdates(0);
+    csPGDM->csFreshBatchesCDS->Refresh();
 
 	//Get last insert id, create and associate 'count' coverslips
     TSQLQuery* tq = new TSQLQuery(NULL);
-    tq->SQLConnection = atdbDM->SQLConnection1;
-
-    tq->SQL->Add("SELECT LAST_INSERT_ID();");
-    tq->Open();
-    int insert_id = tq->Fields->operator [](0)->AsInteger;
-
-    tq->Close();
+    tq->SQLConnection = pgDM->SQLConnection1;
 
     //Associate count coverslips with this batch
 	stringstream qs;
@@ -115,7 +109,6 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 	    	qs<<",";
         }
     }
-    tq->SQL->Clear();
     tq->SQL->Add(qs.str().c_str());
 	tq->ExecSQL();
     delete tq;
@@ -123,7 +116,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     Log(lInfo) << "Batch ID: "<<insert_id;
     Sleep(1000);
     Close();
-    csDM->csCDS->Refresh();
+    csPGDM->csCDS->Refresh();
 }
 
 //Restore the filter

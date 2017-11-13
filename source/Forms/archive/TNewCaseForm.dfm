@@ -116,7 +116,7 @@ object NewCaseForm: TNewCaseForm
     end
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.casesCDS
+    DataSet = pgDM.casesCDS
     Left = 312
     Top = 80
   end

@@ -40,7 +40,7 @@ object imageDM: TimageDM
     CommandText = 'SELECT * FROM `images`'
     MaxBlobSize = 1
     Params = <>
-    SQLConnection = atdbDM.SQLConnection1
+    SQLConnection = pgDM.SQLConnection1
     Left = 64
     Top = 56
     object imagesDSid: TStringField

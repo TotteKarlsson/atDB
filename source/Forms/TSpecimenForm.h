@@ -8,7 +8,7 @@
 #include <Vcl.DBCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Mask.hpp>
-#include "TATDBDataModule.h"
+#include "TPGDataModule.h"
 //---------------------------------------------------------------------------
 class TSpecimenForm : public TForm
 {

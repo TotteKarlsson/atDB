@@ -3,7 +3,7 @@
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
 #include "TAboutATDBForm.h"
-#include "TATDBDataModule.h"
+#include "TPGDataModule.h"
 #pragma package(smart_init)
 #include "TCoverSlipForm.h"
 

@@ -1,0 +1,49 @@
+object StartForm: TStartForm
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'StartForm'
+  ClientHeight = 661
+  ClientWidth = 1166
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 289
+    Height = 661
+    Align = alLeft
+    TabOrder = 0
+    inline TPGConnectionFrame1: TPGConnectionFrame
+      Left = 1
+      Top = 1
+      Width = 287
+      Height = 201
+      Align = alTop
+      AutoSize = True
+      TabOrder = 0
+      ExplicitLeft = 12
+      ExplicitTop = 48
+    end
+  end
+  object Panel2: TPanel
+    Left = 289
+    Top = 0
+    Width = 877
+    Height = 661
+    Align = alClient
+    TabOrder = 1
+    ExplicitLeft = 584
+    ExplicitTop = 216
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+  end
+end

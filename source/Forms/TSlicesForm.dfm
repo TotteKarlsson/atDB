@@ -3,8 +3,8 @@ object SlicesForm: TSlicesForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Slices Form'
-  ClientHeight = 691
-  ClientWidth = 535
+  ClientHeight = 587
+  ClientWidth = 457
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,102 +20,106 @@ object SlicesForm: TSlicesForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 535
-    Height = 640
+    Width = 457
+    Height = 536
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = 112
+    ExplicitTop = 240
+    ExplicitWidth = 535
+    ExplicitHeight = 636
     object Label1: TLabel
-      Left = 322
-      Top = 16
-      Width = 11
+      Left = 28
+      Top = 17
+      Width = 35
       Height = 13
-      Caption = 'ID'
+      Caption = 'Slice ID'
       FocusControl = DBEdit1
     end
     object Label2: TLabel
-      Left = 56
-      Top = 80
+      Left = 127
+      Top = 17
       Width = 59
       Height = 13
       Caption = 'Specimen ID'
       FocusControl = DBEdit2
     end
     object Label3: TLabel
-      Left = 56
-      Top = 120
+      Left = 28
+      Top = 65
       Width = 148
       Height = 13
       Caption = 'Fluorescence (Virus/Genotype)'
       FocusControl = DBEdit3
     end
     object Label4: TLabel
-      Left = 56
-      Top = 160
+      Left = 28
+      Top = 111
       Width = 61
       Height = 13
       Caption = 'Virus Dilution'
       FocusControl = DBEdit4
     end
     object Label5: TLabel
-      Left = 56
-      Top = 215
+      Left = 28
+      Top = 159
       Width = 60
       Height = 13
       Caption = 'Brain Region'
       FocusControl = DBEdit5
     end
     object Label6: TLabel
-      Left = 56
-      Top = 266
+      Left = 28
+      Top = 207
       Width = 60
       Height = 13
       Caption = 'Culture Time'
       FocusControl = DBLookupComboBox1
     end
     object Label7: TLabel
-      Left = 56
-      Top = 526
+      Left = 28
+      Top = 455
       Width = 53
       Height = 13
       Caption = 'Entered By'
       FocusControl = DBLookupComboBox2
     end
     object Label8: TLabel
-      Left = 56
-      Top = 319
+      Left = 28
+      Top = 257
       Width = 106
       Height = 13
       Caption = 'Preprocess Treatment'
       FocusControl = DBLookupComboBox3
     end
     object Label9: TLabel
-      Left = 56
-      Top = 368
+      Left = 28
+      Top = 306
       Width = 80
       Height = 13
       Caption = 'Fixative Protocol'
       FocusControl = DBLookupComboBox4
     end
     object Label10: TLabel
-      Left = 56
-      Top = 418
+      Left = 28
+      Top = 356
       Width = 80
       Height = 13
       Caption = 'Fixation Protocol'
       FocusControl = DBLookupComboBox5
     end
     object Label11: TLabel
-      Left = 56
-      Top = 466
+      Left = 28
+      Top = 404
       Width = 75
       Height = 13
       Caption = 'Postfix Protocol'
       FocusControl = DBLookupComboBox6
     end
     object DBEdit1: TDBEdit
-      Left = 322
-      Top = 35
-      Width = 134
+      Left = 28
+      Top = 33
+      Width = 80
       Height = 21
       DataField = 'id'
       DataSource = DataSource1
@@ -123,9 +127,9 @@ object SlicesForm: TSlicesForm
       TabOrder = 0
     end
     object DBEdit2: TDBEdit
-      Left = 56
-      Top = 96
-      Width = 134
+      Left = 127
+      Top = 33
+      Width = 74
       Height = 21
       DataField = 'specimen_id'
       DataSource = DataSource1
@@ -133,8 +137,8 @@ object SlicesForm: TSlicesForm
       TabOrder = 1
     end
     object DBEdit3: TDBEdit
-      Left = 56
-      Top = 136
+      Left = 28
+      Top = 81
       Width = 400
       Height = 21
       DataField = 'virus'
@@ -142,8 +146,8 @@ object SlicesForm: TSlicesForm
       TabOrder = 2
     end
     object DBEdit4: TDBEdit
-      Left = 56
-      Top = 176
+      Left = 28
+      Top = 127
       Width = 400
       Height = 21
       DataField = 'virus_dilution'
@@ -151,8 +155,8 @@ object SlicesForm: TSlicesForm
       TabOrder = 3
     end
     object DBEdit5: TDBEdit
-      Left = 56
-      Top = 231
+      Left = 28
+      Top = 175
       Width = 400
       Height = 21
       DataField = 'brain_region_dissection'
@@ -160,8 +164,8 @@ object SlicesForm: TSlicesForm
       TabOrder = 4
     end
     object DBLookupComboBox1: TDBLookupComboBox
-      Left = 56
-      Top = 282
+      Left = 28
+      Top = 223
       Width = 400
       Height = 21
       DataField = 'culture_timeL'
@@ -171,8 +175,8 @@ object SlicesForm: TSlicesForm
       OnDropDown = DBLookupComboBoxDropDown
     end
     object DBLookupComboBox2: TDBLookupComboBox
-      Left = 56
-      Top = 542
+      Left = 28
+      Top = 471
       Width = 400
       Height = 21
       DataField = 'entered_byL'
@@ -182,8 +186,8 @@ object SlicesForm: TSlicesForm
       OnDropDown = DBLookupComboBoxDropDown
     end
     object DBLookupComboBox3: TDBLookupComboBox
-      Left = 56
-      Top = 335
+      Left = 28
+      Top = 273
       Width = 400
       Height = 21
       DataField = 'preprocess_treatment_protocolL'
@@ -193,8 +197,8 @@ object SlicesForm: TSlicesForm
       OnDropDown = DBLookupComboBoxDropDown
     end
     object DBLookupComboBox4: TDBLookupComboBox
-      Left = 56
-      Top = 384
+      Left = 28
+      Top = 322
       Width = 400
       Height = 21
       DataField = 'fixative_protocolL'
@@ -204,8 +208,8 @@ object SlicesForm: TSlicesForm
       OnDropDown = DBLookupComboBoxDropDown
     end
     object DBLookupComboBox5: TDBLookupComboBox
-      Left = 56
-      Top = 434
+      Left = 28
+      Top = 372
       Width = 400
       Height = 21
       DataField = 'fixation_protocolL'
@@ -215,8 +219,8 @@ object SlicesForm: TSlicesForm
       OnDropDown = DBLookupComboBoxDropDown
     end
     object DBLookupComboBox6: TDBLookupComboBox
-      Left = 56
-      Top = 482
+      Left = 28
+      Top = 420
       Width = 400
       Height = 21
       DataField = 'postfix_protocolL'
@@ -228,16 +232,18 @@ object SlicesForm: TSlicesForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 640
-    Width = 535
+    Top = 536
+    Width = 457
     Height = 51
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 640
+    ExplicitWidth = 535
     DesignSize = (
-      535
+      457
       51)
     object Button1: TButton
-      Left = 455
+      Left = 377
       Top = 16
       Width = 60
       Height = 25
@@ -245,9 +251,10 @@ object SlicesForm: TSlicesForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
+      ExplicitLeft = 455
     end
     object CancelBtn: TButton
-      Left = 374
+      Left = 296
       Top = 16
       Width = 60
       Height = 25
@@ -255,11 +262,12 @@ object SlicesForm: TSlicesForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
+      ExplicitLeft = 374
     end
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.slicesCDS
-    Left = 240
-    Top = 64
+    DataSet = pgDM.slicesCDS
+    Left = 64
+    Top = 544
   end
 end

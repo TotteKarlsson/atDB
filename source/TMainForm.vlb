@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1497,760,142,51
+Coordinates=1829,1098,72,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -259,12 +259,6 @@ Coordinates=944,1166,104,33
 [atdbDM.documentsCDS]
 Coordinates=1474,10,131,123
 
-[DBText1]
-Coordinates=2256,1030,56,51
-
-[mDustAssayImageFolderE]
-Coordinates=1485,1030,144,51
-
 [Panel9]
 Coordinates=1760,760,47,51
 
@@ -279,9 +273,6 @@ Coordinates=2539,760,123,51
 
 [GroupBox1]
 Coordinates=1197,962,70,51
-
-[mBackgroundImagePanel]
-Coordinates=1231,760,140,51
 
 [atdbDM.blockNotesDS]
 Coordinates=1965,10,124,123
@@ -310,9 +301,6 @@ Coordinates=1390,962,112,51
 [CSNavigator]
 Coordinates=2436,894,76,51
 
-[Splitter3]
-Coordinates=1772,1166,55,33
-
 [TabSheet4]
 Coordinates=1073,1166,66,33
 
@@ -322,17 +310,8 @@ Coordinates=832,894,135,51
 [atdbDM.blockstatusDS]
 Coordinates=1042,962,126,51
 
-[mCSDustAssaysGrid]
-Coordinates=184,1166,117,33
-
-[DBMemo2]
-Coordinates=859,1166,64,33
-
 [ToolButton2]
 Coordinates=2557,1098,74,33
-
-[GroupBox6]
-Coordinates=743,894,70,51
 
 [Panel1]
 Coordinates=10,894,47,51
@@ -358,14 +337,8 @@ Coordinates=1383,10,82,195
 [csDM.csCDS]
 Coordinates=972,10,82,231
 
-[mBrowseForDustAssayImageFolder]
-Coordinates=812,962,191,51
-
 [atdbDM.ribbonsDS]
 Coordinates=688,10,107,177
-
-[cdDustAssayNavigator]
-Coordinates=440,1098,127,51
 
 [atdbDM.specimenDS]
 Coordinates=541,10,116,249
@@ -379,20 +352,11 @@ Coordinates=692,1098,77,51
 [DBText3]
 Coordinates=1662,1030,56,51
 
-[GroupBox7]
-Coordinates=1664,894,70,51
-
 [TTableFrame1.ClientDataSet1]
 Coordinates=74,1098,159,51
 
-[mATDBServerBtnConnect]
-Coordinates=1132,1030,142,51
-
 [TabSheet9]
 Coordinates=1844,1166,66,33
-
-[mIm3FName]
-Coordinates=2122,962,75,51
 
 [atdbDM.substitutionProtocol]
 Coordinates=2119,10,155,123
@@ -406,29 +370,14 @@ Coordinates=139,760,94,105
 [atdbDM.fixationMethodDS]
 Coordinates=2195,760,142,51
 
-[Panel10]
-Coordinates=1825,1030,53,51
-
-[mBackgroundImage]
-Coordinates=10,962,113,51
-
 [Panel2]
 Coordinates=91,1030,47,51
-
-[mCoverslipImage]
-Coordinates=1897,1030,100,51
-
-[mResultImage]
-Coordinates=2292,962,84,51
 
 [csDM.csDustAssayCDS]
 Coordinates=221,962,131,51
 
 [atdbDM.embeddingProtocolDS]
 Coordinates=1527,962,165,51
-
-[GroupBox3]
-Coordinates=1458,1098,70,51
 
 [atdbDM.postfix]
 Coordinates=2012,962,88,51
@@ -445,9 +394,6 @@ Coordinates=662,1166,81,33
 [Panel7]
 Coordinates=10,1098,47,51
 
-[Splitter2]
-Coordinates=1700,1166,55,33
-
 [TabSheet7]
 Coordinates=10,1212,66,33
 
@@ -460,14 +406,8 @@ Coordinates=2330,1030,119,51
 [ToolButton1]
 Coordinates=206,1212,74,33
 
-[Panel11]
-Coordinates=2220,962,53,51
-
 [mUsersNavigator]
 Coordinates=2399,962,99,51
-
-[mServerIPE]
-Coordinates=1403,760,72,51
 
 [mRegisterFreshBatchBtn]
 Coordinates=351,894,138,51
@@ -487,14 +427,8 @@ Coordinates=386,10,124,267
 [infoMemo]
 Coordinates=10,1030,62,51
 
-[Panel14]
-Coordinates=519,894,53,51
-
 [TTableFrame1.SQLDataSet1]
 Coordinates=368,1030,152,51
-
-[mPasswordE]
-Coordinates=2240,894,79,51
 
 [atdbDM.freezeprotocolDS]
 Coordinates=897,1030,140,51
@@ -511,20 +445,11 @@ Coordinates=1160,1166,66,33
 [atdbDM.infiltrationProtocolDS]
 Coordinates=1085,1098,161,51
 
-[mResultImagePanel]
-Coordinates=211,894,112,51
-
 [Panel12]
 Coordinates=149,962,53,51
 
-[Label4]
-Coordinates=1306,1030,46,51
-
 [mRibbonNoteNavigator]
 Coordinates=1369,894,129,51
-
-[mIm2FName]
-Coordinates=273,1098,75,51
 
 [mRibbonsGrid]
 Coordinates=2094,1166,85,33
@@ -541,20 +466,11 @@ Coordinates=329,1166,66,33
 [csDM.csFreshBatchesCDS]
 Coordinates=1072,10,145,159
 
-[mDBUserE]
-Coordinates=1370,1098,68,51
-
 [TabSheet10]
 Coordinates=765,1166,72,33
 
-[mIm1FName]
-Coordinates=546,962,75,51
-
 [atdbDM.ribbonNotesDS]
 Coordinates=1636,10,129,123
-
-[mDatabaseE]
-Coordinates=594,1098,76,51
 
 [Panel3]
 Coordinates=748,962,47,51
@@ -576,9 +492,6 @@ Coordinates=1923,1098,112,33
 
 [mPrintBatchLblBtn]
 Coordinates=996,894,108,51
-
-[TabSheet12]
-Coordinates=1829,1098,72,33
 
 [mNrOfSelectedCS]
 Coordinates=2478,1030,103,51

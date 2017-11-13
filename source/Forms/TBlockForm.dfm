@@ -137,7 +137,7 @@ object BlockForm: TBlockForm
     DropDownRows = 15
     KeyField = 'id'
     ListField = 'user_name'
-    ListSource = atdbDM.usersDataSource
+    ListSource = pgDM.usersDataSource
     TabOrder = 4
   end
   object DBLookupComboBox11: TDBLookupComboBox
@@ -253,7 +253,7 @@ object BlockForm: TBlockForm
     TabOrder = 7
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.blocksCDS
+    DataSet = pgDM.blocksCDS
     Left = 480
     Top = 120
   end

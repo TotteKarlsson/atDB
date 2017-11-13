@@ -29,7 +29,7 @@ object CoverSlipForm: TCoverSlipForm
     TabOrder = 0
   end
   object CSDataSource: TDataSource
-    DataSet = csDM.csCDS
+    DataSet = csPGDM.csCDS
     Left = 664
     Top = 40
   end

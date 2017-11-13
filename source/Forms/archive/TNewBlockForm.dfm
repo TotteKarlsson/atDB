@@ -313,7 +313,7 @@ object NewBlockForm: TNewBlockForm
     end
   end
   object DataSource1: TDataSource
-    DataSet = atdbDM.blocksCDS
+    DataSet = pgDM.blocksCDS
     Left = 576
     Top = 24
   end

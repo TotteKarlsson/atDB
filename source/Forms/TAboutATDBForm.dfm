@@ -26,8 +26,6 @@ object AboutATDBForm: TAboutATDBForm
     Align = alClient
     Caption = 'Change Log'
     TabOrder = 0
-    ExplicitWidth = 727
-    ExplicitHeight = 391
     object Memo1: TMemo
       Left = 2
       Top = 15
@@ -47,7 +45,6 @@ object AboutATDBForm: TAboutATDBForm
     Height = 185
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 727
     object Image1: TImage
       Left = 530
       Top = 16
