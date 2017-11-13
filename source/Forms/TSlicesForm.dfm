@@ -24,10 +24,6 @@ object SlicesForm: TSlicesForm
     Height = 536
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 112
-    ExplicitTop = 240
-    ExplicitWidth = 535
-    ExplicitHeight = 636
     object Label1: TLabel
       Left = 28
       Top = 17
@@ -237,8 +233,6 @@ object SlicesForm: TSlicesForm
     Height = 51
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 640
-    ExplicitWidth = 535
     DesignSize = (
       457
       51)
@@ -251,7 +245,6 @@ object SlicesForm: TSlicesForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
-      ExplicitLeft = 455
     end
     object CancelBtn: TButton
       Left = 296
@@ -262,7 +255,6 @@ object SlicesForm: TSlicesForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
-      ExplicitLeft = 374
     end
   end
   object DataSource1: TDataSource

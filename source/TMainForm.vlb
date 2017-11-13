@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=1829,1098,72,33
+Coordinates=559,1030,104,51
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -193,9 +193,6 @@ Coordinates=1061,1,142,51
 [atDM.]
 Coordinates=660,613,101,177
 
-[mBlocksNavigator]
-Coordinates=559,1030,104,51
-
 [DBNavigator2]
 Coordinates=644,962,82,51
 
@@ -318,9 +315,6 @@ Coordinates=10,894,47,51
 
 [ToolBar1]
 Coordinates=1247,1166,58,33
-
-[mBlockNoteNavigator]
-Coordinates=2002,894,121,51
 
 [mRibbonNoteMemo]
 Coordinates=1562,1166,111,33
@@ -555,4 +549,7 @@ Coordinates=2140,410,93,33
 
 [BlocksGrid]
 Coordinates=2304,1166,78,33
+
+[BlockNoteNavigator]
+Coordinates=2002,894,121,51
 

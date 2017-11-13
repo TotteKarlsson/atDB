@@ -47,6 +47,9 @@ __published:	// IDE-managed Components
 	TTabSheet *TabSheet4;
 	TDBGrid *DBGrid4;
 	TDataSource *AllBlocksDSrc;
+	TDBGrid *DBGrid5;
+	TDBNavigator *DBNavigator4;
+	TPanel *Panel2;
 
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 

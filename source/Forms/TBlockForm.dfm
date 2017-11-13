@@ -3,7 +3,7 @@ object BlockForm: TBlockForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Tissue Block Form'
-  ClientHeight = 535
+  ClientHeight = 526
   ClientWidth = 571
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -67,16 +67,17 @@ object BlockForm: TBlockForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 484
+    Top = 475
     Width = 571
     Height = 51
     Align = alBottom
     TabOrder = 0
+    ExplicitTop = 484
     DesignSize = (
       571
       51)
     object Button1: TButton
-      Left = 491
+      Left = 379
       Top = 16
       Width = 60
       Height = 25
@@ -86,7 +87,7 @@ object BlockForm: TBlockForm
       TabOrder = 1
     end
     object Button2: TButton
-      Left = 410
+      Left = 468
       Top = 16
       Width = 60
       Height = 25

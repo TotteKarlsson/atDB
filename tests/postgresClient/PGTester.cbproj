@@ -37,12 +37,12 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
-        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;DBXMySQLDriver.lib;dsnap.lib;vcldb.lib;DuneComponents.lib;vclactnband.lib;vclx.lib;VCLCommon.lib;DbxDevartPostgreSQLDriver170.lib;dbxcds.lib</AllPackageLibs>
+        <ILINK_LibraryPath>p:\libs\atapi\source\database\;P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <AllPackageLibs>rtl.lib;vcl.lib;dbrtl.lib;dbexpress.lib;DbxCommonDriver.lib;DBXMySQLDriver.lib;dsnap.lib;vcldb.lib;DuneComponents.lib;vclactnband.lib;vclx.lib;VCLCommon.lib;DbxDevartPostgreSQLDriver170.lib;dbxcds.lib;atVCLCore.lib;vclimg.lib</AllPackageLibs>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <ProjectType>CppVCLApplication</ProjectType>
-        <IncludePath>P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(IncludePath)</IncludePath>
+        <IncludePath>p:\libs\atapi\source\database\;P:\libs\atapi\source\vcl\frames\;P:\libs\atapi\source\vcl\datamodules\;P:\atDB\tests\mysqlClient\;$(IncludePath)</IncludePath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
         <UsePackages>true</UsePackages>
@@ -85,11 +85,11 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageStatics>DbxDevartPostgreSQLDriver170.lib</LinkPackageStatics>
+        <LinkPackageStatics>DbxDevartPostgreSQLDriver170.lib;atVCLCore.lib</LinkPackageStatics>
         <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DBXMySQLDriver.bpi;dsnap.bpi;vcldb.bpi;DuneComponents.bpi;vclactnband.bpi;vclx.bpi;VCLCommon.bpi;dbxcds.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DBXMySQLDriver.bpi;dsnap.bpi;vcldb.bpi;DuneComponents.bpi;vclactnband.bpi;vclx.bpi;VCLCommon.bpi;dbxcds.bpi;vclimg.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -108,6 +108,9 @@
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="p:\libs\atapi\source\database\atDBCredentials.cpp">
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp">
             <Form>pgDM</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -121,8 +124,8 @@
             <BuildOrder>4</BuildOrder>
         </CppCompile>
         <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.dfm"/>
-        <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.dfm"/>
+        <FormResources Include="TMainForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

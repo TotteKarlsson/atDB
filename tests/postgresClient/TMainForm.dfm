@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = 'ATDB Master'
-  ClientHeight = 868
-  ClientWidth = 1236
+  ClientHeight = 753
+  ClientWidth = 1278
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,32 +18,32 @@ object MainForm: TMainForm
   object PageControl1: TPageControl
     Left = 0
     Top = 169
-    Width = 1236
-    Height = 699
-    ActivePage = TabSheet3
+    Width = 1278
+    Height = 584
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1236
+    ExplicitHeight = 699
     object TabSheet1: TTabSheet
       Caption = 'Specimen'
-      ExplicitWidth = 841
-      ExplicitHeight = 565
+      ExplicitWidth = 1228
+      ExplicitHeight = 671
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
-        Width = 1228
-        Height = 671
+        Width = 1270
+        Height = 556
         Align = alClient
         Caption = 'Specimen'
         TabOrder = 0
-        ExplicitLeft = 22
-        ExplicitTop = 40
-        ExplicitWidth = 769
-        ExplicitHeight = 345
+        ExplicitWidth = 1228
+        ExplicitHeight = 671
         object DBGrid1: TDBGrid
           Left = 2
           Top = 73
-          Width = 1224
-          Height = 596
+          Width = 1266
+          Height = 481
           Align = alClient
           DataSource = pgDM.specimenDataSource
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -94,7 +94,7 @@ object MainForm: TMainForm
         object DBNavigator1: TDBNavigator
           Left = 2
           Top = 15
-          Width = 1224
+          Width = 1266
           Height = 58
           DataSource = pgDM.specimenDataSource
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
@@ -102,31 +102,31 @@ object MainForm: TMainForm
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
+          ExplicitLeft = -22
+          ExplicitTop = 527
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Slices'
       ImageIndex = 2
-      ExplicitWidth = 841
-      ExplicitHeight = 565
+      ExplicitWidth = 1228
+      ExplicitHeight = 671
       object GroupBox2: TGroupBox
         Left = 0
         Top = 0
-        Width = 1228
-        Height = 671
+        Width = 1270
+        Height = 556
         Align = alClient
         Caption = 'Slices'
         TabOrder = 0
-        ExplicitLeft = 13
-        ExplicitTop = 46
-        ExplicitWidth = 769
-        ExplicitHeight = 361
+        ExplicitWidth = 1228
+        ExplicitHeight = 671
         object DBGrid2: TDBGrid
           Left = 2
           Top = 81
-          Width = 1224
-          Height = 588
+          Width = 1266
+          Height = 473
           Align = alClient
           DataSource = pgDM.slicesDataSource
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -206,7 +206,7 @@ object MainForm: TMainForm
         object DBNavigator2: TDBNavigator
           Left = 2
           Top = 15
-          Width = 1224
+          Width = 1266
           Height = 66
           DataSource = pgDM.slicesDataSource
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
@@ -214,21 +214,20 @@ object MainForm: TMainForm
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
+          ExplicitWidth = 1224
         end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Notes'
       ImageIndex = 1
-      ExplicitLeft = 228
-      ExplicitTop = 48
-      ExplicitWidth = 841
-      ExplicitHeight = 565
+      ExplicitWidth = 1228
+      ExplicitHeight = 671
       object DBGrid3: TDBGrid
         Left = 0
         Top = 0
         Width = 377
-        Height = 671
+        Height = 556
         Align = alLeft
         DataSource = pgDM.notesDSource
         TabOrder = 0
@@ -281,13 +280,15 @@ object MainForm: TMainForm
     object TabSheet4: TTabSheet
       Caption = 'Blocks'
       ImageIndex = 3
+      ExplicitWidth = 1228
+      ExplicitHeight = 671
       object DBGrid4: TDBGrid
         Left = 0
         Top = 0
         Width = 89
-        Height = 671
+        Height = 556
         Align = alLeft
-        DataSource = pgDM.blockIDsDataSource
+        DataSource = pgDM.slicesDataSource
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -302,16 +303,56 @@ object MainForm: TMainForm
             Visible = True
           end>
       end
+      object Panel2: TPanel
+        Left = 89
+        Top = 0
+        Width = 1181
+        Height = 556
+        Align = alClient
+        Caption = 'Panel2'
+        TabOrder = 1
+        ExplicitLeft = 184
+        ExplicitTop = 136
+        ExplicitWidth = 185
+        ExplicitHeight = 41
+        object DBGrid5: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 1179
+          Height = 529
+          Align = alClient
+          DataSource = pgDM.blocksDataSource
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+        object DBNavigator4: TDBNavigator
+          Left = 1
+          Top = 530
+          Width = 1179
+          Height = 25
+          DataSource = pgDM.blocksDataSource
+          Align = alBottom
+          TabOrder = 1
+          ExplicitLeft = -15
+          ExplicitTop = 645
+          ExplicitWidth = 200
+        end
+      end
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1236
+    Width = 1278
     Height = 169
     Align = alTop
     Caption = 'Panel1'
     TabOrder = 1
+    ExplicitWidth = 1236
     inline TPGConnectionFrame1: TPGConnectionFrame
       Left = 1
       Top = 1

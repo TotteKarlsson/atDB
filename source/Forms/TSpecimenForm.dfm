@@ -3,8 +3,8 @@ object SpecimenForm: TSpecimenForm
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Specimen Form'
-  ClientHeight = 399
-  ClientWidth = 289
+  ClientHeight = 353
+  ClientWidth = 295
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,12 +20,12 @@ object SpecimenForm: TSpecimenForm
   object ScrollBox1: TScrollBox
     Left = 0
     Top = 0
-    Width = 289
-    Height = 354
+    Width = 295
+    Height = 308
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 339
-    ExplicitHeight = 348
+    ExplicitWidth = 289
+    ExplicitHeight = 354
     object Label2: TLabel
       Left = 24
       Top = 24
@@ -112,16 +112,18 @@ object SpecimenForm: TSpecimenForm
   end
   object Panel1: TPanel
     Left = 0
-    Top = 354
-    Width = 289
+    Top = 308
+    Width = 295
     Height = 45
     Align = alBottom
     TabOrder = 1
+    ExplicitTop = 354
+    ExplicitWidth = 289
     DesignSize = (
-      289
+      295
       45)
     object Button1: TButton
-      Left = 113
+      Left = 119
       Top = 11
       Width = 60
       Height = 25
@@ -129,9 +131,10 @@ object SpecimenForm: TSpecimenForm
       Caption = 'Post'
       ModalResult = 1
       TabOrder = 1
+      ExplicitLeft = 113
     end
     object CancelBtn: TButton
-      Left = 198
+      Left = 204
       Top = 11
       Width = 60
       Height = 25
@@ -139,6 +142,7 @@ object SpecimenForm: TSpecimenForm
       Caption = 'Cancel'
       ModalResult = 2
       TabOrder = 0
+      ExplicitLeft = 198
     end
   end
   object DataSource1: TDataSource

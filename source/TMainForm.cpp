@@ -128,19 +128,19 @@ void __fastcall TMainForm::logMsg()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
     	case TNavigateBtn::nbDelete:
-             if(MessageDlg("Deleting this block will delete all associated ribbons and notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+//             if(MessageDlg("Deleting this block will delete all associated ribbons and notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
              {
 				Abort();
              }
 
-			int blockID = pgDM->blocksCDS->FieldByName("id")->Value;
-            mServerDBSession.deleteNotesForBlock(blockID);
-            mServerDBSession.deleteRibbonsForBlock(blockID);
+//			int blockID = pgDM->blocksCDS->FieldByName("id")->Value;
+//            mServerDBSession.deleteNotesForBlock(blockID);
+//            mServerDBSession.deleteRibbonsForBlock(blockID);
         break;
     }
 }
@@ -161,7 +161,7 @@ void __fastcall TMainForm::mUsersNavigatorClick(TObject *Sender, TNavigateBtn Bu
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::BlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
@@ -173,11 +173,11 @@ void __fastcall TMainForm::mBlockNoteNavigatorClick(TObject *Sender, TNavigateBt
 
                 try
                 {
-                    mServerDBSession.addNoteForBlock(blockID, uID, note);
+                    pgDM->addNoteForBlock(blockID, uID, note);
                 }
                 catch(...)
                 {
-                    handleMySQLException();
+                	Log(lError) << "There was a db problem";
                 }
 
                 pgDM->blockNotesCDS->Refresh();
@@ -202,7 +202,7 @@ void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigate
 
             try
             {
-                mServerDBSession.addNoteForRibbon(stdstr(rID), uID, note);
+//                mServerDBSession.addNoteForRibbon(stdstr(rID), uID, note);
             }
             catch(...)
             {
@@ -241,11 +241,13 @@ void __fastcall TMainForm::CoverSlipNavigatorsClick(TObject *Sender, TNavigateBt
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
-    	case TNavigateBtn::nbDelete:        break;
+    	case TNavigateBtn::nbDelete:
+			pgDM->blocksCDS->Refresh();
+        break;
 
     	case TNavigateBtn::nbInsert:
 
@@ -256,18 +258,18 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 
                     pgDM->blocksCDS->FieldByName("entered_by")->Value             = UsersCB->KeyValue;
                     pgDM->blocksCDS->FieldByName("entered_on")->Value             = dt.CurrentDate();
-		        	pgDM->blocksCDS->FieldValues["slice_id"] 			            = pgDM->slicesCDS->FieldByName("id")->AsInteger;
-		        	pgDM->blocksCDS->FieldValues["serial"] 	 		            = pgDM->blocksCDS->RecordCount + 1;
-		        	pgDM->blocksCDS->FieldByName("date_embedded")->Value 			= dt.CurrentDate();
+		        	pgDM->blocksCDS->FieldValues["slice_id"] 			          = pgDM->slicesCDS->FieldByName("id")->AsInteger;
+		        	pgDM->blocksCDS->FieldValues["serial"] 	 		              = pgDM->blocksCDS->RecordCount + 1;
+		        	pgDM->blocksCDS->FieldByName("date_embedded")->Value 		  = dt.CurrentDate();
 
                     if(pgDM->blocksCDS->RecordCount < 1)
                     {
-                        pgDM->blocksCDS->FieldValues["status"] 	 					= 0;
-                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= 0;
-                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= 0;
-                        pgDM->blocksCDS->FieldValues["substitution_protocol"]    		= 0;
-                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]    		= 0;
-                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    		= 0;
+                        pgDM->blocksCDS->FieldValues["status"] 	 				  = 0;
+                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]   = 0;
+                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 	  = 0;
+                        pgDM->blocksCDS->FieldValues["substitution_protocol"]     = 0;
+                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]     = 0;
+                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    	  = 0;
                     }
                     else
                     {
@@ -275,12 +277,12 @@ void __fastcall TMainForm::mBlocksNavigatorClick(TObject *Sender, TNavigateBtn B
 						TClientDataSet *clone = new TClientDataSet(NULL);
                         clone->CloneCursor(pgDM->blocksCDS, false, false);
                         clone->Last();
-                        pgDM->blocksCDS->FieldValues["status"] 	 					= clone->FieldByName("status")->Value;
-                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]  		= clone->FieldByName("cryoprotection_protocol")->Value;
-                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 		= clone->FieldByName("freezing_protocol")->Value;
-                        pgDM->blocksCDS->FieldValues["substitution_protocol"]    		= clone->FieldByName("substitution_protocol")->Value;
-                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]    		= clone->FieldByName("infiltration_protocol")->Value;
-                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    		= clone->FieldByName("embedding_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["status"] 	 				  = clone->FieldByName("status")->Value;
+                        pgDM->blocksCDS->FieldValues["cryoprotection_protocol"]   = clone->FieldByName("cryoprotection_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["freezing_protocol"] 	 	  = clone->FieldByName("freezing_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["substitution_protocol"]     = clone->FieldByName("substitution_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["infiltration_protocol"]     = clone->FieldByName("infiltration_protocol")->Value;
+                        pgDM->blocksCDS->FieldValues["embedding_protocol"]    	  = clone->FieldByName("embedding_protocol")->Value;
                         clone->Close();
                         delete clone;
                     }
@@ -331,15 +333,15 @@ void __fastcall TMainForm::SlicesNavigatorClick(TObject *Sender, TNavigateBtn Bu
                 pgDM->slicesCDS->FieldByName("specimen_id")->Value = pgDM->specimenCDS->FieldByName("id")->Value;
                 pgDM->slicesCDS->FieldByName("entered_by")->Value = UsersCB->KeyValue;
 
-                if(SpecieRG->ItemIndex != -1)
-                {
-                    string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
-                    //pgDM->slices->FieldByName("specie")->Value = pgDM->getIDForSpecie(specie);
-                }
+//                if(SpecieRG->ItemIndex != -1)
+//                {
+//                    string specie = stdstr(SpecieRG->Items->Strings[SpecieRG->ItemIndex]);
+//                    //pgDM->slices->FieldByName("specie")->Value = pgDM->getIDForSpecie(specie);
+//                }
 
-                TDateTime dt;
-                dt = Now();
-                //pgDM->slices->FieldByName("intake_date")->Value = dt.CurrentDate();
+//                TDateTime dt;
+//                dt = Now();
+//                //pgDM->slices->FieldByName("intake_date")->Value = dt.CurrentDate();
 
                 //Open new specimen form
                 openSlicesForm();
@@ -372,8 +374,7 @@ void __fastcall TMainForm::SpecimenNavigatorClick(TObject *Sender, TNavigateBtn 
                     pgDM->specimenCDS->FieldByName("specie")->Value = pgDM->getIDForSpecie(specie);
                 }
 
-                TDateTime dt;
-                dt = Now();
+                TDateTime dt(Now());
                 pgDM->specimenCDS->FieldByName("intake_date")->Value = dt.CurrentDate();
 
                 //Open new specimen form

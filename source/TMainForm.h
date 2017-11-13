@@ -93,7 +93,6 @@ class TMainForm : public TRegistryForm
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
 	TGroupBox *mBlocksGB;
-	TDBNavigator *mBlocksNavigator;
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *mBlockNoteMemo;
 	TDBNavigator *DBNavigator2;
@@ -101,7 +100,7 @@ class TMainForm : public TRegistryForm
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
-	TDBNavigator *mBlockNoteNavigator;
+	TDBNavigator *BlockNoteNavigator;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
 	TTabSheet *TabSheet7;
@@ -233,6 +232,7 @@ class TMainForm : public TRegistryForm
 	TButton *RegisterPostSilanizationBatch;
 	TButton *mRegisterCleanRoundBtn;
 	TPGConnectionFrame *TPGConnectionFrame1;
+	TDBNavigator *DBNavigator1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -245,13 +245,13 @@ class TMainForm : public TRegistryForm
     void __fastcall LogLevelCBChange(TObject *Sender);
 
 	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mBlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mBlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+	void __fastcall BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall UsersCBCloseUp(TObject *Sender);
-	void __fastcall mBlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall BlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);

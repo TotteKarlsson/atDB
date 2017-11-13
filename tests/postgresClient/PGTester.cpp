@@ -3,8 +3,8 @@
 #include <tchar.h>
 //---------------------------------------------------------------------------
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp", pgDM); /* TDataModule: File Type */
-USEFORM("TMainForm.cpp", MainForm);
 USEFORM("P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp", PGConnectionFrame); /* TFrame: File Type */
+USEFORM("TMainForm.cpp", MainForm);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -37,3 +37,4 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 //---------------------------------------------------------------------------
 #pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "atDatabase.lib")
