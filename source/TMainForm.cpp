@@ -190,23 +190,23 @@ void __fastcall TMainForm::BlockNoteNavigatorClick(TObject *Sender, TNavigateBtn
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::RibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button)
 {
 	switch(Button)
     {
     	case TNavigateBtn::nbInsert:
         {
             int uID = getCurrentUserID();
-            String rID = pgDM->mRibbonCDSid->Value;
+            String rID = pgDM->ribbonsCDSid->Value;
             string note("Ribbon Note..");
 
             try
             {
-//                mServerDBSession.addNoteForRibbon(stdstr(rID), uID, note);
+                //pgDM->addNoteForRibbon(stdstr(rID), uID, note);
             }
             catch(...)
             {
-                handleMySQLException();
+            	Log(lError) << "There was a DB error";
             }
 
             pgDM->ribbonNotesCDS->Refresh();
@@ -309,10 +309,13 @@ void __fastcall TMainForm::RibbonsNavigatorClick(TObject *Sender, TNavigateBtn B
     	case TNavigateBtn::nbDelete:        break;
     	case TNavigateBtn::nbInsert:
         {
-	        pgDM->mRibbonCDS->FieldByName("id")->Value 		= getUUID().c_str();
-	        pgDM->mRibbonCDS->FieldByName("block_id")->Value 	= pgDM->blocksCDS->FieldByName("id")->Value;
-            pgDM->mRibbonCDS->Post();
-			pgDM->mRibbonCDS->First();
+	        pgDM->ribbonsCDS->FieldByName("id")->Value 		= getUUID().c_str();
+	        pgDM->ribbonsCDS->FieldByName("block_id")->Value 	= pgDM->blocksCDS->FieldByName("id")->Value;
+            pgDM->ribbonsCDS->FieldByName("created_by")->Value  	= UsersCB->KeyValue;
+            pgDM->ribbonsCDS->FieldByName("coverslip_id")->Value  	= 2608;
+
+            pgDM->ribbonsCDS->Post();
+			pgDM->ribbonsCDS->First();
         }
         break;
         case TNavigateBtn::nbPost:

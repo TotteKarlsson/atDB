@@ -292,17 +292,11 @@ Coordinates=2021,1030,47,51
 [TabSheet8]
 Coordinates=2470,1098,66,33
 
-[mRibbonsNavigator]
-Coordinates=1390,962,112,51
-
 [CSNavigator]
 Coordinates=2436,894,76,51
 
 [TabSheet4]
 Coordinates=1073,1166,66,33
-
-[mRibbonNotesNavigator]
-Coordinates=832,894,135,51
 
 [atdbDM.blockstatusDS]
 Coordinates=1042,962,126,51
@@ -442,9 +436,6 @@ Coordinates=1085,1098,161,51
 [Panel12]
 Coordinates=149,962,53,51
 
-[mRibbonNoteNavigator]
-Coordinates=1369,894,129,51
-
 [mRibbonsGrid]
 Coordinates=2094,1166,85,33
 
@@ -552,4 +543,13 @@ Coordinates=2304,1166,78,33
 
 [BlockNoteNavigator]
 Coordinates=2002,894,121,51
+
+[RibbonsNavigator]
+Coordinates=1390,962,112,51
+
+[RibbonNotesNavigator]
+Coordinates=832,894,135,51
+
+[RibbonNoteNavigator]
+Coordinates=1369,894,129,51
 

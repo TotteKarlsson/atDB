@@ -19,9 +19,6 @@ Coordinates=197,1075,123,105
 [pgDM.blockIDsDS]
 Coordinates=869,743,103,69
 
-[pgDM.mRibbonCDS]
-Coordinates=498,891,112,231
-
 [pgDM.ROnCS_CDS]
 Coordinates=147,1,109,213
 
@@ -123,4 +120,7 @@ Coordinates=414,1,56,33
 
 [GroupBox2]
 Coordinates=294,213,70,51
+
+[pgDM.ribbonsCDS]
+Coordinates=498,891,112,231
 

@@ -106,12 +106,12 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet7;
 	TGroupBox *GroupBox2;
 	TDBGrid *mRibbonsGrid;
-	TDBNavigator *mRibbonsNavigator;
+	TDBNavigator *RibbonsNavigator;
 	TGroupBox *GroupBox1;
 	TDBGrid *mRibbonNotesGrid;
 	TDBMemo *mRibbonNoteMemo;
-	TDBNavigator *mRibbonNoteNavigator;
-	TDBNavigator *mRibbonNotesNavigator;
+	TDBNavigator *RibbonNoteNavigator;
+	TDBNavigator *RibbonNotesNavigator;
 	TTabSheet *TabSheet4;
 	TPageControl *PageControl2;
 	TTabSheet *TabSheet8;
@@ -233,6 +233,7 @@ class TMainForm : public TRegistryForm
 	TButton *mRegisterCleanRoundBtn;
 	TPGConnectionFrame *TPGConnectionFrame1;
 	TDBNavigator *DBNavigator1;
+	TLabel *Label4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -252,7 +253,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall UsersCBCloseUp(TObject *Sender);
 	void __fastcall BlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall mRibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall RibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
 	void __fastcall SlicesGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,

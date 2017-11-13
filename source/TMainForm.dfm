@@ -46,7 +46,7 @@ object MainForm: TMainForm
           Top = 41
           Width = 1656
           Height = 834
-          ActivePage = TabSheet2
+          ActivePage = TabSheet7
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -246,21 +246,6 @@ object MainForm: TMainForm
                 Height = 58
                 Align = alTop
                 TabOrder = 2
-                object SpecieRG: TRadioGroup
-                  Left = 1489
-                  Top = 1
-                  Width = 154
-                  Height = 56
-                  Align = alRight
-                  Caption = 'Species'
-                  Columns = 2
-                  ItemIndex = 0
-                  Items.Strings = (
-                    'Human'
-                    'Mouse')
-                  TabOrder = 0
-                  OnClick = SpecieRGClick
-                end
               end
             end
           end
@@ -490,8 +475,6 @@ object MainForm: TMainForm
                     Align = alBottom
                     TabOrder = 1
                     OnClick = BlocksNavigatorClick
-                    ExplicitLeft = 4
-                    ExplicitTop = 489
                   end
                 end
               end
@@ -695,7 +678,7 @@ object MainForm: TMainForm
                         Visible = True
                       end>
                   end
-                  object mRibbonNotesNavigator: TDBNavigator
+                  object RibbonNotesNavigator: TDBNavigator
                     Left = 1
                     Top = 123
                     Width = 183
@@ -705,7 +688,7 @@ object MainForm: TMainForm
                     Align = alBottom
                     ConfirmDelete = False
                     TabOrder = 1
-                    OnClick = mRibbonNotesNavigatorClick
+                    OnClick = RibbonNotesNavigatorClick
                   end
                 end
                 object Panel16: TPanel
@@ -725,7 +708,7 @@ object MainForm: TMainForm
                     DataSource = pgDM.ribbonNotesDSource
                     TabOrder = 0
                   end
-                  object mRibbonNoteNavigator: TDBNavigator
+                  object RibbonNoteNavigator: TDBNavigator
                     Left = 1
                     Top = 123
                     Width = 1329
@@ -750,7 +733,7 @@ object MainForm: TMainForm
                   Width = 1518
                   Height = 552
                   Align = alClient
-                  DataSource = pgDM.mRibbonDSource
+                  DataSource = pgDM.ribbonsDSource
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                   ReadOnly = True
                   TabOrder = 0
@@ -762,55 +745,50 @@ object MainForm: TMainForm
                   Columns = <
                     item
                       Expanded = False
-                      FieldName = 'created'
-                      Title.Caption = 'Date'
-                      Width = 135
+                      FieldName = 'statusL'
+                      Width = 100
                       Visible = True
                     end
                     item
                       Expanded = False
-                      FieldName = 'status'
-                      Title.Caption = 'Status'
+                      FieldName = 'nr_of_sections'
                       Width = 80
                       Visible = True
                     end
                     item
                       Expanded = False
                       FieldName = 'cutting_order'
-                      Width = 80
-                      Visible = True
-                    end
-                    item
-                      Expanded = False
-                      FieldName = 'nr_of_sections'
-                      Title.Caption = 'Sections'
-                      Width = 80
+                      Width = 81
                       Visible = True
                     end
                     item
                       Expanded = False
                       FieldName = 'coverslip_id'
-                      Width = 74
-                      Visible = True
-                    end
-                    item
-                      Expanded = False
-                      FieldName = 'statusL'
                       Visible = True
                     end
                     item
                       Expanded = False
                       FieldName = 'created_byL'
                       Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'created_on'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'modified'
+                      Visible = True
                     end>
                 end
-                object mRibbonsNavigator: TDBNavigator
+                object RibbonsNavigator: TDBNavigator
                   Left = 1
                   Top = 553
                   Width = 1518
                   Height = 25
-                  DataSource = pgDM.mRibbonDSource
-                  VisibleButtons = [nbDelete, nbPost, nbCancel, nbRefresh]
+                  DataSource = pgDM.ribbonsDSource
+                  VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh]
                   Align = alBottom
                   ConfirmDelete = False
                   TabOrder = 1
@@ -824,18 +802,24 @@ object MainForm: TMainForm
                   Align = alBottom
                   TabOrder = 2
                   object DBText3: TDBText
-                    Left = 15
+                    Left = 81
                     Top = 6
                     Width = 236
                     Height = 17
                     DataField = 'id'
-                    DataSource = pgDM.mRibbonDSource
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -11
                     Font.Name = 'Tahoma'
                     Font.Style = []
                     ParentFont = False
+                  end
+                  object Label4: TLabel
+                    Left = 24
+                    Top = 10
+                    Width = 51
+                    Height = 13
+                    Caption = 'Ribbon ID:'
                   end
                 end
               end
@@ -1814,6 +1798,20 @@ object MainForm: TMainForm
         end
       end
     end
+    object SpecieRG: TRadioGroup
+      Left = 1335
+      Top = 2
+      Width = 154
+      Height = 71
+      Caption = 'Species'
+      Columns = 2
+      ItemIndex = 0
+      Items.Strings = (
+        'Human'
+        'Mouse')
+      TabOrder = 2
+      OnClick = SpecieRGClick
+    end
   end
   object ActionList1: TActionList
     Left = 528
@@ -1899,8 +1897,8 @@ object MainForm: TMainForm
   end
   object settingsDS: TDataSource
     DataSet = pgDM.settingsCDS
-    Left = 632
-    Top = 160
+    Left = 720
+    Top = 336
   end
   object SpecimenDS: TDataSource
     DataSet = pgDM.specimenCDS
