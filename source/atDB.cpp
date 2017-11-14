@@ -16,10 +16,7 @@
 #include "TPGImagesAndMoviesDataModule.h"
 
 
-USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp", PGConnectionFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
@@ -107,10 +104,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         PGImagesAndMoviesDM     = new TPGImagesAndMoviesDM(NULL);
 
         Application->ProcessMessages();
-		Application->CreateForm(__classid(TPGConnectionFrame), &PGConnectionFrame);
 		Application->CreateForm(__classid(TMainForm), &MainForm);
-		Application->CreateForm(__classid(TImagesFrame), &ImagesFrame);
-		Application->CreateForm(__classid(TMoviesFrame), &MoviesFrame);
 		Application->ShowMainForm = true;
 		Application->Run();
 

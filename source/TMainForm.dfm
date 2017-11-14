@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1664
       Height = 903
-      ActivePage = TabSheet6
+      ActivePage = TabSheet9
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -46,7 +46,7 @@ object MainForm: TMainForm
           Top = 41
           Width = 1656
           Height = 834
-          ActivePage = TabSheet7
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -914,7 +914,6 @@ object MainForm: TMainForm
               Top = 494
               Width = 363
               Height = 25
-              DataSource = csPGDM.csDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 0
@@ -926,7 +925,6 @@ object MainForm: TMainForm
               Width = 363
               Height = 479
               Align = alClient
-              DataSource = csPGDM.csDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               PopupMenu = CoverSlipPopup
               TabOrder = 1
@@ -951,7 +949,6 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
-                  Width = 64
                   Visible = True
                 end>
             end
@@ -1053,7 +1050,6 @@ object MainForm: TMainForm
               Width = 363
               Height = 117
               Align = alClient
-              DataSource = csPGDM.csFreshBatchesDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
@@ -1088,7 +1084,6 @@ object MainForm: TMainForm
               Top = 173
               Width = 363
               Height = 25
-              DataSource = csPGDM.csFreshBatchesDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 1
@@ -1155,7 +1150,6 @@ object MainForm: TMainForm
                   Height = 713
                   Align = alClient
                   DataField = 'notes'
-                  DataSource = csPGDM.csDSource
                   ScrollBars = ssBoth
                   TabOrder = 0
                 end
@@ -1197,7 +1191,6 @@ object MainForm: TMainForm
                     Width = 65
                     Height = 17
                     DataField = 'id'
-                    DataSource = csPGDM.csDSource
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -16
@@ -1211,7 +1204,6 @@ object MainForm: TMainForm
                     Width = 169
                     Height = 21
                     DataField = 'LStatus'
-                    DataSource = csPGDM.csDSource
                     TabOrder = 0
                   end
                   object DBEdit7: TDBEdit
@@ -1220,7 +1212,6 @@ object MainForm: TMainForm
                     Width = 74
                     Height = 21
                     DataField = 'from_lot'
-                    DataSource = csPGDM.csDSource
                     Enabled = False
                     ReadOnly = True
                     TabOrder = 1
@@ -1714,30 +1705,6 @@ object MainForm: TMainForm
     Height = 73
     Align = alTop
     TabOrder = 2
-    DesignSize = (
-      1666
-      73)
-    object Label2: TLabel
-      Left = 1509
-      Top = 15
-      Width = 26
-      Height = 13
-      Anchors = [akTop, akRight]
-      Caption = 'User:'
-      ExplicitLeft = 1281
-    end
-    object UsersCB: TDBLookupComboBox
-      Left = 1509
-      Top = 34
-      Width = 145
-      Height = 21
-      Anchors = [akTop, akRight]
-      KeyField = 'id'
-      ListField = 'user_name'
-      ListSource = pgDM.usersDataSource
-      TabOrder = 0
-      OnCloseUp = UsersCBCloseUp
-    end
     inline TPGConnectionFrame1: TPGConnectionFrame
       Left = 1
       Top = 1
@@ -1745,7 +1712,7 @@ object MainForm: TMainForm
       Height = 71
       Align = alLeft
       AutoSize = True
-      TabOrder = 1
+      TabOrder = 0
       ExplicitLeft = 1
       ExplicitTop = 1
       ExplicitWidth = 917
@@ -1801,18 +1768,53 @@ object MainForm: TMainForm
       end
     end
     object SpecieRG: TRadioGroup
-      Left = 1335
-      Top = 2
-      Width = 154
+      Left = 1367
+      Top = 1
+      Width = 129
       Height = 71
+      Align = alRight
       Caption = 'Species'
       Columns = 2
       ItemIndex = 0
       Items.Strings = (
         'Human'
         'Mouse')
-      TabOrder = 2
+      TabOrder = 1
       OnClick = SpecieRGClick
+    end
+    object Panel10: TPanel
+      Left = 1496
+      Top = 1
+      Width = 169
+      Height = 71
+      Align = alRight
+      BevelOuter = bvNone
+      TabOrder = 2
+      DesignSize = (
+        169
+        71)
+      object Label2: TLabel
+        Left = 12
+        Top = 15
+        Width = 26
+        Height = 13
+        Anchors = [akTop, akRight]
+        Caption = 'User:'
+        ExplicitLeft = 28
+      end
+      object UsersCB: TDBLookupComboBox
+        Left = 12
+        Top = 34
+        Width = 145
+        Height = 21
+        Anchors = [akTop, akRight]
+        KeyField = 'id'
+        ListField = 'user_name'
+        ListSource = pgDM.usersDataSource
+        TabOrder = 0
+        OnCloseUp = UsersCBCloseUp
+        ExplicitLeft = 28
+      end
     end
   end
   object ActionList1: TActionList

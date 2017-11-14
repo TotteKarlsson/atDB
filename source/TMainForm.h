@@ -234,6 +234,7 @@ class TMainForm : public TRegistryForm
 	TPGConnectionFrame *TPGConnectionFrame1;
 	TDBNavigator *BlocksNavigator;
 	TLabel *Label4;
+	TPanel *Panel10;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
