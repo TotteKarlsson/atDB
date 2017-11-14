@@ -8,33 +8,39 @@
 
 using namespace mtk;
 
-
-void __fastcall TMainForm::SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
-
-{
-	try
-    {
-           	Log(lWarning) << "About to delete a specimen";
-    }
-    catch(...)
-    {}
-}
-
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
+void __fastcall TMainForm::NavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)
 {
-	switch(Button)
-    {
-    	case TNavigateBtn::nbDelete:
-//             if(MessageDlg("Deleting this block will delete all associated ribbons and notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
-             {
-				Abort();
-             }
+	TDBNavigator* n = dynamic_cast<TDBNavigator*>(Sender);
 
-//			int blockID = pgDM->blocksCDS->FieldByName("id")->Value;
-//            mServerDBSession.deleteNotesForBlock(blockID);
-//            mServerDBSession.deleteRibbonsForBlock(blockID);
-        break;
+    if(n == BlocksNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbDelete:
+    //             if(MessageDlg("Deleting this block will delete all associated ribbons and notes!\nContinue?", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0) == mrCancel)
+                 {
+                    Abort();
+                 }
+
+    //			int blockID = pgDM->blocksCDS->FieldByName("id")->Value;
+    //            mServerDBSession.deleteNotesForBlock(blockID);
+    //            mServerDBSession.deleteRibbonsForBlock(blockID);
+            break;
+        }
+    }
+    else if(n == CSFreshBatchNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbDelete:
+            	int mRes = MessageDlg("Deleting a batch will delete all coverslips in the batch.\n\nThis works only if no ribbons are associated with the coverslip", mtWarning, TMsgDlgButtons() << mbOK<<mbCancel, 0);
+                if(mRes == mrCancel)
+                {
+                	Abort();
+                }
+            break;
+        }
     }
 }
 
@@ -203,7 +209,7 @@ void __fastcall TMainForm::NavigatorClick(TObject *Sender, TNavigateBtn Button)
     	        pgDM->ribbonsCDS->FieldByName("id")->Value 				= getUUID().c_str();
     	        pgDM->ribbonsCDS->FieldByName("block_id")->Value 		= pgDM->blocksCDS->FieldByName("id")->Value;
                 pgDM->ribbonsCDS->FieldByName("created_by")->Value  	= UsersCB->KeyValue;
-                pgDM->ribbonsCDS->FieldByName("coverslip_id")->Value  	= 2608;
+                pgDM->ribbonsCDS->FieldByName("coverslip_id")->Value  	= csPGDM->csCDS->FieldByName("id")->Value;
                 pgDM->ribbonsCDS->FieldByName("created_on")->Value      = dateTime.CurrentDate();
                 pgDM->ribbonsCDS->Post();
     			pgDM->ribbonsCDS->First();
@@ -236,16 +242,23 @@ void __fastcall TMainForm::NavigatorClick(TObject *Sender, TNavigateBtn Button)
         switch(Button)
         {
             case TNavigateBtn::nbInsert:
-                    csPGDM->csCDS->FieldValues["status"] 	= 1;
-                    csPGDM->csCDS->FieldValues["type"] 	= 1;
-                    csPGDM->csCDS->Post();
-                    csPGDM->csCDS->First();
-            break;
+                csPGDM->csCDS->FieldValues["status"] 	= 1;
+                csPGDM->csCDS->FieldValues["type"] 	= 1;
+                csPGDM->csCDS->Post();
+                csPGDM->csCDS->First();
+        	break;
         }
     }
+
     else if(n == CSFreshBatchNavigator)
     {
-		csPGDM->csCDS->Refresh();
+        switch(Button)
+        {
+       		case TNavigateBtn::nbDelete:
+
+            break;
+
+        }
     }
     else
     {

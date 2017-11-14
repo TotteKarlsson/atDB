@@ -460,14 +460,8 @@ Coordinates=1305,894,47,51
 [mTablesLB]
 Coordinates=999,760,84,87
 
-[mCoverSlipsGrid]
-Coordinates=540,1166,98,33
-
 [CSFreshBatchNavigator]
 Coordinates=383,962,132,51
-
-[mFreshBatchesGrid]
-Coordinates=1923,1098,112,33
 
 [mPrintBatchLblBtn]
 Coordinates=996,894,108,51
@@ -552,4 +546,10 @@ Coordinates=2002,894,121,51
 
 [BlockNoteNavigator]
 Coordinates=644,962,82,51
+
+[FreshBatchesGrid]
+Coordinates=1923,1098,112,33
+
+[CoverSlipsGrid]
+Coordinates=540,1166,98,33
 

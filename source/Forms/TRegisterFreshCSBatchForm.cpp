@@ -62,7 +62,6 @@ int nrOfFreshBatchesToday()
 //---------------------------------------------------------------------------
 void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 {
-
     if(mCoverSlipLOTE->Text.Length() < 1 || mBoxof100NrEdit->Text.Length() < 1)
     {
     	MessageDlg("Both Lot number and Box (of 100) number must be filled out!", mtError, TMsgDlgButtons() << mbOK, 0);
@@ -71,8 +70,6 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
 	//Insert/create a new batch
     int count = mCSCount->getValue();
-    TSQLQuery* q = new TSQLQuery(NULL);
-    q->SQLConnection = pgDM->SQLConnection1;
 
     int csType = csPGDM->csTypeCDS->FieldByName("id")->AsInteger;
 
@@ -86,6 +83,8 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     sq << "INSERT into freshCSbatches (count, lot_number, box_number, type) VALUES ("
     		<<count<<", '" <<mCoverSlipLOTE->getValue()<<"', '"<<mBoxof100NrEdit->getValue()<<"', '"<<csType<<"') RETURNING id";
 
+    TSQLQuery* q = new TSQLQuery(NULL);
+    q->SQLConnection = pgDM->SQLConnection1;
     q->SQL->Add(sq.str().c_str());
     q->Open();
 
@@ -95,8 +94,6 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     csPGDM->csFreshBatchesCDS->Refresh();
 
 	//Get last insert id, create and associate 'count' coverslips
-    TSQLQuery* tq = new TSQLQuery(NULL);
-    tq->SQLConnection = pgDM->SQLConnection1;
 
     //Associate count coverslips with this batch
 	stringstream qs;
@@ -109,14 +106,19 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 	    	qs<<",";
         }
     }
+
+    TSQLQuery* tq = new TSQLQuery(NULL);
+    tq->SQLConnection = pgDM->SQLConnection1;
     tq->SQL->Add(qs.str().c_str());
 	tq->ExecSQL();
     delete tq;
     delete q;
     Log(lInfo) << "Batch ID: "<<insert_id;
     Sleep(1000);
-    Close();
     csPGDM->csCDS->Refresh();
+
+    //Close the form
+    Close();
 }
 
 //Restore the filter

@@ -46,7 +46,7 @@ object MainForm: TMainForm
           Top = 41
           Width = 1656
           Height = 834
-          ActivePage = TabSheet2
+          ActivePage = TabSheet8
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -179,7 +179,7 @@ object MainForm: TMainForm
                 VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 0
-                BeforeAction = SpecimenNavigatorBeforeAction
+                BeforeAction = NavigatorBeforeAction
                 OnClick = NavigatorClick
               end
               object SpecimenGrid: TDBGrid
@@ -385,7 +385,7 @@ object MainForm: TMainForm
                     TitleFont.Name = 'Tahoma'
                     TitleFont.Style = []
                     OnCellClick = BlocksGridCellClick
-                    OnDblClick = DBGrid_DBLClick
+                    OnDblClick = DBGridDblClick
                     OnKeyUp = BlocksGridKeyUp
                     Columns = <
                       item
@@ -475,6 +475,7 @@ object MainForm: TMainForm
                     VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                     Align = alBottom
                     TabOrder = 1
+                    BeforeAction = NavigatorBeforeAction
                     OnClick = NavigatorClick
                   end
                 end
@@ -744,6 +745,7 @@ object MainForm: TMainForm
                   TitleFont.Height = -11
                   TitleFont.Name = 'Tahoma'
                   TitleFont.Style = []
+                  OnDblClick = DBGridDblClick
                   Columns = <
                     item
                       Expanded = False
@@ -914,17 +916,19 @@ object MainForm: TMainForm
               Top = 494
               Width = 363
               Height = 25
+              DataSource = csPGDM.csDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 0
               OnClick = NavigatorClick
             end
-            object mCoverSlipsGrid: TDBGrid
+            object CoverSlipsGrid: TDBGrid
               Left = 2
               Top = 15
               Width = 363
               Height = 479
               Align = alClient
+              DataSource = csPGDM.csDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               PopupMenu = CoverSlipPopup
               TabOrder = 1
@@ -933,8 +937,8 @@ object MainForm: TMainForm
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
-              OnCellClick = mCoverSlipsGridCellClick
-              OnKeyUp = mCoverSlipsGridKeyUp
+              OnCellClick = CoverSlipsGridCellClick
+              OnKeyUp = CoverSlipsGridKeyUp
               Columns = <
                 item
                   Expanded = False
@@ -1042,14 +1046,15 @@ object MainForm: TMainForm
             Width = 367
             Height = 200
             Align = alTop
-            Caption = 'Batches'
+            Caption = 'Coverslip Batches'
             TabOrder = 2
-            object mFreshBatchesGrid: TDBGrid
+            object FreshBatchesGrid: TDBGrid
               Left = 2
               Top = 56
               Width = 363
               Height = 117
               Align = alClient
+              DataSource = csPGDM.csFreshBatchesDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
@@ -1057,8 +1062,8 @@ object MainForm: TMainForm
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
-              OnCellClick = mFreshBatchesGridCellClick
-              OnKeyUp = mFreshBatchesGridKeyUp
+              OnCellClick = FreshBatchesGridCellClick
+              OnKeyUp = FreshBatchesGridKeyUp
               Columns = <
                 item
                   Expanded = False
@@ -1084,9 +1089,11 @@ object MainForm: TMainForm
               Top = 173
               Width = 363
               Height = 25
+              DataSource = csPGDM.csFreshBatchesDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 1
+              BeforeAction = NavigatorBeforeAction
               OnClick = NavigatorClick
             end
             object Panel12: TPanel
@@ -1102,7 +1109,7 @@ object MainForm: TMainForm
                 Top = 10
                 Width = 132
                 Height = 25
-                Caption = 'Register Batch'
+                Caption = 'Register New Batch'
                 TabOrder = 0
                 OnClick = mRegisterFreshBatchBtnClick
               end
@@ -1137,9 +1144,9 @@ object MainForm: TMainForm
               Caption = 'Coverslip Info'
               object GroupBox12: TGroupBox
                 Left = 0
-                Top = 115
+                Top = 529
                 Width = 1274
-                Height = 730
+                Height = 316
                 Align = alClient
                 Caption = 'Coverslip notes'
                 TabOrder = 0
@@ -1147,9 +1154,10 @@ object MainForm: TMainForm
                   Left = 2
                   Top = 15
                   Width = 1270
-                  Height = 713
+                  Height = 299
                   Align = alClient
                   DataField = 'notes'
+                  DataSource = csPGDM.csDSource
                   ScrollBars = ssBoth
                   TabOrder = 0
                 end
@@ -1158,14 +1166,14 @@ object MainForm: TMainForm
                 Left = 0
                 Top = 0
                 Width = 1274
-                Height = 115
+                Height = 529
                 Align = alTop
                 TabOrder = 1
                 object GroupBox11: TGroupBox
                   Left = 1
                   Top = 1
                   Width = 280
-                  Height = 113
+                  Height = 527
                   Align = alLeft
                   Caption = 'Identification'
                   TabOrder = 0
@@ -1185,12 +1193,13 @@ object MainForm: TMainForm
                     Caption = 'From LOT'
                     FocusControl = DBEdit7
                   end
-                  object DBText2: TDBText
+                  object CSID: TDBText
                     Left = 16
                     Top = 32
                     Width = 65
                     Height = 17
                     DataField = 'id'
+                    DataSource = csPGDM.csDSource
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -16
@@ -1204,6 +1213,7 @@ object MainForm: TMainForm
                     Width = 169
                     Height = 21
                     DataField = 'LStatus'
+                    DataSource = csPGDM.csDSource
                     TabOrder = 0
                   end
                   object DBEdit7: TDBEdit
@@ -1212,6 +1222,7 @@ object MainForm: TMainForm
                     Width = 74
                     Height = 21
                     DataField = 'from_lot'
+                    DataSource = csPGDM.csDSource
                     Enabled = False
                     ReadOnly = True
                     TabOrder = 1
@@ -1221,23 +1232,73 @@ object MainForm: TMainForm
                   Left = 281
                   Top = 1
                   Width = 992
-                  Height = 113
+                  Height = 527
                   Align = alClient
                   Caption = 'Ribbon(s)'
                   TabOrder = 1
+                  object Label5: TLabel
+                    Left = 528
+                    Top = 304
+                    Width = 60
+                    Height = 13
+                    Caption = 'created_byL'
+                  end
                   object DBGrid1: TDBGrid
                     Left = 2
                     Top = 15
                     Width = 988
-                    Height = 96
+                    Height = 485
                     Align = alClient
-                    DataSource = TTableFrame1.DataSource1
+                    DataSource = csPGDM.ROnCoverSlipsSource
+                    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                     TabOrder = 0
                     TitleFont.Charset = DEFAULT_CHARSET
                     TitleFont.Color = clWindowText
                     TitleFont.Height = -11
                     TitleFont.Name = 'Tahoma'
                     TitleFont.Style = []
+                    Columns = <
+                      item
+                        Expanded = False
+                        FieldName = 'statusL'
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'block_id'
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'cutting_order'
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'nr_of_sections'
+                        Width = 98
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'created_on'
+                        Visible = True
+                      end
+                      item
+                        Expanded = False
+                        FieldName = 'created_byL'
+                        Visible = True
+                      end>
+                  end
+                  object DBNavigator1: TDBNavigator
+                    Left = 2
+                    Top = 500
+                    Width = 988
+                    Height = 25
+                    DataSource = csPGDM.ROnCoverSlipsSource
+                    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+                    Align = alBottom
+                    TabOrder = 1
                   end
                 end
               end
@@ -1396,13 +1457,25 @@ object MainForm: TMainForm
                 ExplicitWidth = 1497
               end
             end
+            inherited DataSource1: TDataSource
+              Left = 672
+              Top = 280
+            end
             inherited ClientDataSet1: TClientDataSet
-              Left = 520
-              Top = 184
+              Left = 568
+              Top = 288
+            end
+            inherited DataSetProvider1: TDataSetProvider
+              Left = 456
+              Top = 288
             end
             inherited SQLDataSet1: TSQLDataSet
               Left = 520
               Top = 112
+            end
+            inherited LockoutCheckTimer: TTimer
+              Left = 256
+              Top = 216
             end
           end
           object Panel19: TPanel
@@ -1813,7 +1886,6 @@ object MainForm: TMainForm
         ListSource = pgDM.usersDataSource
         TabOrder = 0
         OnCloseUp = UsersCBCloseUp
-        ExplicitLeft = 28
       end
     end
   end
@@ -1842,8 +1914,8 @@ object MainForm: TMainForm
     end
   end
   object LogMemoPopup: TPopupMenu
-    Left = 912
-    Top = 280
+    Left = 888
+    Top = 272
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -1901,17 +1973,17 @@ object MainForm: TMainForm
   end
   object settingsDS: TDataSource
     DataSet = pgDM.settingsCDS
-    Left = 720
-    Top = 336
+    Left = 1128
+    Top = 472
   end
   object SpecimenDS: TDataSource
     DataSet = pgDM.specimenCDS
-    Left = 784
-    Top = 272
+    Left = 1128
+    Top = 544
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 680
-    Top = 96
+    Left = 1336
+    Top = 224
   end
 end

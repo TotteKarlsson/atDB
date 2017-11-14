@@ -127,9 +127,11 @@ void __fastcall TMainForm::logMsg()
     mLogFileReader.purge();
 }
 
+//---------------------------------------------------------------------------
 void __fastcall TMainForm::DBGridDblClick(TObject *Sender)
 {
     TDBGrid* g = dynamic_cast<TDBGrid*>(Sender);
+
     if(g == SpecimenGrid)
     {
     	openSpecimenForm();
@@ -137,6 +139,22 @@ void __fastcall TMainForm::DBGridDblClick(TObject *Sender)
     else if(g == SlicesGrid)
     {
     	openSlicesForm();
+    }
+    else if(g == BlocksGrid)
+    {
+    	openBlocksForm();
+    }
+    else if(g == SpecimenGrid)
+    {
+    	openSpecimenForm();
+    }
+    else if(g == SlicesGrid)
+    {
+    	openSlicesForm();
+    }
+    else
+    {
+    	MessageDlg("This grid don't handle double clicks..", mtInformation, TMsgDlgButtons() << mbOK, 0);
     }
 }
 
@@ -592,7 +610,7 @@ void __fastcall TMainForm::mRegisterFreshBatchBtnClick(TObject *Sender)
     f->ShowModal();
     delete f;
 
-	selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
+	selectCoverSlips(FreshBatchesGrid, CoverSlipsGrid);
 }
 
 //---------------------------------------------------------------------------
@@ -618,17 +636,17 @@ void __fastcall TMainForm::mPrintBatchLblBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mFreshBatchesGridCellClick(TColumn *Column)
+void __fastcall TMainForm::FreshBatchesGridCellClick(TColumn *Column)
 {
-	selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
+	selectCoverSlips(FreshBatchesGrid, CoverSlipsGrid);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mFreshBatchesGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TMainForm::FreshBatchesGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-    if(mFreshBatchesGrid->DataSource->DataSet->Eof != true)
+    if(FreshBatchesGrid->DataSource->DataSet->Eof != true)
     {
-        selectCoverSlips(mFreshBatchesGrid, mCoverSlipsGrid);
+        selectCoverSlips(FreshBatchesGrid, CoverSlipsGrid);
     }
 }
 
@@ -677,7 +695,7 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
 void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 {
 	//Get selected cs records in the coverslip grid
-    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+    vector<int> coverslipIDS = getSelectedIDS(CoverSlipsGrid, "id");
 
     if(coverslipIDS.size() == 0)
     {
@@ -693,7 +711,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
     	return;
     }
 
-    //Create a new cleanround record, and associate slected coverslips with it
+    //Create a new cleanround batch record, and associate selected coverslips with it
     TSQLQuery* q = new TSQLQuery(NULL);
     q->SQLConnection = pgDM->SQLConnection1;
     QueryBuilder qb;
@@ -708,8 +726,6 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 
     //Get last insert ID for cleanCS batch and update coverslips
     int cleanCSBatchID = q->FieldByName("id")->AsInteger;
-
-//    int cleanCSBatchID = getLastInsertID(pgDM->SQLConnection1);
 
     for(int i = 0; i < coverslipIDS.size(); i++)
     {
@@ -734,7 +750,7 @@ void __fastcall TMainForm::mRegisterCleanRoundBtnClick(TObject *Sender)
 void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 {
 	//Get selected cs records in the coverslip grid
-    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+    vector<int> coverslipIDS = getSelectedIDS(CoverSlipsGrid, "id");
 
     if(coverslipIDS.size() == 0)
     {
@@ -798,7 +814,7 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 {
     //Get selected cs records in the coverslip grid
-    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+    vector<int> coverslipIDS = getSelectedIDS(CoverSlipsGrid, "id");
 
     if(coverslipIDS.size() == 0)
     {
@@ -844,53 +860,17 @@ void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mCoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+void __fastcall TMainForm::CoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 {
-	mCoverSlipsGrid->SelectedRows->Count;
-	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
+	CoverSlipsGrid->SelectedRows->Count;
+	mNrOfSelectedCS->setValue(CoverSlipsGrid->SelectedRows->Count);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mCoverSlipsGridCellClick(TColumn *Column)
+void __fastcall TMainForm::CoverSlipsGridCellClick(TColumn *Column)
 {
-	mCoverSlipsGrid->SelectedRows->Count;
-	mNrOfSelectedCS->setValue(mCoverSlipsGrid->SelectedRows->Count);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::DBGrid_DBLClick(TObject *Sender)
-{
-    TDBGrid* g = dynamic_cast<TDBGrid*>(Sender);
-    if(g == SpecimenGrid)
-    {
-    	openSpecimenForm();
-    }
-    else if(g == SlicesGrid)
-    {
-    	openSlicesForm();
-    }
-    else if(g == BlocksGrid)
-    {
-    	openBlocksForm();
-    }
-//
-//	//Show current record on a form
-//    TNewBlockForm* nsf = new TNewBlockForm(this);
-//    pgDM->blocksCDS->Edit();
-//
-//    int res = nsf->ShowModal();
-//    if(res == mrCancel)
-//    {
-//        //revert
-//        pgDM->blocksCDS->Cancel();
-//    }
-//    else
-//    {
-//        pgDM->blocksCDS->Post();
-//        pgDM->blocksCDS->First();
-//    }
-//
-//    delete nsf;
+	CoverSlipsGrid->SelectedRows->Count;
+	mNrOfSelectedCS->setValue(CoverSlipsGrid->SelectedRows->Count);
 }
 
 //---------------------------------------------------------------------------
@@ -898,7 +878,7 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
 {
 
 	//Get selected cs records in the coverslip grid
-    vector<int> coverslipIDS = getSelectedIDS(mCoverSlipsGrid, "id");
+    vector<int> coverslipIDS = getSelectedIDS(CoverSlipsGrid, "id");
     if(coverslipIDS.size() == 0)
     {
 	 	MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
