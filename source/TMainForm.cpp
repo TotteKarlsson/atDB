@@ -811,50 +811,57 @@ void __fastcall TMainForm::mRegisterCarbonCoatBatchBtnClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainForm::mPrintCSLabelsBtnClick(TObject *Sender)
+void __fastcall TMainForm::FormBtnClick(TObject *Sender)
 {
+	TButton* b = dynamic_cast<TButton*>(Sender);
+
     //Get selected cs records in the coverslip grid
     vector<int> coverslipIDS = getSelectedIDS(CoverSlipsGrid, "id");
 
-    if(coverslipIDS.size() == 0)
+	//These are actions requiring a selection of coverslips
+	if(b == mPrintCSLabelsBtn || b == mAddCSNote)
     {
-        MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
-        return;
-    }
-
-	TButton* b = dynamic_cast<TButton*>(Sender);
-	if(b == mPrintCSLabelsBtn)
-    {
-        BarcodePrintParameters p;
-        p.command 			= stdlines(mBarCodeCommandMemo->Lines);
-
-        //Create and print labels
-        if(!createAndPrintCoverSlipLabels(p, coverslipIDS, pgDM->SQLConnection1))
+        if(coverslipIDS.size() == 0)
         {
-            Log(lError) << "There was a problem creating and/or printing coverslip labels";
+            MessageDlg("Please select some coverslips!", mtInformation, TMsgDlgButtons() << mbOK, 0);
+            return;
         }
-    }
-    else if(b == mAddCSNote)
-    {
-    	TTextInputDialog* f = new TTextInputDialog(this);
-        f->Caption = "Add note to multiple coverslips";
 
-		stringstream msg;
-        msg <<"---------------------------------------------------------------------";
-        msg <<"\nNew note added on "<<getDateTimeString() << " by " <<stdstr(UsersCB->Text)<<endl;
-        msg <<"---------------------------------------------------------------------";
-        f->setText(msg.str().c_str());
-
-       	f->mInfoMemo->SelStart =f->mInfoMemo->GetTextLen();
-	    f->mInfoMemo->Perform(EM_SCROLLCARET, 0, 0);
-        int mr = f->ShowModal();
-
-        if(mr == mrOk)
+        if(b == mPrintCSLabelsBtn)
         {
-        	string note = f->getText();
-        	Log(lError) << "Adding note to multiple coverslips";
-            addNoteToMultipleCoverSlips(coverslipIDS, pgDM->SQLConnection1, note);
-            CSNavigator->BtnClick(::Data::Bind::Controls::nbRefresh);
+            BarcodePrintParameters p;
+            p.command 			= stdlines(mBarCodeCommandMemo->Lines);
+
+            //Create and print labels
+            if(!createAndPrintCoverSlipLabels(p, coverslipIDS, pgDM->SQLConnection1))
+            {
+                Log(lError) << "There was a problem creating and/or printing coverslip labels";
+            }
+        }
+        else if(b == mAddCSNote)
+        {
+            TTextInputDialog* f = new TTextInputDialog(this);
+
+            //Setup form
+            f->Caption = "Add note to multiple coverslips";
+
+            stringstream msg;
+            msg <<"---------------------------------------------------------------------";
+            msg <<"\nNew note added on "<<getDateTimeString() << " by " <<stdstr(UsersCB->Text)<<endl;
+            msg <<"---------------------------------------------------------------------";
+            f->setText(msg.str().c_str());
+
+            f->mInfoMemo->SelStart = f->mInfoMemo->GetTextLen();
+            f->mInfoMemo->Perform(EM_SCROLLCARET, 0, 0);
+            int mr = f->ShowModal();
+
+            if(mr == mrOk)
+            {
+                string note = f->getText();
+                Log(lError) << "Adding note to multiple coverslips";
+                addNoteToMultipleCoverSlips(coverslipIDS, pgDM->SQLConnection1, note);
+                CSNavigator->BtnClick(::Data::Bind::Controls::nbRefresh);
+            }
         }
     }
 }

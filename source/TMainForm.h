@@ -288,7 +288,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall FreshBatchesGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mRegisterCleanRoundBtnClick(TObject *Sender);
 	void __fastcall mRegisterCarbonCoatBatchBtnClick(TObject *Sender);
-	void __fastcall mPrintCSLabelsBtnClick(TObject *Sender);
+	void __fastcall FormBtnClick(TObject *Sender);
 	void __fastcall CoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall CoverSlipsGridCellClick(TColumn *Column);
 

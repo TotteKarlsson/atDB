@@ -953,6 +953,7 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
+                  Width = 64
                   Visible = True
                 end>
             end
@@ -1028,7 +1029,7 @@ object MainForm: TMainForm
               Height = 25
               Caption = 'Print Labels for Selected'
               TabOrder = 0
-              OnClick = mPrintCSLabelsBtnClick
+              OnClick = FormBtnClick
             end
             object mAddCSNote: TButton
               Left = 4
@@ -1037,7 +1038,7 @@ object MainForm: TMainForm
               Height = 25
               Caption = 'Add Note to Multiple'
               TabOrder = 1
-              OnClick = mPrintCSLabelsBtnClick
+              OnClick = FormBtnClick
             end
           end
           object BatchesGB: TGroupBox
@@ -1271,6 +1272,7 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'cutting_order'
+                        Width = 64
                         Visible = True
                       end
                       item
@@ -1282,11 +1284,13 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'created_on'
+                        Width = 64
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'created_byL'
+                        Width = 64
                         Visible = True
                       end>
                   end

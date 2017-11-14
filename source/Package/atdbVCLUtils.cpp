@@ -113,7 +113,7 @@ bool addNoteToMultipleCoverSlips(const vector<int>& csIDS, TSQLConnection* c, co
 	for(int i = 0; i < csIDS.size(); i++)
     {
 		stringstream q;
-        q<<"UPDATE coverslips set notes = concat('" << "\n\n" << note <<"', IFNULL(notes, '')) WHERE id='"<<csIDS[i]<< "';";
+        q<<"UPDATE coverslips set notes = concat('" << "\n\n" << note <<"', COALESCE(notes, '')) WHERE id='"<<csIDS[i]<< "';";
 	    tq->SQL->Add(q.str().c_str());
     	tq->ExecSQL(true);
 		Log(lInfo) << "Added note..";
