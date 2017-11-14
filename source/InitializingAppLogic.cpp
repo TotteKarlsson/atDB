@@ -67,8 +67,11 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 
 	mLogFileReader.start(true);
 
-	pgDM->SQLConnection1->AfterConnect 		= afterDBServerConnect;
-    pgDM->SQLConnection1->AfterDisconnect 	= afterDBServerDisconnect;
+    if(pgDM)
+    {
+		pgDM->SQLConnection1->AfterConnect 		= afterDBServerConnect;
+	    pgDM->SQLConnection1->AfterDisconnect 	= afterDBServerDisconnect;
+    }
 }
 
 //---------------------------------------------------------------------------

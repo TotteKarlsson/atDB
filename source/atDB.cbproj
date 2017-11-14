@@ -226,25 +226,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\database\atDBCredentials.cpp">
-            <DependentOn>P:\libs\atapi\source\database\atDBCredentials.h</DependentOn>
-            <BuildOrder>27</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.cpp">
-            <Form>csPGDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.h</DependentOn>
-            <BuildOrder>25</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp">
-            <Form>pgDM</Form>
-            <DesignClass>TDataModule</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\datamodules\TPGDataModule.h</DependentOn>
-            <BuildOrder>24</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\datamodules\TPGImagesAndMoviesDataModule.cpp">
-            <BuildOrder>21</BuildOrder>
-        </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp">
             <Form>ImagesFrame</Form>
             <DesignClass>TFrame</DesignClass>
@@ -263,27 +244,18 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.h</DependentOn>
             <BuildOrder>26</BuildOrder>
         </CppCompile>
-        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp">
-            <Form>SyncMySQLToPostgresFrame</Form>
-            <DesignClass>TFrame</DesignClass>
-            <DependentOn>P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.h</DependentOn>
-            <BuildOrder>24</BuildOrder>
-        </CppCompile>
-        <FormResources Include="TMainForm.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\datamodules\TPGDataModule.dfm"/>
+        <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
-        <FormResources Include="Forms\TBlockForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TSpecimenForm.dfm"/>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
+        <FormResources Include="Forms\TBlockForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

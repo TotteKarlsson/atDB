@@ -4,7 +4,6 @@
 //---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-#include "TPGImagesAndMoviesDataModule.h"
 #include "mtkUtils.h"
 #include "mtkVCLUtils.h"
 #include "mtkIniKey.h"
@@ -12,23 +11,23 @@
 #include "mtkLogger.h"
 #include "Core/atDBUtilities.h"
 #include "mtkMoleculixException.h"
-#include "database/mtkSQLite.h"
+#include "TPGDataModule.h"
+#include "TPGCoverSlipDataModule.h"
+#include "TPGImagesAndMoviesDataModule.h"
 
-USEFORM("TMainForm.cpp", MainForm);
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.cpp", csPGDM); /* TDataModule: File Type */
+
 USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp", PGConnectionFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp", SyncMySQLToPostgresFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp", pgDM); /* TDataModule: File Type */
+USEFORM("TMainForm.cpp", MainForm);
 USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
+USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("Forms\TBlockForm.cpp", BlockForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
-USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("Forms\TBlockForm.cpp", BlockForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -100,17 +99,18 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 		TStyleManager::TrySetStyle("Iceberg Classico");
 		Application->Title = "atDB";
+
+        //Create data modules
+
+        pgDM 	                = new TpgDM(NULL);
+        csPGDM                  = new TcsPGDM(NULL);
+        PGImagesAndMoviesDM     = new TPGImagesAndMoviesDM(NULL);
+
         Application->ProcessMessages();
-
-
-		Application->CreateForm(__classid(TpgDM), &pgDM);
-		Application->CreateForm(__classid(TcsPGDM), &csPGDM);
 		Application->CreateForm(__classid(TPGConnectionFrame), &PGConnectionFrame);
-		Application->CreateForm(__classid(TPGImagesAndMoviesDM), &PGImagesAndMoviesDM);
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TImagesFrame), &ImagesFrame);
 		Application->CreateForm(__classid(TMoviesFrame), &MoviesFrame);
-		Application->CreateForm(__classid(TSyncMySQLToPostgresFrame), &SyncMySQLToPostgresFrame);
 		Application->ShowMainForm = true;
 		Application->Run();
 
