@@ -957,17 +957,6 @@ void __fastcall TMainForm::DiscardedMenuItemClick(TObject *Sender)
 	csPGDM->csCDS->Refresh();
 }
 
-
-void __fastcall TMainForm::settingsNavigatorClick(TObject *Sender, TNavigateBtn Button)
-{
-//	switch(Button)
-//    {
-//    	case TNavigateBtn::nbInsert:
-//        	pgDM->settingsCDS->FieldValues["id"] = "New User";
-//        break;
-//    }
-}
-
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::UnlocktablesBtnClick(TObject *Sender)
 {

@@ -290,7 +290,6 @@ class TMainForm : public TRegistryForm
 	void __fastcall mCoverSlipsGridCellClick(TColumn *Column);
 	void __fastcall DBGrid_DBLClick(TObject *Sender);
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
-	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBGridDblClick(TObject *Sender);

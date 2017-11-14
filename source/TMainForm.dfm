@@ -34,7 +34,7 @@ object MainForm: TMainForm
       Top = 1
       Width = 1664
       Height = 903
-      ActivePage = TabSheet4
+      ActivePage = TabSheet6
       Align = alClient
       ParentShowHint = False
       ShowHint = True
@@ -46,7 +46,7 @@ object MainForm: TMainForm
           Top = 41
           Width = 1656
           Height = 834
-          ActivePage = TabSheet2
+          ActivePage = TabSheet7
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -160,8 +160,6 @@ object MainForm: TMainForm
                 Align = alBottom
                 TabOrder = 1
                 OnClick = NavigatorClick
-                ExplicitLeft = 3
-                ExplicitTop = 487
               end
             end
             object GroupBox9: TGroupBox
@@ -1593,7 +1591,7 @@ object MainForm: TMainForm
             Height = 25
             DataSource = settingsDS
             TabOrder = 3
-            OnClick = settingsNavigatorClick
+            OnClick = NavigatorClick
           end
         end
         object GroupBox20: TGroupBox

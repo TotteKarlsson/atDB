@@ -3,6 +3,9 @@
         <ProjectGuid>{D205F2C9-997F-479F-8C2E-0DC7AF7C3730}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="P:\libs\dsl\VCL\Components\DuneComponents.cbproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="source\Core\atDBCore-static.cbproj">
             <Dependencies/>
         </Projects>
@@ -17,6 +20,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="DuneComponents">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj"/>
+    </Target>
+    <Target Name="DuneComponents:Clean">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DuneComponents:Make">
+        <MSBuild Projects="P:\libs\dsl\VCL\Components\DuneComponents.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="atDBCore-static">
         <MSBuild Projects="source\Core\atDBCore-static.cbproj"/>
     </Target>
@@ -36,13 +48,13 @@
         <MSBuild Projects="source\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="atDBCore-static;atDB"/>
+        <CallTarget Targets="DuneComponents;atDBCore-static;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="atDBCore-static:Clean;atDB:Clean"/>
+        <CallTarget Targets="DuneComponents:Clean;atDBCore-static:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="atDBCore-static:Make;atDB:Make"/>
+        <CallTarget Targets="DuneComponents:Make;atDBCore-static:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
