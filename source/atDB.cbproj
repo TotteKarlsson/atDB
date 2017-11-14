@@ -210,6 +210,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="MiscDataBase.cpp">
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="NavigatorLogic.cpp">
+            <BuildOrder>27</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Package\atdbVCLUtils.cpp">
             <DependentOn>Package\atdbVCLUtils.h</DependentOn>
             <BuildOrder>16</BuildOrder>

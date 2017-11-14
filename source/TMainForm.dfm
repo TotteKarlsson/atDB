@@ -46,7 +46,7 @@ object MainForm: TMainForm
           Top = 41
           Width = 1656
           Height = 834
-          ActivePage = TabSheet7
+          ActivePage = TabSheet2
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
@@ -159,7 +159,9 @@ object MainForm: TMainForm
                 VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                 Align = alBottom
                 TabOrder = 1
-                OnClick = SlicesNavigatorClick
+                OnClick = NavigatorClick
+                ExplicitLeft = 3
+                ExplicitTop = 487
               end
             end
             object GroupBox9: TGroupBox
@@ -180,7 +182,7 @@ object MainForm: TMainForm
                 Align = alBottom
                 TabOrder = 0
                 BeforeAction = SpecimenNavigatorBeforeAction
-                OnClick = SpecimenNavigatorClick
+                OnClick = NavigatorClick
               end
               object SpecimenGrid: TDBGrid
                 Left = 2
@@ -297,7 +299,7 @@ object MainForm: TMainForm
                     DataSource = pgDM.blockNotesDSource
                     TabOrder = 0
                   end
-                  object DBNavigator2: TDBNavigator
+                  object BlockNoteNavigator: TDBNavigator
                     Left = 1
                     Top = 227
                     Width = 1241
@@ -306,6 +308,7 @@ object MainForm: TMainForm
                     VisibleButtons = [nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                     Align = alBottom
                     TabOrder = 1
+                    OnClick = NavigatorClick
                   end
                 end
                 object Panel4: TPanel
@@ -316,7 +319,7 @@ object MainForm: TMainForm
                   Align = alLeft
                   BevelOuter = bvNone
                   TabOrder = 1
-                  object BlockNoteNavigator: TDBNavigator
+                  object BlockNotesNavigator: TDBNavigator
                     Left = 0
                     Top = 228
                     Width = 199
@@ -326,7 +329,7 @@ object MainForm: TMainForm
                     Align = alBottom
                     ConfirmDelete = False
                     TabOrder = 0
-                    OnClick = BlockNoteNavigatorClick
+                    OnClick = NavigatorClick
                   end
                   object mBlockNotesGrid: TDBGrid
                     Left = 0
@@ -465,7 +468,7 @@ object MainForm: TMainForm
                         Visible = True
                       end>
                   end
-                  object DBNavigator1: TDBNavigator
+                  object BlocksNavigator: TDBNavigator
                     Left = 1
                     Top = 483
                     Width = 1164
@@ -474,7 +477,7 @@ object MainForm: TMainForm
                     VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                     Align = alBottom
                     TabOrder = 1
-                    OnClick = BlocksNavigatorClick
+                    OnClick = NavigatorClick
                   end
                 end
               end
@@ -688,7 +691,7 @@ object MainForm: TMainForm
                     Align = alBottom
                     ConfirmDelete = False
                     TabOrder = 1
-                    OnClick = RibbonNotesNavigatorClick
+                    OnClick = NavigatorClick
                   end
                 end
                 object Panel16: TPanel
@@ -717,6 +720,7 @@ object MainForm: TMainForm
                     VisibleButtons = [nbPost, nbCancel]
                     Align = alBottom
                     TabOrder = 1
+                    OnClick = NavigatorClick
                   end
                 end
               end
@@ -792,7 +796,7 @@ object MainForm: TMainForm
                   Align = alBottom
                   ConfirmDelete = False
                   TabOrder = 1
-                  OnClick = RibbonsNavigatorClick
+                  OnClick = NavigatorClick
                 end
                 object Panel17: TPanel
                   Left = 1
@@ -916,7 +920,7 @@ object MainForm: TMainForm
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 0
-              OnClick = CoverSlipNavigatorsClick
+              OnClick = NavigatorClick
             end
             object mCoverSlipsGrid: TDBGrid
               Left = 2
@@ -1090,7 +1094,7 @@ object MainForm: TMainForm
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 1
-              OnClick = CoverSlipNavigatorsClick
+              OnClick = NavigatorClick
             end
             object Panel12: TPanel
               Left = 2
@@ -1492,8 +1496,8 @@ object MainForm: TMainForm
         Caption = 'Settings'
         ImageIndex = 5
         object GroupBox13: TGroupBox
-          Left = 305
-          Top = 12
+          Left = 3
+          Top = 19
           Width = 345
           Height = 233
           Caption = 'ATDB Users'
@@ -1525,7 +1529,7 @@ object MainForm: TMainForm
                 Visible = True
               end>
           end
-          object mUsersNavigator: TDBNavigator
+          object UsersNavigator: TDBNavigator
             Left = 2
             Top = 206
             Width = 341
@@ -1534,7 +1538,7 @@ object MainForm: TMainForm
             VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
             Align = alBottom
             TabOrder = 1
-            OnClick = mUsersNavigatorClick
+            OnClick = NavigatorClick
           end
         end
         object GroupBox14: TGroupBox

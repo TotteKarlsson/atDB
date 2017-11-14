@@ -95,12 +95,12 @@ class TMainForm : public TRegistryForm
 	TGroupBox *mBlocksGB;
 	TDBGrid *mBlockNotesGrid;
 	TDBMemo *mBlockNoteMemo;
-	TDBNavigator *DBNavigator2;
+	TDBNavigator *BlockNoteNavigator;
 	TLabel *Label2;
 	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
-	TDBNavigator *BlockNoteNavigator;
+	TDBNavigator *BlockNotesNavigator;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
 	TTabSheet *TabSheet7;
@@ -124,7 +124,7 @@ class TMainForm : public TRegistryForm
 	TMemo *mLblMakerMemo;
 	TDBGrid *mBlocksForRibbonsGrid;
 	TDBGrid *mUsersDBGrid;
-	TDBNavigator *mUsersNavigator;
+	TDBNavigator *UsersNavigator;
 	TTabSheet *TabSheet3;
 	TPanel *BottomPanel;
 	TPanel *Panel1;
@@ -232,7 +232,7 @@ class TMainForm : public TRegistryForm
 	TButton *RegisterPostSilanizationBatch;
 	TButton *mRegisterCleanRoundBtn;
 	TPGConnectionFrame *TPGConnectionFrame1;
-	TDBNavigator *DBNavigator1;
+	TDBNavigator *BlocksNavigator;
 	TLabel *Label4;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
@@ -245,22 +245,22 @@ class TMainForm : public TRegistryForm
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
 
-	void __fastcall mUsersNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall BlocksNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall RibbonsNavigatorClick(TObject *Sender, TNavigateBtn Button);
+
+
+	void __fastcall NavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall BlocksNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall UsersCBCloseUp(TObject *Sender);
-	void __fastcall BlockNoteNavigatorClick(TObject *Sender, TNavigateBtn Button);
-	void __fastcall RibbonNotesNavigatorClick(TObject *Sender, TNavigateBtn Button);
+
+
 	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
           TGridDrawState State);
 	void __fastcall SlicesGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
           TColumn *Column, TGridDrawState State);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall SlicesNavigatorClick(TObject *Sender, TNavigateBtn Button);
+
 	void __fastcall mProcessForBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mProcessForBlocksGridCellClick(TColumn *Column);
 	void __fastcall OpenAboutFormAExecute(TObject *Sender);
@@ -277,7 +277,7 @@ class TMainForm : public TRegistryForm
 	void __fastcall SlicesGridMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
 	void __fastcall SlicesGridTitleClick(TColumn *Column);
-	void __fastcall CoverSlipNavigatorsClick(TObject *Sender, TNavigateBtn Button);
+
 	void __fastcall mPrintTestLabelBtnClick(TObject *Sender);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
 	void __fastcall mPrintBatchLblBtnClick(TObject *Sender);
@@ -292,11 +292,11 @@ class TMainForm : public TRegistryForm
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 	void __fastcall settingsNavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall SpecimenNavigatorClick(TObject *Sender, TNavigateBtn Button);
+	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall DBGridDblClick(TObject *Sender);
 	void __fastcall UnlocktablesBtnClick(TObject *Sender);
 	void __fastcall SpecieRGClick(TObject *Sender);
-	void __fastcall SpecimenNavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
+
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BlockIDSLLBKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlockIDSLLBKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);

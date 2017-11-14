@@ -15,17 +15,17 @@
 #include "database/mtkSQLite.h"
 
 USEFORM("TMainForm.cpp", MainForm);
+USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.cpp", csPGDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\frames\TPGConnectionFrame.cpp", PGConnectionFrame); /* TFrame: File Type */
 USEFORM("P:\libs\atapi\source\vcl\frames\TSyncMySQLToPostgresFrame.cpp", SyncMySQLToPostgresFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
-USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGCoverSlipDataModule.cpp", csPGDM); /* TDataModule: File Type */
 USEFORM("P:\libs\atapi\source\vcl\datamodules\TPGDataModule.cpp", pgDM); /* TDataModule: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
+USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
