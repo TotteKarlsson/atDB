@@ -1,7 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
 #include <tchar.h>
-//---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 #include "mtkUtils.h"
@@ -14,7 +13,7 @@
 #include "TPGDataModule.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGImagesAndMoviesDataModule.h"
-
+//---------------------------------------------------------------------------
 
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
@@ -32,16 +31,17 @@ using namespace mtk;
 using std::string;
 
 extern HWND         gOtherAppWindow             = NULL;
-extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\atDB\\0.5.0";
-extern string       gAppMutexName           	= "ATDBAppMutex";
+extern string		gAppName					= "ATDB-PG";
+extern string       gApplicationRegistryRoot    = "\\Software\\Smith Lab\\atDBPG\\0.5.0";
+extern string       gAppMutexName           	= "ATDBPGAppMutex";
 extern bool 		gAppIsStartingUp 			= true;
-extern string       gRestartMutexName           = "ATDBRestartMutex";
+extern string       gRestartMutexName           = "ATDBPGRestartMutex";
 extern string       gFullDateTimeFormat         = "%Y-%m-%dT%H:%M:%S";
 extern string       gDateFormat                 = "%Y-%m-%d";
 extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern string       gLogFileLocation            = "";
-extern string       gLogFileName                = "atDB.log";
+extern string       gLogFileName                = "atDBPG.log";
 extern bool         gIsDevelopmentRelease       = false;
 
 
@@ -85,7 +85,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Log(lInfo) << "The Logfile was opened..";
 
         //Setup globals
-        gCommonAppDataLocation = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");
+        gCommonAppDataLocation = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB-PG");
         if(!folderExists(gCommonAppDataLocation))
         {
             Log(lError) << "The local app data folder("<<gCommonAppDataLocation<<") don't exists! Catastrophe..";
@@ -95,7 +95,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->MainFormOnTaskBar = true;
 
 		TStyleManager::TrySetStyle("Iceberg Classico");
-		Application->Title = "atDB";
+		Application->Title = "atDBpg";
 
         //Create data modules
 

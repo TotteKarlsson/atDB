@@ -106,7 +106,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 
     try
     {
-	    TPGConnectionFrame1->ConnectA->Execute();
+//	    TPGConnectionFrame1->ConnectA->Execute();
     }
     catch (const TDBXError &e)
 	{

@@ -12,6 +12,8 @@ using Poco::DateTimeFormatter;
 using namespace mtk;
 
 extern HWND gOtherAppWindow;
+extern string gAppName;
+
 void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if(Key == VK_ESCAPE)
@@ -65,7 +67,7 @@ int TMainForm::getCurrentUserID()
 
 void TMainForm::setupWindowTitle()
 {
-	string title = createWindowTitle("ATDB", Application);
+	string title = createWindowTitle(gAppName, Application);
 	this->Caption = vclstr(title);
 }
 
