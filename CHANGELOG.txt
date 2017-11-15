@@ -1,3 +1,25 @@
+Release 0.6.5 (Nov 14)
+=======================
+* Fixed addition of notes to multiple coverslips MySQL IFNULL == COALESCE in PostGres
+* Consolidated navigator actions and grid double clicks
+* Checked working of foreign keys when deleting batches and individual coverslips
+* Moved bunch of frames to package
+* Fixed issues with datamodule creations
+* Moved all navigator logic to separate CPP file
+* Got block and ribbon notes working again
+* Added Navigator logic file
+* Fixed deletion of blocks and block notes
+* Converting to Postgres
+* Phasing out all MySQL stuff
+* Transferring logic in the lowlevel MySQl connector to PostGres datamodule (Don't have a low level postgres connector)
+* Added pragma for Postgres driver
+* Changing MySQL to Postgres
+* Adding test to migrate to PostGres
+* Added sync to Postgres frame
+* Changed button for creating silanized batch
+* Hide box number when creating new batch
+* Added images frame
+
 Release 0.6.4 (Oct 17)
 =======================
 * Added movie page, to watch ribbon cutting movies
