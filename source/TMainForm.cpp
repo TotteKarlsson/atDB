@@ -110,6 +110,10 @@ void __fastcall	TMainForm::afterDBServerConnect(System::TObject* Sender)
 
     TTableFrame1->assignDBconnection(pgDM->SQLConnection1);
 	SpecieRGClick(NULL);
+
+	//Populate table dropdown
+    StringList tables = pgDM->getTableNames();
+    populateListBox(tables, mTablesLB);
 }
 
 //---------------------------------------------------------------------------

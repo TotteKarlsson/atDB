@@ -113,13 +113,6 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
     	Log(lInfo) << "There was a database connection issue: "<<stdstr(e.Message);
 	}
 
-    if(pgDM->isConnected())
-    {
-		//Populate table dropdown
-	    StringList tables = pgDM->getTableNames();
-	    populateListBox(tables, mTablesLB);
-    }
-
 	//Filter Specimen data
 	SpecieRGClick(Sender);
 }
