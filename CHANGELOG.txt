@@ -1,3 +1,8 @@
+Release 0.6.6 (Dec 21)
+=======================
+* Added code to populate all tables dropdown
+* Tracking bug when changing settings
+
 Release 0.6.5 (Nov 14)
 =======================
 * Fixed addition of notes to multiple coverslips MySQL IFNULL == COALESCE in PostGres
