@@ -260,6 +260,13 @@ void __fastcall TMainForm::NavigatorClick(TObject *Sender, TNavigateBtn Button)
 
         }
     }
+    else if(n == settingsNavigator)
+    {
+        switch(Button)
+        {
+        }
+    }
+
     else
     {
     	Log(lWarning) << "This navigators click was not handled in code";

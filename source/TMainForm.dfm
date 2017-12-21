@@ -1577,10 +1577,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox13: TGroupBox
           Left = 3
           Top = 19
@@ -1675,9 +1671,10 @@ object MainForm: TMainForm
           object settingsNavigator: TDBNavigator
             Left = 16
             Top = 240
-            Width = 240
+            Width = 297
             Height = 25
             DataSource = settingsDS
+            VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates]
             TabOrder = 3
             OnClick = NavigatorClick
           end
