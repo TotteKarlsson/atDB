@@ -1,3 +1,12 @@
+Release 0.6.7 (Jan 3)
+=======================
+* Added knifes table
+* Added knife_notes table
+* Added knife_id field in ribbons table
+* Changed some fields with capital letters to lowercase (freshCSBatches -> freshcsbatches)
+
+------ 2018 ------
+
 Release 0.6.6 (Dec 21)
 =======================
 * Added code to populate all tables dropdown
