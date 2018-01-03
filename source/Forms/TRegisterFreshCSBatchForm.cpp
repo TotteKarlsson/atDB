@@ -20,10 +20,6 @@ TRegisterFreshCSBatchForm *RegisterFreshCSBatchForm;
 __fastcall TRegisterFreshCSBatchForm::TRegisterFreshCSBatchForm(TComponent* Owner)
 	: TForm(Owner)
 {
-////    csPGDM->csFreshbatchesCDS->Active = false;
-//	csPGDM->csFreshbatchesCDS->CommandText = "SELECT * from freshcsbatch where DATE(date_created) = CURDATE()";
-//    csPGDM->csFreshbatchesCDS->Execute();
-//    csPGDM->csFreshbatchesCDS->Active = true;
 
 }
 
@@ -52,7 +48,7 @@ int nrOfFreshBatchesToday()
     TSQLQuery* q = new TSQLQuery(NULL);
     q->SQLConnection = pgDM->SQLConnection1;
     stringstream sq;
-    sq << "SELECT COUNT(*) FROM freshCSbatches";
+    sq << "SELECT COUNT(*) FROM freshcsbatches";
     q->SQL->Add(sq.str().c_str());
 	q->Open();
     int rows = q->FieldByName("COUNT(*)")->AsInteger;
@@ -80,7 +76,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
     int 	day   	= DayOf(dt);
 
     stringstream sq;
-    sq << "INSERT into freshCSbatches (count, lot_number, box_number, type) VALUES ("
+    sq << "INSERT into freshcsbatches (count, lot_number, box_number, type) VALUES ("
     		<<count<<", '" <<mCoverSlipLOTE->getValue()<<"', '"<<mBoxof100NrEdit->getValue()<<"', '"<<csType<<"') RETURNING id";
 
     TSQLQuery* q = new TSQLQuery(NULL);
@@ -97,7 +93,7 @@ void __fastcall TRegisterFreshCSBatchForm::mRegisterBtnClick(TObject *Sender)
 
     //Associate count coverslips with this batch
 	stringstream qs;
-    qs <<"INSERT INTO coverslips (status, type, freshCSBatch, from_lot) VALUES ";
+    qs <<"INSERT INTO coverslips (status, type, freshcsbatch, from_lot) VALUES ";
     for(int i = 0; i < count; i++)
     {
 	    qs<<"(1,"<<csType <<","<<insert_id<<", \'"<<mCoverSlipLOTE->getValue()<<"\')";

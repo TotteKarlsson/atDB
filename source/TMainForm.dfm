@@ -616,7 +616,7 @@ object MainForm: TMainForm
             Caption = 'Ribbons'
             ImageIndex = 6
             object Splitter5: TSplitter
-              Left = 121
+              Left = 81
               Top = 0
               Height = 847
               ExplicitLeft = 144
@@ -624,9 +624,9 @@ object MainForm: TMainForm
               ExplicitHeight = 100
             end
             object GroupBox2: TGroupBox
-              Left = 124
+              Left = 84
               Top = 0
-              Width = 1524
+              Width = 1564
               Height = 847
               Align = alClient
               Caption = 'Ribbon Data'
@@ -634,7 +634,7 @@ object MainForm: TMainForm
               object Splitter1: TSplitter
                 Left = 2
                 Top = 676
-                Width = 1520
+                Width = 1560
                 Height = 3
                 Cursor = crVSplit
                 Align = alBottom
@@ -645,7 +645,7 @@ object MainForm: TMainForm
               object GroupBox1: TGroupBox
                 Left = 2
                 Top = 679
-                Width = 1520
+                Width = 1560
                 Height = 166
                 Align = alBottom
                 Caption = 'Ribbon Notes'
@@ -696,14 +696,14 @@ object MainForm: TMainForm
                 object Panel16: TPanel
                   Left = 187
                   Top = 15
-                  Width = 1331
+                  Width = 1371
                   Height = 149
                   Align = alClient
                   TabOrder = 1
                   object mRibbonNoteMemo: TDBMemo
                     Left = 1
                     Top = 1
-                    Width = 1329
+                    Width = 1369
                     Height = 122
                     Align = alClient
                     DataField = 'note'
@@ -713,7 +713,7 @@ object MainForm: TMainForm
                   object RibbonNoteNavigator: TDBNavigator
                     Left = 1
                     Top = 123
-                    Width = 1329
+                    Width = 1369
                     Height = 25
                     DataSource = pgDM.ribbonNotesDSource
                     VisibleButtons = [nbPost, nbCancel]
@@ -725,16 +725,18 @@ object MainForm: TMainForm
               end
               object Panel13: TPanel
                 Left = 2
-                Top = 15
-                Width = 1520
-                Height = 661
+                Top = 121
+                Width = 1560
+                Height = 555
                 Align = alClient
                 TabOrder = 1
+                ExplicitTop = 97
+                ExplicitHeight = 579
                 object mRibbonsGrid: TDBGrid
                   Left = 1
                   Top = 1
-                  Width = 1518
-                  Height = 593
+                  Width = 1558
+                  Height = 487
                   Align = alClient
                   DataSource = pgDM.ribbonsDSource
                   Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -794,23 +796,25 @@ object MainForm: TMainForm
                 end
                 object RibbonsNavigator: TDBNavigator
                   Left = 1
-                  Top = 594
-                  Width = 1518
+                  Top = 488
+                  Width = 1558
                   Height = 25
                   DataSource = pgDM.ribbonsDSource
-                  VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel, nbRefresh]
+                  VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
                   Align = alBottom
                   ConfirmDelete = False
                   TabOrder = 1
                   OnClick = NavigatorClick
+                  ExplicitTop = 512
                 end
                 object Panel17: TPanel
                   Left = 1
-                  Top = 619
-                  Width = 1518
+                  Top = 513
+                  Width = 1558
                   Height = 41
                   Align = alBottom
                   TabOrder = 2
+                  ExplicitTop = 537
                   object DBText3: TDBText
                     Left = 81
                     Top = 6
@@ -833,11 +837,209 @@ object MainForm: TMainForm
                   end
                 end
               end
+              object Panel14: TPanel
+                Left = 2
+                Top = 15
+                Width = 1560
+                Height = 106
+                Align = alTop
+                TabOrder = 2
+                object Label7: TLabel
+                  Left = 25
+                  Top = 8
+                  Width = 38
+                  Height = 13
+                  Caption = 'Block ID'
+                  Enabled = False
+                  FocusControl = DBEdit1
+                end
+                object Label8: TLabel
+                  Left = 25
+                  Top = 51
+                  Width = 34
+                  Height = 13
+                  Caption = 'slice_id'
+                  Enabled = False
+                  FocusControl = DBEdit2
+                end
+                object Label9: TLabel
+                  Left = 184
+                  Top = 5
+                  Width = 31
+                  Height = 13
+                  Caption = 'Status'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox2
+                end
+                object Label11: TLabel
+                  Left = 184
+                  Top = 51
+                  Width = 26
+                  Height = 13
+                  Caption = 'Serial'
+                  Enabled = False
+                  FocusControl = DBEdit3
+                end
+                object Label12: TLabel
+                  Left = 352
+                  Top = 8
+                  Width = 76
+                  Height = 13
+                  Caption = 'Date Embedded'
+                  Enabled = False
+                  FocusControl = DBEdit4
+                end
+                object Label13: TLabel
+                  Left = 352
+                  Top = 51
+                  Width = 114
+                  Height = 13
+                  Caption = 'Cryoprotection Protocol'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox3
+                end
+                object Label14: TLabel
+                  Left = 543
+                  Top = 8
+                  Width = 83
+                  Height = 13
+                  Caption = 'Freezing Protocol'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox4
+                end
+                object Label15: TLabel
+                  Left = 543
+                  Top = 51
+                  Width = 99
+                  Height = 13
+                  Caption = 'Substitution Protocol'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox5
+                end
+                object Label17: TLabel
+                  Left = 848
+                  Top = 8
+                  Width = 92
+                  Height = 13
+                  Caption = 'Infiltration Protocol'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox6
+                end
+                object Label18: TLabel
+                  Left = 848
+                  Top = 51
+                  Width = 94
+                  Height = 13
+                  Caption = 'Embedding Protocol'
+                  Enabled = False
+                  FocusControl = DBLookupComboBox7
+                end
+                object DBEdit1: TDBEdit
+                  Left = 25
+                  Top = 24
+                  Width = 134
+                  Height = 21
+                  DataField = 'id'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 0
+                end
+                object DBEdit2: TDBEdit
+                  Left = 25
+                  Top = 67
+                  Width = 134
+                  Height = 21
+                  DataField = 'slice_id'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 1
+                end
+                object DBLookupComboBox2: TDBLookupComboBox
+                  Left = 184
+                  Top = 24
+                  Width = 145
+                  Height = 21
+                  DataField = 'LBlockStatus'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 2
+                end
+                object DBEdit3: TDBEdit
+                  Left = 184
+                  Top = 67
+                  Width = 134
+                  Height = 21
+                  DataField = 'serial'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 3
+                end
+                object DBEdit4: TDBEdit
+                  Left = 352
+                  Top = 24
+                  Width = 134
+                  Height = 21
+                  DataField = 'date_embedded'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 4
+                end
+                object DBLookupComboBox3: TDBLookupComboBox
+                  Left = 352
+                  Top = 67
+                  Width = 161
+                  Height = 21
+                  DataField = 'LCryoProtectionProtocol'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 5
+                end
+                object DBLookupComboBox4: TDBLookupComboBox
+                  Left = 543
+                  Top = 24
+                  Width = 274
+                  Height = 21
+                  DataField = 'LFreezingProtocol'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 6
+                end
+                object DBLookupComboBox5: TDBLookupComboBox
+                  Left = 543
+                  Top = 67
+                  Width = 274
+                  Height = 21
+                  DataField = 'LSubstitutionProtocol'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 7
+                end
+                object DBLookupComboBox6: TDBLookupComboBox
+                  Left = 848
+                  Top = 24
+                  Width = 274
+                  Height = 21
+                  DataField = 'LInfiltrationProtocol'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 8
+                end
+                object DBLookupComboBox7: TDBLookupComboBox
+                  Left = 848
+                  Top = 67
+                  Width = 274
+                  Height = 21
+                  DataField = 'LEmbeddingProtocol'
+                  DataSource = pgDM.allBlocksDataSource
+                  Enabled = False
+                  TabOrder = 9
+                end
+              end
             end
             object GroupBox17: TGroupBox
               Left = 0
               Top = 0
-              Width = 121
+              Width = 81
               Height = 847
               Align = alLeft
               Caption = 'Blocks'
@@ -845,10 +1047,10 @@ object MainForm: TMainForm
               object mBlocksForRibbonsGrid: TDBGrid
                 Left = 2
                 Top = 15
-                Width = 117
+                Width = 77
                 Height = 830
                 Align = alClient
-                DataSource = pgDM.blocksDataSource
+                DataSource = pgDM.allBlocksDataSource
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                 TabOrder = 0
                 TitleFont.Charset = DEFAULT_CHARSET
@@ -860,13 +1062,7 @@ object MainForm: TMainForm
                   item
                     Expanded = False
                     FieldName = 'id'
-                    Width = 34
-                    Visible = True
-                  end
-                  item
-                    Expanded = False
-                    FieldName = 'serial'
-                    Width = 39
+                    Width = 50
                     Visible = True
                   end>
               end
@@ -1410,74 +1606,29 @@ object MainForm: TMainForm
       object TabSheet12: TTabSheet
         Caption = 'Diamond Knifes'
         ImageIndex = 6
-        object GroupBox3: TGroupBox
-          Left = 0
-          Top = 0
-          Width = 161
-          Height = 875
-          Align = alLeft
-          Caption = 'Knifes'
-          TabOrder = 0
-          object DBGrid2: TDBGrid
-            Left = 2
-            Top = 15
-            Width = 157
-            Height = 833
-            Align = alClient
-            DataSource = pgDM.knifesDSource
-            TabOrder = 0
-            TitleFont.Charset = DEFAULT_CHARSET
-            TitleFont.Color = clWindowText
-            TitleFont.Height = -11
-            TitleFont.Name = 'Tahoma'
-            TitleFont.Style = []
-            Columns = <
-              item
-                Expanded = False
-                FieldName = 'id'
-                Width = 45
-                Visible = True
-              end
-              item
-                Expanded = False
-                FieldName = 'date_entered'
-                Visible = True
-              end>
-          end
-          object DBNavigator2: TDBNavigator
-            Left = 2
-            Top = 848
-            Width = 160
-            Height = 25
-            DataSource = pgDM.knifesDSource
-            VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
-            Align = alBottom
-            TabOrder = 1
-          end
-        end
         object GroupBox6: TGroupBox
-          Left = 161
+          Left = 289
           Top = 0
-          Width = 1495
+          Width = 1367
           Height = 875
           Align = alClient
-          Caption = 'Notes'
+          Caption = 'Note'
           Padding.Left = 5
           Padding.Top = 5
           Padding.Right = 5
           Padding.Bottom = 5
-          TabOrder = 1
+          TabOrder = 0
           object Panel11: TPanel
-            Left = 206
+            Left = 7
             Top = 20
-            Width = 1282
+            Width = 1353
             Height = 848
             Align = alClient
             TabOrder = 0
             object DBMemo2: TDBMemo
               Left = 1
               Top = 1
-              Width = 1280
+              Width = 1351
               Height = 821
               Align = alClient
               DataField = 'note'
@@ -1487,7 +1638,7 @@ object MainForm: TMainForm
             object KnifeNoteNavigator: TDBNavigator
               Left = 1
               Top = 822
-              Width = 1280
+              Width = 1351
               Height = 25
               DataSource = pgDM.knifeNotesDataSource
               VisibleButtons = [nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
@@ -1496,35 +1647,30 @@ object MainForm: TMainForm
               OnClick = NavigatorClick
             end
           end
-          object Panel14: TPanel
-            Left = 7
-            Top = 20
-            Width = 199
-            Height = 848
-            Align = alLeft
-            BevelOuter = bvNone
-            TabOrder = 1
-            object KnifeNotesNavigator: TDBNavigator
-              Left = 0
-              Top = 823
-              Width = 199
-              Height = 25
-              DataSource = pgDM.knifeNotesDataSource
-              VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
-              Align = alBottom
-              ConfirmDelete = False
-              TabOrder = 0
-              OnClick = NavigatorClick
-            end
-            object DBGrid3: TDBGrid
-              Left = 0
-              Top = 0
-              Width = 199
-              Height = 823
+        end
+        object Panel22: TPanel
+          Left = 0
+          Top = 0
+          Width = 289
+          Height = 875
+          Align = alLeft
+          TabOrder = 1
+          object GroupBox3: TGroupBox
+            Left = 1
+            Top = 1
+            Width = 287
+            Height = 161
+            Align = alTop
+            Caption = 'Knifes'
+            TabOrder = 0
+            object DBGrid2: TDBGrid
+              Left = 2
+              Top = 15
+              Width = 283
+              Height = 119
               Align = alClient
-              DataSource = pgDM.knifeNotesDataSource
-              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-              TabOrder = 1
+              DataSource = pgDM.knifesDSource
+              TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
               TitleFont.Height = -11
@@ -1533,15 +1679,73 @@ object MainForm: TMainForm
               Columns = <
                 item
                   Expanded = False
-                  FieldName = 'created_on'
-                  Width = 47
+                  FieldName = 'id'
+                  Width = 45
                   Visible = True
                 end
                 item
                   Expanded = False
-                  FieldName = 'created_by'
+                  FieldName = 'date_entered'
                   Visible = True
                 end>
+            end
+            object DBNavigator2: TDBNavigator
+              Left = 2
+              Top = 134
+              Width = 283
+              Height = 25
+              DataSource = pgDM.knifesDSource
+              VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
+              Align = alBottom
+              TabOrder = 1
+            end
+          end
+          object GroupBox7: TGroupBox
+            Left = 1
+            Top = 162
+            Width = 287
+            Height = 712
+            Align = alClient
+            Caption = 'Notes'
+            TabOrder = 1
+            object DBGrid3: TDBGrid
+              Left = 2
+              Top = 15
+              Width = 283
+              Height = 670
+              Align = alClient
+              DataSource = pgDM.knifeNotesDataSource
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              TabOrder = 0
+              TitleFont.Charset = DEFAULT_CHARSET
+              TitleFont.Color = clWindowText
+              TitleFont.Height = -11
+              TitleFont.Name = 'Tahoma'
+              TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'Lcreated_by'
+                  Width = 67
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'created_on'
+                  Visible = True
+                end>
+            end
+            object KnifeNotesNavigator: TDBNavigator
+              Left = 2
+              Top = 685
+              Width = 283
+              Height = 25
+              DataSource = pgDM.knifeNotesDataSource
+              VisibleButtons = [nbInsert, nbDelete, nbRefresh, nbApplyUpdates]
+              Align = alBottom
+              ConfirmDelete = False
+              TabOrder = 1
+              OnClick = NavigatorClick
             end
           end
         end
@@ -1992,7 +2196,7 @@ object MainForm: TMainForm
       Align = alRight
       Caption = 'Species'
       Columns = 2
-      ItemIndex = 0
+      ItemIndex = 1
       Items.Strings = (
         'Human'
         'Mouse')
