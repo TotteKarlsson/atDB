@@ -57,9 +57,7 @@ extern string gApplicationRegistryRoot;
 extern string gDefaultAppTheme;
 extern string gFullDateTimeFormat;
 extern bool gIsDevelopmentRelease;
-//extern TSplashForm*  gSplashForm;
 
-//using Poco::Path;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::TMainForm(TComponent* Owner)
     : TRegistryForm(gApplicationRegistryRoot, "MainForm", Owner),
@@ -668,7 +666,7 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
     	vector<int> p_ids = getSelectedIDS(masterGrid, "id");
 
     	QueryBuilder qb;
-        qb << "SELECT * FROM coverslips WHERE freshCSBatch IN (";
+        qb << "SELECT * FROM coverslips WHERE freshcsbatch IN (";
 
         for(int i = 0; i < p_ids.size(); i++)
         {
@@ -687,7 +685,7 @@ void __fastcall TMainForm::selectCoverSlips(TDBGrid* masterGrid, TDBGrid* detail
     	//Get master ID
         int id = masterDataSet->FieldByName("id")->AsInteger;
         detailDataSet->CommandText =
-        	"SELECT * FROM coverslips WHERE freshCSBatch = " + IntToStr(id) +" ORDER BY freshCSBatch DESC";
+        	"SELECT * FROM coverslips WHERE freshcsbatch = " + IntToStr(id) +" ORDER BY freshcsbatch DESC";
     }
 
     detailDataSet->Open();

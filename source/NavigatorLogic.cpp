@@ -260,6 +260,25 @@ void __fastcall TMainForm::NavigatorClick(TObject *Sender, TNavigateBtn Button)
 
         }
     }
+    else if(n == KnifeNotesNavigator)
+    {
+        switch(Button)
+        {
+            case TNavigateBtn::nbInsert:
+            {
+                int uID = getCurrentUserID();
+                int ID = pgDM->knifesCDSid->Value;
+                string note("Knife Note..");
+                pgDM->addNoteForKnife(ID, uID, note);
+                pgDM->knifeNotesCDS->Refresh();
+                pgDM->knifeNotesCDS->Last();
+            }
+            break;
+
+            case TNavigateBtn::nbDelete:        break;
+        }
+    }
+
     else if(n == settingsNavigator)
     {
         switch(Button)

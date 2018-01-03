@@ -225,7 +225,6 @@ class TMainForm : public TRegistryForm
 	TTabSheet *TabSheet14;
 	TImagesFrame *TImagesFrame1;
 	TMoviesFrame *TMoviesFrame1;
-	TPanel *Panel22;
 	TGroupBox *GroupBox20;
 	TButton *BrowseForMediaFolderBtn;
 	TSTDStringLabeledEdit *MediaFolderE;
@@ -237,6 +236,17 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel10;
 	TDBNavigator *DBNavigator1;
 	TLabel *Label5;
+	TTabSheet *TabSheet12;
+	TDBGrid *DBGrid2;
+	TGroupBox *GroupBox3;
+	TDBNavigator *DBNavigator2;
+	TGroupBox *GroupBox6;
+	TPanel *Panel11;
+	TDBMemo *DBMemo2;
+	TDBNavigator *KnifeNoteNavigator;
+	TPanel *Panel14;
+	TDBNavigator *KnifeNotesNavigator;
+	TDBGrid *DBGrid3;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
