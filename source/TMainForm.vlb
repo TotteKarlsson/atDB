@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=559,1030,104,51
+Coordinates=1398,1166,136,33
 Visible=True
 LayerNames=OrdersLayer
 ExplicitSubNodes=Text
@@ -334,9 +334,6 @@ Coordinates=518,760,101,105
 [BottomPanel]
 Coordinates=692,1098,77,51
 
-[DBText3]
-Coordinates=1662,1030,56,51
-
 [TTableFrame1.ClientDataSet1]
 Coordinates=74,1098,159,51
 
@@ -381,9 +378,6 @@ Coordinates=10,1098,47,51
 
 [TabSheet7]
 Coordinates=10,1212,66,33
-
-[mBlocksForRibbonsGrid]
-Coordinates=1398,1166,136,33
 
 [atdbDM.processIDDS]
 Coordinates=2330,1030,119,51
@@ -552,4 +546,7 @@ Coordinates=1923,1098,112,33
 
 [CoverSlipsGrid]
 Coordinates=540,1166,98,33
+
+[RibbonIDLbl]
+Coordinates=1662,1030,56,51
 

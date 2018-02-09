@@ -226,10 +226,17 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
-        <FormResources Include="Forms\TSlicesForm.dfm"/>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp">
+            <Form>MoviesFrame</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
         <FormResources Include="Forms\TSpecimenForm.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
+        <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
@@ -296,7 +303,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="p:\build\debug\BPL\ArrayBotPackage.bpl">File p:\build\debug\BPL\ArrayBotPackage.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>

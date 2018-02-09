@@ -13,7 +13,7 @@ using namespace mtk;
 //---------------------------------------------------------------------------
 __fastcall TTableFrame::TTableFrame(TComponent* Owner)
 	: TFrame(Owner),
-    mLockoutTimeout(Poco::Timespan(10*Poco::Timespan::SECONDS))
+    mLockoutTimeout(Poco::Timespan(360*Poco::Timespan::SECONDS))
 {
 }
 

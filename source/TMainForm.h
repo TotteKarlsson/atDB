@@ -122,7 +122,6 @@ class TMainForm : public TRegistryForm
 	TDBGrid *BlocksGrid;
 	TButton *Button1;
 	TMemo *mLblMakerMemo;
-	TDBGrid *mBlocksForRibbonsGrid;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *UsersNavigator;
 	TTabSheet *TabSheet3;
@@ -135,7 +134,7 @@ class TMainForm : public TRegistryForm
 	TComboBox *LogLevelCB;
 	TPopupMenu *SpecimenPopup;
 	TMenuItem *openDocument;
-	TDBText *DBText3;
+	TDBText *RibbonIDLbl;
 	TPanel *Panel2;
 	TPanel *Panel3;
 	TPanel *Panel4;
@@ -174,16 +173,13 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox14;
 	TSTDStringLabeledEdit *mTestLabel;
 	TButton *mPrintTestLabelBtn;
-	TGroupBox *GroupBox17;
 	TPanel *Panel13;
 	TPanel *Panel15;
 	TPanel *Panel16;
-	TSplitter *Splitter1;
 	TPanel *Panel17;
 	TDBText *CSID;
 	TDBLookupComboBox *UsersCB;
 	TSplitter *Splitter4;
-	TSplitter *Splitter5;
 	TGroupBox *GroupBox18;
 	TPanel *Panel18;
 	TDBGrid *DBGrid1;
@@ -249,8 +245,6 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel22;
 	TGroupBox *GroupBox7;
 	TPanel *Panel14;
-	TLabel *Label7;
-	TDBEdit *DBEdit1;
 	TLabel *Label8;
 	TDBEdit *DBEdit2;
 	TLabel *Label9;
@@ -269,6 +263,10 @@ class TMainForm : public TRegistryForm
 	TDBLookupComboBox *DBLookupComboBox6;
 	TLabel *Label18;
 	TDBLookupComboBox *DBLookupComboBox7;
+	TMoviesFrame *MoviesFrame1;
+	TLabel *Label7;
+	TDBLookupComboBox *BlockIDCB;
+	TSplitter *Splitter2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -337,6 +335,8 @@ class TMainForm : public TRegistryForm
 	void __fastcall MediaPageControlChange(TObject *Sender);
 	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
+	void __fastcall mRibbonsGridCellClick(TColumn *Column);
+	void __fastcall BlockIDCBCloseUp(TObject *Sender);
 
     private:
         bool                                            gCanClose;

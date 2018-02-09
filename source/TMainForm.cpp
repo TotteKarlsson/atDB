@@ -88,7 +88,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mDBGrids.push_back(mProcessForBlocksGrid);
     mDBGrids.push_back(BlocksGrid);
     mDBGrids.push_back(mBlockNotesGrid);
-	mDBGrids.push_back(mBlocksForRibbonsGrid);
+//	mDBGrids.push_back(mBlocksForRibbonsGrid);
     mDBGrids.push_back(mRibbonsGrid);
     mDBGrids.push_back(mRibbonNotesGrid);
     mDBGrids.push_back(mUsersDBGrid);
@@ -1093,6 +1093,32 @@ void TMainForm::populateMedia()
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::mRibbonsGridCellClick(TColumn *Column)
+{
+    if(BlockIDCB->KeyValue.IsNull())
+    {
+        return;
+    }
+
+    Poco::Path p(MediaFolderE->getValue());
+	MoviesFrame1->populate(BlockIDCB->KeyValue, stdstr(RibbonIDLbl->Caption), p);
+
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::BlockIDCBCloseUp(TObject *Sender)
+{
+	TDBLookupComboBox* b = dynamic_cast<TDBLookupComboBox*>(Sender);
+	if(b == BlockIDCB )
+    {
+    	if(!b->KeyValue.IsNull())
+		{
+//        	mBlockID.setValue(b->KeyValue);
+        	pgDM->blockNotesCDS->Active = true;
+        }
+    }
+}
 
 
 

@@ -15,15 +15,16 @@
 #include "TPGImagesAndMoviesDataModule.h"
 //---------------------------------------------------------------------------
 
-USEFORM("TMainForm.cpp", MainForm);
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
-USEFORM("Forms\TBlockForm.cpp", BlockForm);
-USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("TMainForm.cpp", MainForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
+USEFORM("Forms\TBlockForm.cpp", BlockForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
