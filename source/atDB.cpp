@@ -24,7 +24,7 @@ USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
-USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame);
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -77,8 +77,8 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
                     //Send a custom message to restore window here..
                     ::SwitchToThisWindow(gOtherAppWindow, false);
                 }
-
-                return(0); // Exit program
+				// Exit program
+                return(0);
             }
         }
 

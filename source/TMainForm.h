@@ -15,7 +15,6 @@
 #include "mtkLogLevel.h"
 #include "mtkMessageContainer.h"
 #include "mtkProperty.h"
-#include "atATDBServerSession.h"
 #include "TApplicationProperties.h"
 #include "forms/TRegistryForm.h"
 #include "TRegistryProperties.h"
@@ -59,6 +58,7 @@
 #include "TMoviesFrame.h"
 #include "TSyncMySQLToPostgresFrame.h"
 #include "TPGConnectionFrame.h"
+#include <Vcl.DBLookup.hpp>
 //---------------------------------------------------------------------------
 
 using mtk::Property;
@@ -66,6 +66,7 @@ using mtk::MessageContainer;
 using mtk::IniFileProperties;
 using mtk::TRegistryProperties;
 using std::list;
+using std::vector;
 using mtk::StringList;
 class TFFMPEGOutputFrame;
 class TMovieItemFrame;
@@ -92,15 +93,9 @@ class TMainForm : public TRegistryForm
     TTimer *ShutDownTimer;
 	TPageControl *PageControl1;
 	TTabSheet *TabSheet2;
-	TGroupBox *mBlocksGB;
-	TDBGrid *mBlockNotesGrid;
-	TDBMemo *mBlockNoteMemo;
-	TDBNavigator *BlockNoteNavigator;
 	TLabel *Label2;
-	TGroupBox *BlockNotesGB;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
-	TDBNavigator *BlockNotesNavigator;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
 	TTabSheet *TabSheet7;
@@ -119,9 +114,6 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *SlicesNavigator;
 	TGroupBox *GroupBox4;
 	TListBox *mTablesLB;
-	TDBGrid *BlocksGrid;
-	TButton *Button1;
-	TMemo *mLblMakerMemo;
 	TDBGrid *mUsersDBGrid;
 	TDBNavigator *UsersNavigator;
 	TTabSheet *TabSheet3;
@@ -135,10 +127,6 @@ class TMainForm : public TRegistryForm
 	TPopupMenu *SpecimenPopup;
 	TMenuItem *openDocument;
 	TDBText *RibbonIDLbl;
-	TPanel *Panel2;
-	TPanel *Panel3;
-	TPanel *Panel4;
-	TPanel *Panel5;
 	TTabSheet *TabSheet9;
 	TDBGrid *CoverSlipsGrid;
 	TDBNavigator *CSNavigator;
@@ -161,7 +149,6 @@ class TMainForm : public TRegistryForm
 	TPageControl *PageControl3;
 	TTabSheet *TabSheet11;
 	TDBMemo *DBMemo1;
-	TGroupBox *GroupBox10;
 	TGroupBox *GroupBox11;
 	TLabel *Label10;
 	TDBLookupComboBox *DBLookupComboBox1;
@@ -194,7 +181,7 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *settingsNavigator;
 	TDBText *DBText4;
 	TSplitter *Splitter7;
-	TGroupBox *GroupBox9;
+	TGroupBox *SpecimenGB;
 	TDBNavigator *SpecimenNavigator;
 	TDBGrid *SpecimenGrid;
 	TDataSource *SpecimenDS;
@@ -203,14 +190,8 @@ class TMainForm : public TRegistryForm
 	TPanel *Panel6;
 	TPanel *Panel19;
 	TBitBtn *UnlocktablesBtn;
-	TPanel *Panel20;
 	TRadioGroup *SpecieRG;
-	TDBLookupListBox *AnimalIDLookupListBox;
 	TApplicationEvents *ApplicationEvents1;
-	TLabel *Label1;
-	TGroupBox *GroupBox5;
-	TDBGrid *mProcessForBlocksGrid;
-	TDBText *DBText5;
 	TPanel *Panel21;
 	TLabel *Label3;
 	TPageControl *MediaPageControl;
@@ -227,7 +208,6 @@ class TMainForm : public TRegistryForm
 	TButton *RegisterPostSilanizationBatch;
 	TButton *mRegisterCleanRoundBtn;
 	TPGConnectionFrame *TPGConnectionFrame1;
-	TDBNavigator *BlocksNavigator;
 	TLabel *Label4;
 	TPanel *Panel10;
 	TDBNavigator *DBNavigator1;
@@ -267,6 +247,32 @@ class TMainForm : public TRegistryForm
 	TLabel *Label7;
 	TDBLookupComboBox *BlockIDCB;
 	TSplitter *Splitter2;
+	TGroupBox *mBlocksGB;
+	TGroupBox *BlockNotesGB;
+	TPanel *Panel3;
+	TDBMemo *mBlockNoteMemo;
+	TDBNavigator *BlockNoteNavigator;
+	TPanel *Panel4;
+	TDBNavigator *BlockNotesNavigator;
+	TDBGrid *mBlockNotesGrid;
+	TPanel *Panel2;
+	TPanel *Panel5;
+	TDBGrid *BlocksGrid;
+	TDBNavigator *BlocksNavigator;
+	TGroupBox *GroupBox10;
+	TMemo *mLblMakerMemo;
+	TButton *Button1;
+	TDBGrid *AllBlocksDBGrid;
+	TDBText *DBText1;
+	TGroupBox *GroupBox5;
+	TPanel *Panel20;
+	TDBMemo *DBMemo3;
+	TDBNavigator *DBNavigator3;
+	TPanel *Panel23;
+	TDBNavigator *DBNavigator4;
+	TDBGrid *DBGrid5;
+	TMoviesFrame *MoviesFrame2;
+	TDBText *BlockIDLbl;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
 
@@ -337,13 +343,14 @@ class TMainForm : public TRegistryForm
           int X, int Y);
 	void __fastcall mRibbonsGridCellClick(TColumn *Column);
 	void __fastcall BlockIDCBCloseUp(TObject *Sender);
+	void __fastcall AllBlocksDBGridCellClick(TColumn *Column);
+
 
     private:
         bool                                            gCanClose;
         TApplicationProperties                          mAppProperties;
 		Poco::Mutex										mServerDBMutex;
 
-		ATDBServerSession								mServerDBSession;
 		String __fastcall								createBlockLabel();
         TThreadMethod                                   logMsgMethod;
         void __fastcall                                 logMsg();

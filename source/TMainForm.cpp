@@ -73,7 +73,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
-	mServerDBSession("", "", "" ,""),
     mDBUserID(0),
 	BatchesGBHeight(250),
     mTableUnlockPassword("")
@@ -85,7 +84,7 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     setupAndReadIniParameters();
 
     //Add grids to db grids container for reading/saving column states
-    mDBGrids.push_back(mProcessForBlocksGrid);
+//    mDBGrids.push_back(mProcessForBlocksGrid);
     mDBGrids.push_back(BlocksGrid);
     mDBGrids.push_back(mBlockNotesGrid);
 //	mDBGrids.push_back(mBlocksForRibbonsGrid);
@@ -1017,9 +1016,6 @@ void __fastcall TMainForm::openBlocksForm()
     	// Create block label
         String str = pgDM->createBlockLabel();
         pgDM->blocksCDS->FieldValues["label"] = str;
-//        pgDM->blocksCDS->FieldValues["status"] = 0;
-
-
         pgDM->blocksCDS->Post();
         pgDM->blocksCDS->First();
     }
@@ -1087,7 +1083,7 @@ void TMainForm::populateMedia()
     {
 		TMoviesFrame1->populate(BlockIDSLLB->KeyValue, p);
     }
-    else //Populate Images
+    else
 	{
 		TImagesFrame1->populate(BlockIDSLLB->KeyValue, p);
     }
@@ -1103,7 +1099,6 @@ void __fastcall TMainForm::mRibbonsGridCellClick(TColumn *Column)
 
     Poco::Path p(MediaFolderE->getValue());
 	MoviesFrame1->populate(BlockIDCB->KeyValue, stdstr(RibbonIDLbl->Caption), p);
-
 }
 
 //---------------------------------------------------------------------------
@@ -1120,5 +1115,18 @@ void __fastcall TMainForm::BlockIDCBCloseUp(TObject *Sender)
     }
 }
 
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::AllBlocksDBGridCellClick(TColumn *Column)
+{
+	//	AllBlocksDBGrid
+    if(BlockIDLbl->Caption.Length() <= 0)
+    {
+        return;
+    }
 
-
+    Poco::Path p(MediaFolderE->getValue());
+    TCursor current = (this->Cursor);
+    this->Cursor = crHourGlass;
+	MoviesFrame2->populate(BlockIDLbl->Caption.ToInt(), p);
+//    this->Cursor = current;
+}
