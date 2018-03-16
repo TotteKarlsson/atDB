@@ -6,7 +6,7 @@
 #include "TPGDataModule.h"
 #pragma package(smart_init)
 #include "TCoverSlipForm.h"
-
+#include "TScanForm.h"
 using Poco::DateTimeFormatter;
 
 using namespace mtk;
@@ -20,29 +20,31 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, TShiftState S
     {
         Close();
     }
-    else if(Key == VK_RETURN)
-    {
-    	string bc(mBCBuilder.getBarCode());
-    	//handle barcode
-        bc = trimChars(bc,"\r \n");
-        if(bc.size() == 8 && bc[0] == 'C')
-        {
-        	Log(lInfo) << "Current barcode is: " << bc;
-			TCoverSlipForm *cs = new TCoverSlipForm(bc, this);
-            cs->ShowModal();
-
-
-        }
-
-        mBCBuilder.reset();
-    }
-
+//    else if(Key == VK_RETURN)
+//    {
+//    }
 }
 
 void __fastcall TMainForm::FormKeyPress(TObject *Sender, System::WideChar &Key)
 {
-    //Check barcode from reader
     mBCBuilder.build((char) Key);
+
+    if(Key == '\r')
+    {           //Check character buffer
+        if(mBCBuilder.hasBarCode())
+        {
+            TScanForm* f = new TScanForm(this);
+            f->populate(mBCBuilder.getBarCode());
+            this->Visible = false;
+            f->ShowModal();
+            this->Visible = true;
+            delete f;
+        }
+
+		mBCBuilder.reset();
+    }
+    //Check barcode from reader
+
 }
 
 

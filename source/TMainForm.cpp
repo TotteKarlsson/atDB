@@ -33,6 +33,9 @@
 #include "Poco/File.h"
 #include "frames/TMovieItemFrame.h"
 #include <JPEG.hpp>
+#include "TScanForm.h"
+
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -44,7 +47,6 @@
 #pragma link "TSTDStringEdit"
 #pragma link "TImagesFrame"
 #pragma link "TMoviesFrame"
-#pragma link "TSyncMySQLToPostgresFrame"
 #pragma link "TPGConnectionFrame"
 #pragma resource "*.dfm"
 
@@ -111,6 +113,7 @@ void __fastcall	TMainForm::afterDBServerConnect(System::TObject* Sender)
 	//Populate table dropdown
     StringList tables = pgDM->getTableNames();
     populateListBox(tables, mTablesLB);
+	this->SetFocusedControl(this);
 }
 
 //---------------------------------------------------------------------------
@@ -1125,8 +1128,32 @@ void __fastcall TMainForm::AllBlocksDBGridCellClick(TColumn *Column)
     }
 
     Poco::Path p(MediaFolderE->getValue());
-    TCursor current = (this->Cursor);
-    this->Cursor = crHourGlass;
+//    TCursor current = (Screen->Cursor);
+//
+//    Screen->Cursor = crHourGlass;
 	MoviesFrame2->populate(BlockIDLbl->Caption.ToInt(), p);
 //    this->Cursor = current;
 }
+
+//
+void __fastcall TMainForm::CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+	if(Key != vkReturn)
+    {
+    	return;
+    }
+
+    //Set coverslip ID to edit box text
+
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::ArrayBotButton1Click(TObject *Sender)
+{
+	TScanForm* f = new TScanForm(this);
+    f->ShowModal();
+    delete f;
+}
+
+

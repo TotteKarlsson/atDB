@@ -1,37 +1,50 @@
 #pragma hdrstop
 #include "atBarcodeBuilder.h"
 #include "mtkLogger.h"
+#include "mtkStringUtils.h"
 //---------------------------------------------------------------------------
 
+using namespace mtk;
+
+//---------------------------------------------------------------------------
 BarCodeBuilder::BarCodeBuilder(const char& rDel)
  :
 mRightDelimiter(rDel),
 mIsBuilding(false),
-mMessage(""),
+mBarCode(""),
 mHasBarCode(false)
 {}
 
+//---------------------------------------------------------------------------
 void BarCodeBuilder::reset()
 {
     mIsBuilding = false;
     mHasBarCode = false;
-    mMessage.clear();
+    mBarCode.clear();
 }
 
+void BarCodeBuilder::setBarCode(const string& bc)
+{
+	mBarCode = bc;
+    mHasBarCode = true;
+    mIsBuilding = false;
+}
+//---------------------------------------------------------------------------
 bool BarCodeBuilder::build(const char& ch)
 {
     //If we are looking for end of lines, we are "always" building
-    if(mRightDelimiter == '\n')
+    if(ch == mRightDelimiter)
     {
-        if(ch == '\n')
+    	//Coverslip barcode
+
+        if(mBarCode.size() == 8 && startsWith("C", mBarCode))
         {
             mHasBarCode = true;
             mIsBuilding = false;
             return true;
         }
 
-        mIsBuilding = true;
-        mMessage += ch;
+		reset();
         return true;
     }
 
@@ -43,14 +56,25 @@ bool BarCodeBuilder::build(const char& ch)
     }
 
     //Insert the character, discard irrelevant ones
-   	mMessage += ch;
+   	mBarCode += ch;
     return true;
 }
 
+int	BarCodeBuilder::getBarCodeValue()
+{
+	if(mBarCode.size() > 2)
+    {
+		//Parse barcode
+	    string temp(mBarCode);
+    	temp.erase(0,1);
+        return toInt(temp);
+    }
+}
 
+//---------------------------------------------------------------------------
 string BarCodeBuilder::getBarCode()
 {
-    return mMessage;
+    return mBarCode;
 }
 
 

@@ -41,17 +41,25 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
           Width = 1656
           Height = 875
-          ActivePage = TabSheet2
+          ActivePage = RibbonsTS
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen && Slices'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 177
@@ -520,7 +528,6 @@ object MainForm: TMainForm
                 Align = alClient
                 Caption = 'All Blocks'
                 TabOrder = 0
-                ExplicitHeight = 536
                 object Panel21: TPanel
                   Left = 2
                   Top = 15
@@ -690,11 +697,13 @@ object MainForm: TMainForm
               end
             end
           end
-          object TabSheet7: TTabSheet
+          object RibbonsTS: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitLeft = 52
-            ExplicitTop = -280
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter2: TSplitter
               Left = 0
               Top = 449
@@ -1096,6 +1105,25 @@ object MainForm: TMainForm
                   TabOrder = 9
                   OnCloseUp = BlockIDCBCloseUp
                 end
+                object CoverslipIDE: TSTDStringLabeledEdit
+                  Left = 1146
+                  Top = 24
+                  Width = 159
+                  Height = 33
+                  EditLabel.Width = 58
+                  EditLabel.Height = 13
+                  EditLabel.Caption = 'Coverslip ID'
+                  Font.Charset = DEFAULT_CHARSET
+                  Font.Color = clWindowText
+                  Font.Height = -21
+                  Font.Name = 'Tahoma'
+                  Font.Style = []
+                  ParentFont = False
+                  TabOrder = 10
+                  Text = 'C00003556'
+                  OnKeyDown = CoverslipIDEKeyDown
+                  Value = 'C00003556'
+                end
               end
             end
             inline MoviesFrame1: TMoviesFrame
@@ -1106,23 +1134,24 @@ object MainForm: TMainForm
               Height = 376
               Align = alClient
               TabOrder = 1
-              ExplicitTop = 449
-              ExplicitWidth = 1648
-              ExplicitHeight = 374
+              ExplicitLeft = 3
+              ExplicitTop = 468
+              ExplicitWidth = 1642
+              ExplicitHeight = 376
               inherited Panel22: TPanel
                 Top = 321
                 Width = 1642
-                ExplicitTop = 319
-                ExplicitWidth = 1648
+                ExplicitTop = 321
+                ExplicitWidth = 1642
               end
               inherited ScrollBox2: TScrollBox
                 Width = 1642
                 Height = 321
-                ExplicitWidth = 1648
-                ExplicitHeight = 319
+                ExplicitWidth = 1642
+                ExplicitHeight = 321
                 inherited FlowPanel1: TFlowPanel
                   Width = 1621
-                  ExplicitWidth = 1627
+                  ExplicitWidth = 1621
                 end
               end
             end
@@ -1132,6 +1161,10 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -1396,6 +1429,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 529
@@ -1566,6 +1603,10 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Media'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object MediaPageControl: TPageControl
           Left = 73
           Top = 0
@@ -1665,6 +1706,10 @@ object MainForm: TMainForm
       object TabSheet12: TTabSheet
         Caption = 'Diamond Knifes'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox6: TGroupBox
           Left = 289
           Top = 0
@@ -1961,6 +2006,10 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox13: TGroupBox
           Left = 3
           Top = 19
@@ -2095,6 +2144,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -2294,6 +2347,16 @@ object MainForm: TMainForm
         TabOrder = 0
         OnCloseUp = UsersCBCloseUp
       end
+    end
+    object ArrayBotButton1: TArrayBotButton
+      Left = 1008
+      Top = 16
+      Width = 169
+      Height = 44
+      Caption = 'Scan'
+      TabOrder = 3
+      OnClick = ArrayBotButton1Click
+      SoundID = 'BUTTON_CLICK_4'
     end
   end
   object ActionList1: TActionList

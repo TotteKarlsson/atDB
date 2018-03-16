@@ -185,6 +185,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>Forms\TRegisterFreshCSBatchForm.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Forms\TScanForm.cpp">
+            <Form>ScanForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>Forms\TScanForm.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Forms\TSlicesForm.cpp">
             <Form>SlicesForm</Form>
             <DependentOn>Forms\TSlicesForm.h</DependentOn>
@@ -194,6 +200,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <Form>SpecimenForm</Form>
             <DependentOn>Forms\TSpecimenForm.h</DependentOn>
             <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Frames\TCoverSlipScanFrame.cpp">
+            <Form>CoverSlipScanFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>Frames\TCoverSlipScanFrame.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
         </CppCompile>
         <CppCompile Include="Frames\TTableFrame.cpp">
             <Form>TableFrame</Form>
@@ -232,16 +245,18 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
             <BuildOrder>20</BuildOrder>
         </CppCompile>
-        <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="Frames\TTableFrame.dfm"/>
+        <FormResources Include="Forms\TSlicesForm.dfm"/>
+        <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
-        <FormResources Include="Forms\TSlicesForm.dfm"/>
-        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
-        <FormResources Include="Forms\TCoverSlipForm.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Forms\TScanForm.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="Forms\TBlockForm.dfm"/>
+        <FormResources Include="Forms\TCoverSlipForm.dfm"/>
+        <FormResources Include="Frames\TCoverSlipScanFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

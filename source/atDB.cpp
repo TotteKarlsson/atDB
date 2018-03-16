@@ -19,12 +19,14 @@ USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
 USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("TMainForm.cpp", MainForm);
-USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
-USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
-USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
+USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
+USEFORM("Forms\TScanForm.cpp", ScanForm);
+USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
-USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame);
+USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("Frames\TCoverSlipScanFrame.cpp", CoverSlipScanFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -106,6 +108,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
         Application->ProcessMessages();
 		Application->CreateForm(__classid(TMainForm), &MainForm);
+		Application->CreateForm(__classid(TScanForm), &ScanForm);
 		Application->ShowMainForm = true;
 		Application->Run();
 

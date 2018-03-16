@@ -1,14 +1,45 @@
 #ifndef TMainFormH
 #define TMainFormH
+#include <Data.Bind.Components.hpp>
+#include <Data.Bind.DBScope.hpp>
+#include <Data.Bind.EngExt.hpp>
+#include <Data.Bind.Grid.hpp>
+#include <Data.DB.hpp>
+#include <Data.FMTBcd.hpp>
+#include <Data.SqlExpr.hpp>
+#include <Datasnap.DBClient.hpp>
+#include <Datasnap.Provider.hpp>
+#include <System.Actions.hpp>
+#include <System.Bindings.Outputs.hpp>
 #include <System.Classes.hpp>
-#include <Vcl.Controls.hpp>
-#include <Vcl.StdCtrls.hpp>
-#include <Vcl.Forms.hpp>
+#include <System.Rtti.hpp>
+#include <Vcl.ActnList.hpp>
+#include <Vcl.AppEvnts.hpp>
+#include <Vcl.Bind.DBEngExt.hpp>
+#include <Vcl.Bind.Editors.hpp>
+#include <Vcl.Bind.Grid.hpp>
+#include <Vcl.Bind.Navigator.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.CheckLst.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.DBCtrls.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.DBLookup.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Forms.hpp>
 #include <Vcl.Grids.hpp>
+#include <Vcl.ImgList.hpp>
+#include <Vcl.Mask.hpp>
+#include <Vcl.Menus.hpp>
+#include <Vcl.StdActns.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.ToolWin.hpp>
+#include "atBarCodeBuilder.h"
 #include "Core/atDBApplicationMessages.h"
 #include "Core/atDBDataStructures.h"
+#include "core/atVideoCompressorThread.h"
+#include "forms/TRegistryForm.h"
 #include "mtkIniFileC.h"
 #include "mtkIniFileProperties.h"
 #include "mtkLogFileReader.h"
@@ -16,49 +47,17 @@
 #include "mtkMessageContainer.h"
 #include "mtkProperty.h"
 #include "TApplicationProperties.h"
-#include "forms/TRegistryForm.h"
-#include "TRegistryProperties.h"
-#include "TSTDStringLabeledEdit.h"
-#include <System.Actions.hpp>
-#include <System.Bindings.Outputs.hpp>
-#include <System.Rtti.hpp>
-#include <Vcl.ActnList.hpp>
-#include <Vcl.AppEvnts.hpp>
-#include <Vcl.Bind.Editors.hpp>
-#include <Vcl.Bind.Grid.hpp>
-#include <Vcl.Buttons.hpp>
-#include <Vcl.CheckLst.hpp>
-#include <Vcl.DBCtrls.hpp>
-#include <Vcl.DBGrids.hpp>
-#include <Vcl.ImgList.hpp>
-#include <Vcl.Menus.hpp>
-#include <Vcl.StdActns.hpp>
-#include <Vcl.ToolWin.hpp>
-#include "TIntegerLabeledEdit.h"
-#include <Data.Bind.Components.hpp>
-#include <Data.Bind.DBScope.hpp>
-#include <Data.Bind.EngExt.hpp>
-#include <Data.Bind.Grid.hpp>
-#include <Vcl.Bind.DBEngExt.hpp>
-#include <Vcl.Bind.Navigator.hpp>
-#include <Data.DB.hpp>
-#include <Data.FMTBcd.hpp>
-#include <Data.SqlExpr.hpp>
-#include <Vcl.Mask.hpp>
 #include "TArrayBotBtn.h"
-#include <Datasnap.DBClient.hpp>
-#include <Datasnap.Provider.hpp>
-#include "TTableFrame.h"
-#include "TIntLabel.h"
 #include "TFloatLabeledEdit.h"
-#include "atBarCodeBuilder.h"
-#include "core/atVideoCompressorThread.h"
-#include "TSTDStringEdit.h"
 #include "TImagesFrame.h"
+#include "TIntegerLabeledEdit.h"
+#include "TIntLabel.h"
 #include "TMoviesFrame.h"
-#include "TSyncMySQLToPostgresFrame.h"
 #include "TPGConnectionFrame.h"
-#include <Vcl.DBLookup.hpp>
+#include "TRegistryProperties.h"
+#include "TSTDStringEdit.h"
+#include "TSTDStringLabeledEdit.h"
+#include "TTableFrame.h"
 //---------------------------------------------------------------------------
 
 using mtk::Property;
@@ -98,7 +97,7 @@ class TMainForm : public TRegistryForm
 	TPanel *MenuPanel;
 	TTabSheet *TabSheet6;
 	TTableFrame *TTableFrame1;
-	TTabSheet *TabSheet7;
+	TTabSheet *RibbonsTS;
 	TGroupBox *GroupBox2;
 	TDBGrid *mRibbonsGrid;
 	TDBNavigator *RibbonsNavigator;
@@ -273,9 +272,10 @@ class TMainForm : public TRegistryForm
 	TDBGrid *DBGrid5;
 	TMoviesFrame *MoviesFrame2;
 	TDBText *BlockIDLbl;
+	TSTDStringLabeledEdit *CoverslipIDE;
+	TArrayBotButton *ArrayBotButton1;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
-
     void __fastcall ClearMemoAExecute(TObject *Sender);
     void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
     void __fastcall FormShow(TObject *Sender);
@@ -283,40 +283,27 @@ class TMainForm : public TRegistryForm
     void __fastcall ShutDownTimerTimer(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall LogLevelCBChange(TObject *Sender);
-
-
-
 	void __fastcall NavigatorClick(TObject *Sender, TNavigateBtn Button);
 	void __fastcall NavigatorBeforeAction(TObject *Sender, TNavigateBtn Button);
 	void __fastcall mATDBServerBtnConnectClick(TObject *Sender);
 	void __fastcall mUpdateNoteBtnClick(TObject *Sender);
 	void __fastcall UsersCBCloseUp(TObject *Sender);
-
-
-	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field,
-          TGridDrawState State);
-	void __fastcall SlicesGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol,
-          TColumn *Column, TGridDrawState State);
+	void __fastcall SlicesGridDrawDataCell(TObject *Sender, const TRect &Rect, TField *Field, TGridDrawState State);
+	void __fastcall SlicesGridDrawColumnCell(TObject *Sender, const TRect &Rect, int DataCol, TColumn *Column, TGridDrawState State);
 	void __fastcall mTablesLBClick(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
-
 	void __fastcall mProcessForBlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall mProcessForBlocksGridCellClick(TColumn *Column);
 	void __fastcall OpenAboutFormAExecute(TObject *Sender);
 	void __fastcall PageControl2Change(TObject *Sender);
 	void __fastcall mAddDocBtnClick(TObject *Sender);
 	void __fastcall SlicesDBGridDblClick(TObject *Sender);
-	void __fastcall SlicesGridMouseDown(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
-	void __fastcall SlicesGridMouseUp(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
+	void __fastcall SlicesGridMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+	void __fastcall SlicesGridMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall BlocksGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlocksGridCellClick(TColumn *Column);
-
-	void __fastcall SlicesGridMouseMove(TObject *Sender, TShiftState Shift,
-          int X, int Y);
+	void __fastcall SlicesGridMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
 	void __fastcall SlicesGridTitleClick(TColumn *Column);
-
 	void __fastcall mPrintTestLabelBtnClick(TObject *Sender);
 	void __fastcall mRegisterFreshBatchBtnClick(TObject *Sender);
 	void __fastcall mPrintBatchLblBtnClick(TObject *Sender);
@@ -327,23 +314,23 @@ class TMainForm : public TRegistryForm
 	void __fastcall FormBtnClick(TObject *Sender);
 	void __fastcall CoverSlipsGridKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall CoverSlipsGridCellClick(TColumn *Column);
-
 	void __fastcall DiscardedMenuItemClick(TObject *Sender);
 	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall DBGridDblClick(TObject *Sender);
 	void __fastcall UnlocktablesBtnClick(TObject *Sender);
 	void __fastcall SpecieRGClick(TObject *Sender);
-
 	void __fastcall ApplicationEvents1Exception(TObject *Sender, Exception *E);
 	void __fastcall BlockIDSLLBKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BlockIDSLLBKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall BrowseForFolder1Accept(TObject *Sender);
 	void __fastcall MediaPageControlChange(TObject *Sender);
-	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y);
+	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall mRibbonsGridCellClick(TColumn *Column);
 	void __fastcall BlockIDCBCloseUp(TObject *Sender);
 	void __fastcall AllBlocksDBGridCellClick(TColumn *Column);
+	void __fastcall CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall ArrayBotButton1Click(TObject *Sender);
+
 
 
     private:

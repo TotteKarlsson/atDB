@@ -7,15 +7,17 @@ using std::string;
 class BarCodeBuilder
 {
     public:
-                                            BarCodeBuilder(const char& rDel = '\n');
+                                            BarCodeBuilder(const char& rDel = '\r');
         bool                                isBuilding(){return mIsBuilding;}
         bool                                hasBarCode(){return mHasBarCode;}
         void                                reset();
         bool                                build(const char& ch);
         string                              getBarCode();
+        int		                            getBarCodeValue();
+        void								setBarCode(const string& bc);
 
     private:
-        string                              mMessage;
+        string                              mBarCode;
         char                                mRightDelimiter;
         bool                                mIsBuilding;
         bool                                mHasBarCode;

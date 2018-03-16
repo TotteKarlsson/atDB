@@ -355,9 +355,6 @@ Coordinates=662,1166,81,33
 [Panel7]
 Coordinates=10,1098,47,51
 
-[TabSheet7]
-Coordinates=10,1212,66,33
-
 [atdbDM.processIDDS]
 Coordinates=2330,1030,119,51
 
@@ -507,4 +504,7 @@ Coordinates=540,1166,98,33
 
 [RibbonIDLbl]
 Coordinates=1662,1030,56,51
+
+[RibbonsTS]
+Coordinates=10,1212,66,33
 
