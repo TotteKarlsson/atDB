@@ -1151,7 +1151,8 @@ void __fastcall TMainForm::CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShif
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ArrayBotButton1Click(TObject *Sender)
 {
-	TScanForm* f = new TScanForm(this);
+    Poco::Path p(MediaFolderE->getValue());
+	TScanForm* f = new TScanForm(p, this);
     f->ShowModal();
     delete f;
 }

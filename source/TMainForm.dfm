@@ -41,10 +41,6 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -56,10 +52,6 @@ object MainForm: TMainForm
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen && Slices'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 177
@@ -700,10 +692,6 @@ object MainForm: TMainForm
           object RibbonsTS: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object Splitter2: TSplitter
               Left = 0
               Top = 449
@@ -1161,10 +1149,6 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -1429,10 +1413,6 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 529
@@ -1603,10 +1583,6 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Media'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object MediaPageControl: TPageControl
           Left = 73
           Top = 0
@@ -1706,10 +1682,6 @@ object MainForm: TMainForm
       object TabSheet12: TTabSheet
         Caption = 'Diamond Knifes'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox6: TGroupBox
           Left = 289
           Top = 0
@@ -2006,10 +1978,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object GroupBox13: TGroupBox
           Left = 3
           Top = 19
@@ -2144,10 +2112,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -2443,13 +2407,13 @@ object MainForm: TMainForm
   end
   object settingsDS: TDataSource
     DataSet = pgDM.settingsCDS
-    Left = 1128
-    Top = 472
+    Left = 640
+    Top = 440
   end
   object SpecimenDS: TDataSource
     DataSet = pgDM.specimenCDS
-    Left = 1128
-    Top = 544
+    Left = 816
+    Top = 432
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception

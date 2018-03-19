@@ -9,6 +9,8 @@
 #pragma package(smart_init)
 #pragma link "TSTDStringLabeledEdit"
 #pragma link "TIntegerLabeledEdit"
+#pragma link "TMoviesFrame"
+#pragma link "TRibbonNotesFrame"
 #pragma resource "*.dfm"
 TCoverSlipScanFrame *CoverSlipScanFrame;
 
@@ -20,7 +22,7 @@ __fastcall TCoverSlipScanFrame::TCoverSlipScanFrame(TComponent* Owner)
 {
 }
 
-void TCoverSlipScanFrame::populate(int csID)
+void TCoverSlipScanFrame::populate(int csID, const Poco::Path& p)
 {
 	mCSID = csID;
     CSIDE->setValue(mCSID);
@@ -34,53 +36,30 @@ void TCoverSlipScanFrame::populate(int csID)
         return;
     }
 
-	SQLQuery1->Active 			= false;
+	SQLDataSet1->Active    		= false;
     ClientDataSet1->Active 		= false;
 
-    //Setup Query
-    QueryBuilder qb;
-
-    qb	<<"SELECT specimen.animal_id, slices.id as slice_id, blocks.id as block_id, blocks.status as block_status, ribbons.id as ribbon_id, ribbons.knife_id "
-      	<<"FROM specimen "
-        <<"JOIN slices ON (specimen.id = slices.specimen_id)"
-      	<<"JOIN blocks ON (slices.id = blocks.slice_id) "
-    	<<"JOIN ribbons ON (blocks.id = ribbons.block_id) "
-    	<<"WHERE "
-    	<<"    ribbons.coverslip_id = " << csID
-    	<<";";
-
-	SQLQuery1->SQL->Text = qb.asCString();
+	SQLDataSet1->Params->ParamByName("csID")->AsInteger = csID;
 
     //Execute Query
-    SQLQuery1->Open();
+    SQLDataSet1->Open();
 
-    if(SQLQuery1->Fields->Count)
+    if(SQLDataSet1->Fields->Count)
     {
-        SQLQuery1->Active = true;
+        SQLDataSet1->Active = true;
         ClientDataSet1->Active = true;
         ClientDataSet1->Refresh();
+    }
 
-        if(ClientDataSet1->FieldByName("slice_id"))
-        {
-        	SliceIDE->Text = ClientDataSet1->FieldByName("slice_id")->AsString;
-        }
-
-        if(ClientDataSet1->FieldByName("animal_id"))
-        {
-        	AnimalIDE->Text = ClientDataSet1->FieldByName("animal_id")->AsString;
-        }
-
-        //Set all columnwidts
-        int cols = DBGrid1->Columns->Count;
-        for(int i = 0; i < cols; i++)
-        {
-            DBGrid1->Columns->Items[i]->Width = 200;
-        }
-
-
+    if(!ClientDataSet1->FieldByName("block_id")->IsNull && !ClientDataSet1->FieldByName("ribbon_id")->IsNull)
+    {
+        //Get blockID and ribbonID
+        int blockID = ClientDataSet1->FieldByName("block_id")->AsInteger;
+        String ribbonID = ClientDataSet1->FieldByName("ribbon_id")->AsString;
+        MoviesFrame1->populate(blockID, stdstr(ribbonID), p);
     }
 
 
-
 }
+
 

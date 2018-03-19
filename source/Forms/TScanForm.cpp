@@ -4,6 +4,8 @@
 #include "TScanForm.h"
 #include "mtkLogger.h"
 #include "TCoverSlipScanFrame.h"
+#include "mtkVCLUtils.h"
+#include <DB.hpp>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -13,9 +15,10 @@ using namespace mtk;
 
 
 //---------------------------------------------------------------------------
-__fastcall TScanForm::TScanForm(TComponent* Owner)
+__fastcall TScanForm::TScanForm(Poco::Path p, TComponent* Owner)
 	: TForm(Owner),
-    CSFrame(NULL)
+    CSFrame(NULL),
+    mMediaPath(p)
 {
 }
 //---------------------------------------------------------------------------
@@ -56,13 +59,24 @@ void __fastcall TScanForm::FormKeyPress(TObject *Sender, System::WideChar &Key)
 
 void TScanForm::onCSBarcode(int csID)
 {
-	if(!CSFrame)
+	try
     {
-		CSFrame = new TCoverSlipScanFrame(this);
-        CSFrame->Parent = this;
+        if(!CSFrame)
+        {
+            CSFrame = new TCoverSlipScanFrame(this);
+            CSFrame->Parent = this;
+            CSFrame->Align = alClient;
+        }
+
+        CSFrame->GroupBox1->Caption = "Information for coverslip with ID: " + IntToStr(csID);
+        CSFrame->populate(csID, mMediaPath);
     }
-
-    CSFrame->GroupBox1->Caption = "Information for coverslip with ID: " + IntToStr(csID);
-    CSFrame->populate(csID);
-
+	catch(const EDatabaseError& e)
+    {
+    	Log(lWarning) << "There was a database error: "<<stdstr(e.Message);
+    }
+	catch(const TDBXError& e)
+    {
+    	Log(lWarning) << stdstr(e.Message);
+    }
 }

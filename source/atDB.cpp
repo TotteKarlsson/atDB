@@ -16,17 +16,18 @@
 //---------------------------------------------------------------------------
 
 USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
+USEFORM("Frames\TCoverSlipScanFrame.cpp", CoverSlipScanFrame); /* TFrame: File Type */
 USEFORM("TMainForm.cpp", MainForm);
 USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
+USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TScanForm.cpp", ScanForm);
 USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TBlockForm.cpp", BlockForm);
 USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
-USEFORM("Frames\TCoverSlipScanFrame.cpp", CoverSlipScanFrame); /* TFrame: File Type */
+USEFORM("Frames\TRibbonNotesFrame.cpp", RibbonNotesFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 

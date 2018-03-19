@@ -33,7 +33,8 @@ void __fastcall TMainForm::FormKeyPress(TObject *Sender, System::WideChar &Key)
     {           //Check character buffer
         if(mBCBuilder.hasBarCode())
         {
-            TScanForm* f = new TScanForm(this);
+		    Poco::Path p(MediaFolderE->getValue());
+            TScanForm* f = new TScanForm(p, this);
             f->populate(mBCBuilder.getBarCode());
             this->Visible = false;
             f->ShowModal();

@@ -5,6 +5,7 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include "atBarCodeBuilder.h"
+#include "Poco/Path.h"
 //---------------------------------------------------------------------------
 
 
@@ -20,9 +21,10 @@ class TScanForm : public TForm
 		BarCodeBuilder				mBCBuilder;
 		TCoverSlipScanFrame* 		CSFrame;
 		void                    	onCSBarcode(int csID);
+	    Poco::Path 					mMediaPath;
 
     public:
-        				__fastcall 	TScanForm(TComponent* Owner);
+        				__fastcall 	TScanForm(Poco::Path p, TComponent* Owner);
 		void						populate(const string& barcode);
 };
 
