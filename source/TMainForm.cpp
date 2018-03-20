@@ -1118,24 +1118,7 @@ void __fastcall TMainForm::BlockIDCBCloseUp(TObject *Sender)
     }
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::AllBlocksDBGridCellClick(TColumn *Column)
-{
-	//	AllBlocksDBGrid
-    if(BlockIDLbl->Caption.Length() <= 0)
-    {
-        return;
-    }
 
-    Poco::Path p(MediaFolderE->getValue());
-//    TCursor current = (Screen->Cursor);
-//
-//    Screen->Cursor = crHourGlass;
-	MoviesFrame2->populate(BlockIDLbl->Caption.ToInt(), p);
-//    this->Cursor = current;
-}
-
-//
 void __fastcall TMainForm::CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
 	if(Key != vkReturn)

@@ -53,8 +53,6 @@ object RibbonNotesFrame: TRibbonNotesFrame
         ConfirmDelete = False
         TabOrder = 1
         OnClick = RibbonNotesNavigatorClick
-        ExplicitLeft = -3
-        ExplicitTop = 237
       end
     end
     object Panel16: TPanel

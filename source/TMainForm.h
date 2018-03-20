@@ -91,8 +91,6 @@ class TMainForm : public TRegistryForm
     TMenuItem *About1;
     TTimer *ShutDownTimer;
 	TPageControl *PageControl1;
-	TTabSheet *TabSheet2;
-	TLabel *Label2;
 	TTabSheet *TabSheet5;
 	TPanel *MenuPanel;
 	TTabSheet *TabSheet6;
@@ -174,7 +172,6 @@ class TMainForm : public TRegistryForm
 	TMenuItem *DiscardedMenuItem;
 	TMenuItem *FreshoutoftheBoxMenuItem;
 	TMenuItem *N1;
-	TSplitter *Splitter6;
 	TDBMemo *mBarCodeCommandMemo;
 	TDataSource *settingsDS;
 	TDBNavigator *settingsNavigator;
@@ -184,15 +181,11 @@ class TMainForm : public TRegistryForm
 	TDBNavigator *SpecimenNavigator;
 	TDBGrid *SpecimenGrid;
 	TDataSource *SpecimenDS;
-	TPanel *LeftPanel;
-	TGroupBox *GroupBox15;
 	TPanel *Panel6;
 	TPanel *Panel19;
 	TBitBtn *UnlocktablesBtn;
 	TRadioGroup *SpecieRG;
 	TApplicationEvents *ApplicationEvents1;
-	TPanel *Panel21;
-	TLabel *Label3;
 	TPageControl *MediaPageControl;
 	TTabSheet *TabSheet1;
 	TGroupBox *GroupBox16;
@@ -261,19 +254,10 @@ class TMainForm : public TRegistryForm
 	TGroupBox *GroupBox10;
 	TMemo *mLblMakerMemo;
 	TButton *Button1;
-	TDBGrid *AllBlocksDBGrid;
-	TDBText *DBText1;
-	TGroupBox *GroupBox5;
-	TPanel *Panel20;
-	TDBMemo *DBMemo3;
-	TDBNavigator *DBNavigator3;
-	TPanel *Panel23;
-	TDBNavigator *DBNavigator4;
-	TDBGrid *DBGrid5;
-	TMoviesFrame *MoviesFrame2;
-	TDBText *BlockIDLbl;
 	TSTDStringLabeledEdit *CoverslipIDE;
 	TArrayBotButton *ArrayBotButton1;
+	TGroupBox *GroupBox5;
+	TTabSheet *TabSheet2;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall ClearMemoAExecute(TObject *Sender);
@@ -327,11 +311,8 @@ class TMainForm : public TRegistryForm
 	void __fastcall BlockIDSLLBMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 	void __fastcall mRibbonsGridCellClick(TColumn *Column);
 	void __fastcall BlockIDCBCloseUp(TObject *Sender);
-	void __fastcall AllBlocksDBGridCellClick(TColumn *Column);
 	void __fastcall CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
 	void __fastcall ArrayBotButton1Click(TObject *Sender);
-
-
 
     private:
         bool                                            gCanClose;
