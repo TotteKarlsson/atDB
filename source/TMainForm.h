@@ -25,7 +25,7 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.DBCtrls.hpp>
 #include <Vcl.DBGrids.hpp>
-#include <Vcl.DBLookup.hpp>
+//#include <Vcl.DBLookup.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include <Vcl.Grids.hpp>

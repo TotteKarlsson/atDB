@@ -43,6 +43,9 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 875
         object PageControl2: TPageControl
           Left = 0
@@ -56,6 +59,9 @@ object MainForm: TMainForm
           ExplicitHeight = 875
           object TabSheet8: TTabSheet
             Caption = 'Specimen, Slices && Blocks'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
             ExplicitHeight = 847
             object GroupBox4: TGroupBox
               Left = 0
@@ -509,6 +515,9 @@ object MainForm: TMainForm
           object RibbonsTS: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
             ExplicitHeight = 847
             object Splitter2: TSplitter
               Left = 0
@@ -943,7 +952,7 @@ object MainForm: TMainForm
               ExplicitLeft = 3
               ExplicitTop = 468
               ExplicitWidth = 1642
-              ExplicitHeight = 376
+              ExplicitHeight = 400
               inherited Panel22: TPanel
                 Top = 345
                 Width = 1642
@@ -967,6 +976,9 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 875
         object Splitter4: TSplitter
           Left = 369
@@ -1239,6 +1251,9 @@ object MainForm: TMainForm
             ExplicitHeight = 873
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
               ExplicitHeight = 845
               object GroupBox12: TGroupBox
                 Left = 0
@@ -1412,6 +1427,9 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Media'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 875
         object MediaPageControl: TPageControl
           Left = 73
@@ -1426,7 +1444,6 @@ object MainForm: TMainForm
           object TabSheet1: TTabSheet
             Caption = 'Movies'
             ImageIndex = 1
-            ExplicitHeight = 847
             inline TMoviesFrame1: TMoviesFrame
               Left = 0
               Top = 0
@@ -1435,7 +1452,7 @@ object MainForm: TMainForm
               Align = alClient
               TabOrder = 0
               ExplicitWidth = 1575
-              ExplicitHeight = 847
+              ExplicitHeight = 871
               inherited Panel22: TPanel
                 Top = 816
                 Width = 1575
@@ -1457,7 +1474,6 @@ object MainForm: TMainForm
           object TabSheet14: TTabSheet
             Caption = 'Images'
             ImageIndex = 2
-            ExplicitHeight = 847
             inline TImagesFrame1: TImagesFrame
               Left = 0
               Top = 0
@@ -1466,7 +1482,7 @@ object MainForm: TMainForm
               Align = alClient
               TabOrder = 0
               ExplicitWidth = 1575
-              ExplicitHeight = 847
+              ExplicitHeight = 871
               inherited Panel22: TPanel
                 Top = 816
                 Width = 1575
@@ -1517,6 +1533,9 @@ object MainForm: TMainForm
       object TabSheet12: TTabSheet
         Caption = 'Knifes'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 875
         object GroupBox6: TGroupBox
           Left = 289
@@ -1674,7 +1693,6 @@ object MainForm: TMainForm
       object TabSheet5: TTabSheet
         Caption = 'All Tables'
         ImageIndex = 4
-        ExplicitHeight = 875
         object mTablesLB: TListBox
           Left = 0
           Top = 0
@@ -1684,7 +1702,6 @@ object MainForm: TMainForm
           ItemHeight = 13
           TabOrder = 0
           OnClick = mTablesLBClick
-          ExplicitHeight = 875
         end
         object Panel6: TPanel
           Left = 153
@@ -1694,7 +1711,6 @@ object MainForm: TMainForm
           Align = alClient
           Caption = 'Panel6'
           TabOrder = 1
-          ExplicitHeight = 875
           inline TTableFrame1: TTableFrame
             Left = 1
             Top = 65
@@ -1705,7 +1721,7 @@ object MainForm: TMainForm
             ExplicitLeft = 1
             ExplicitTop = 65
             ExplicitWidth = 1501
-            ExplicitHeight = 809
+            ExplicitHeight = 833
             inherited GroupBox1: TGroupBox
               Width = 1501
               Height = 833
@@ -1826,9 +1842,6 @@ object MainForm: TMainForm
       object TabSheet6: TTabSheet
         Caption = 'Settings'
         ImageIndex = 5
-        ExplicitLeft = 8
-        ExplicitTop = 23
-        ExplicitHeight = 875
         object GroupBox13: TGroupBox
           Left = 16
           Top = 130
@@ -2026,6 +2039,9 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
         ExplicitHeight = 875
         object BottomPanel: TPanel
           Left = 0
@@ -2105,6 +2121,10 @@ object MainForm: TMainForm
       object TabSheet2: TTabSheet
         Caption = 'Tools'
         ImageIndex = 7
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
     end
   end
@@ -2214,6 +2234,7 @@ object MainForm: TMainForm
       Caption = '...'
       DialogCaption = '...'
       BrowseOptions = [bifEditBox, bifNewDialogStyle, bifStatusText]
+      BrowseOptionsEx = []
       OnAccept = BrowseForFolder1Accept
     end
   end

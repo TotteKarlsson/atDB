@@ -1127,9 +1127,7 @@ void __fastcall TMainForm::CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShif
     }
 
     //Set coverslip ID to edit box text
-
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ArrayBotButton1Click(TObject *Sender)
