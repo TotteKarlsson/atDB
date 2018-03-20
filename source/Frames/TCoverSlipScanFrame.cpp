@@ -57,9 +57,9 @@ void TCoverSlipScanFrame::populate(int csID, const Poco::Path& p)
         int blockID = ClientDataSet1->FieldByName("block_id")->AsInteger;
         String ribbonID = ClientDataSet1->FieldByName("ribbon_id")->AsString;
         MoviesFrame1->populate(blockID, stdstr(ribbonID), p);
+	    //Populate notes frame
+    	TRibbonNotesFrame1->populate(stdstr(ClientDataSet1->FieldByName("ribbon_id")->AsString));
     }
-
-
 }
 
 

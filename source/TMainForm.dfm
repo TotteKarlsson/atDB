@@ -757,6 +757,8 @@ object MainForm: TMainForm
                     ConfirmDelete = False
                     TabOrder = 1
                     OnClick = NavigatorClick
+                    ExplicitLeft = -3
+                    ExplicitTop = 282
                   end
                 end
                 object Panel16: TPanel
@@ -1223,7 +1225,6 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
-                  Width = 64
                   Visible = True
                 end>
             end
@@ -1542,7 +1543,6 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'cutting_order'
-                        Width = 64
                         Visible = True
                       end
                       item
@@ -1554,13 +1554,11 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'created_on'
-                        Width = 64
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'created_byL'
-                        Width = 64
                         Visible = True
                       end>
                   end

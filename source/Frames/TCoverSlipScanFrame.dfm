@@ -12,8 +12,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
     Align = alClient
     Caption = 'Ribbon Info'
     TabOrder = 0
-    ExplicitWidth = 1239
-    ExplicitHeight = 2131
     object TopPanel: TPanel
       Left = 2
       Top = 15
@@ -22,7 +20,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 1263
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -31,8 +28,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitLeft = 36
-        ExplicitTop = -3
         object CSIDE: TIntegerLabeledEdit
           Left = 32
           Top = 43
@@ -80,7 +75,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitHeight = 520
         object Label2: TLabel
           Left = 32
           Top = 49
@@ -232,7 +226,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
           VisibleButtons = [nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
           Align = alBottom
           TabOrder = 0
-          ExplicitTop = 488
         end
         object DBEdit2: TDBEdit
           Left = 32
@@ -396,8 +389,6 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
       Height = 316
       Align = alClient
       TabOrder = 2
-      ExplicitTop = 880
-      ExplicitHeight = 142
       inline MoviesFrame1: TMoviesFrame
         AlignWithMargins = True
         Left = 4
@@ -408,13 +399,13 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
         TabOrder = 0
         ExplicitLeft = 4
         ExplicitTop = 4
-        ExplicitWidth = 500
-        ExplicitHeight = 134
+        ExplicitWidth = 746
+        ExplicitHeight = 308
         inherited Panel22: TPanel
           Top = 253
           Width = 746
-          ExplicitTop = 202
-          ExplicitWidth = 1359
+          ExplicitTop = 253
+          ExplicitWidth = 746
           inherited Label4: TLabel
             Top = 12
             ExplicitTop = 12
@@ -429,11 +420,11 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
         inherited ScrollBox2: TScrollBox
           Width = 746
           Height = 253
-          ExplicitWidth = 1359
-          ExplicitHeight = 202
+          ExplicitWidth = 746
+          ExplicitHeight = 253
           inherited FlowPanel1: TFlowPanel
             Width = 725
-            ExplicitWidth = 1338
+            ExplicitWidth = 725
           end
         end
       end
@@ -444,47 +435,43 @@ object CoverSlipScanFrame: TCoverSlipScanFrame
         Height = 314
         Align = alRight
         TabOrder = 1
-        ExplicitLeft = 732
-        ExplicitTop = -108
+        ExplicitLeft = 753
+        ExplicitTop = 1
         ExplicitWidth = 611
-        ExplicitHeight = 250
+        ExplicitHeight = 314
         inherited GroupBox1: TGroupBox
           Width = 611
           Height = 314
-          ExplicitLeft = 0
-          ExplicitTop = 0
           ExplicitWidth = 611
-          ExplicitHeight = 250
+          ExplicitHeight = 314
           inherited Panel15: TPanel
             Height = 297
-            ExplicitHeight = 233
+            ExplicitHeight = 297
             inherited mRibbonNotesGrid: TDBGrid
               Height = 270
             end
             inherited RibbonNotesNavigator: TDBNavigator
               Top = 271
               Hints.Strings = ()
-              OnClick = nil
-              ExplicitTop = 207
+              ExplicitTop = 271
             end
           end
           inherited Panel16: TPanel
             Width = 422
             Height = 297
             ExplicitWidth = 422
-            ExplicitHeight = 233
+            ExplicitHeight = 297
             inherited mRibbonNoteMemo: TDBMemo
               Width = 420
               Height = 270
               ExplicitWidth = 420
-              ExplicitHeight = 206
+              ExplicitHeight = 270
             end
             inherited RibbonNoteNavigator: TDBNavigator
               Top = 271
               Width = 420
               Hints.Strings = ()
-              OnClick = nil
-              ExplicitTop = 207
+              ExplicitTop = 271
               ExplicitWidth = 420
             end
           end
