@@ -1,3 +1,14 @@
+Release 0.6.8 (March 20)
+=======================
+* Removed All Blocks tab
+* Added code to deal with ribbon notes on the ribbon scans frame
+* Working on ribbon scan form
+* Added frame and form to provide data for a scanned coverslip
+* Removed references to obsolete ATDBServerSession
+* Adding better block/ribbon browsing support
+* Changed, simplified the view of ribbons
+* New version - got knife handling implemented
+
 Release 0.6.7 (Jan 3)
 =======================
 * Added knifes table

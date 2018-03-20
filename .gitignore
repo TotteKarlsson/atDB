@@ -13,3 +13,4 @@ __history
 /ThirdParties/*.ZIP
 /PythonSource/*.pyc
 /docs/~$DB-Reference.docx
+*.bak
