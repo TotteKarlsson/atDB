@@ -5,7 +5,7 @@
 #include "atVCLUtils.h"
 #include "database/atDBUtils.h"
 #include "mtkLogger.h"
-#include "mtkMoleculixException.h"
+#include "DSLException.h"
 #include "database/mtkSQLiteException.h"
 #include "mtkStringUtils.h"
 #include "mtkUtils.h"

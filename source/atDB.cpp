@@ -9,7 +9,7 @@
 #include "mtkRestartApplicationUtils.h"
 #include "mtkLogger.h"
 #include "Core/atDBUtilities.h"
-#include "mtkMoleculixException.h"
+#include "dslException.h"
 #include "TPGDataModule.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGImagesAndMoviesDataModule.h"
@@ -60,11 +60,11 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		// Initialize restart code
 		// Check if this instance is restarted and
 		// wait while previos instance finish
-		if (mtk::checkForCommandLineFlag("--Restart"))
-		{
-			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
-		}
-        else
+//		if (mtk::checkForCommandLineFlag("--Restart"))
+//		{
+////			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
+//		}
+//        else
         {
             //Look at this later... does not work yet
             HANDLE appMutex = ::CreateMutexA(NULL, FALSE, gAppMutexName.c_str());
@@ -114,13 +114,13 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Run();
 
         // Finish restarting process if needed
-        DoRestartProcessFinish();
+//        DoRestartProcessFinish();
 	}
 	catch (Exception &exception)
 	{
 		Application->ShowException(&exception);
 	}
-	catch(const MoleculixException &e)
+	catch(const DSLException &e)
 	{
 		throw Exception(e.what());
 	}
