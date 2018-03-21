@@ -85,7 +85,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <IncludePath>$(DEBUG_BUILD)\include;$(IncludePath)</IncludePath>
+        <IncludePath>$(DEBUG_BCC32)\include;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <LinkPackageImports>rtl.bpi;vcl.bpi;dbrtl.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DBXMySQLDriver.bpi;dsnap.bpi;vcldb.bpi;DuneComponents.bpi;vclactnband.bpi;vclx.bpi;VCLCommon.bpi</LinkPackageImports>

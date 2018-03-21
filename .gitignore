@@ -14,3 +14,4 @@ __history
 /PythonSource/*.pyc
 /docs/~$DB-Reference.docx
 *.bak
+*.stat
