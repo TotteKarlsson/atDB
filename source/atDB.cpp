@@ -46,6 +46,7 @@ extern string       gTimeFormat                 = "%H:%M:%S";
 extern string       gCommonAppDataLocation      = ""; //Filled out later
 extern string       gLogFileLocation            = "";
 extern string       gLogFileName                = "atDBPG.log";
+extern string       gApplicationStyle           = "Iceberg Classico";
 extern bool         gIsDevelopmentRelease       = false;
 
 
@@ -57,33 +58,34 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
     //The app mutex is used to check for already running instances
     try
     {
-		// Initialize restart code
-		// Check if this instance is restarted and
-		// wait while previos instance finish
-//		if (mtk::checkForCommandLineFlag("--Restart"))
-//		{
-////			mtk::WaitForPreviousProcessToFinish(gRestartMutexName);
-//		}
-//        else
+        //Look at this later... does not work yet
+        HANDLE appMutex = ::CreateMutexA(NULL, FALSE, gAppMutexName.c_str());
+        int err = GetLastError();
+        if( ERROR_ALREADY_EXISTS == err)
         {
-            //Look at this later... does not work yet
-            HANDLE appMutex = ::CreateMutexA(NULL, FALSE, gAppMutexName.c_str());
-            int err = GetLastError();
-            if( ERROR_ALREADY_EXISTS == err)
-            {
-                // Program already running somewhere
-                ::EnumWindows(FindOtherWindow, NULL);
+            // Program already running somewhere
+            ::EnumWindows(FindOtherWindow, NULL);
 
-                if(gOtherAppWindow != NULL)
-                {
-                	MessageDlg("ATDB is already running!", mtWarning, TMsgDlgButtons() << mbOK, 0);
-                    //Send a custom message to restore window here..
-                    ::SwitchToThisWindow(gOtherAppWindow, false);
-                }
-				// Exit program
-                return(0);
+            if(gOtherAppWindow != NULL)
+            {
+                MessageDlg("ATDB is already running!", mtWarning, TMsgDlgButtons() << mbOK, 0);
+                //Send a custom message to restore window here..
+                ::SwitchToThisWindow(gOtherAppWindow, false);
             }
-        }
+            // Exit program
+            return(0);
+         }
+
+         try
+         {
+			gApplicationStyle = readStringFromRegistry(gApplicationRegistryRoot, "", "Theme",  gApplicationStyle);
+			TStyleManager::SetStyle(gApplicationStyle.c_str());
+         }
+         catch(...)
+         {
+
+         }
+
 
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
@@ -98,7 +100,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
         Application->Initialize();
         Application->MainFormOnTaskBar = true;
 
-		TStyleManager::TrySetStyle("Iceberg Classico");
+
 		Application->Title = "atDBpg";
 
         //Create data modules

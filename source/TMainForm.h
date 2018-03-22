@@ -258,6 +258,8 @@ class TMainForm : public TRegistryForm
 	TArrayBotButton *ArrayBotButton1;
 	TGroupBox *GroupBox5;
 	TTabSheet *TabSheet2;
+	TMenuItem *Options1;
+	TMenuItem *ThemesMenu;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall ClearMemoAExecute(TObject *Sender);
@@ -326,7 +328,7 @@ class TMainForm : public TRegistryForm
 
 		LogFileReader                                   mLogFileReader;
         vector<TDBGrid*>								mDBGrids;
-		bool                                            mIsStyleMenuPopulated;
+
 		void                                            setupWindowTitle();
 		void                                            updateWindowTitle();
 		string                                          mTempFileFolder;
@@ -346,8 +348,6 @@ class TMainForm : public TRegistryForm
         mtk::Property<bool>                             mShowSplashOnStartup;
 
 		mtk::Property<int>	                            mDBUserID;
-
-        void        __fastcall                          PopulateStyleMenu();
 
         bool                                            setupAndReadIniParameters();
         void                                            setupIniFile();

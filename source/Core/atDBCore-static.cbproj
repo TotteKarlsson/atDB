@@ -62,7 +62,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <AllPackageLibs>rtl.lib;VCLCommon.lib;vcl.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;;vcl.lib;vclactnband.lib;vclx.lib</AllPackageLibs>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <ProjectType>CppStaticLibrary</ProjectType>
         <_TCHARMapping>char</_TCHARMapping>
@@ -81,11 +81,11 @@
         <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DuneComponents;VCLCommon;MoleculixPackage;vtk;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
+        <PackageImports>bindcompvcl;TeeUI;CSKGenerator;adortl;DuneComponents;;MoleculixPackage;vtk;vcltouch;bcbsmp;bindcompfmx;DBXSqliteDriver;CustomIPTransport;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;TeeDB;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;Tee;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bdertl;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <PackageImports>bindcompvcl;VCLCommon;vcltouch;bindcompfmx;DBXSqliteDriver;CustomIPTransport;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
+        <PackageImports>bindcompvcl;;vcltouch;bindcompfmx;DBXSqliteDriver;CustomIPTransport;fmx;dsnap;rtl;dbrtl;DbxClientDriver;vcl;fmxase;bindcomp;IndyCore;IndySystem;dsnapcon;DBXInterBaseDriver;DataSnapCommon;fmxobj;vclx;xmlrtl;DbxCommonDriver;vclimg;fmxdae;DBXMySQLDriver;dbxcds;IndyProtocols;bindengine;vclactnband;dbexpress;vcldb;bindcompdbx;vcldsnap;$(PackageImports)</PackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>

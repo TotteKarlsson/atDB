@@ -29,8 +29,6 @@ object MainForm: TMainForm
     Height = 929
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 73
-    ExplicitHeight = 905
     object PageControl1: TPageControl
       Left = 1
       Top = 1
@@ -43,10 +41,6 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 875
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -56,13 +50,8 @@ object MainForm: TMainForm
           Align = alClient
           TabOrder = 0
           OnChange = PageControl2Change
-          ExplicitHeight = 875
           object TabSheet8: TTabSheet
             Caption = 'Specimen, Slices && Blocks'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 847
             object GroupBox4: TGroupBox
               Left = 0
               Top = 177
@@ -259,7 +248,6 @@ object MainForm: TMainForm
               Align = alClient
               Caption = 'Blocks'
               TabOrder = 2
-              ExplicitHeight = 462
               object BlockNotesGB: TGroupBox
                 Left = 2
                 Top = 287
@@ -272,7 +260,6 @@ object MainForm: TMainForm
                 Padding.Right = 5
                 Padding.Bottom = 5
                 TabOrder = 0
-                ExplicitTop = 263
                 object Panel3: TPanel
                   Left = 206
                   Top = 20
@@ -356,7 +343,6 @@ object MainForm: TMainForm
                 BevelEdges = []
                 BevelOuter = bvNone
                 TabOrder = 1
-                ExplicitHeight = 248
                 object Panel5: TPanel
                   Left = 0
                   Top = 0
@@ -364,7 +350,6 @@ object MainForm: TMainForm
                   Height = 272
                   Align = alClient
                   TabOrder = 0
-                  ExplicitHeight = 248
                   object BlocksGrid: TDBGrid
                     Left = 1
                     Top = 1
@@ -472,7 +457,6 @@ object MainForm: TMainForm
                     TabOrder = 1
                     BeforeAction = NavigatorBeforeAction
                     OnClick = NavigatorClick
-                    ExplicitTop = 222
                   end
                 end
               end
@@ -484,7 +468,6 @@ object MainForm: TMainForm
                 Align = alRight
                 Caption = 'Print block labels'
                 TabOrder = 2
-                ExplicitHeight = 248
                 object mLblMakerMemo: TMemo
                   Left = 2
                   Top = 15
@@ -498,7 +481,6 @@ object MainForm: TMainForm
                   Font.Style = []
                   ParentFont = False
                   TabOrder = 0
-                  ExplicitHeight = 231
                 end
                 object Button1: TButton
                   Left = 168
@@ -515,10 +497,6 @@ object MainForm: TMainForm
           object RibbonsTS: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 847
             object Splitter2: TSplitter
               Left = 0
               Top = 449
@@ -956,14 +934,14 @@ object MainForm: TMainForm
               inherited Panel22: TPanel
                 Top = 345
                 Width = 1642
-                ExplicitTop = 321
+                ExplicitTop = 345
                 ExplicitWidth = 1642
               end
               inherited ScrollBox2: TScrollBox
                 Width = 1642
                 Height = 345
                 ExplicitWidth = 1642
-                ExplicitHeight = 321
+                ExplicitHeight = 345
                 inherited FlowPanel1: TFlowPanel
                   Width = 1621
                   ExplicitWidth = 1621
@@ -976,10 +954,6 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 875
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -995,7 +969,6 @@ object MainForm: TMainForm
           Height = 899
           Align = alLeft
           TabOrder = 0
-          ExplicitHeight = 875
           object Splitter7: TSplitter
             Left = 1
             Top = 201
@@ -1013,7 +986,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Cover Slips'
             TabOrder = 0
-            ExplicitHeight = 637
             object CSNavigator: TDBNavigator
               Left = 2
               Top = 518
@@ -1024,7 +996,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 0
               OnClick = NavigatorClick
-              ExplicitTop = 494
             end
             object CoverSlipsGrid: TDBGrid
               Left = 2
@@ -1069,7 +1040,6 @@ object MainForm: TMainForm
               Align = alBottom
               BevelOuter = bvNone
               TabOrder = 2
-              ExplicitTop = 519
               object mNrOfSelectedCS: TIntLabel
                 Left = 319
                 Top = 16
@@ -1127,7 +1097,6 @@ object MainForm: TMainForm
             Height = 32
             Align = alBottom
             TabOrder = 1
-            ExplicitTop = 842
             object mPrintCSLabelsBtn: TButton
               Left = 201
               Top = 4
@@ -1239,7 +1208,6 @@ object MainForm: TMainForm
           Height = 899
           Align = alClient
           TabOrder = 1
-          ExplicitHeight = 875
           object PageControl3: TPageControl
             Left = 1
             Top = 1
@@ -1248,13 +1216,8 @@ object MainForm: TMainForm
             ActivePage = TabSheet11
             Align = alClient
             TabOrder = 0
-            ExplicitHeight = 873
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 0
-              ExplicitHeight = 845
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 529
@@ -1263,7 +1226,6 @@ object MainForm: TMainForm
                 Align = alClient
                 Caption = 'Coverslip notes'
                 TabOrder = 0
-                ExplicitHeight = 316
                 object DBMemo1: TDBMemo
                   Left = 2
                   Top = 15
@@ -1274,7 +1236,6 @@ object MainForm: TMainForm
                   DataSource = csPGDM.csDSource
                   ScrollBars = ssBoth
                   TabOrder = 0
-                  ExplicitHeight = 299
                 end
               end
               object Panel18: TPanel
@@ -1427,10 +1388,6 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Media'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 875
         object MediaPageControl: TPageControl
           Left = 73
           Top = 0
@@ -1440,7 +1397,6 @@ object MainForm: TMainForm
           Align = alClient
           TabOrder = 0
           OnChange = MediaPageControlChange
-          ExplicitHeight = 875
           object TabSheet1: TTabSheet
             Caption = 'Movies'
             ImageIndex = 1
@@ -1456,14 +1412,14 @@ object MainForm: TMainForm
               inherited Panel22: TPanel
                 Top = 816
                 Width = 1575
-                ExplicitTop = 792
+                ExplicitTop = 816
                 ExplicitWidth = 1575
               end
               inherited ScrollBox2: TScrollBox
                 Width = 1575
                 Height = 816
                 ExplicitWidth = 1575
-                ExplicitHeight = 792
+                ExplicitHeight = 816
                 inherited FlowPanel1: TFlowPanel
                   Width = 1571
                   ExplicitWidth = 1571
@@ -1486,14 +1442,14 @@ object MainForm: TMainForm
               inherited Panel22: TPanel
                 Top = 816
                 Width = 1575
-                ExplicitTop = 792
+                ExplicitTop = 816
                 ExplicitWidth = 1575
               end
               inherited ScrollBox2: TScrollBox
                 Width = 1575
                 Height = 816
                 ExplicitWidth = 1575
-                ExplicitHeight = 792
+                ExplicitHeight = 816
                 inherited FlowPanel1: TFlowPanel
                   Width = 1571
                   ExplicitWidth = 1571
@@ -1512,7 +1468,6 @@ object MainForm: TMainForm
           Color = clBtnFace
           ParentColor = False
           TabOrder = 1
-          ExplicitHeight = 875
           object BlockIDSLLB: TDBLookupListBox
             Left = 2
             Top = 15
@@ -1526,17 +1481,12 @@ object MainForm: TMainForm
             OnKeyDown = BlockIDSLLBKeyDown
             OnKeyUp = BlockIDSLLBKeyUp
             OnMouseUp = BlockIDSLLBMouseUp
-            ExplicitHeight = 849
           end
         end
       end
       object TabSheet12: TTabSheet
         Caption = 'Knifes'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 875
         object GroupBox6: TGroupBox
           Left = 289
           Top = 0
@@ -1549,7 +1499,6 @@ object MainForm: TMainForm
           Padding.Right = 5
           Padding.Bottom = 5
           TabOrder = 0
-          ExplicitHeight = 875
           object Panel11: TPanel
             Left = 7
             Top = 20
@@ -1557,7 +1506,6 @@ object MainForm: TMainForm
             Height = 872
             Align = alClient
             TabOrder = 0
-            ExplicitHeight = 848
             object DBMemo2: TDBMemo
               Left = 1
               Top = 1
@@ -1567,7 +1515,6 @@ object MainForm: TMainForm
               DataField = 'note'
               DataSource = pgDM.knifeNotesDataSource
               TabOrder = 0
-              ExplicitHeight = 821
             end
             object KnifeNoteNavigator: TDBNavigator
               Left = 1
@@ -1579,7 +1526,6 @@ object MainForm: TMainForm
               Align = alBottom
               TabOrder = 1
               OnClick = NavigatorClick
-              ExplicitTop = 822
             end
           end
         end
@@ -1590,7 +1536,6 @@ object MainForm: TMainForm
           Height = 899
           Align = alLeft
           TabOrder = 1
-          ExplicitHeight = 875
           object GroupBox3: TGroupBox
             Left = 1
             Top = 1
@@ -1646,7 +1591,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Notes'
             TabOrder = 1
-            ExplicitHeight = 712
             object DBGrid3: TDBGrid
               Left = 2
               Top = 15
@@ -1685,7 +1629,6 @@ object MainForm: TMainForm
               ConfirmDelete = False
               TabOrder = 1
               OnClick = NavigatorClick
-              ExplicitTop = 685
             end
           end
         end
@@ -1727,7 +1670,7 @@ object MainForm: TMainForm
               Height = 833
               Align = alClient
               ExplicitWidth = 1501
-              ExplicitHeight = 809
+              ExplicitHeight = 833
               inherited DBGrid1: TDBGrid
                 Top = 15
                 Width = 1497
@@ -1738,7 +1681,7 @@ object MainForm: TMainForm
                 Top = 789
                 Width = 1497
                 Hints.Strings = ()
-                ExplicitTop = 765
+                ExplicitTop = 789
                 ExplicitWidth = 1497
               end
             end
@@ -1987,7 +1930,6 @@ object MainForm: TMainForm
             Height = 74
             Align = alClient
             Caption = 'Database Connection'
-            ExplicitLeft = 17
             ExplicitWidth = 917
             ExplicitHeight = 74
             inherited mServerIPE: TSTDStringLabeledEdit
@@ -2039,10 +1981,6 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 875
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -2050,7 +1988,6 @@ object MainForm: TMainForm
           Height = 899
           Align = alClient
           TabOrder = 0
-          ExplicitHeight = 875
           object Panel1: TPanel
             Left = 1
             Top = 1
@@ -2059,7 +1996,6 @@ object MainForm: TMainForm
             Align = alClient
             Caption = 'Panel1'
             TabOrder = 0
-            ExplicitHeight = 873
             object infoMemo: TMemo
               Left = 1
               Top = 22
@@ -2075,7 +2011,6 @@ object MainForm: TMainForm
               PopupMenu = LogMemoPopup
               ScrollBars = ssBoth
               TabOrder = 0
-              ExplicitHeight = 850
             end
             object ToolBar1: TToolBar
               Left = 1
@@ -2121,10 +2056,6 @@ object MainForm: TMainForm
       object TabSheet2: TTabSheet
         Caption = 'Tools'
         ImageIndex = 7
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end
@@ -2156,9 +2087,6 @@ object MainForm: TMainForm
         'Mouse')
       TabOrder = 0
       OnClick = SpecieRGClick
-      ExplicitLeft = 1239
-      ExplicitTop = 21
-      ExplicitHeight = 71
     end
     object Panel10: TPanel
       Left = 315
@@ -2168,8 +2096,6 @@ object MainForm: TMainForm
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 643
-      ExplicitTop = -4
       object ArrayBotButton1: TArrayBotButton
         Left = 0
         Top = 0
@@ -2180,8 +2106,6 @@ object MainForm: TMainForm
         TabOrder = 0
         OnClick = ArrayBotButton1Click
         SoundID = 'BUTTON_CLICK_4'
-        ExplicitTop = 3
-        ExplicitHeight = 44
       end
     end
     object GroupBox5: TGroupBox
@@ -2192,9 +2116,6 @@ object MainForm: TMainForm
       Align = alLeft
       Caption = 'Current User'
       TabOrder = 2
-      ExplicitLeft = 544
-      ExplicitTop = 16
-      ExplicitHeight = 105
       DesignSize = (
         185
         47)
@@ -2258,6 +2179,12 @@ object MainForm: TMainForm
       Caption = 'File'
       object Exit1: TMenuItem
         Action = FileExit1
+      end
+    end
+    object Options1: TMenuItem
+      Caption = 'Options'
+      object ThemesMenu: TMenuItem
+        Caption = 'Appearance'
       end
     end
     object Help1: TMenuItem

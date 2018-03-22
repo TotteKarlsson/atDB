@@ -7,61 +7,36 @@
 using namespace mtk;
 extern string gRestartMutexName ;
 extern string gDefaultAppTheme;
-//---------------------------------------------------------------------------
-void __fastcall TMainForm::PopulateStyleMenu()
-{
-//    //Populate styles menu
-//    string themeFolder("styles");
-//    themeFolder = joinPath(getCWD(), themeFolder);
-//
-//    //Populate menu with styles in the style manager
-//    //Add to menu
-//    System::DynamicArray<System::UnicodeString> aList = TStyleManager::StyleNames;
-//    String activeStyle = TStyleManager::ActiveStyle->Name;
-//    for(int i = 0; i < aList.Length; i++)
-//    {
-//        String name = TStyleManager::StyleNames[i];
-//
-////        TMenuItem *Item = new TMenuItem(ThemesMenu);
-////        Item->Caption = name;
-////        Item->OnClick = ThemesMenuClick;
-////        ThemesMenu->Add(Item);
-////        if(Item->Caption == activeStyle)
-////        {
-////            Item->Checked = true;
-////        }
-//    }
-}
-
+extern string gApplicationStyle;
 void __fastcall TMainForm::ThemesMenuClick(TObject *Sender)
 {
-//    TMenuItem* anItem = dynamic_cast<TMenuItem*>(Sender);
-//    if(!anItem)
-//    {
-//        return;
-//    }
-//
-//    TReplaceFlags rFlags(rfIgnoreCase|rfReplaceAll);
-//    String styleName = StringReplace(anItem->Caption, "&", "", rFlags);
-//
-//    int mrResult = MessageDlg("Changing theme require restart of the Application.\nRestart?", mtCustom, TMsgDlgButtons() << mbOK<<mbCancel, 0);
-//
-//    if(mrResult == mrOk)
-//    {
-//        if (!ActivateApplicationStyleChange(gRestartMutexName, stdstr(styleName)))
-//        {
-//            ::MessageBox(NULL, TEXT("Something Went Wrong!"),
-//                         TEXT("Restart App"),
-//                         MB_OK|MB_ICONEXCLAMATION);
-//            return ;
-//        }
-//
-//        gDefaultAppTheme = stdstr(styleName);
-//        //Write to registry
-//        writeStringToRegistry(gApplicationRegistryRoot, "", "Theme", gDefaultAppTheme);
-//
-//        // Terminate application.
-//        Close();
-//    }
+    TMenuItem* menuItem = dynamic_cast<TMenuItem*>(Sender);
+    if(!menuItem)
+    {
+        return;
+    }
+
+	//Uncheck any checked items
+	for(int i = 0; i < ThemesMenu->Count; i++)
+	{
+		TMenuItem* menuItem = ThemesMenu->Items[i];
+		if(menuItem && menuItem->Checked)
+		{
+			menuItem->Checked = false;
+		}
+	}
+
+	TRegistryForm::writeToRegistry();
+
+	TReplaceFlags rFlags(rfIgnoreCase|rfReplaceAll);
+	String styleName = StringReplace(menuItem->Caption, "&", "", rFlags);
+	TStyleManager::SetStyle(styleName);
+
+	//Check the menu item
+	menuItem->Checked = (TStyleManager::ActiveStyle->Name == styleName) ? true : false;
+
+	//Write to registry
+	gApplicationStyle = stdstr(styleName);
+	writeStringToRegistry(gApplicationRegistryRoot, "", "Theme", gApplicationStyle);
 }
 

@@ -34,8 +34,6 @@
 #include "frames/TMovieItemFrame.h"
 #include <JPEG.hpp>
 #include "TScanForm.h"
-
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -71,7 +69,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mSplashProperties(gApplicationRegistryRoot, "Splash"),
     mShowSplashOnStartup(true),
     mLogLevel(lAny),
-    mIsStyleMenuPopulated(false),
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
