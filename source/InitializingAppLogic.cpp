@@ -20,6 +20,7 @@ extern string           gLogFileName;
 extern string           gFullDateTimeFormat;
 extern string           gDateFormat;
 extern string           gTimeFormat;
+extern string           gApplicationStyle;
 
 //extern TSplashForm*     gSplashForm;
 extern string           gTimeFormat;
@@ -72,6 +73,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 		pgDM->SQLConnection1->AfterConnect 		= afterDBServerConnect;
 	    pgDM->SQLConnection1->AfterDisconnect 	= afterDBServerDisconnect;
     }
+//	TStyleManager::SetStyle(gApplicationStyle.c_str());
 }
 
 //---------------------------------------------------------------------------
@@ -85,6 +87,7 @@ void __fastcall TMainForm::FormShow(TObject *Sender)
 	BottomPanel->Height     = mBottomPanelHeight + 1;
 	SB->Top = MainForm->Top + MainForm->Height + 10;
 	SB->SizeGrip = true;
+    populateStyleMenu(ThemesMenu, ThemesMenuClick);
 
 	//Read grid column settings from files in AppData/Grids folder
 //	Log(lInfo) << "Reading column states";

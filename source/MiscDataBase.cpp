@@ -3,7 +3,7 @@
 #include "TMemoLogger.h"
 #include "mtkVCLUtils.h"
 #include "mtkLogger.h"
-#include "mtkMoleculixException.h"
+#include "DSLException.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 

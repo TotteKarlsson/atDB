@@ -5,7 +5,7 @@
 #include "atVCLUtils.h"
 #include "database/atDBUtils.h"
 #include "mtkLogger.h"
-#include "mtkMoleculixException.h"
+#include "DSLException.h"
 #include "database/mtkSQLiteException.h"
 #include "mtkStringUtils.h"
 #include "mtkUtils.h"
@@ -34,8 +34,6 @@
 #include "frames/TMovieItemFrame.h"
 #include <JPEG.hpp>
 #include "TScanForm.h"
-
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mtkIniFileC"
@@ -71,7 +69,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mSplashProperties(gApplicationRegistryRoot, "Splash"),
     mShowSplashOnStartup(true),
     mLogLevel(lAny),
-    mIsStyleMenuPopulated(false),
     gCanClose(true),
     logMsgMethod(&logMsg),
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
@@ -1127,9 +1124,7 @@ void __fastcall TMainForm::CoverslipIDEKeyDown(TObject *Sender, WORD &Key, TShif
     }
 
     //Set coverslip ID to edit box text
-
 }
-
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::ArrayBotButton1Click(TObject *Sender)

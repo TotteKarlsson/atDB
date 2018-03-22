@@ -5,7 +5,7 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include <Data.DB.hpp>
-#include <Vcl.DBLookup.hpp>
+//#include <Vcl.DBLookup.hpp>
 #include <Vcl.DBCtrls.hpp>
 #include <string>
 #include "atBarCodeBuilder.h"
@@ -30,7 +30,6 @@ __published:
     public:
         __fastcall TCoverSlipForm(const string& csID, TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TCoverSlipForm *CoverSlipForm;
-//---------------------------------------------------------------------------
 #endif

@@ -1,3 +1,11 @@
+Release 0.6.9 (March 22)
+=======================
+* Getting styles working 
+* Fixing redistribution
+* Running on Tokyo
+* Compiled with the latest
+* Setting up a new postbuild workflow
+
 Release 0.6.8 (March 20)
 =======================
 * Removed All Blocks tab

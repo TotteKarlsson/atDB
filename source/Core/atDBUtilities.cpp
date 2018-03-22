@@ -1,13 +1,16 @@
 #pragma hdrstop
+//#include <windows.h>
+#include "mtkVCLUtils.h"
 #include <Winapi.Messages.hpp> //Have to put this one first :(
 #include "atDBUtilities.h"
 #include "mtkLogger.h"
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkRestartApplicationUtils.h"
+//#include "mtkUtils.h"
+
+
 #include "atDBApplicationMessages.h"
-#include "mtkMoleculixException.h"
-#include "Poco/DateTimeFormatter.h"
+#include "mtkRestartApplicationUtils.h"
+//#include "DSLException.h"
+//#include "Poco/DateTimeFormatter.h"
 
 using namespace mtk;
 extern string 	gLogFileLocation;
