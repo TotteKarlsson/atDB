@@ -18,7 +18,7 @@
 #include "TPGDataModule.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGImagesAndMoviesDataModule.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "TShowFileContentForm.h"
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
@@ -36,13 +36,13 @@
 #include "TScanForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "dslIniFileC"
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslTIniFileC"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma link "TArrayBotBtn"
 #pragma link "TTableFrame"
-#pragma link "TIntLabel"
-#pragma link "TFloatLabeledEdit"
-#pragma link "TSTDStringEdit"
+#pragma link "dslTIntLabel"
+#pragma link "dslTFloatLabeledEdit"
+#pragma link "dslTSTDStringEdit"
 #pragma link "TImagesFrame"
 #pragma link "TMoviesFrame"
 #pragma link "TPGConnectionFrame"
@@ -846,6 +846,7 @@ void __fastcall TMainForm::FormBtnClick(TObject *Sender)
             //Setup form
             f->Caption = "Add note to multiple coverslips";
 
+            //Todo: use another function for getDateTimeString
             stringstream msg;
             msg <<"---------------------------------------------------------------------";
             msg <<"\nNew note added on "<<getDateTimeString() << " by " <<stdstr(UsersCB->Text)<<endl;

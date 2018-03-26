@@ -11,8 +11,8 @@ using namespace std;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TRegisterFreshCSBatchForm *RegisterFreshCSBatchForm;
 

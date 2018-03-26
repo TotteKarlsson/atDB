@@ -2166,7 +2166,7 @@ object MainForm: TMainForm
       Action = ClearMemoA
     end
   end
-  object mIniFileC: mtkIniFileC
+  object mIniFileC: TIniFileC
     IniFileName = 'atDB.ini'
     RootFolder = '.'
     Left = 1306

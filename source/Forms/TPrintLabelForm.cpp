@@ -3,10 +3,9 @@
 #include "TPrintLabelForm.h"
 #include "dslLogger.h"
 #include "dslVCLUtils.h"
-
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma resource "*.dfm"
 TPrintLabelForm *PrintLabelForm;
 using namespace dsl;

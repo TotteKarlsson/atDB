@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "TMainForm.h"
 #include "dslLogger.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "TPGDataModule.h"
 #include "dslVCLUtils.h"
 

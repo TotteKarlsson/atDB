@@ -7,8 +7,8 @@
 #include "atQueryBuilder.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma link "TMoviesFrame"
 #pragma link "TRibbonNotesFrame"
 #pragma resource "*.dfm"

@@ -1,6 +1,6 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "dslVCLUtils.h"
 #include "dslLogger.h"
 #include "DSLException.h"

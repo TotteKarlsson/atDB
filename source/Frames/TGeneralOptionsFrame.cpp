@@ -7,7 +7,7 @@
 #include "ApplicationUtilities.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TIntegerLabeledEdit"
+#pragma link "dslTIntegerLabeledEdit"
 #pragma link "TPropertyCheckBox"
 #pragma resource "*.dfm"
 TGeneralOptionsFrame *GeneralOptionsFrame;

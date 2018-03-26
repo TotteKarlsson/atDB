@@ -39,24 +39,24 @@
 #include "Core/atDBApplicationMessages.h"
 #include "Core/atDBDataStructures.h"
 #include "core/atVideoCompressorThread.h"
-#include "forms/TRegistryForm.h"
-#include "dslIniFileC.h"
+#include "forms/dslTRegistryForm.h"
+#include "dslTIniFileC.h"
 #include "dslIniFileProperties.h"
 #include "dslLogFileReader.h"
 #include "dslLogLevel.h"
 #include "dslMessageContainer.h"
 #include "dslProperty.h"
-#include "TApplicationProperties.h"
+#include "dslApplicationProperties.h"
 #include "TArrayBotBtn.h"
-#include "TFloatLabeledEdit.h"
+#include "dslTFloatLabeledEdit.h"
 #include "TImagesFrame.h"
-#include "TIntegerLabeledEdit.h"
-#include "TIntLabel.h"
+#include "dslTIntegerLabeledEdit.h"
+#include "dslTIntLabel.h"
 #include "TMoviesFrame.h"
 #include "TPGConnectionFrame.h"
-#include "TRegistryProperties.h"
-#include "TSTDStringEdit.h"
-#include "TSTDStringLabeledEdit.h"
+#include "dslRegistryProperties.h"
+#include "dslTSTDStringEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
 #include "TTableFrame.h"
 //---------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ class TMainForm : public TRegistryForm
         TAction *ClearMemoA;
         TMenuItem *ClearMemoA1;
     TPanel *TopPanel;
-    dslIniFileC *mIniFileC;
+    TIniFileC *mIniFileC;
     TMainMenu *MainMenu1;
     TMenuItem *File1;
     TMenuItem *Help1;
@@ -318,7 +318,7 @@ class TMainForm : public TRegistryForm
 
     private:
         bool                                            gCanClose;
-        TApplicationProperties                          mAppProperties;
+        ApplicationProperties                           mAppProperties;
 		Poco::Mutex										mServerDBMutex;
 
 		String __fastcall								createBlockLabel();

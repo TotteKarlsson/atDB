@@ -1,6 +1,6 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "TMemoLogger.h"
+#include "dslTMemoLogger.h"
 #include "dslVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
