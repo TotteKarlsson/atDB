@@ -1,12 +1,12 @@
 #pragma hdrstop
 #include "atdbVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "labelprinter/atTSCLIB.h"
-#include "mtkStringUtils.h"
+#include "dslStringUtils.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-using namespace mtk;
+using namespace dsl;
 
 bool SortClientDataSet(TClientDataSet* ClientDataSet,  const String& FieldName)
 {

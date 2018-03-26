@@ -3,10 +3,10 @@
 #include "TRegisterFreshCSBatchForm.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGDataModule.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include <sstream>
 #include <System.DateUtils.hpp>
-using namespace mtk;
+using namespace dsl;
 using namespace std;
 
 //---------------------------------------------------------------------------

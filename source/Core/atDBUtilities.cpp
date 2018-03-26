@@ -1,18 +1,18 @@
 #pragma hdrstop
 //#include <windows.h>
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include <Winapi.Messages.hpp> //Have to put this one first :(
 #include "atDBUtilities.h"
-#include "mtkLogger.h"
-//#include "mtkUtils.h"
+#include "dslLogger.h"
+//#include "dslUtils.h"
 
 
 #include "atDBApplicationMessages.h"
-#include "mtkRestartApplicationUtils.h"
+#include "dslRestartApplicationUtils.h"
 //#include "DSLException.h"
 //#include "Poco/DateTimeFormatter.h"
 
-using namespace mtk;
+using namespace dsl;
 extern string 	gLogFileLocation;
 extern string 	gLogFileName;
 extern string 	gDefaultAppTheme;
@@ -39,7 +39,7 @@ bool sendAppMessage(ApplicationMessageEnum msgID, void* s)
 //---------------------------------------------------------------------------
 void setupApplicationTheme()
 {
-	if(mtk::checkForCommandLineFlag("-Theme="))
+	if(dsl::checkForCommandLineFlag("-Theme="))
 	{
 		string cmdLine = stdstr(GetCommandLineA());
 		//User is changing the theme.
@@ -120,7 +120,7 @@ void setupLogging()
 	gLogFileLocation = fldr;
 	string fullLogFileName(joinPath(gLogFileLocation, gLogFileName));
 	clearFile(fullLogFileName);
-	mtk::gLogger.logToFile(fullLogFileName);
+	dsl::gLogger.logToFile(fullLogFileName);
 	LogOutput::mShowLogLevel = true;
 	LogOutput::mShowLogTime = false;
 	LogOutput::mUseLogTabs = false;

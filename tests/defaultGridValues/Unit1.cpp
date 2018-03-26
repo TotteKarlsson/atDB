@@ -1,11 +1,11 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "Unit1.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 
 
-using namespace mtk;
+using namespace dsl;
 
 
 //---------------------------------------------------------------------------

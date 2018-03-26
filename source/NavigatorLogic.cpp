@@ -1,12 +1,12 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "TPGDataModule.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGImagesAndMoviesDataModule.h"
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::NavigatorBeforeAction(TObject *Sender, TNavigateBtn Button)

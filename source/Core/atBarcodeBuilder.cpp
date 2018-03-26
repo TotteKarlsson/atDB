@@ -1,10 +1,10 @@
 #pragma hdrstop
 #include "atBarcodeBuilder.h"
-#include "mtkLogger.h"
-#include "mtkStringUtils.h"
+#include "dslLogger.h"
+#include "dslStringUtils.h"
 //---------------------------------------------------------------------------
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 BarCodeBuilder::BarCodeBuilder(const char& rDel)

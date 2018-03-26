@@ -2,16 +2,16 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TScanForm.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "TCoverSlipScanFrame.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include <DB.hpp>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TScanForm *ScanForm;
 
-using namespace mtk;
+using namespace dsl;
 
 
 //---------------------------------------------------------------------------

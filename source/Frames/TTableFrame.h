@@ -14,11 +14,11 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
 #include <string>
-#include "mtkStopWatch.h"
+#include "dslStopWatch.h"
 
 //---------------------------------------------------------------------------
 using std::string;
-using mtk::StopWatch;
+using dsl::StopWatch;
 
 class PACKAGE TTableFrame : public TFrame
 {

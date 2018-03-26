@@ -3,11 +3,11 @@
 #include <tchar.h>
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
-#include "mtkIniKey.h"
-#include "mtkRestartApplicationUtils.h"
-#include "mtkLogger.h"
+#include "dslUtils.h"
+#include "dslVCLUtils.h"
+#include "dslIniKey.h"
+#include "dslRestartApplicationUtils.h"
+#include "dslLogger.h"
 #include "Core/atDBUtilities.h"
 #include "dslException.h"
 #include "TPGDataModule.h"
@@ -31,7 +31,7 @@ USEFORM("Frames\TRibbonNotesFrame.cpp", RibbonNotesFrame); /* TFrame: File Type 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-using namespace mtk;
+using namespace dsl;
 using std::string;
 
 extern HWND         gOtherAppWindow             = NULL;

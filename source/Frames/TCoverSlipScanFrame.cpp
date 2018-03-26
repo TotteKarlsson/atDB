@@ -3,7 +3,7 @@
 #include "TCoverSlipScanFrame.h"
 #include "TPGCoverSlipDataModule.h"
 #include "TPGDataModule.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "atQueryBuilder.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -14,7 +14,7 @@
 #pragma resource "*.dfm"
 TCoverSlipScanFrame *CoverSlipScanFrame;
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TCoverSlipScanFrame::TCoverSlipScanFrame(TComponent* Owner)

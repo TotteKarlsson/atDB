@@ -9,11 +9,11 @@
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include "mtkProperties.h"
+#include "dslProperties.h"
 #include "TPropertyCheckBox.h"
 #include "TApplicationProperties.h"
 
-using mtk::Properties;
+using dsl::Properties;
 class TOptionsForm;
 //---------------------------------------------------------------------------
 class PACKAGE TGeneralOptionsFrame : public TFrame

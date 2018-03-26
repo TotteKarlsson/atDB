@@ -1,14 +1,14 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TTableFrame.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TTableFrame *TableFrame;
 
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TTableFrame::TTableFrame(TComponent* Owner)

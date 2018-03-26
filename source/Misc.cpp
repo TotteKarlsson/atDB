@@ -1,7 +1,7 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkVCLUtils.h"
-#include "mtkLogger.h"
+#include "dslVCLUtils.h"
+#include "dslLogger.h"
 #include "TAboutATDBForm.h"
 #include "TPGDataModule.h"
 #pragma package(smart_init)
@@ -9,7 +9,7 @@
 #include "TScanForm.h"
 using Poco::DateTimeFormatter;
 
-using namespace mtk;
+using namespace dsl;
 
 extern HWND gOtherAppWindow;
 extern string gAppName;

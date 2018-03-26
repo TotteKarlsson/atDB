@@ -40,12 +40,12 @@
 #include "Core/atDBDataStructures.h"
 #include "core/atVideoCompressorThread.h"
 #include "forms/TRegistryForm.h"
-#include "mtkIniFileC.h"
-#include "mtkIniFileProperties.h"
-#include "mtkLogFileReader.h"
-#include "mtkLogLevel.h"
-#include "mtkMessageContainer.h"
-#include "mtkProperty.h"
+#include "dslIniFileC.h"
+#include "dslIniFileProperties.h"
+#include "dslLogFileReader.h"
+#include "dslLogLevel.h"
+#include "dslMessageContainer.h"
+#include "dslProperty.h"
 #include "TApplicationProperties.h"
 #include "TArrayBotBtn.h"
 #include "TFloatLabeledEdit.h"
@@ -60,13 +60,13 @@
 #include "TTableFrame.h"
 //---------------------------------------------------------------------------
 
-using mtk::Property;
-using mtk::MessageContainer;
-using mtk::IniFileProperties;
-using mtk::TRegistryProperties;
+using dsl::Property;
+using dsl::MessageContainer;
+using dsl::IniFileProperties;
+using dsl::TRegistryProperties;
 using std::list;
 using std::vector;
-using mtk::StringList;
+using dsl::StringList;
 class TFFMPEGOutputFrame;
 class TMovieItemFrame;
 
@@ -81,7 +81,7 @@ class TMainForm : public TRegistryForm
         TAction *ClearMemoA;
         TMenuItem *ClearMemoA1;
     TPanel *TopPanel;
-    mtkIniFileC *mIniFileC;
+    dslIniFileC *mIniFileC;
     TMainMenu *MainMenu1;
     TMenuItem *File1;
     TMenuItem *Help1;
@@ -335,19 +335,19 @@ class TMainForm : public TRegistryForm
 
                                                         //INI Parameters...
         IniFileProperties	      	                    mGeneralProperties;
-        mtk::Property<int>	                            mBottomPanelHeight;
-		mtk::Property<int>	                            mMainTabIndex;
-		mtk::Property<int>	                            BatchesGBHeight;
-		mtk::Property<int>	                            mDustAssayResultImageHeight;
-		mtk::Property<int>	                            mDustAssayBackGroundImageWidth;
-		mtk::Property<mtk::LogLevel>	                mLogLevel;
-		mtk::Property<string>	         		        mTableUnlockPassword;
+        dsl::Property<int>	                            mBottomPanelHeight;
+		dsl::Property<int>	                            mMainTabIndex;
+		dsl::Property<int>	                            BatchesGBHeight;
+		dsl::Property<int>	                            mDustAssayResultImageHeight;
+		dsl::Property<int>	                            mDustAssayBackGroundImageWidth;
+		dsl::Property<dsl::LogLevel>	                mLogLevel;
+		dsl::Property<string>	         		        mTableUnlockPassword;
 
         IniFileProperties	      	                    mCoverslipPrintingProperties;
         TRegistryProperties   	  	                    mSplashProperties;
-        mtk::Property<bool>                             mShowSplashOnStartup;
+        dsl::Property<bool>                             mShowSplashOnStartup;
 
-		mtk::Property<int>	                            mDBUserID;
+		dsl::Property<int>	                            mDBUserID;
 
         bool                                            setupAndReadIniParameters();
         void                                            setupIniFile();

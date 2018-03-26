@@ -1,11 +1,11 @@
 #pragma hdrstop
 #include "TMainForm.h"
 #include "TMemoLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormatter.h"
-#include "mtkLogger.h"
-#include "mtkIniSection.h"
+#include "dslLogger.h"
+#include "dslIniSection.h"
 #include "Core/atDBUtilities.h"
 #include "Poco/Timezone.h"
 #include "TPGDataModule.h"
@@ -25,7 +25,7 @@ extern string           gApplicationStyle;
 //extern TSplashForm*     gSplashForm;
 extern string           gTimeFormat;
 
-using namespace mtk;
+using namespace dsl;
 using namespace at;
 using Poco::DateTime;
 using Poco::DateTimeFormatter;
@@ -80,7 +80,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 void __fastcall TMainForm::FormShow(TObject *Sender)
 {
    	Log(lInfo) << "In FormShow";
-   	Log(lInfo) << "Form visibility: "<<mtk::toString(this->Visible);
+   	Log(lInfo) << "Form visibility: "<<dsl::toString(this->Visible);
 	gAppIsStartingUp = false;
 
 	//transfer INI values

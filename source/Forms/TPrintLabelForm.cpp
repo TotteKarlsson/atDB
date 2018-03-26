@@ -1,15 +1,15 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TPrintLabelForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "TIntegerLabeledEdit"
 #pragma resource "*.dfm"
 TPrintLabelForm *PrintLabelForm;
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TPrintLabelForm::TPrintLabelForm(TComponent* Owner)

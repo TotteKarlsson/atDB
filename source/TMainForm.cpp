@@ -4,12 +4,12 @@
 #include "Package/atdbVCLUtils.h"
 #include "atVCLUtils.h"
 #include "database/atDBUtils.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "DSLException.h"
-#include "database/mtkSQLiteException.h"
-#include "mtkStringUtils.h"
-#include "mtkUtils.h"
-#include "mtkVCLUtils.h"
+#include "database/dslSQLiteException.h"
+#include "dslStringUtils.h"
+#include "dslUtils.h"
+#include "dslVCLUtils.h"
 #include "Poco/DateTime.h"
 #include "Poco/DateTimeFormat.h"
 #include "Poco/DateTimeFormatter.h"
@@ -36,7 +36,7 @@
 #include "TScanForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "mtkIniFileC"
+#pragma link "dslIniFileC"
 #pragma link "TIntegerLabeledEdit"
 #pragma link "TArrayBotBtn"
 #pragma link "TTableFrame"
@@ -49,7 +49,7 @@
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
-using namespace mtk;
+using namespace dsl;
 using namespace at;
 
 extern string gLogFileName;

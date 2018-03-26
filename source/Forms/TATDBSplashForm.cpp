@@ -1,16 +1,16 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TATDBSplashForm.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 #include "atDBApplicationMessages.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "atDBUtilities.h"
-#include "mtkApplicationLicenseController.h"
+#include "dslApplicationLicenseController.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
-using namespace mtk;
+using namespace dsl;
 
 extern string gApplicationRegistryRoot;
 

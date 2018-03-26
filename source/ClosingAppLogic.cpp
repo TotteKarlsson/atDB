@@ -1,11 +1,11 @@
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkLogger.h"
+#include "dslLogger.h"
 #include "TMemoLogger.h"
 #include "TPGDataModule.h"
-#include "mtkVCLUtils.h"
+#include "dslVCLUtils.h"
 
-using namespace mtk;
+using namespace dsl;
 extern string gCommonAppDataLocation;
 //---------------------------------------------------------------------------
 __fastcall TMainForm::~TMainForm()

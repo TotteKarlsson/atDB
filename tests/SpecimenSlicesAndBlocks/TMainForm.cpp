@@ -1,12 +1,12 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TMainForm.h"
-#include "mtkLogger.h"
-#include "mtkVCLUtils.h"
+#include "dslLogger.h"
+#include "dslVCLUtils.h"
 #include "TSpecimenForm.h"
 #include "TSlicesForm.h"
 #include "TBlockForm.h"
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

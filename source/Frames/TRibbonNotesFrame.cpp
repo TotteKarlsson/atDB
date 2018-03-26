@@ -2,8 +2,8 @@
 #pragma hdrstop
 #include "TPGDataModule.h"
 #include "TRibbonNotesFrame.h"
-#include "mtkStringUtils.h"
-#include "mtkVCLUtils.h"
+#include "dslStringUtils.h"
+#include "dslVCLUtils.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 
 TRibbonNotesFrame *RibbonNotesFrame;
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TRibbonNotesFrame::TRibbonNotesFrame(TComponent* Owner)

@@ -1,17 +1,17 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "TAboutATDBForm.h"
-#include "mtkApplicationInfo.h"
-#include "mtkLogger.h"
+#include "dslApplicationInfo.h"
+#include "dslLogger.h"
 #include <sstream>
-#include "mtkVersion.h"
+#include "dslVersion.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
 TAboutATDBForm *AboutATDBForm;
 using namespace std;
-using namespace mtk;
+using namespace dsl;
 
 //---------------------------------------------------------------------------
 __fastcall TAboutATDBForm::TAboutATDBForm(TComponent* Owner)
@@ -22,7 +22,7 @@ __fastcall TAboutATDBForm::TAboutATDBForm(TComponent* Owner)
 void __fastcall TAboutATDBForm::FormShow(TObject *Sender)
 {
     stringstream ss;
-    mtkApplicationInfo appInfo(Application);
+    dslApplicationInfo appInfo(Application);
 
     //Current Version Info
     Version version(stdstr(appInfo.mVersion));

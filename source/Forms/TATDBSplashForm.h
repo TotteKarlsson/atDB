@@ -8,13 +8,13 @@
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.Imaging.jpeg.hpp>
-#include "mtkTimer.h"
-#include "mtkMessageContainer.h"
+#include "dslTimer.h"
+#include "dslMessageContainer.h"
 #include "dslTSplashMessageProcessor.h"
 //---------------------------------------------------------------------------
 
 using Poco::Timespan;
-using mtk::MessageContainer;
+using dsl::MessageContainer;
 
 class PACKAGE TSplashForm : public TForm
 {
@@ -44,7 +44,7 @@ class PACKAGE TSplashForm : public TForm
 										__fastcall          ~TSplashForm();
         bool                                                mMainAppIsRunning;
 
-        mtk::Timer                                          mShowTimer;
+        dsl::Timer                                          mShowTimer;
         void                                                addLogMessage(const string& msg);
         void                            __fastcall          onWritingLogMessage();
         bool                                                isOnShowTime();

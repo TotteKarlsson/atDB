@@ -2,11 +2,11 @@
 #define atDBUtilitiesH
 #include "atDBCoreExporter.h"
 #include "atDBDataStructures.h"
-//#include "database/mtkSQLite.h"
-//#include "mtkStringList.h"
+//#include "database/dslSQLite.h"
+//#include "dslStringList.h"
 
-//using mtk::SQLite;
-//using mtk::StringList;
+//using dsl::SQLite;
+//using dsl::StringList;
 
 //---------------------------------------------------------------------------
 AML_CORE void loadStyles();

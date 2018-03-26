@@ -36,4 +36,4 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	return 0;
 }
 //---------------------------------------------------------------------------
-#pragma comment(lib, "mtkCommon.lib")
+#pragma comment(lib, "dslCommon.lib")
