@@ -15,7 +15,7 @@
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Grids.hpp>
-#include "TSTDStringLabeledEdit.h"
+#include "dslTSTDStringLabeledEdit.h"
 #include <Vcl.Mask.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>

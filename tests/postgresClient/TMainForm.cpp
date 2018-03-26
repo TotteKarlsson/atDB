@@ -3,7 +3,7 @@
 #include "TMainForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma link "DbxDevartPostgreSQL"
 #pragma link "TPGConnectionFrame"
 #pragma resource "*.dfm"

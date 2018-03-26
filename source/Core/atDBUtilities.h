@@ -9,9 +9,9 @@
 //using dsl::StringList;
 
 //---------------------------------------------------------------------------
-AML_CORE void loadStyles();
-AML_CORE void setupApplicationTheme();
-AML_CORE void setupLogging();
-AML_CORE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
+ATDB_CORE void loadStyles();
+ATDB_CORE void setupApplicationTheme();
+ATDB_CORE void setupLogging();
+ATDB_CORE bool sendAppMessage(ApplicationMessageEnum msg, void* struc = NULL);
 
 #endif

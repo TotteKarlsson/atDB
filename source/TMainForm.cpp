@@ -23,7 +23,7 @@
 #include "TTableUpdateForm.h"
 #include "TRegisterFreshCSBatchForm.h"
 #include "TPrintLabelForm.h"
-#include "atQueryBuilder.h"
+#include "database/atQueryBuilder.h"
 #include "vcl/forms/TTextInputDialog.h"
 #include "forms/TStringInputDialog.h"
 #include "TSpecimenForm.h"

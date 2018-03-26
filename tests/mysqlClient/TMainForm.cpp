@@ -3,7 +3,7 @@
 #include "TMainForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma link "TSTDStringLabeledEdit"
+#pragma link "dslTSTDStringLabeledEdit"
 #pragma resource "*.dfm"
 TMainForm *MainForm;
 //---------------------------------------------------------------------------

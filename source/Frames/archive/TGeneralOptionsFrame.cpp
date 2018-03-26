@@ -9,6 +9,7 @@
 #pragma package(smart_init)
 #pragma link "dslTIntegerLabeledEdit"
 #pragma link "TPropertyCheckBox"
+#pragma link "dslTPropertyCheckBox"
 #pragma resource "*.dfm"
 TGeneralOptionsFrame *GeneralOptionsFrame;
 //---------------------------------------------------------------------------

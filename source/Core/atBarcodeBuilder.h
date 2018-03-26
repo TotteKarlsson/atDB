@@ -1,15 +1,16 @@
 #ifndef atBarcodeBuilderH
 #define atBarcodeBuilderH
 #include <string>
+#include "atDBCoreExporter.h"
 //---------------------------------------------------------------------------
 using std::string;
 
-class BarCodeBuilder
+class ATDB_CORE BarCodeBuilder
 {
     public:
                                             BarCodeBuilder(const char& rDel = '\r');
-        bool                                isBuilding(){return mIsBuilding;}
-        bool                                hasBarCode(){return mHasBarCode;}
+        bool                                isBuilding();
+        bool                                hasBarCode();
         void                                reset();
         bool                                build(const char& ch);
         string                              getBarCode();

@@ -23,6 +23,8 @@ void BarCodeBuilder::reset()
     mBarCode.clear();
 }
 
+bool BarCodeBuilder::isBuilding(){return mIsBuilding;}
+bool BarCodeBuilder::hasBarCode(){return mHasBarCode;}
 void BarCodeBuilder::setBarCode(const string& bc)
 {
 	mBarCode = bc;

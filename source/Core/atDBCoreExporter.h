@@ -2,17 +2,17 @@
 #define atDBCoreExporterH
 
 #if defined (_WIN32)
-    #if defined(AML_STATIC)
-        #define AML_CORE
+    #if defined(ATDB_CORE_STATIC)
+        #define ATDB_CORE
     #else
-        #if defined(AML_SHARED)
-            #define AML_CORE __declspec(dllexport)
+        #if defined(ATDB_EXPORT_CORE)
+            #define ATDB_CORE __declspec(dllexport)
         #else
-            #define AML_CORE __declspec(dllimport)
+            #define ATDB_CORE __declspec(dllimport)
         #endif
     #endif
 #else
-    #define AML_CORE
+    #define ATDB_CORE
 #endif
 
 #endif

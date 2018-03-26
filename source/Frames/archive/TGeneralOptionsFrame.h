@@ -10,8 +10,9 @@
 #include <Vcl.ActnList.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include "dslProperties.h"
-#include "TPropertyCheckBox.h"
-#include "TApplicationProperties.h"
+#include "dslTPropertyCheckBox.h"
+#include "dslApplicationProperties.h"
+#include "dslTPropertyCheckBox.h"
 
 using dsl::Properties;
 class TOptionsForm;
@@ -32,11 +33,11 @@ __published:	// IDE-managed Components
     void __fastcall ClearHistoryAExecute(TObject *Sender);
 
 protected:	// User declarations
-    TApplicationProperties&         mApplicationProperties;
+    ApplicationProperties&          mApplicationProperties;
     TOptionsForm*                   mParent;
 
 public:		// User declarations
-                    __fastcall      TGeneralOptionsFrame(TApplicationProperties& props, TComponent* Owner);
+                    __fastcall      TGeneralOptionsFrame(ApplicationProperties& props, TComponent* Owner);
                     __fastcall      ~TGeneralOptionsFrame();
     bool                            hasChanges();
 	void __fastcall                 setup();

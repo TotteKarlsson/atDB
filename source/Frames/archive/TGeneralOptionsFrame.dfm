@@ -2,14 +2,14 @@ object GeneralOptionsFrame: TGeneralOptionsFrame
   Left = 0
   Top = 0
   Width = 451
-  Height = 304
+  Height = 305
   Align = alClient
   TabOrder = 0
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 451
-    Height = 304
+    Height = 305
     Align = alClient
     TabOrder = 0
     object GroupBox1: TGroupBox

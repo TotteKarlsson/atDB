@@ -10,7 +10,6 @@
 
 #pragma comment(lib, "atFoundation.lib")
 
-
 #pragma comment(lib, "DBXDevartPostgreSQLDriver250.bpi")
 
 

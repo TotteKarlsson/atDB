@@ -9,7 +9,7 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.ExtCtrls.hpp>
 #include <vector>
-#include "TApplicationProperties.h"
+#include "dslApplicationProperties.h"
 //---------------------------------------------------------------------------
 
 class TGeneralOptionsFrame;
@@ -47,11 +47,11 @@ private:	// User declarations
     void                                            showFrame(OptionFrame);
     TGeneralOptionsFrame*                           mGOF;
     vector<TFrame*>                                 mOptionFrames;
-    TApplicationProperties&                         mApplicationProperties;
+    ApplicationProperties&                          mApplicationProperties;
     TFrame*                                         mCurrentOptionFrame;
     void                                            applyChanges();
 public:		// User declarations
-                                        __fastcall  TOptionsForm(TApplicationProperties& props, TComponent* Owner);
+                                        __fastcall  TOptionsForm(ApplicationProperties& props, TComponent* Owner);
 };
 
 extern PACKAGE TOptionsForm *OptionsForm;

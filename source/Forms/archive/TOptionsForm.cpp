@@ -8,7 +8,7 @@
 TOptionsForm *OptionsForm;
 using namespace dsl;
 //---------------------------------------------------------------------------
-__fastcall TOptionsForm::TOptionsForm(TApplicationProperties& props, TComponent* Owner)
+__fastcall TOptionsForm::TOptionsForm(ApplicationProperties& props, TComponent* Owner)
     :
 TForm(Owner),
 mGOF(NULL),
