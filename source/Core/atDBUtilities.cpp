@@ -1,16 +1,11 @@
 #pragma hdrstop
-//#include <windows.h>
 #include "dslVCLUtils.h"
 #include <Winapi.Messages.hpp> //Have to put this one first :(
 #include "atDBUtilities.h"
 #include "dslLogger.h"
-//#include "dslUtils.h"
-
-
 #include "atDBApplicationMessages.h"
 #include "dslRestartApplicationUtils.h"
-//#include "DSLException.h"
-//#include "Poco/DateTimeFormatter.h"
+//---------------------------------------------------------------------------
 
 using namespace dsl;
 extern string 	gLogFileLocation;

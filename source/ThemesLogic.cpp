@@ -8,6 +8,8 @@ using namespace dsl;
 extern string gRestartMutexName ;
 extern string gDefaultAppTheme;
 extern string gApplicationStyle;
+
+
 void __fastcall TMainForm::ThemesMenuClick(TObject *Sender)
 {
     TMenuItem* menuItem = dynamic_cast<TMenuItem*>(Sender);

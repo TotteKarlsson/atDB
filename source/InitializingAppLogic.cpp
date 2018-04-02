@@ -73,7 +73,6 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
 		pgDM->SQLConnection1->AfterConnect 		= afterDBServerConnect;
 	    pgDM->SQLConnection1->AfterDisconnect 	= afterDBServerDisconnect;
     }
-//	TStyleManager::SetStyle(gApplicationStyle.c_str());
 }
 
 //---------------------------------------------------------------------------

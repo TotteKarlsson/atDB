@@ -2,11 +2,6 @@
 #define atDBUtilitiesH
 #include "atDBCoreExporter.h"
 #include "atDBDataStructures.h"
-//#include "database/dslSQLite.h"
-//#include "dslStringList.h"
-
-//using dsl::SQLite;
-//using dsl::StringList;
 
 //---------------------------------------------------------------------------
 ATDB_CORE void loadStyles();

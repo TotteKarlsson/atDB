@@ -17,20 +17,22 @@
 #include "TPGImagesAndMoviesDataModule.h"
 #include "forms/TScanForm.h"
 //---------------------------------------------------------------------------
-USEFORM("TMainForm.cpp", MainForm);
+USEFORM("Frames\TRibbonNotesFrame.cpp", RibbonNotesFrame); /* TFrame: File Type */
+USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
+USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
+USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
 USEFORM("Forms\TTableUpdateForm.cpp", TableUpdateForm);
+USEFORM("TMainForm.cpp", MainForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp", MoviesFrame); /* TFrame: File Type */
 USEFORM("Forms\TAboutATDBForm.cpp", AboutATDBForm);
-USEFORM("Forms\TATDBSplashForm.cpp", SplashForm);
-USEFORM("Forms\TBlockForm.cpp", BlockForm);
-USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
-USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
 USEFORM("Forms\TRegisterFreshCSBatchForm.cpp", RegisterFreshCSBatchForm);
 USEFORM("Forms\TScanForm.cpp", ScanForm);
 USEFORM("Forms\TShowFileContentForm.cpp", ShowFileContentForm);
-USEFORM("Forms\TSlicesForm.cpp", SlicesForm);
-USEFORM("Forms\TSpecimenForm.cpp", SpecimenForm);
-USEFORM("Frames\TTableFrame.cpp", TableFrame); /* TFrame: File Type */
-USEFORM("Frames\TRibbonNotesFrame.cpp", RibbonNotesFrame); /* TFrame: File Type */
+USEFORM("Forms\TPrintLabelForm.cpp", PrintLabelForm);
+USEFORM("Forms\TATDBSplashForm.cpp", SplashForm);
+USEFORM("Forms\TBlockForm.cpp", BlockForm);
+USEFORM("Forms\TCoverSlipForm.cpp", CoverSlipForm);
+USEFORM("P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp", ImagesFrame); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -67,15 +69,16 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
             }
             return(0);
          }
-         try
-         {
-			gApplicationStyle = readStringFromRegistry(gApplicationRegistryRoot, "", "Theme",  gApplicationStyle);
-			TStyleManager::TrySetStyle("Carbon");
-		TStyleManager::SetStyle(gApplicationStyle.c_str());
-         }
-         catch(...)
-         {
-         }
+
+        try
+        {
+        	gApplicationStyle = readStringFromRegistry(gApplicationRegistryRoot, "", "Theme",  gApplicationStyle);
+			TStyleManager::TrySetStyle(gApplicationStyle.c_str());
+			TStyleManager::SetStyle(gApplicationStyle.c_str());
+        }
+        catch(...)
+        {
+        }
         setupLogging();
         Log(lInfo) << "The Logfile was opened..";
         gCommonAppDataLocation = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB-PG");

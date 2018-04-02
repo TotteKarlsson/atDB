@@ -1028,7 +1028,6 @@ object MainForm: TMainForm
                 item
                   Expanded = False
                   FieldName = 'LType'
-                  Width = 64
                   Visible = True
                 end>
             end
@@ -1347,7 +1346,6 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'cutting_order'
-                        Width = 64
                         Visible = True
                       end
                       item
@@ -1359,13 +1357,11 @@ object MainForm: TMainForm
                       item
                         Expanded = False
                         FieldName = 'created_on'
-                        Width = 64
                         Visible = True
                       end
                       item
                         Expanded = False
                         FieldName = 'created_byL'
-                        Width = 64
                         Visible = True
                       end>
                   end
@@ -2134,8 +2130,8 @@ object MainForm: TMainForm
     end
   end
   object ActionList1: TActionList
-    Left = 1472
-    Top = 16
+    Left = 712
+    Top = 24
     object ClearMemoA: TAction
       Category = 'Memo'
       Caption = 'Clear Messages'
@@ -2160,8 +2156,8 @@ object MainForm: TMainForm
     end
   end
   object LogMemoPopup: TPopupMenu
-    Left = 888
-    Top = 272
+    Left = 128
+    Top = 280
     object ClearMemoA1: TMenuItem
       Action = ClearMemoA
     end
@@ -2169,12 +2165,12 @@ object MainForm: TMainForm
   object mIniFileC: TIniFileC
     IniFileName = 'atDB.ini'
     RootFolder = '.'
-    Left = 1306
-    Top = 8
+    Left = 546
+    Top = 16
   end
   object MainMenu1: TMainMenu
-    Left = 1413
-    Top = 16
+    Left = 653
+    Top = 24
     object File1: TMenuItem
       Caption = 'File'
       object Exit1: TMenuItem
@@ -2202,15 +2198,15 @@ object MainForm: TMainForm
     Top = 24
   end
   object SpecimenPopup: TPopupMenu
-    Left = 1000
-    Top = 312
+    Left = 240
+    Top = 320
     object openDocument: TMenuItem
       Caption = 'Open Document'
     end
   end
   object CoverSlipPopup: TPopupMenu
-    Left = 1088
-    Top = 272
+    Left = 328
+    Top = 280
     object SetStatus1: TMenuItem
       Caption = 'Set Status'
       object FreshoutoftheBoxMenuItem: TMenuItem
@@ -2238,7 +2234,7 @@ object MainForm: TMainForm
   end
   object ApplicationEvents1: TApplicationEvents
     OnException = ApplicationEvents1Exception
-    Left = 1336
-    Top = 224
+    Left = 576
+    Top = 232
   end
 end

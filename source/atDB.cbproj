@@ -64,8 +64,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>P:\libs\atapi\source\vcl\frames\;Package\;Frames\;Forms\;P:\atDB\source\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>P:\libs\atapi\source\vcl\frames\;Package\;Frames\;Forms\;P:\atDB\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Core\;P:\libs\atapi\source\vcl\frames\;Package\;Frames\;Forms\;P:\atDB\source\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Core\;P:\libs\atapi\source\vcl\frames\;Package\;Frames\;Forms\;P:\atDB\source\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>atDB</SanitizedProjectName>
         <Custom_Styles>Carbon|VCLSTYLE|C:\Users\Public\Documents\Embarcadero\Studio\19.0\Styles\Carbon.vsf;Glow|VCLSTYLE|C:\Users\Public\Documents\Embarcadero\Studio\19.0\Styles\Glow.vsf;&quot;Iceberg Classico|VCLSTYLE|C:\Users\Public\Documents\Embarcadero\Studio\19.0\Styles\IcebergClassico.vsf&quot;;TabletDark|VCLSTYLE|C:\Users\Public\Documents\Embarcadero\Studio\19.0\Styles\TabletDark.vsf</Custom_Styles>
     </PropertyGroup>
@@ -116,7 +116,14 @@
         <IncludePath>Core;Forms;Frames;Package;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>C:\Program Files (x86)\Devart\dbExpress\PostgreSql\Lib\Delphi25\Win32;frames;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <LinkPackageStatics>atVisualComponents.lib</LinkPackageStatics>
-        <Defines>POCO_STATIC;$(Defines)</Defines>
+        <Defines>POCO_STATIC;ATDB_CORE_STATIC;$(Defines)</Defines>
+        <VerInfo_MajorVer>0</VerInfo_MajorVer>
+        <VerInfo_MinorVer>7</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=0.7.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <BCC_PCHInject>pch.h</BCC_PCHInject>
+        <PostBuildEvent><![CDATA[C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
+$(PostBuildEvent)]]></PostBuildEvent>
+        <ILINK_DisplayTime>true</ILINK_DisplayTime>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -138,6 +145,12 @@
         </CppCompile>
         <CppCompile Include="ClosingAppLogic.cpp">
             <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Core\atBarcodeBuilder.cpp">
+            <BuildOrder>27</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Core\atDBUtilities.cpp">
+            <BuildOrder>28</BuildOrder>
         </CppCompile>
         <CppCompile Include="Forms\TAboutATDBForm.cpp">
             <Form>AboutATDBForm</Form>
@@ -239,10 +252,6 @@
             <DependentOn>Package\atdbVCLUtils.h</DependentOn>
             <BuildOrder>26</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="pch.h">
-            <BuildOrder>1</BuildOrder>
-            <PCH>true</PCH>
-        </PCHCompile>
         <CppCompile Include="ThemesLogic.cpp">
             <BuildOrder>25</BuildOrder>
         </CppCompile>
@@ -252,9 +261,12 @@
             <DependentOn>TMainForm.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="TStartForm.cpp">
-            <DependentOn>TStartForm.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
+        <CppCompile Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.cpp">
+            <Form>ImagesFrame</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>P:\libs\atapi\source\vcl\frames\TImagesFrame.h</DependentOn>
+            <BuildOrder>28</BuildOrder>
         </CppCompile>
         <CppCompile Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.cpp">
             <Form>MoviesFrame</Form>
@@ -263,21 +275,22 @@
             <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
             <BuildOrder>27</BuildOrder>
         </CppCompile>
-        <FormResources Include="Frames\TTableFrame.dfm"/>
-        <FormResources Include="Forms\TTableUpdateForm.dfm"/>
         <FormResources Include="Frames\TRibbonNotesFrame.dfm"/>
+        <FormResources Include="Frames\TTableFrame.dfm"/>
+        <FormResources Include="Forms\TSlicesForm.dfm"/>
+        <FormResources Include="Forms\TSpecimenForm.dfm"/>
+        <FormResources Include="Forms\TTableUpdateForm.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
+        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="Forms\TScanForm.dfm"/>
+        <FormResources Include="Forms\TShowFileContentForm.dfm"/>
+        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
         <FormResources Include="Forms\TATDBSplashForm.dfm"/>
         <FormResources Include="Forms\TBlockForm.dfm"/>
-        <FormResources Include="Forms\TShowFileContentForm.dfm"/>
-        <FormResources Include="Forms\TSlicesForm.dfm"/>
-        <FormResources Include="Forms\TSpecimenForm.dfm"/>
-        <FormResources Include="Forms\TScanForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
-        <FormResources Include="Forms\TPrintLabelForm.dfm"/>
-        <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -305,12 +318,13 @@
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="p:\build\tokyo\BPL\atVisualComponents.bpl">AT Frames and Forms</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k250.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp250.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                 </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="3">
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64250mt.dll" Class="DependencyModule">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64250.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -367,7 +381,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64250.dll" Class="DependencyModule">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64250mt.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -798,4 +812,12 @@
     <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

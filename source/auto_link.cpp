@@ -5,10 +5,11 @@
 
 
 #pragma comment(lib, "poco_foundation-static.lib")
-#pragma comment(lib, "atDBCore-static.lib")
 
+#pragma comment(lib, "atCore.lib")
+#pragma comment(lib, "atDatabase.lib")
+#pragma comment(lib, "atSSI.lib")
 
-#pragma comment(lib, "atFoundation.lib")
 
 #pragma comment(lib, "DBXDevartPostgreSQLDriver250.bpi")
 
