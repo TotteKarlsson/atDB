@@ -934,17 +934,6 @@ $function$
 			<input_param name="$1" jt="91" type="date" />
 			<result_param name="returnValue" jt="4" type="int4" />
 		</procedure>
-		<procedure name="hour" id="Procedure_4deb0c9" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION public.hour(time without time zone)
- RETURNS integer
- LANGUAGE sql
-AS $function$
-SELECT EXTRACT(hour FROM $1)::int;
-$function$
-]]></string>
-			<input_param name="$1" jt="92" type="time" />
-			<result_param name="returnValue" jt="4" type="int4" />
-		</procedure>
 		<procedure name="hour" id="Procedure_5c21ffc" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION public.hour(timestamp without time zone)
  RETURNS integer
@@ -956,31 +945,29 @@ $function$
 			<input_param name="$1" jt="93" type="timestamp" />
 			<result_param name="returnValue" jt="4" type="int4" />
 		</procedure>
-		<procedure name="if" id="Procedure_47bb59" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, double precision, double precision)
- RETURNS double precision
- LANGUAGE sql
-AS $function$
-SELECT CASE WHEN $1 THEN $2 ELSE $3 END
-$function$
-]]></string>
-			<input_param name="$1" jt="-7" type="bool" />
-			<input_param name="$2" jt="8" type="float8" />
-			<input_param name="$3" jt="8" type="float8" />
-			<result_param name="returnValue" jt="8" type="float8" />
-		</procedure>
-		<procedure name="if" id="Procedure_30825b2" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, integer, integer)
+		<procedure name="hour" id="Procedure_4deb0c9" isSystem="false" params_known="y" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION public.hour(time without time zone)
  RETURNS integer
  LANGUAGE sql
 AS $function$
+SELECT EXTRACT(hour FROM $1)::int;
+$function$
+]]></string>
+			<input_param name="$1" jt="92" type="time" />
+			<result_param name="returnValue" jt="4" type="int4" />
+		</procedure>
+		<procedure name="if" id="Procedure_1d93df4" isSystem="false" params_known="y" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, timestamp with time zone, timestamp with time zone)
+ RETURNS timestamp with time zone
+ LANGUAGE sql
+AS $function$
 SELECT CASE WHEN $1 THEN $2 ELSE $3 END
 $function$
 ]]></string>
 			<input_param name="$1" jt="-7" type="bool" />
-			<input_param name="$2" jt="4" type="int4" />
-			<input_param name="$3" jt="4" type="int4" />
-			<result_param name="returnValue" jt="4" type="int4" />
+			<input_param name="$2" jt="93" type="timestamptz" />
+			<input_param name="$3" jt="93" type="timestamptz" />
+			<result_param name="returnValue" jt="93" type="timestamptz" />
 		</procedure>
 		<procedure name="if" id="Procedure_320925d" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, text, text)
@@ -995,18 +982,31 @@ $function$
 			<input_param name="$3" jt="12" type="text" />
 			<result_param name="returnValue" jt="12" type="text" />
 		</procedure>
-		<procedure name="if" id="Procedure_1d93df4" isSystem="false" params_known="y" >
-			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, timestamp with time zone, timestamp with time zone)
- RETURNS timestamp with time zone
+		<procedure name="if" id="Procedure_30825b2" isSystem="false" params_known="y" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, integer, integer)
+ RETURNS integer
  LANGUAGE sql
 AS $function$
 SELECT CASE WHEN $1 THEN $2 ELSE $3 END
 $function$
 ]]></string>
 			<input_param name="$1" jt="-7" type="bool" />
-			<input_param name="$2" jt="93" type="timestamptz" />
-			<input_param name="$3" jt="93" type="timestamptz" />
-			<result_param name="returnValue" jt="93" type="timestamptz" />
+			<input_param name="$2" jt="4" type="int4" />
+			<input_param name="$3" jt="4" type="int4" />
+			<result_param name="returnValue" jt="4" type="int4" />
+		</procedure>
+		<procedure name="if" id="Procedure_47bb59" isSystem="false" params_known="y" >
+			<string><![CDATA[CREATE OR REPLACE FUNCTION public.if(boolean, double precision, double precision)
+ RETURNS double precision
+ LANGUAGE sql
+AS $function$
+SELECT CASE WHEN $1 THEN $2 ELSE $3 END
+$function$
+]]></string>
+			<input_param name="$1" jt="-7" type="bool" />
+			<input_param name="$2" jt="8" type="float8" />
+			<input_param name="$3" jt="8" type="float8" />
+			<result_param name="returnValue" jt="8" type="float8" />
 		</procedure>
 		<procedure name="locate" id="Procedure_be86c4" isSystem="false" params_known="y" >
 			<string><![CDATA[CREATE OR REPLACE FUNCTION public.locate(text, text)
@@ -1124,6 +1124,23 @@ $function$
 		<entity schema="public" name="substitutionprotocols" color="bfd4f5" x="1530" y="345" />
 		<entity schema="public" name="users" color="f5ddbf" x="1050" y="240" />
 		<entity schema="public" name="volumes" color="f5ddbf" x="135" y="765" />
+	</layout>
+	<layout name="Sensors" id="Layout_1c13aeb" show_relation="columns" >
+		<entity schema="public" name="sensordata" color="c8daf5" x="285" y="45" />
+		<entity schema="public" name="locations" color="c8daf5" x="45" y="45" />
+		<script name="sensordata_001" id="Editor_1f2744e" language="SQL" >
+			<string><![CDATA[select * from sensordata
+where location = 4]]></string>
+		</script>
+		<browser id="Browse_58967ca" name="id" confirm_updates="y" >
+			<browse_table schema="public" entity="locations" x="20" y="20" width="543" height="418" />
+		</browser>
+		<browser id="Browse_4fb3434" name="locations" confirm_updates="y" >
+			<browse_table schema="public" entity="locations" x="0" y="0" width="1408" height="458" />
+		</browser>
+		<browser id="Browse_2b2793" name="sensordata" confirm_updates="y" >
+			<browse_table schema="public" entity="sensordata" x="0" y="0" width="1113" height="353" />
+		</browser>
 	</layout>
 	<layout name="specimen to coverslip" id="Layout_145c358" joined_routing="y" show_relation="columns" >
 		<comment><![CDATA[specimen to coverslip]]></comment>
