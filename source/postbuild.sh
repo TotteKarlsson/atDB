@@ -35,21 +35,21 @@ suffix="250.bpl"
 miscRedist="/p/redist"
 
 files=(
-$SRC_DIR/*.txt 
+$SRC_DIR/../*.txt 
+$SRC_DIR/Resources/*.ico 
 $OUTPUTDIR/$OUTPUTFILENAME 
 
 #DS Binaries
 $OUTPUTDIR/dslCommon.dll               
 $OUTPUTDIR/dslVCLCommon.dll                
 $BDSCOMMONDIR/BPL/dslVCLComponents.bpl     
-$BDSCOMMONDIR/BPL/dslVisuals.bpl           
+$BDSCOMMONDIR/BPL/dslVCLVisualComponents.bpl           
 
 $OUTPUTDIR/atCore.dll                      
 $OUTPUTDIR/atDataBase.dll                  
 $OUTPUTDIR/atBarcodeReader.dll             
-$BDSCOMMONDIR/BPL/atComponents.bpl           
+$BDSCOMMONDIR/BPL/atVCLComponents.bpl           
 
-suffix="250.bpl"
 $CG_REDIST/bindcomp$suffix                 
 $CG_REDIST/bindcompvcl$suffix              
 $CG_REDIST/bindengine$suffix               

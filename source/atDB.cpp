@@ -89,6 +89,17 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
 		Application->Title = "atDBpg";
+
+        string iconFile("atDB.ico");
+        if(fileExists(iconFile))
+        {
+			Application->Icon->LoadFromFile(iconFile.c_str());
+        }
+        else
+        {
+            Log(lWarning) << "Application icon ("<<iconFile<<")  was not found";
+        }
+
         pgDM 	                = new TpgDM(NULL);
         csPGDM                  = new TcsPGDM(NULL);
         PGImagesAndMoviesDM     = new TPGImagesAndMoviesDM(NULL);
