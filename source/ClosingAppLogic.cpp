@@ -80,13 +80,13 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 	mBottomPanelHeight          	= BottomPanel->Height;
     BatchesGBHeight 				= BatchesGB->Height;
 
-	mGeneralProperties.write();
-    mCoverslipPrintingProperties.write();
+	mGeneralProperties->write();
+    mCoverslipPrintingProperties->write();
 
 	//Write to file
 	mIniFileC->save();
 
 	//Registry settings
-	mSplashProperties.write();
+	mSplashProperties->write();
 }
 

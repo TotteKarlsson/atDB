@@ -131,38 +131,38 @@ void TMainForm::setupIniFile()
 	mIniFileC->init(fldr);
 
 	//For convenience and for option form, populate appProperties container
-	mAppProperties.append(&mGeneralProperties);
-   	mAppProperties.append(&mCoverslipPrintingProperties);
-	mAppProperties.append(&mSplashProperties);
+	mAppProperties.append(mGeneralProperties);
+   	mAppProperties.append(mCoverslipPrintingProperties);
+	mAppProperties.append(mSplashProperties);
 }
 
 bool TMainForm::setupAndReadIniParameters()
 {
 	mIniFileC->load();
-	mGeneralProperties.setIniFile(mIniFileC->getIniFile());
+	mGeneralProperties->setIniFile(mIniFileC->getIniFile());
 
 	//Setup parameters
-	mGeneralProperties.setSection("GENERAL");
-	mGeneralProperties.add((BaseProperty*)  &mBottomPanelHeight.setup( 	            "HEIGHT_OF_BOTTOM_PANEL",    	    205));
-	mGeneralProperties.add((BaseProperty*)  &mMainTabIndex.setup( 	                "MAIN_TAB_INDEX",           	    0));
-	mGeneralProperties.add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
-	mGeneralProperties.add((BaseProperty*)  &mTableUnlockPassword.setup( 	        "TABLE_UNLOCK_PASSWORD",            "atdb123"));
+	mGeneralProperties->setSection("GENERAL");
+	mGeneralProperties->add((BaseProperty*)  &mBottomPanelHeight.setup( 	            "HEIGHT_OF_BOTTOM_PANEL",    	    205));
+	mGeneralProperties->add((BaseProperty*)  &mMainTabIndex.setup( 	                "MAIN_TAB_INDEX",           	    0));
+	mGeneralProperties->add((BaseProperty*)  &mLogLevel.setup( 	                    "LOG_LEVEL",    	                lAny));
+	mGeneralProperties->add((BaseProperty*)  &mTableUnlockPassword.setup( 	        "TABLE_UNLOCK_PASSWORD",            "atdb123"));
 
-	mGeneralProperties.add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    	0));
-//	mGeneralProperties.add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));
-//	mGeneralProperties.add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
-//	mGeneralProperties.add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
-//	mGeneralProperties.add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
-//	mGeneralProperties.add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup(
+	mGeneralProperties->add((BaseProperty*)  &mDBUserID.setup( 	                    "ATDB_USER_ID",                    	0));
+//	mGeneralProperties->add((BaseProperty*)  &mServerIPE->getProperty()->setup( 	    "MYSQL_SERVER_IP",              	"127.0.0.1"));
+//	mGeneralProperties->add((BaseProperty*)  &mDBUserE->getProperty()->setup( 	    "ATDB_USER_NAME",                   "none"));
+//	mGeneralProperties->add((BaseProperty*)  &mPasswordE->getProperty()->setup( 	    "ATDB_USER_PASSWORD",               "none"));
+//	mGeneralProperties->add((BaseProperty*)  &mDatabaseE->getProperty()->setup( 	    "ATDB_DB_NAME",    			        "none"));
+//	mGeneralProperties->add((BaseProperty*)  &mDustAssayImageFolderE->getProperty()->setup(
 //    																				"DUSTASSAY_IMAGER_FOLDER",          "c:\\"));
 
-	mGeneralProperties.add((BaseProperty*)  &MediaFolderE->getProperty()->setup(    "MEDIA_FOLDER",   		            "C:\\Temp"	));
-	mGeneralProperties.add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
-	mGeneralProperties.add((BaseProperty*)  &mDustAssayBackGroundImageWidth.setup( 	"BACKGROUND_IMAGE_WIDTH",  	        100));
-	mGeneralProperties.add((BaseProperty*)  &BatchesGBHeight.setup( 				"BATCHES_GB_HEIGHT",  	        	250));
+	mGeneralProperties->add((BaseProperty*)  &MediaFolderE->getProperty()->setup(    "MEDIA_FOLDER",   		            "C:\\Temp"	));
+	mGeneralProperties->add((BaseProperty*)  &mDustAssayResultImageHeight.setup( 	"RESULT_IMAGE_HEIGHT",     	        100));
+	mGeneralProperties->add((BaseProperty*)  &mDustAssayBackGroundImageWidth.setup( 	"BACKGROUND_IMAGE_WIDTH",  	        100));
+	mGeneralProperties->add((BaseProperty*)  &BatchesGBHeight.setup( 				"BATCHES_GB_HEIGHT",  	        	250));
 
 	//Read from file. Create if file do not exist
-	mGeneralProperties.read();
+	mGeneralProperties->read();
 
 	//Update
 //    mDBUserE->update();
@@ -173,18 +173,18 @@ bool TMainForm::setupAndReadIniParameters()
     MediaFolderE->update();
 
     //Coverslip properties
-   	mCoverslipPrintingProperties.setIniFile(mIniFileC->getIniFile());
-	mCoverslipPrintingProperties.setSection("COVERSLIPLABEL_PRINTING");
+   	mCoverslipPrintingProperties->setIniFile(mIniFileC->getIniFile());
+	mCoverslipPrintingProperties->setSection("COVERSLIPLABEL_PRINTING");
 
-    mCoverslipPrintingProperties.read();
+    mCoverslipPrintingProperties->read();
     BatchesGB->Height = BatchesGBHeight;
 
 	//Setup UI elements
-	mSplashProperties.add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
+	mSplashProperties->add((BaseProperty*)  &mShowSplashOnStartup.setup(             "ShowOnStartup",                    true));
 
-	if(mSplashProperties.doesSectionExist())
+	if(mSplashProperties->doesSectionExist())
 	{
-		mSplashProperties.read();
+		mSplashProperties->read();
 	}
 
 	return true;

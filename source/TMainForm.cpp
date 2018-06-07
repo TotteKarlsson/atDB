@@ -66,7 +66,8 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mMainTabIndex(0),
 	mDustAssayResultImageHeight(100),
     mDustAssayBackGroundImageWidth(100),
-    mSplashProperties(gApplicationRegistryRoot, "Splash"),
+	mCoverslipPrintingProperties(shared_ptr<IniFileProperties>(new IniFileProperties)),
+    mSplashProperties(shared_ptr<TRegistryProperties>(new TRegistryProperties(gApplicationRegistryRoot, "Splash"))),
     mShowSplashOnStartup(true),
     mLogLevel(lAny),
     gCanClose(true),
@@ -74,7 +75,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
     mLogFileReader(joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB", gLogFileName), logMsgMethod),
     mDBUserID(0),
 	BatchesGBHeight(250),
-    mTableUnlockPassword("")
+    mTableUnlockPassword(""),
+    mAppProperties("atDB", gApplicationRegistryRoot, "0,5"),
+    mGeneralProperties(shared_ptr<IniFileProperties>(new IniFileProperties))
 {
     //Close any dataconnection created by stupid TSQLConnection
     mTempFileFolder = joinPath(getSpecialFolder(CSIDL_LOCAL_APPDATA), "atDB");

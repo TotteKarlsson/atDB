@@ -58,12 +58,15 @@
 #include "dslTSTDStringEdit.h"
 #include "dslTSTDStringLabeledEdit.h"
 #include "TTableFrame.h"
+#include "dslSharedPointer.h"
 //---------------------------------------------------------------------------
 
 using dsl::Property;
 using dsl::MessageContainer;
 using dsl::IniFileProperties;
 using dsl::TRegistryProperties;
+using dsl::ApplicationProperties;
+using dsl::shared_ptr;
 using std::list;
 using std::vector;
 using dsl::StringList;
@@ -334,7 +337,7 @@ class TMainForm : public TRegistryForm
 		string                                          mTempFileFolder;
 
                                                         //INI Parameters...
-        IniFileProperties	      	                    mGeneralProperties;
+        shared_ptr<IniFileProperties>                   mGeneralProperties;
         dsl::Property<int>	                            mBottomPanelHeight;
 		dsl::Property<int>	                            mMainTabIndex;
 		dsl::Property<int>	                            BatchesGBHeight;
@@ -343,8 +346,8 @@ class TMainForm : public TRegistryForm
 		dsl::Property<dsl::LogLevel>	                mLogLevel;
 		dsl::Property<string>	         		        mTableUnlockPassword;
 
-        IniFileProperties	      	                    mCoverslipPrintingProperties;
-        TRegistryProperties   	  	                    mSplashProperties;
+        shared_ptr<IniFileProperties>                   mCoverslipPrintingProperties;
+        shared_ptr<TRegistryProperties>                 mSplashProperties;
         dsl::Property<bool>                             mShowSplashOnStartup;
 
 		dsl::Property<int>	                            mDBUserID;

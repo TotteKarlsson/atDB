@@ -58,7 +58,7 @@
         <ProjectType>CppVCLApplication</ProjectType>
         <PackageImports>CloudService;FireDAC;FireDACCommon;FireDACCommonDriver;FireDACIBDriver;FireDACSqliteDriver;inet;RESTBackendComponents;RESTComponents;soapmidas;soaprtl;soapserver;$(PackageImports)</PackageImports>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <AllPackageLibs>rtl.lib;vcl.lib;vclx.lib;dbrtl.lib;vcldb.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;dsnap.lib;dbexpress.lib;DbxCommonDriver.lib;atComponents.lib;dslVCLComponents.lib;atVisualComponents.lib;DbxDevartPostgreSQLDriver250.lib;dbxcds.lib;vclimg.lib</AllPackageLibs>
+        <AllPackageLibs>rtl.lib;vcl.lib;vclx.lib;dbrtl.lib;vcldb.lib;bindengine.lib;bindcomp.lib;bindcompvcl.lib;dsnap.lib;dbexpress.lib;DbxCommonDriver.lib;dslVCLComponents.lib;DbxDevartPostgreSQLDriver250.lib;dbxcds.lib;vclimg.lib;atVCLVisualComponents.lib;atVCLComponents.lib;atVCLDataModules.lib</AllPackageLibs>
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <Multithreaded>true</Multithreaded>
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
@@ -108,20 +108,20 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;vclx.bpi;dbrtl.bpi;vcldb.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;dsnap.bpi;dbexpress.bpi;DbxCommonDriver.bpi;atComponents.bpi;dslVCLComponents.bpi;DbxDevartPostgreSQLDriver250.bpi;dbxcds.bpi;vclimg.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclx.bpi;dbrtl.bpi;vcldb.bpi;bindengine.bpi;bindcomp.bpi;bindcompvcl.bpi;dsnap.bpi;dbexpress.bpi;DbxCommonDriver.bpi;dslVCLComponents.bpi;DbxDevartPostgreSQLDriver250.bpi;dbxcds.bpi;vclimg.bpi</LinkPackageImports>
         <FinalOutputDir>$(DEBUG_BCC32)\bin</FinalOutputDir>
         <_TCHARMapping>char</_TCHARMapping>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <IncludePath>Core;Forms;Frames;Package;$(IncludePath)</IncludePath>
         <ILINK_LibraryPath>C:\Program Files (x86)\Devart\dbExpress\PostgreSql\Lib\Delphi25\Win32;frames;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <LinkPackageStatics>atVisualComponents.lib</LinkPackageStatics>
+        <LinkPackageStatics>atVCLVisualComponents.lib;atVCLComponents.lib;atVCLDataModules.lib</LinkPackageStatics>
         <Defines>POCO_STATIC;ATDB_CORE_STATIC;$(Defines)</Defines>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <VerInfo_MinorVer>7</VerInfo_MinorVer>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=0.7.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <BCC_PCHInject>pch.h</BCC_PCHInject>
-        <PostBuildEvent><![CDATA[C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
+        <PostBuildEvent><![CDATA[$(SH_EXE) postbuild.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)
 $(PostBuildEvent)]]></PostBuildEvent>
         <ILINK_DisplayTime>true</ILINK_DisplayTime>
     </PropertyGroup>
@@ -275,13 +275,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>P:\libs\atapi\source\vcl\frames\TMoviesFrame.h</DependentOn>
             <BuildOrder>27</BuildOrder>
         </CppCompile>
-        <FormResources Include="Frames\TRibbonNotesFrame.dfm"/>
         <FormResources Include="Frames\TTableFrame.dfm"/>
-        <FormResources Include="Forms\TSlicesForm.dfm"/>
+        <FormResources Include="Frames\TRibbonNotesFrame.dfm"/>
         <FormResources Include="Forms\TSpecimenForm.dfm"/>
         <FormResources Include="Forms\TTableUpdateForm.dfm"/>
         <FormResources Include="TMainForm.dfm"/>
+        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
         <FormResources Include="P:\libs\atapi\source\vcl\frames\TMoviesFrame.dfm"/>
+        <FormResources Include="Forms\TSlicesForm.dfm"/>
         <FormResources Include="Forms\TAboutATDBForm.dfm"/>
         <FormResources Include="Forms\TRegisterFreshCSBatchForm.dfm"/>
         <FormResources Include="Forms\TScanForm.dfm"/>
@@ -290,7 +291,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <FormResources Include="Forms\TATDBSplashForm.dfm"/>
         <FormResources Include="Forms\TBlockForm.dfm"/>
         <FormResources Include="Forms\TCoverSlipForm.dfm"/>
-        <FormResources Include="P:\libs\atapi\source\vcl\frames\TImagesFrame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -314,18 +314,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 <ProjectProperties>
                     <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
                     <ProjectProperties Name="ManagePaths">True</ProjectProperties>
-                    <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+                    <ProjectProperties Name="VerifyPackages">False</ProjectProperties>
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="p:\build\tokyo\BPL\atVisualComponents.bpl">AT Frames and Forms</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k250.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp250.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="3">
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64250.dll" Class="DependencyModule">
-                    <Platform Name="Win64">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32250mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -370,19 +366,19 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="p:\build\tokyo\bin\atDB.tds" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win32">
-                        <RemoteName>atDB.tds</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32250mt.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64250.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64250mt.dll" Class="DependencyModule">
                     <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="p:\build\tokyo\bin\atDB.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>atDB.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -817,7 +813,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>C:\cygwin\bin\sh postbuild_bcc32.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
+        <PostBuildEvent>$(SH_EXE) postbuild.sh $(OUTPUTDIR)  $(APP_RELEASES) $(OUTPUTFILENAME) $(BDSCOMMONDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

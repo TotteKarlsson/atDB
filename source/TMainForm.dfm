@@ -41,6 +41,10 @@ object MainForm: TMainForm
       TabOrder = 0
       object TabSheet4: TTabSheet
         Caption = 'Tissue to Block'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl2: TPageControl
           Left = 0
           Top = 0
@@ -52,6 +56,10 @@ object MainForm: TMainForm
           OnChange = PageControl2Change
           object TabSheet8: TTabSheet
             Caption = 'Specimen, Slices && Blocks'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object GroupBox4: TGroupBox
               Left = 0
               Top = 177
@@ -497,6 +505,10 @@ object MainForm: TMainForm
           object RibbonsTS: TTabSheet
             Caption = 'Ribbons'
             ImageIndex = 6
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Splitter2: TSplitter
               Left = 0
               Top = 449
@@ -954,6 +966,10 @@ object MainForm: TMainForm
       object TabSheet9: TTabSheet
         Caption = 'Coverslips'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Splitter4: TSplitter
           Left = 369
           Top = 0
@@ -991,7 +1007,6 @@ object MainForm: TMainForm
               Top = 518
               Width = 363
               Height = 25
-              DataSource = csPGDM.csDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 0
@@ -1003,7 +1018,6 @@ object MainForm: TMainForm
               Width = 363
               Height = 503
               Align = alClient
-              DataSource = csPGDM.csDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               PopupMenu = CoverSlipPopup
               TabOrder = 1
@@ -1129,7 +1143,6 @@ object MainForm: TMainForm
               Width = 363
               Height = 117
               Align = alClient
-              DataSource = csPGDM.csFreshBatchesDSource
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
@@ -1164,7 +1177,6 @@ object MainForm: TMainForm
               Top = 173
               Width = 363
               Height = 25
-              DataSource = csPGDM.csFreshBatchesDSource
               VisibleButtons = [nbPrior, nbNext, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
               Align = alBottom
               TabOrder = 1
@@ -1217,6 +1229,10 @@ object MainForm: TMainForm
             TabOrder = 0
             object TabSheet11: TTabSheet
               Caption = 'Coverslip Info'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
               object GroupBox12: TGroupBox
                 Left = 0
                 Top = 529
@@ -1232,7 +1248,6 @@ object MainForm: TMainForm
                   Height = 323
                   Align = alClient
                   DataField = 'notes'
-                  DataSource = csPGDM.csDSource
                   ScrollBars = ssBoth
                   TabOrder = 0
                 end
@@ -1274,7 +1289,6 @@ object MainForm: TMainForm
                     Width = 65
                     Height = 17
                     DataField = 'id'
-                    DataSource = csPGDM.csDSource
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = clWindowText
                     Font.Height = -16
@@ -1288,7 +1302,6 @@ object MainForm: TMainForm
                     Width = 169
                     Height = 21
                     DataField = 'LStatus'
-                    DataSource = csPGDM.csDSource
                     TabOrder = 0
                   end
                   object DBEdit7: TDBEdit
@@ -1297,7 +1310,6 @@ object MainForm: TMainForm
                     Width = 74
                     Height = 21
                     DataField = 'from_lot'
-                    DataSource = csPGDM.csDSource
                     Enabled = False
                     ReadOnly = True
                     TabOrder = 1
@@ -1324,7 +1336,6 @@ object MainForm: TMainForm
                     Width = 988
                     Height = 485
                     Align = alClient
-                    DataSource = csPGDM.ROnCoverSlipsSource
                     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
                     TabOrder = 0
                     TitleFont.Charset = DEFAULT_CHARSET
@@ -1370,7 +1381,6 @@ object MainForm: TMainForm
                     Top = 500
                     Width = 988
                     Height = 25
-                    DataSource = csPGDM.ROnCoverSlipsSource
                     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
                     Align = alBottom
                     TabOrder = 1
@@ -1384,6 +1394,10 @@ object MainForm: TMainForm
       object TabSheet10: TTabSheet
         Caption = 'Media'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object MediaPageControl: TPageControl
           Left = 73
           Top = 0
@@ -1483,6 +1497,10 @@ object MainForm: TMainForm
       object TabSheet12: TTabSheet
         Caption = 'Knifes'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object GroupBox6: TGroupBox
           Left = 289
           Top = 0
@@ -1977,6 +1995,10 @@ object MainForm: TMainForm
       object TabSheet3: TTabSheet
         Caption = 'Logs'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object BottomPanel: TPanel
           Left = 0
           Top = 0
@@ -2052,6 +2074,10 @@ object MainForm: TMainForm
       object TabSheet2: TTabSheet
         Caption = 'Tools'
         ImageIndex = 7
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
     end
   end

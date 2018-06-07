@@ -1078,6 +1078,35 @@ $function$
 			<result_param name="returnValue" jt="4" type="int4" />
 		</procedure>
 	</schema>
+	<schema name="schema_test" schemaname="schema_test" >
+		<table name="instrument_type" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="instrument_type" type="integer" jt="4" />
+			<index name="pk_instrument_type_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="instruments" >
+			<comment><![CDATA[Relevant instruments in the lab]]></comment>
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="description" type="varchar" length="100" jt="12" />
+			<column name="name" type="varchar" length="100" jt="12" />
+			<column name="instrument_id" type="integer" jt="4" />
+			<column name="serial_number" type="integer" jt="4" />
+			<column name="last_serviced" type="integer" jt="4" />
+			<column name="location_id" type="integer" jt="4" />
+			<column name="instrument_type" type="integer" jt="4" />
+			<index name="pk_instruments_id" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="idx_instruments_instrument_typ" unique="NORMAL" >
+				<column name="instrument_type" />
+			</index>
+			<fk name="fk_instruments_instrument_type" to_schema="schema_test" to_table="instrument_type" >
+				<fk_column name="instrument_type" pk="id" />
+			</fk>
+		</table>
+	</schema>
 	<connector name="atdb" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.1.4.jar" driver_desc="Standard" host="atdb" port="5432" instance="shotgundb" user="admin" passwd="YXRkYjEyMw==" />
 	<layout name="Default Layout" id="Layout_3ba6a0" show_relation="columns" >
 		<entity schema="public" name="antibodies" color="c8f5bf" x="615" y="765" />
@@ -1125,6 +1154,20 @@ $function$
 		<entity schema="public" name="users" color="f5ddbf" x="1050" y="240" />
 		<entity schema="public" name="volumes" color="f5ddbf" x="135" y="765" />
 	</layout>
+	<layout name="Layout" id="Layout_59557de" joined_routing="y" show_relation="columns" >
+		<entity schema="schema_test" name="instruments" color="c8daf5" x="45" y="435" />
+		<entity schema="public" name="locations" color="c8daf5" x="600" y="165" />
+		<entity schema="public" name="instruments" color="c8daf5" x="555" y="45" />
+		<entity schema="public" name="dispensers" color="c8daf5" x="855" y="150" />
+		<entity schema="public" name="microscopes" color="c8daf5" x="210" y="135" />
+		<entity schema="schema_test" name="instrument_type" color="c8daf5" x="330" y="465" />
+		<browser id="Browse_1e1dcb7" name="dispensers" confirm_updates="y" >
+			<browse_table schema="public" entity="dispensers" x="20" y="20" width="1244" height="326" />
+		</browser>
+		<browser id="Browse_362e329" name="microscopes" confirm_updates="y" >
+			<browse_table schema="public" entity="microscopes" x="20" y="20" width="1153" height="316" />
+		</browser>
+	</layout>
 	<layout name="Sensors" id="Layout_1c13aeb" show_relation="columns" >
 		<entity schema="public" name="sensordata" color="c8daf5" x="285" y="45" />
 		<entity schema="public" name="locations" color="c8daf5" x="45" y="45" />
@@ -1135,8 +1178,14 @@ where location = 4]]></string>
 		<browser id="Browse_58967ca" name="id" confirm_updates="y" >
 			<browse_table schema="public" entity="locations" x="20" y="20" width="543" height="418" />
 		</browser>
+		<browser id="Browse_5935ce3" name="instruments" confirm_updates="y" >
+			<browse_table schema="public" entity="instruments" x="20" y="20" width="418" height="674" />
+		</browser>
 		<browser id="Browse_4fb3434" name="locations" confirm_updates="y" >
 			<browse_table schema="public" entity="locations" x="0" y="0" width="1408" height="458" />
+		</browser>
+		<browser id="Browse_363584d" name="microscopes" confirm_updates="y" >
+			<browse_table schema="public" entity="microscopes" x="0" y="0" width="899" height="714" />
 		</browser>
 		<browser id="Browse_2b2793" name="sensordata" confirm_updates="y" >
 			<browse_table schema="public" entity="sensordata" x="0" y="0" width="1113" height="353" />

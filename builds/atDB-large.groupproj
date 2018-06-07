@@ -12,19 +12,25 @@
         <Projects Include="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atDataBase\atDatabase.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\builds\atComponents\atComponents.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj">
+        <Projects Include="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj">
             <Dependencies/>
         </Projects>
         <Projects Include="..\source\atDB.cbproj">
@@ -65,14 +71,23 @@
     <Target Name="dslVCLVisualComponents:Make">
         <MSBuild Projects="P:\libs\dsl\builds\dslVCLVisualComponents\dslVCLVisualComponents.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atFoundation">
-        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj"/>
+    <Target Name="atVCLCommon">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj"/>
     </Target>
-    <Target Name="atFoundation:Clean">
-        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Clean"/>
+    <Target Name="atVCLCommon:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atFoundation:Make">
-        <MSBuild Projects="P:\libs\atapi\builds\atFoundation\atFoundation.cbproj" Targets="Make"/>
+    <Target Name="atVCLCommon:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atSSI">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj"/>
+    </Target>
+    <Target Name="atSSI:Clean">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atSSI:Make">
+        <MSBuild Projects="P:\libs\atapi\thirdparty\ssidll\atSSI.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atBarcodeReader">
         <MSBuild Projects="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj"/>
@@ -83,32 +98,41 @@
     <Target Name="atBarcodeReader:Make">
         <MSBuild Projects="P:\libs\atapi\builds\atBarcodeReader\atBarcodeReader.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atVCLCommon">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj"/>
+    <Target Name="atDatabase">
+        <MSBuild Projects="P:\libs\atapi\builds\atDataBase\atDatabase.cbproj"/>
     </Target>
-    <Target Name="atVCLCommon:Clean">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Clean"/>
+    <Target Name="atDatabase:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atDataBase\atDatabase.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atVCLCommon:Make">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLCommon\atVCLCommon.cbproj" Targets="Make"/>
+    <Target Name="atDatabase:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atDataBase\atDatabase.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atComponents">
-        <MSBuild Projects="P:\libs\atapi\builds\atComponents\atComponents.cbproj"/>
+    <Target Name="atVCLDataModules">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj"/>
     </Target>
-    <Target Name="atComponents:Clean">
-        <MSBuild Projects="P:\libs\atapi\builds\atComponents\atComponents.cbproj" Targets="Clean"/>
+    <Target Name="atVCLDataModules:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atComponents:Make">
-        <MSBuild Projects="P:\libs\atapi\builds\atComponents\atComponents.cbproj" Targets="Make"/>
+    <Target Name="atVCLDataModules:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLDataModules\atVCLDataModules.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="atVisualComponents">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj"/>
+    <Target Name="atVCLComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj"/>
     </Target>
-    <Target Name="atVisualComponents:Clean">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj" Targets="Clean"/>
+    <Target Name="atVCLComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="atVisualComponents:Make">
-        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVisualComponents.cbproj" Targets="Make"/>
+    <Target Name="atVCLComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLComponents\atVCLComponents.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="atVCLVisualComponents">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj"/>
+    </Target>
+    <Target Name="atVCLVisualComponents:Clean">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="atVCLVisualComponents:Make">
+        <MSBuild Projects="P:\libs\atapi\builds\atVCLVisualComponents\atVCLVisualComponents.cbproj" Targets="Make"/>
     </Target>
     <Target Name="atDB">
         <MSBuild Projects="..\source\atDB.cbproj"/>
@@ -120,13 +144,13 @@
         <MSBuild Projects="..\source\atDB.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="dslVCLCommon;dslVCLComponents;dslVCLVisualComponents;atFoundation;atBarcodeReader;atVCLCommon;atComponents;atVisualComponents;atDB"/>
+        <CallTarget Targets="dslVCLCommon;dslVCLComponents;dslVCLVisualComponents;atVCLCommon;atSSI;atBarcodeReader;atDatabase;atVCLDataModules;atVCLComponents;atVCLVisualComponents;atDB"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="dslVCLCommon:Clean;dslVCLComponents:Clean;dslVCLVisualComponents:Clean;atFoundation:Clean;atBarcodeReader:Clean;atVCLCommon:Clean;atComponents:Clean;atVisualComponents:Clean;atDB:Clean"/>
+        <CallTarget Targets="dslVCLCommon:Clean;dslVCLComponents:Clean;dslVCLVisualComponents:Clean;atVCLCommon:Clean;atSSI:Clean;atBarcodeReader:Clean;atDatabase:Clean;atVCLDataModules:Clean;atVCLComponents:Clean;atVCLVisualComponents:Clean;atDB:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="dslVCLCommon:Make;dslVCLComponents:Make;dslVCLVisualComponents:Make;atFoundation:Make;atBarcodeReader:Make;atVCLCommon:Make;atComponents:Make;atVisualComponents:Make;atDB:Make"/>
+        <CallTarget Targets="dslVCLCommon:Make;dslVCLComponents:Make;dslVCLVisualComponents:Make;atVCLCommon:Make;atSSI:Make;atBarcodeReader:Make;atDatabase:Make;atVCLDataModules:Make;atVCLComponents:Make;atVCLVisualComponents:Make;atDB:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
